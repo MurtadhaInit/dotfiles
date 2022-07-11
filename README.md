@@ -12,3 +12,4 @@ The biggest project in one's life.
 - Trackpad (Three Finger Drag and Tap to Click)
 - .zshrc
 - Git (config and SSH)
+- Homebrew Install
