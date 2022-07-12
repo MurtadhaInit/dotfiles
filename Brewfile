@@ -1,3 +1,4 @@
+tap "eth-p/software"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -13,12 +14,16 @@ brew "pango"
 brew "fontforge"
 # Distributed revision control system
 brew "git"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Mac App Store command-line interface
 brew "mas"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Bash scripts that integrate bat with various command-line tools
+brew "eth-p/software/bat-extras"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Client for the Dropbox cloud storage service
@@ -35,8 +40,10 @@ mas "Craft", id: 1487937127
 mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Darkroom", id: 953286746
+mas "GoodNotes", id: 1444383602
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
+mas "Keka", id: 470158793
 mas "Keynote", id: 409183694
 mas "LiquidText", id: 922765270
 mas "MarginNote 3", id: 1423522373
