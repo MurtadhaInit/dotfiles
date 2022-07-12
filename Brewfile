@@ -15,6 +15,8 @@ brew "fontforge"
 brew "git"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Mac App Store command-line interface
+brew "mas"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Browser for SQLite databases
