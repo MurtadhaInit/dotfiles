@@ -29,3 +29,21 @@ cask "gitkraken"
 cask "qbittorrent"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "AdGuard for Safari", id: 1440147259
+mas "Bitwarden", id: 1352778147
+mas "Craft", id: 1487937127
+mas "Dark Noise", id: 1465439395
+mas "Dark Reader for Safari", id: 1438243180
+mas "Darkroom", id: 953286746
+mas "iA Writer", id: 775737590
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "LiquidText", id: 922765270
+mas "MarginNote 3", id: 1423522373
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft Word", id: 462054704
+mas "NCalc Fx", id: 1449106995
+mas "Notability", id: 360593530
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
