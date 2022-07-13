@@ -2,6 +2,7 @@ echo 'Hello from .zshrc!'
 
 # Set Variables
 export HOMEBREW_CASK_OPTS="--no-quarantine"
+export NULLCMD=bat
 
 # Change ZSH Options
 
@@ -11,6 +12,7 @@ alias ls='exa -laFh --git'
 alias exa='exa -laFh --git'
 alias man=batman
 alias bbd='brew bundle dump --force --describe'
+# Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
 alias trail='<<<${(F)path}'
 
 # Customise Prompt(s)
