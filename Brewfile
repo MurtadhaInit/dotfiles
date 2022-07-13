@@ -20,6 +20,8 @@ brew "python@3.10"
 brew "httpie"
 # Mac App Store command-line interface
 brew "mas"
+# Free (GNU) replacement for the Pico text editor
+brew "nano"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Bash scripts that integrate bat with various command-line tools
