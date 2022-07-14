@@ -1,5 +1,6 @@
 echo 'Hello from .zshenv!'
 
+# Check for the existence of the passed-in command but discard the outcome through redirection whether successful or erroneous because our scripts will use the exit code.
 function exists() {
   # 'command -v' is similar to 'which'
   command -v $1 >/dev/null 2>&1

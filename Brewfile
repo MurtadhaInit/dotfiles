@@ -26,6 +26,8 @@ brew "mas"
 brew "nano"
 # Cross-shell prompt for astronauts
 brew "starship"
+# UNIX shell (command interpreter)
+brew "zsh"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
 # Browser for SQLite databases
