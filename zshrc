@@ -4,6 +4,14 @@ echo 'Hello from .zshrc!'
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 export NULLCMD=bat
 
+local brew_bin_path="/opt/homebrew/bin"
+local brew_opt_path="/opt/homebrew/opt"
+export NVM_DIR="$HOME/.nvm"
+# Note: $(brew --prefix nvm) is /opt/homebrew/opt/nvm
+# Automate: mkdir "$HOME/.nvm"
+[ -s "${brew_opt_path}/nvm/nvm.sh" ] && \. "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
+[ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && \. "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # Change ZSH Options
 
 # Create Aliases

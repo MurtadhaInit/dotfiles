@@ -24,6 +24,8 @@ brew "less"
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
+# Manage multiple Node.js versions
+brew "nvm"
 # Cross-shell prompt for astronauts
 brew "starship"
 # UNIX shell (command interpreter)
