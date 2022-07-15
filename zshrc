@@ -4,7 +4,7 @@ echo 'Hello from .zshrc!'
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 export NULLCMD=bat
 
-local brew_bin_path="/opt/homebrew/bin"
+# local brew_bin_path="/opt/homebrew/bin"
 local brew_opt_path="/opt/homebrew/opt"
 export NVM_DIR="$HOME/.nvm"
 # Note: $(brew --prefix nvm) is /opt/homebrew/opt/nvm
@@ -32,7 +32,6 @@ PROMPT='
 RPROMPT='%*'
 
 # Add Locations to $PATH Variable
-# Add Visual Studio Code (code)
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Write Handy Functions
@@ -45,11 +44,11 @@ function mkcd() {
 # ...and Other Surprises
 
 # Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home
-export PATH=$JAVA_HOME/bin:$PATH
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home
+# export PATH=$JAVA_HOME/bin:$PATH
 
 # Python
-export PATH=$(brew --prefix)/opt/python/libexec/bin:$PATH
+# export PATH=$(brew --prefix)/opt/python/libexec/bin:$PATH
 # "brew --prefix" is where Homebrew is installed. That's /opt/homebrew on Apple silicone macs
 
 # Load Starship
