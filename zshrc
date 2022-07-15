@@ -22,6 +22,8 @@ alias man=batman
 alias bbd='brew bundle dump --force --describe'
 # Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
 alias trail='<<<${(F)path}'
+# Don't get accustomed to a more forgivable version of rm if you do server work.
+alias rm=trash
 
 # Customise Prompt(s)
 PROMPT='
