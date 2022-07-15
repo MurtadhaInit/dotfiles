@@ -4,11 +4,9 @@ echo 'Hello from .zshrc!'
 export HOMEBREW_CASK_OPTS="--no-quarantine"
 export NULLCMD=bat
 
-# local brew_bin_path="/opt/homebrew/bin"
 local brew_opt_path="/opt/homebrew/opt"
 export NVM_DIR="$HOME/.nvm"
 # Note: $(brew --prefix nvm) is /opt/homebrew/opt/nvm
-# Automate: mkdir "$HOME/.nvm"
 [ -s "${brew_opt_path}/nvm/nvm.sh" ] && \. "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
 [ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && \. "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
@@ -31,8 +29,18 @@ PROMPT='
 
 RPROMPT='%*'
 
-# Add Locations to $PATH Variable
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# Add Locations to $path Array
+
+# This enforces uniqueness on the array:
+# Duplicate items added to the right are removed,
+# while duplicate items added to the left are kept and
+# the equivalents on the right are removed.
+typeset -U path
+path=(
+  $path
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+  "/Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts"
+)
 
 # Write Handy Functions
 function mkcd() {
