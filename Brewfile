@@ -4,16 +4,22 @@ tap "homebrew/cask"
 tap "homebrew/core"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Core application library for C
+brew "glib"
+# Library for command-line editing
+brew "readline"
+# Command-line interface for SQLite
+brew "sqlite"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Modern replacement for 'ls'
 brew "exa"
-# Framework for layout and rendering of i18n text
-brew "pango"
-# Command-line outline and bitmap font editor/converter
-brew "fontforge"
 # Distributed revision control system
 brew "git"
+# OpenType text shaping engine
+brew "harfbuzz"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -24,14 +30,30 @@ brew "less"
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
+# Platform built on V8 to build network applications
+brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Python version management
+brew "pyenv"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Tool Command Language
+brew "tcl-tk"
+# General-purpose lossless data-compression library
+brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
+# Memory training application
+cask "anki"
+# Display management tool
+cask "betterdisplay"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Client for the Dropbox cloud storage service
@@ -53,7 +75,6 @@ mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Keka", id: 470158793
 mas "Keynote", id: 409183694
-mas "LiquidText", id: 922765270
 mas "MarginNote 3", id: 1423522373
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft Outlook", id: 985367838
@@ -62,3 +83,4 @@ mas "NCalc Fx", id: 1449106995
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Things", id: 904280696

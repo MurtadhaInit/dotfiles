@@ -14,7 +14,8 @@
 
 - create:
       - ~/Work
-      - ~/.nvm
+      - ~/.nvm # nvm root directory
+      - ~/.pyenv # pyenv root directory
 
 - shell:
       - command: ./setup_homebrew.zsh
