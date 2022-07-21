@@ -28,6 +28,8 @@ else
     # Looked cute, might delete later, idk
     sudo ln -sfv /bin/zsh /private/var/select/sh
 
+    # FIXME: changing sh from pointing to bash to pointing to zsh will break a few things: for example, the installation of Python versions with pyenv. Reverting to bash fixed that.
+
     # I'd like for this to work instead.
     # sudo ln -sfv /opt/homebrew/bin/zsh /private/var/select/sh
 fi
