@@ -2,13 +2,18 @@ echo 'Hello from .zshrc!'
 
 # Set Variables
 export HOMEBREW_CASK_OPTS="--no-quarantine"
-export NULLCMD=bat
+export NULLCMD=bat  # Default to bat instead of cat
 
-local brew_opt_path="/opt/homebrew/opt"
-export NVM_DIR="$HOME/.nvm"
+export PYENV_ROOT="$HOME/.pyenv"  # pyenv root directory
+export NVM_DIR="$HOME/.nvm" # nvm root directory
+
+# Load pyenv
+eval "$(pyenv init -)"
+
+# Load nvm
 # Note: $(brew --prefix nvm) is /opt/homebrew/opt/nvm
-[ -s "${brew_opt_path}/nvm/nvm.sh" ] && \. "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
-[ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && \. "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Change ZSH Options
 
@@ -37,6 +42,8 @@ RPROMPT='%*'
 # the equivalents on the right are removed.
 typeset -U path
 path=(
+  "$(brew --prefix openjdk)/bin"
+  "$PYENV_ROOT/bin"
   $path
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
   "/Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts"
@@ -55,9 +62,12 @@ function mkcd() {
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home
 # export PATH=$JAVA_HOME/bin:$PATH
 
-# Python
-# export PATH=$(brew --prefix)/opt/python/libexec/bin:$PATH
-# "brew --prefix" is where Homebrew is installed. That's /opt/homebrew on Apple silicone macs
+# For the system Java wrappers to find this JDK, symlink it with
+# sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
+# For compilers to find openjdk you may need to set:
+# export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
 
 # Load Starship
 # eval "$(starship init zsh)"
