@@ -7,8 +7,29 @@ export NULLCMD=bat  # Default to bat instead of cat
 export PYENV_ROOT="$HOME/.pyenv"  # pyenv root directory
 export NVM_DIR="$HOME/.nvm" # nvm root directory
 
+# >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/murtadha/.pyenv/versions/anaconda3-2022.05/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/murtadha/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh" ]; then
+        . "/Users/murtadha/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/murtadha/.pyenv/versions/anaconda3-2022.05/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+# The base environment is not activated by default
+# conda config --set auto_activate_base False
+
 # Load pyenv
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"  # Do we even need this? pyenv itself is already in the Homebrew bin directory and by default $PYENV_ROOT/bin doesn't exist.
 eval "$(pyenv init -)"
+
+# Load pyenv-virtualenv
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # Load nvm
 # Note: $(brew --prefix nvm) is /opt/homebrew/opt/nvm
@@ -43,7 +64,6 @@ RPROMPT='%*'
 typeset -U path
 path=(
   "$(brew --prefix openjdk)/bin"
-  "$PYENV_ROOT/bin"
   $path
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
   "/Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts"
