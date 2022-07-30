@@ -8,8 +8,6 @@ brew "bat"
 brew "glib"
 # Library for command-line editing
 brew "readline"
-# Command-line interface for SQLite
-brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Interpreted, interactive, object-oriented programming language
@@ -34,12 +32,16 @@ brew "nano"
 brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
+# Development kit for the Java programming language
+brew "openjdk"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Python version management
 brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Tool Command Language
