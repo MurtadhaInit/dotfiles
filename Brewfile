@@ -16,10 +16,10 @@ brew "python@3.9"
 brew "exa"
 # Distributed revision control system
 brew "git"
+# Generate introspection data for GObject libraries
+brew "gobject-introspection"
 # OpenType text shaping engine
 brew "harfbuzz"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
@@ -42,6 +42,8 @@ brew "pango"
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Tool Command Language
@@ -58,12 +60,16 @@ cask "anki"
 cask "betterdisplay"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# App to build and share containerized applications and microservices
+cask "docker"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
 # Git client focusing on productivity
 cask "gitkraken"
-# Peer to peer Bitorrent client
-cask "qbittorrent"
+# Instant messaging application focusing on security
+cask "signal"
+# Customizable email client
+cask "thunderbird"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "AdGuard for Safari", id: 1440147259

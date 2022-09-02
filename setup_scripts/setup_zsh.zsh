@@ -2,7 +2,7 @@
 
 echo "\n<<< Starting ZSH Setup >>>\n"
 
-# Installation unnecessary, it's already in the Brewfile.
+# The installation of ZSH through Homebrew is already included in the Brewfile.
 
 # Add Homebrew-installed ZSH to /etc/shells
 if grep -Fxq '/opt/homebrew/bin/zsh' '/etc/shells'; then

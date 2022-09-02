@@ -1,4 +1,4 @@
-echo 'Hello from .zshenv!'
+echo '.zshenv stuff are loaded!'
 
 # Check for the existence of the passed-in command but discard the outcome through redirection whether successful or erroneous because our scripts will use the exit code.
 function exists() {
