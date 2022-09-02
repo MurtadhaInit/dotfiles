@@ -20,6 +20,8 @@
 - Pay special attention to that fact when it comes to the location of the shell scripts, as this location above is included in the PATH array in ZSHRC (if the Toolbox App is installed with Homebrew this location might be different and hence the directory included in PATH in ZSHRC need to change accordingly).
 - (should I change the location of the shell scripts --like moving it to ~/JetBrainsScripts-- and include it in the .dotfiles directory?)
 
+- Think about replacing /opt/homebrew in the setup_scripts with the variable that leades to that directory / tool (for it to be more evergreen and not hardcoded).
+
 ## Notes about the operation of dotbot
 
 - Link: https://github.com/anishathalye/dotbot
