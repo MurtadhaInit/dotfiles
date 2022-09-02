@@ -1,9 +1,5 @@
 # Notes about Dotfiles
 
-- See what other existing dot files can be included in the setup script file (example the remaining ZSH files).
-
-- Try to run the whole install script in head and in reality for testing purposes.
-
 - Somehow create a script for the .pyenv installation to install the latest version of Python and set it as the global Python, and install the latest version of Anaconda and possibly create a virtual envrionment for it (with pyenv-virtualenv).
 
   - Also install with pip to the 'global' version of Python in pyenv the packages used by vscode: autopep8 and pylint.
@@ -21,6 +17,9 @@
 - (should I change the location of the shell scripts --like moving it to ~/JetBrainsScripts-- and include it in the .dotfiles directory?)
 
 - Think about replacing /opt/homebrew in the setup_scripts with the variable that leades to that directory / tool (for it to be more evergreen and not hardcoded).
+
+- Add .bash_profile (login shells) and .bashrc (interactive shells) to .dotfiles as well.
+- Add .condarc?
 
 ## Notes about the operation of dotbot
 
