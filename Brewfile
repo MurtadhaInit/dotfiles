@@ -14,6 +14,8 @@ brew "xz"
 brew "python@3.9"
 # Modern replacement for 'ls'
 brew "exa"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # Distributed revision control system
 brew "git"
 # Generate introspection data for GObject libraries
@@ -52,6 +54,10 @@ brew "tcl-tk"
 brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
+# Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
+brew "zsh-syntax-highlighting"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
 # Memory training application
@@ -70,6 +76,8 @@ cask "gitkraken"
 cask "signal"
 # Customizable email client
 cask "thunderbird"
+# Rust-based terminal
+cask "warp"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "AdGuard for Safari", id: 1440147259
