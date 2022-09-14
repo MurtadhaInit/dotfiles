@@ -1,6 +1,7 @@
 echo '.zshrc stuff are loaded!'
 
 # ===== Change ZSH Options =====
+# man zshoptions
 
 # ===== Create Aliases =====
 # alias ls='ls -lAFh'
@@ -27,10 +28,11 @@ RPROMPT='%*'
 # the equivalents on the right are removed.
 typeset -U path
 path=(
-  "$(brew --prefix openjdk)/bin"
   $path
-  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-  "/Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts"
+  "$(brew --prefix openjdk)/bin" # Homebrew JDK
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
+  "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
+  "$HOME/.local/bin"  # Poetry
 )
 
 # ===== Handy Functions =====
@@ -38,7 +40,17 @@ function mkcd() {
   mkdir -p "$@" && cd "$_";
 }
 
+# For now: this is for loading command completion for poetry
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
 # ===== ZSH Plugins =====
+# Load fzf configs: fzf setup (if needed), auto-completion and key bindings
+- [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Load zsh-autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH Syntax Highlighting: it has to be the last sourced file in .zshrc
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Java
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home
