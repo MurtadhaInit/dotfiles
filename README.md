@@ -1,6 +1,6 @@
-# Dotfiles
+# .Dotfiles
 
-MacOS Dotfiles
+My personal MacOS Dotfiles.
 
 ## TODO
 

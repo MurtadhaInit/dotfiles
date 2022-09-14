@@ -1,7 +1,7 @@
 echo '.zprofile stuff are loaded!'
 
 # ===== Set Variables =====
-export HOMEBREW_CASK_OPTS="--no-quarantine"
+export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 export NULLCMD=bat  # Default to bat instead of cat
 
 export PYENV_ROOT="$HOME/.pyenv"  # pyenv root directory

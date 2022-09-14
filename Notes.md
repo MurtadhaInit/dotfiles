@@ -20,6 +20,17 @@
 
 - Add .bash_profile (login shells) and .bashrc (interactive shells) to .dotfiles as well.
 - Add .condarc?
+- Explore the .config directory in Home and see if there is anything worth adding too.
+
+- Run `$(brew --prefix)/opt/fzf/install` after installing fzf (or is there a settings file to configue?)
+
+- Maybe add github links for the various projects installed / used right in the ZSH config files.
+
+  - The install script will generate the files ~/.fzf.zsh and ~/.fzf.bash which can then be sourced automatically (with the the install script) or manually.
+
+- Extensive detailed video: https://www.youtube.com/watch?v=bTLYiNvRIVI
+
+- Star all the github repos for the tools used.
 
 ## Notes about the operation of dotbot
 
