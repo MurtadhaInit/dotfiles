@@ -15,6 +15,9 @@
     ~/.config/Starship:
       create: true
       path: config/Starship
+    ~/.config/fzf:
+      create: true
+      path: config/fzf
 
 - create:
     - ~/Work
