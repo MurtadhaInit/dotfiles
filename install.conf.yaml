@@ -12,6 +12,9 @@
     ~/.config/bat:
       create: true
       path: config/bat
+    ~/.config/Starship:
+      create: true
+      path: config/Starship
 
 - create:
     - ~/Work

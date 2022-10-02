@@ -1,0 +1,41 @@
+# === Prompt-wide configurations ===
+
+add_newline = true  # A blank line before prompt start
+format = """
+[❖ ](bold green)\
+$all\
+[❖ ](bold green)\
+$username\
+$hostname\
+$directory
+$character"""                 # Left prompt format
+# right_format = """$all"""   # Right prompt format
+
+
+# 
+
+
+# === Modules ===
+
+[username]
+show_always = true
+format = "[$user]($style) @ "
+style_user = "bold #f1fa8c"
+style_root = "bold #ff5555"
+
+[hostname]
+# trim_at = ""
+ssh_only = false
+ssh_symbol = " 🌐"
+format = "[$hostname[$ssh_symbol](bold white)]($style) on "
+style = "bold #bd93f9"
+
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+style = "bold #8be9fd"
+read_only_style = "bold #ff5555"
+
+[character]
+success_symbol = "[▶](bold green)"
+error_symbol = "[▶](bold red)"
