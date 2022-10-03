@@ -18,6 +18,9 @@
     ~/.config/fzf:
       create: true
       path: config/fzf
+    ~/.zfunc:
+      create: true
+      path: zfunc
 
 - create:
     - ~/Work

@@ -29,13 +29,11 @@ path=(
 )
 
 # ===== Handy Functions =====
-function mkcd() {
-  mkdir -p "$@" && cd "$_";
-}
-
-# For now: this is for loading command completion for poetry
 fpath+=~/.zfunc
+# This is for now used to load command completion for poetry
 autoload -Uz compinit && compinit
+# A function that makes a new folder and cd into it
+autoload -Uz mkcd
 
 # ===== Customise Prompt(s) =====
 # PROMPT='
