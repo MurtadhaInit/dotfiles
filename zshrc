@@ -8,7 +8,8 @@ echo '.zshrc stuff are loaded!'
 alias ls='exa -laFh --git'
 alias exa='exa -laFh --git'
 alias man=batman
-alias bbd='brew bundle dump --force --describe'
+# Update the Brewfile in ~/.dotfiles
+alias bbd='cd $HOME/.dotfiles && brew bundle dump --force --describe && cd -'
 # Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
 alias trail='<<<${(F)path}'
 # Don't get accustomed to a more forgivable version of rm if you do server work.

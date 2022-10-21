@@ -22,8 +22,6 @@
 - Add .condarc?
 - Explore the .config directory in Home and see if there is anything worth adding too.
 
-- Run `$(brew --prefix)/opt/fzf/install` after installing fzf (or is there a settings file to configue?)
-
 - Maybe add github links for the various projects installed / used right in the ZSH config files.
 
   - The install script will generate the files ~/.fzf.zsh and ~/.fzf.bash which can then be sourced automatically (with the the install script) or manually.
@@ -31,6 +29,25 @@
 - Extensive detailed video: https://www.youtube.com/watch?v=bTLYiNvRIVI
 
 - Star all the github repos for the tools used.
+
+- Try to understand `compinit` and `autoload` in zsh and the way it handles functions. Plus explore how autocompletion works (with the addition of the poetry autocompletion function in .zfunc for example).
+
+  - Important explanation: https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh?newreg=4c14dc7278974c4aae7f8266564f9f13
+  - And here: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+
+- Possibly change `.fzf.zsh` to have $(brew --prefix) in its directories.
+
+- Backup Automator scripts? Located in ~/Library/Services e.g. Open in VSCode
+
+- a function "docker-cleanup" that stops and removes all containers and removes all images?
+
+- Adjust the function bbd to cd into the .dotfiles directory does its thing, then navigate back to where we were (possibly using the history command)?
+
+- Use Ansible instead of Dotbot?
+
+- The Dracula tap in Homebrew is causing issues (fix or remove).
+
+- Find a way to have a "reserved" Python version (potentially with pyenv) for applications that depend on it like Poetry and Ansible.
 
 ## Notes about the operation of dotbot
 

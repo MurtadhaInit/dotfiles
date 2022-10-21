@@ -1,13 +1,14 @@
 tap "eth-p/software"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Core application library for C
 brew "glib"
-# Library for command-line editing
-brew "readline"
+# Command-line interface for SQLite
+brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Interpreted, interactive, object-oriented programming language
@@ -18,6 +19,8 @@ brew "exa"
 brew "fzf"
 # Distributed revision control system
 brew "git"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # OpenType text shaping engine
@@ -70,12 +73,28 @@ cask "db-browser-for-sqlite"
 cask "docker"
 # Client for the Dropbox cloud storage service
 cask "dropbox"
+# Developer targeted fonts with a high number of glyphs
+cask "font-fira-code-nerd-font"
 # Git client focusing on productivity
 cask "gitkraken"
+# GPU-based terminal emulator
+cask "kitty"
+# Explore and manipulate your MongoDB data
+cask "mongodb-compass"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Open source virtual/remote desktop application
+cask "rustdesk"
 # Instant messaging application focusing on security
 cask "signal"
+# Real time file synchronization software
+cask "syncthing"
 # Customizable email client
 cask "thunderbird"
+# Git client focusing on power and productivity
+cask "tower"
+# Virtual machines UI using QEMU
+cask "utm"
 # Rust-based terminal
 cask "warp"
 # Video communication and virtual meeting platform
