@@ -77,6 +77,8 @@ cask "dropbox"
 cask "font-fira-code-nerd-font"
 # Git client focusing on productivity
 cask "gitkraken"
+# Terminal emulator as alternative to Apple's Terminal app
+cask "iterm2"
 # GPU-based terminal emulator
 cask "kitty"
 # Explore and manipulate your MongoDB data

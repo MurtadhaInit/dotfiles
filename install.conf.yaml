@@ -18,6 +18,9 @@
     ~/.config/fzf:
       create: true
       path: config/fzf
+    ~/.config/iterm:
+      create: true
+      path: config/iterm
     ~/.zfunc:
       create: true
       path: zfunc
