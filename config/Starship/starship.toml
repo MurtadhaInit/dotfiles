@@ -2,9 +2,9 @@
 
 add_newline = true  # A blank line before prompt start
 format = """
-[❖ ](bold green)\
+[💡 ](bold green)\
 $all\
-[❖ ](bold green)\
+[💡 ](bold green)\
 $username\
 $hostname\
 $directory
@@ -37,5 +37,5 @@ style = "bold #8be9fd"
 read_only_style = "bold #ff5555"
 
 [character]
-success_symbol = "[▶](bold green)"
-error_symbol = "[▶](bold red)"
+success_symbol = "[🟢 ](bold green)"
+error_symbol = "[🔴 ](bold red)"
