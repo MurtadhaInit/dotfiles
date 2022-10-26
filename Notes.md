@@ -8,13 +8,15 @@
 
 - Setup SSH keys for Github.
 
-- Create private Github repos for backing up both Obsidian valuts and the Projects folder in the home directory. Same thing for backing up the Zotero folder in the home directory.
-
-- Jetbrains Toolbox App will set the 'Tools' install location to the following by default: /Users/murtadha/Library/Application Support/JetBrains/Toolbox
-- The Jetbrains Toolbox App sets the following location for shell scripts: /Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts
-- These locations might change if the Toolbox App was installed with Homebrew.
-- Pay special attention to that fact when it comes to the location of the shell scripts, as this location above is included in the PATH array in ZSHRC (if the Toolbox App is installed with Homebrew this location might be different and hence the directory included in PATH in ZSHRC need to change accordingly).
-- (should I change the location of the shell scripts --like moving it to ~/JetBrainsScripts-- and include it in the .dotfiles directory?)
+- Jetbrains Toolbox App will set the 'Tools' install location to the following by default:
+  /Users/murtadha/Library/Application Support/JetBrains/Toolbox
+- The Jetbrains Toolbox App sets the following location for shell scripts:
+  /Users/murtadha/Library/Application Support/JetBrains/Toolbox/scripts
+- Should I change the location of the shell scripts? e.g. moving it to ~/JetBrainsScripts and include it in the .dotfiles directory?
+- Backup the Tookbox settings? They are the files:
+  /Users/murtadha/Library/LaunchAgents/com.jetbrains.toolbox.plist
+  /Users/murtadha/Library/Preferences/com.jetbrains.toolbox.plist
+- Can we automate the installation of JetBrains IDEs with the Toolbox app? Possibly with one of its scripts?
 
 - Think about replacing /opt/homebrew in the setup_scripts with the variable that leades to that directory / tool (for it to be more evergreen and not hardcoded).
 
@@ -41,13 +43,19 @@
 
 - a function "docker-cleanup" that stops and removes all containers and removes all images?
 
-- Adjust the function bbd to cd into the .dotfiles directory does its thing, then navigate back to where we were (possibly using the history command)?
-
 - Use Ansible instead of Dotbot?
 
-- The Dracula tap in Homebrew is causing issues (fix or remove).
-
 - Find a way to have a "reserved" Python version (potentially with pyenv) for applications that depend on it like Poetry and Ansible.
+
+- Possibly install CleanShotX from Homebrew instead.
+
+- Periodically backup Zotero data folder with Git?
+
+- A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
+
+- Include ~/.local/bin in the .dotfiles directory? It has the poetry binaries which are added to path.
+
+- Backup all Apps settings in the form of plist files? Those mostly located in ~/Library/Preferences
 
 ## Notes about the operation of dotbot
 
