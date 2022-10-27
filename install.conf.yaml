@@ -5,9 +5,12 @@
 - clean: ["~"]
 
 - link:
-    ~/.zshrc:
-    ~/.zprofile:
-    ~/.zshenv:
+    ~/.zshrc: ZSH/zshrc
+    ~/.zprofile: ZSH/zprofile
+    ~/.zshenv: ZSH/zshenv
+    ~/.zfunc:
+      create: true
+      path: ZSH/zfunc
     ~/.gitconfig:
     ~/.config/bat:
       create: true
@@ -21,9 +24,6 @@
     ~/.config/iterm:
       create: true
       path: config/iterm
-    ~/.zfunc:
-      create: true
-      path: zfunc
 
 - create:
     - ~/Work
@@ -31,12 +31,12 @@
     - ~/.pyenv # pyenv root directory
 
 - shell:
-    - command: ./setup_scripts/setup_homebrew.zsh
+    - command: ./Homebrew/setup_homebrew.zsh
       stdout: true
       stderr: true
-    - command: ./setup_scripts/setup_zsh.zsh
+    - command: ./ZSH/setup_zsh.zsh
       stdout: true
       stderr: true
-    - command: ./setup_scripts/setup_node.zsh
+    - command: ./Node/setup_node.zsh
       stdout: true
       stderr: true
