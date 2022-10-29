@@ -12,6 +12,9 @@
       create: true
       path: ZSH/zfunc
     ~/.gitconfig:
+    ~/Scripts:
+      create: true
+      path: Scripts
     ~/.config/bat:
       create: true
       path: config/bat

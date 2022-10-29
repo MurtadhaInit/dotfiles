@@ -57,6 +57,12 @@
 
 - Backup all Apps settings in the form of plist files? Those mostly located in ~/Library/Preferences
 
+- Export an environment variable for $(brew --prefix) and replace it everywhere in zsh dotfiles to avoid evaluating it everywhere.
+
+- Save iStat Menus settings
+
+- Backup .gitkraken folder.
+
 ## Notes about the operation of dotbot
 
 - Link: https://github.com/anishathalye/dotbot

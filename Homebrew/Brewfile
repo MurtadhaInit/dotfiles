@@ -67,6 +67,8 @@ brew "eth-p/software/bat-extras"
 cask "anki"
 # Display management tool
 cask "betterdisplay"
+# Screen capturing tool
+cask "cleanshot"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
@@ -75,10 +77,14 @@ cask "docker"
 cask "dropbox"
 # Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
+# Developer targeted fonts with a high number of glyphs
+cask "font-jetbrains-mono-nerd-font"
 # Git client focusing on productivity
 cask "gitkraken"
 # Free and open-source media player
 cask "iina"
+# System monitoring app
+cask "istat-menus"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # JetBrains tools manager
