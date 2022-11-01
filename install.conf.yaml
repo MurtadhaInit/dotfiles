@@ -32,12 +32,16 @@
     - ~/Work
     - ~/.nvm # nvm root directory
     - ~/.pyenv # pyenv root directory
+    - ~/.poetry # poetry root directory
 
 - shell:
     - command: ./Homebrew/setup_homebrew.zsh
       stdout: true
       stderr: true
     - command: ./ZSH/setup_zsh.zsh
+      stdout: true
+      stderr: true
+    - command: ./Python/setup_python.zsh
       stdout: true
       stderr: true
     - command: ./Node/setup_node.zsh

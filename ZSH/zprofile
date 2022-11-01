@@ -4,6 +4,7 @@ echo '.zprofile stuff are loaded!'
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 export NULLCMD=bat  # Default to bat instead of cat
 export STARSHIP_CONFIG="$HOME/.config/Starship/starship.toml" # Starship config
+export POETRY_HOME="$HOME/.poetry"  # poetry root directory
 export PYENV_ROOT="$HOME/.pyenv"  # pyenv root directory
 export NVM_DIR="$HOME/.nvm" # nvm root directory
 

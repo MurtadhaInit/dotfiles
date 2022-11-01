@@ -45,15 +45,13 @@
 
 - Use Ansible instead of Dotbot?
 
-- Find a way to have a "reserved" Python version (potentially with pyenv) for applications that depend on it like Poetry and Ansible.
-
-- Possibly install CleanShotX from Homebrew instead.
+- Find a way to have a "reserved" Python version (potentially with pyenv) for applications that depend on it like Ansible.
 
 - Periodically backup Zotero data folder with Git?
 
 - A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
 
-- Include ~/.local/bin in the .dotfiles directory? It has the poetry binaries which are added to path.
+- Investigate ~/.local/ and remove if not needed.
 
 - Backup all Apps settings in the form of plist files? Those mostly located in ~/Library/Preferences
 

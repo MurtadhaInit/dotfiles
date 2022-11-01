@@ -1,6 +1,6 @@
 #compdef poetry
 
-_poetry_8c107fe81490632e_complete()
+_poetry_edf7eefdd429c5ca_complete()
 {
     local com coms cur opts state
 
@@ -34,7 +34,7 @@ _poetry_8c107fe81490632e_complete()
             ;;
 
             (add)
-            opts+=("--allow-prereleases:Accept prereleases." "--dev:Add as a development dependency." "--dry-run:Output the operations but do not execute anything \(implicitly enables --verbose\)." "--editable:Add vcs/path dependencies as editable." "--extras:Extras to activate for the dependency." "--group:The group to add the dependency to." "--lock:Do not perform operations \(only update the lockfile\)." "--optional:Add as an optional dependency." "--platform:Platforms for which the dependency must be installed." "--python:Python version for which the dependency must be installed." "--source:Name of the source to use to install the package.")
+            opts+=("--allow-prereleases:Accept prereleases." "--dev:Add as a development dependency. \(Deprecated\)" "--dry-run:Output the operations but do not execute anything \(implicitly enables --verbose\)." "--editable:Add vcs/path dependencies as editable." "--extras:Extras to activate for the dependency." "--group:The group to add the dependency to." "--lock:Do not perform operations \(only update the lockfile\)." "--optional:Add as an optional dependency." "--platform:Platforms for which the dependency must be installed." "--python:Python version for which the dependency must be installed." "--source:Name of the source to use to install the package.")
             ;;
 
             (build)
@@ -82,7 +82,7 @@ _poetry_8c107fe81490632e_complete()
             ;;
 
             (export)
-            opts+=("--dev:Include development dependencies. \(Deprecated\)" "--extras:Extra sets of dependencies to include." "--format:Format to export to. Currently, only requirements.txt is supported." "--only:The only dependency groups to include." "--output:The name of the output file." "--with:The optional dependency groups to include." "--with-credentials:Include credentials for extra indices." "--without:The dependency groups to ignore." "--without-hashes:Exclude hashes from the exported file." "--without-urls:Exclude source repository urls from the exported file.")
+            opts+=("--dev:Include development dependencies. \(Deprecated\)" "--extras:Extra sets of dependencies to include." "--format:Format to export to. Currently, only constraints.txt and requirements.txt are supported." "--only:The only dependency groups to include." "--output:The name of the output file." "--with:The optional dependency groups to include." "--with-credentials:Include credentials for extra indices." "--without:The dependency groups to ignore." "--without-hashes:Exclude hashes from the exported file." "--without-urls:Exclude source repository urls from the exported file.")
             ;;
 
             (help)
@@ -114,7 +114,7 @@ _poetry_8c107fe81490632e_complete()
             ;;
 
             (remove)
-            opts+=("--dev:Remove a package from the development dependencies." "--dry-run:Output the operations but do not execute anything \(implicitly enables --verbose\)." "--group:The group to remove the dependency from.")
+            opts+=("--dev:Remove a package from the development dependencies. \(Deprecated\)" "--dry-run:Output the operations but do not execute anything \(implicitly enables --verbose\)." "--group:The group to remove the dependency from.")
             ;;
 
             (run)
@@ -191,5 +191,5 @@ _poetry_8c107fe81490632e_complete()
     esac
 }
 
-_poetry_8c107fe81490632e_complete "$@"
-compdef _poetry_8c107fe81490632e_complete /Users/murtadha/.local/bin/poetry
+_poetry_edf7eefdd429c5ca_complete "$@"
+compdef _poetry_edf7eefdd429c5ca_complete /Users/murtadha/.poetry/bin/poetry

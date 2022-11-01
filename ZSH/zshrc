@@ -26,12 +26,13 @@ path=(
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
-  "$HOME/.local/bin"  # Poetry
+  "$POETRY_HOME/poetry_bin"  # Poetry
 )
 
 # ===== Handy Functions =====
 fpath+=~/.zfunc
 # This is for now used to load command completion for poetry
+# The script is created with: poetry completions zsh > ~/.zfunc/_poetry
 autoload -Uz compinit && compinit
 # A function that makes a new folder and cd into it
 autoload -Uz mkcd
