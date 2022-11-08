@@ -2529,6 +2529,8 @@
 	<string>6A2035CE-F3C1-45DE-8799-F29D239FBE6B</string>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideScrollbar</key>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -3113,7 +3115,7 @@
 			<key>Non-ASCII Ligatures</key>
 			<false/>
 			<key>Normal Font</key>
-			<string>JetBrainsMonoNerdFontComplete-Medium 16</string>
+			<string>ComicCodeLigatures-Regular 16</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>

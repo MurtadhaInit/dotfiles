@@ -61,6 +61,11 @@
 
 - Backup .gitkraken folder.
 
+- Think about what step of the installation requires restarting the shell to load the relevant rc files (exec $SHELL).
+
+- brew tap oven-sh/bun
+  - brew install bun
+
 ## Notes about the operation of dotbot
 
 - Link: https://github.com/anishathalye/dotbot

@@ -25,6 +25,8 @@ brew "python@3.10"
 brew "gobject-introspection"
 # OpenType text shaping engine
 brew "harfbuzz"
+# Improved top (interactive process viewer)
+brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
@@ -119,6 +121,7 @@ mas "Craft", id: 1487937127
 mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Darkroom", id: 953286746
+mas "GoodLinks", id: 1474335294
 mas "GoodNotes", id: 1444383602
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434

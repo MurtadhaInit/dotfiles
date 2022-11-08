@@ -1,41 +1,158 @@
 # === Prompt-wide configurations ===
-
-add_newline = true  # A blank line before prompt start
+add_newline = true      # A blank line before prompt start
 format = """
-[💡 ](bold green)\
-$all\
-[💡 ](bold green)\
 $username\
 $hostname\
-$directory
-$character"""                 # Left prompt format
-# right_format = """$all"""   # Right prompt format
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$python\
+$conda\
+$ruby\
+$rust\
+$container\
+$docker_context\
+$vagrant\
+$java\
+$package\
+$cmd_duration $jobs\
+$line_break\
+$shell\
+$shlvl\
+$character"""
 
-
-# 
-
-
-# === Modules ===
-
+# === Left Hand Side ===
 [username]
-show_always = true
-format = "[$user]($style) @ "
-style_user = "bold #f1fa8c"
-style_root = "bold #ff5555"
+format = "[$user]($style)"
+style_user = "yellow"
+style_root = "red"
 
 [hostname]
-# trim_at = ""
-ssh_only = false
-ssh_symbol = " 🌐"
-format = "[$hostname[$ssh_symbol](bold white)]($style) on "
-style = "bold #bd93f9"
+trim_at = ""
+ssh_symbol = " 🌐 "
+format = "[@$ssh_symbol$hostname ]($style) "
+style = "green"
 
 [directory]
-truncation_length = 10
+truncation_length = 5
 truncate_to_repo = false
-style = "bold #8be9fd"
-read_only_style = "bold #ff5555"
+style = "cyan"
+read_only_style = "red"
+
+# === Git modules ===
+# TODO: configure everything Git related
+# [git_branch]
+# symbol = " "
+# format = "[$symbol$branch]($style) "
+# style = "bright-black"
+
+# [git_status]
+# format = '([\[$all_status$ahead_behind\]]($style) )'
+# style = "cyan"
+
+# [git_state]
+# format = '\([$state( $progress_current/$progress_total)]($style)\) '
+# style = "bright-black"
+
+# [git_metrics]
+# disabled = false
+
+# $git_commit\
+
+# === Right Hand Side ===
+[nodejs]
+symbol = "Node"
+format = "[$symbol: $version]($style) "
+style = "green"
+not_capable_style = "red"
+
+[python]
+pyenv_version_name = true
+symbol = "🐍"
+pyenv_prefix = "pyenv: "
+format = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style = "yellow"
+
+[conda]
+ignore_base = false
+symbol = "Conda"
+style = "green"
+format = "[$symbol: $environment]($style) "
+
+[ruby]
+symbol = "💎"
+format = "[$symbol $version ]($style)"
+style = "red"
+
+[rust]
+symbol = "🦀"
+format = "[$symbol $version ]($style)"
+style = "red"
+
+[container]
+symbol = "🔷"
+style = "red"
+format = '[$symbol \[$name\]]($style) '
+
+[docker_context]
+symbol = "🐳"
+format = "[$symbol $context]($style) "
+style = "blue"
+
+[vagrant]
+symbol = "Vargrant"
+format = "[$symbol: $version ]($style)"
+style = "cyan"
+
+[java]
+symbol = "☕️"
+format = "[$symbol $version]($style) "
+style = "red"
+
+[package]
+symbol = "📦"
+format = "[$symbol $version]($style) "
+style = "208"
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+
+[jobs]
+number_threshold = 1
+style = "blue"
+
+# === New Line ===
+[shell]
+disabled = false
+
+[shlvl]
+disabled = false
+format = "[$shlvl]($style) "
 
 [character]
-success_symbol = "[🟢 ](bold green)"
-error_symbol = "[🔴 ](bold red)"
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold red)"
+
+# === Misc. ===
+[fill]
+symbol = " "
+
+# TODO: investigate whether the colour palette has been applied / how.
+# should we leave it to the terminal application to override these colours?
+
+# [palettes.dracula]
+# yellow = "#f1fa8c"
+# green = "#50fa7b"
+# pink = "#ff79c6"
+# red = "#ff5555"
+# purple = "#bd93f9"
+# cyan = "#8be9fd"
+# orange = "#ffb86c"
+
+# this assignment has to be placed at the top
+# palette = "dracula"     # The selected colour palette

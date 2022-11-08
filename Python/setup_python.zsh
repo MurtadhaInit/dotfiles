@@ -7,6 +7,10 @@ echo "\n<<< Starting Python Setup >>>\n"
 # pyenv install 3...
 
 
+# === Install Anaconda with pyenv ===
+# conda config --set changeps1 False
+# This is to get rid of the line added to the prompt indicating the conda environment currently activated (we obtain this info from Starship).
+
 # === Install poetry ===
 # - Python 3.7+ is required
 # - Poetry is installed to an isolated Python venv
