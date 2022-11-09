@@ -1,5 +1,6 @@
 # === Prompt-wide configurations ===
 add_newline = true      # A blank line before prompt start
+
 format = """
 $username\
 $hostname\
@@ -7,136 +8,121 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$git_metrics\
-$fill\
+$docker_context\
+$package\
 $nodejs\
 $python\
 $conda\
 $ruby\
 $rust\
-$container\
-$docker_context\
 $vagrant\
 $java\
-$package\
-$cmd_duration $jobs\
+$fill\
+$container $jobs\
 $line_break\
 $shell\
 $shlvl\
 $character"""
 
-# === Left Hand Side ===
+right_format = """
+$cmd_duration"""
+
+# === 1st Line: left hand side ===
 [username]
-format = "[$user]($style)"
+show_always = true
+format = "[$user]($style) in "
 style_user = "yellow"
 style_root = "red"
 
 [hostname]
-trim_at = ""
-ssh_symbol = " 🌐 "
-format = "[@$ssh_symbol$hostname ]($style) "
+ssh_only = false
+# trim_at = ""
+format = "[$ssh_symbol$hostname]($style) at "
 style = "green"
 
 [directory]
-truncation_length = 5
+truncation_symbol = "…/"
 truncate_to_repo = false
 style = "cyan"
-read_only_style = "red"
 
-# === Git modules ===
-# TODO: configure everything Git related
-# [git_branch]
-# symbol = " "
-# format = "[$symbol$branch]($style) "
-# style = "bright-black"
+[git_branch]
+style = "purple"
 
-# [git_status]
-# format = '([\[$all_status$ahead_behind\]]($style) )'
-# style = "cyan"
+[git_state]
+style = "yellow"
 
-# [git_state]
-# format = '\([$state( $progress_current/$progress_total)]($style)\) '
-# style = "bright-black"
+[git_status]
+style = "red"
 
-# [git_metrics]
-# disabled = false
-
-# $git_commit\
-
-# === Right Hand Side ===
+# === 1st Line: left hand side: environment ===
 [nodejs]
-symbol = "Node"
-format = "[$symbol: $version]($style) "
+symbol = "Node "
 style = "green"
 not_capable_style = "red"
 
 [python]
-pyenv_version_name = true
-symbol = "🐍"
-pyenv_prefix = "pyenv: "
-format = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = "🐍 "
 style = "yellow"
+# it's possible to show pyenv version
 
 [conda]
 ignore_base = false
-symbol = "Conda"
+symbol = "🅒 "
 style = "green"
-format = "[$symbol: $environment]($style) "
 
 [ruby]
-symbol = "💎"
-format = "[$symbol $version ]($style)"
+symbol = "💎 "
 style = "red"
 
 [rust]
-symbol = "🦀"
-format = "[$symbol $version ]($style)"
+symbol = "🦀 "
 style = "red"
-
-[container]
-symbol = "🔷"
-style = "red"
-format = '[$symbol \[$name\]]($style) '
 
 [docker_context]
-symbol = "🐳"
-format = "[$symbol $context]($style) "
+symbol = "🐳 "
 style = "blue"
 
 [vagrant]
-symbol = "Vargrant"
-format = "[$symbol: $version ]($style)"
+symbol = "⍱ "
+# symbol = "Vargrant"
 style = "cyan"
 
 [java]
-symbol = "☕️"
-format = "[$symbol $version]($style) "
-style = "red"
+symbol = "☕ "
+style = "red dimmed"
 
 [package]
-symbol = "📦"
-format = "[$symbol $version]($style) "
+symbol = "📦 "
 style = "208"
+# add other relevant modules below
 
-[cmd_duration]
-format = "[$duration]($style)"
-style = "yellow"
+# === 1st Line: right hand side ===
+[container]
+symbol = "⬢"
+style = "red dimmed"
 
 [jobs]
 number_threshold = 1
 style = "blue"
 
-# === New Line ===
+# === 2nd Line: left hand side ===
 [shell]
 disabled = false
+style = "white italic dimmed"
 
 [shlvl]
 disabled = false
-format = "[$shlvl]($style) "
+format = '[\($shlvl\)]($style) '
+style = "yellow dimmed"
 
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
+
+# === 2nd Line: right hand side ===
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
 
 # === Misc. ===
 [fill]
