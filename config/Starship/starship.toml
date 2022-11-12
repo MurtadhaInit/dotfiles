@@ -2,8 +2,7 @@
 add_newline = true      # A blank line before prompt start
 
 format = """
-$username\
-$hostname\
+($username$sudo)in $hostname\
 $directory\
 $git_branch\
 $git_state\
@@ -30,9 +29,15 @@ $cmd_duration"""
 # === 1st Line: left hand side ===
 [username]
 show_always = true
-format = "[$user]($style) in "
+format = "[$user]($style) "
 style_user = "yellow"
 style_root = "red"
+
+[sudo]
+disabled = false
+style = "blue"
+symbol = "🧙 "
+format = "as [$symbol]($style)"
 
 [hostname]
 ssh_only = false
