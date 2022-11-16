@@ -4,9 +4,11 @@
 [core]
 	editor = code --wait
 	autocrlf = input
-[color]
-	ui = auto
 [diff]
 	tool = vscode
 [difftool "vscode"]
 	cmd = "code --wait --diff $LOCAL $REMOTE"
+[alias]
+	lg = log --pretty=format:'%an committed %h'
+[alia]
+	unstage = restore --staged .
