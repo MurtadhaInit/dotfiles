@@ -2,7 +2,7 @@
 add_newline = true      # A blank line before prompt start
 
 format = """
-($username$sudo)in $hostname\
+($username$sudo)in ($hostname$env_var)at \
 $directory\
 $git_branch\
 $git_state\
@@ -42,8 +42,15 @@ format = "as [$symbol]($style)"
 [hostname]
 ssh_only = false
 # trim_at = ""
-format = "[$ssh_symbol$hostname]($style) at "
+format = "[$ssh_symbol$hostname]($style) "
 style = "green"
+
+[env_var.STARSHIP_DISTRO]
+# Shows a system/distribution icon for the OS
+# A corresponding script is sourced in zshrc
+format = "[$env_value]($style) "
+style = "white"
+variable = "STARSHIP_DISTRO"
 
 [directory]
 truncation_symbol = "…/"

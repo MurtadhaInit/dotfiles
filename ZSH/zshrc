@@ -1,15 +1,15 @@
 echo '.zshrc stuff are loaded!'
+pfetch
 
 # ===== Change ZSH Options =====
 # man zshoptions
 
 # ===== Create Aliases =====
-# alias ls='ls -lAFh'
-alias ls='exa -laFh --git'
-alias exa='exa -laFh --git'
+alias ls=exa
+alias exa='exa -lah --git --group-directories-first --no-time'
 alias man=batman
-# Update the Brewfile in ~/.dotfiles/Homebrew
-alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'
+alias grep='grep --color'
+alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'  # Update the Brewfile in ~/.dotfiles/Homebrew
 # Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
 alias trail='<<<${(F)path}'
 # Don't get accustomed to a more forgivable version of rm if you do server work.
@@ -38,15 +38,16 @@ autoload -Uz compinit && compinit
 autoload -Uz mkcd
 
 # ===== Customise Prompt(s) =====
-# PROMPT='
-# %1~ %L %# '
-# RPROMPT='%*'
-# Load Starship instead of manually customising the prompt
+# Get system/distro logo for Starship
+[ -f $HOME/.config/Starship/starship.zsh ] && source $HOME/.config/Starship/starship.zsh
+# Load Starship
 eval "$(starship init zsh)"
 
-# ===== ZSH Plugins =====
+# ===== ZSH Plugins / CLI Tools =====
 # Load fzf configs: fzf setup (if needed), auto-completion and key bindings
 source $HOME/.config/fzf/.fzf.zsh
+# Load zoxide (cd replacement)
+eval "$(zoxide init zsh)"
 # Load zsh-autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ZSH Syntax Highlighting: it has to be the last sourced file in .zshrc
@@ -58,6 +59,9 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # No need to execute the install script again after
 # installation of fzf with Homebrew.
 
+# NOTE: That line that loads zoxide must be added after compinit
+# is called. A rebuild of the cache might be required by running
+# rm ~/.zcompdump*; compinit
 
 # Java
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-18.0.1.1.jdk/Contents/Home

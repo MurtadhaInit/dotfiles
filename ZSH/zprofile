@@ -1,6 +1,7 @@
 echo '.zprofile stuff are loaded!'
 
 # ===== Set Variables =====
+# export BREW_PREFIX=$(brew --prefix) # Save Homebrew’s installed location
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 export NULLCMD=bat  # Default to bat instead of cat
 export STARSHIP_CONFIG="$HOME/.config/Starship/starship.toml" # Starship config
@@ -30,7 +31,6 @@ unset __conda_setup
 # conda config --set auto_activate_base False
 
 # Load pyenv
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"  # Do we even need this? pyenv itself is already in the Homebrew bin directory and by default $PYENV_ROOT/bin doesn't exist.
 eval "$(pyenv init -)"
 
 # Load pyenv-virtualenv
