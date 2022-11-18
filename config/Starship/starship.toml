@@ -1,4 +1,5 @@
 # === Prompt-wide configurations ===
+command_timeout = 1000  # Default timeout for commands is 500ms
 add_newline = true      # A blank line before prompt start
 
 format = """
@@ -40,6 +41,7 @@ symbol = "🧙 "
 format = "as [$symbol]($style)"
 
 [hostname]
+ssh_symbol = " "
 ssh_only = false
 # trim_at = ""
 format = "[$ssh_symbol$hostname]($style) "
@@ -49,15 +51,18 @@ style = "green"
 # Shows a system/distribution icon for the OS
 # A corresponding script is sourced in zshrc
 format = "[$env_value]($style) "
-style = "white"
+style = "white dimmed"
 variable = "STARSHIP_DISTRO"
 
 [directory]
 truncation_symbol = "…/"
+home_symbol = " ~"
 truncate_to_repo = false
 style = "cyan"
 
 [git_branch]
+symbol = " "
+# symbol = " "
 style = "purple"
 
 [git_state]
@@ -65,15 +70,29 @@ style = "yellow"
 
 [git_status]
 style = "red"
+# format = '[\($all_status$ahead_behind\)]($style) '
+# style = "bold green"
+# conflicted = "🏳"
+# up_to_date = " "
+untracked = " "
+# ahead = "⇡${count}"
+# diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+# behind = "⇣${count}"
+# stashed = " "
+modified = " "
+# staged = '[++\($count\)](green)'
+# renamed = "襁 "
+deleted = " "
+
 
 # === 1st Line: left hand side: environment ===
 [nodejs]
-symbol = "Node "
+symbol = " "
 style = "green"
 not_capable_style = "red"
 
 [python]
-symbol = "🐍 "
+symbol = " "
 style = "yellow"
 # it's possible to show pyenv version
 
@@ -83,15 +102,15 @@ symbol = "🅒 "
 style = "green"
 
 [ruby]
-symbol = "💎 "
+symbol = " "
 style = "red"
 
 [rust]
-symbol = "🦀 "
+symbol = " "
 style = "red"
 
 [docker_context]
-symbol = "🐳 "
+symbol = " "
 style = "blue"
 
 [vagrant]
@@ -100,8 +119,8 @@ symbol = "⍱ "
 style = "cyan"
 
 [java]
-symbol = "☕ "
-style = "red dimmed"
+symbol = " "
+style = "red"
 
 [package]
 symbol = "📦 "
@@ -110,11 +129,17 @@ style = "208"
 
 # === 1st Line: right hand side ===
 [container]
-symbol = "⬢"
+symbol = ""
+# symbol = "⬢"
 style = "red dimmed"
 
 [jobs]
 number_threshold = 1
+symbol = ""
+# symbol = ""
+# symbol = ""
+# symbol = ""
+# symbol = "✦"
 style = "blue"
 
 # === 2nd Line: left hand side ===
@@ -133,7 +158,7 @@ error_symbol = "[>](bold red)"
 
 # === 2nd Line: right hand side ===
 [cmd_duration]
-format = "[$duration]($style)"
+format = "[ $duration]($style)"
 style = "yellow"
 
 # === Misc. ===

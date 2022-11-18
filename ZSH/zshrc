@@ -39,7 +39,7 @@ autoload -Uz mkcd
 
 # ===== Customise Prompt(s) =====
 # Get system/distro logo for Starship
-[ -f $HOME/.config/Starship/starship.zsh ] && source $HOME/.config/Starship/starship.zsh
+[ -f $HOME/.config/Starship/system_icon.zsh ] && source $HOME/.config/Starship/system_icon.zsh
 # Load Starship
 eval "$(starship init zsh)"
 

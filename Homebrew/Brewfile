@@ -3,28 +3,40 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
-# Clone of cat(1) with syntax highlighting and Git integration
-brew "bat"
-# Core application library for C
-brew "glib"
 # Command-line interface for SQLite
 brew "sqlite"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Core application library for C
+brew "glib"
+# Portable Foreign Function Interface library
+brew "libffi"
+# X.Org: Core X11 protocol client library
+brew "libx11"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
+# Checks for bashisms in shell scripts
+brew "checkbashisms"
 # Modern replacement for 'ls'
 brew "exa"
+# OpenType text shaping engine
+brew "harfbuzz"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Command-line outline and bitmap font editor/converter
+brew "fontforge"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Distributed revision control system
 brew "git"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
-# OpenType text shaping engine
-brew "harfbuzz"
 # Improved top (interactive process viewer)
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -35,6 +47,8 @@ brew "less"
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
+# Fast, highly customisable system info script
+brew "neofetch"
 # Platform built on V8 to build network applications
 brew "node"
 # Manage multiple Node.js versions
@@ -43,12 +57,14 @@ brew "nvm"
 brew "openjdk"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-# Framework for layout and rendering of i18n text
-brew "pango"
+# Pretty system information tool written in POSIX sh
+brew "pfetch"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
 # Cross-shell prompt for astronauts
@@ -57,6 +73,8 @@ brew "starship"
 brew "tcl-tk"
 # General-purpose lossless data-compression library
 brew "zlib"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -75,8 +93,6 @@ cask "cleanshot"
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
 cask "docker"
-# Client for the Dropbox cloud storage service
-cask "dropbox"
 # Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
 # Developer targeted fonts with a high number of glyphs
