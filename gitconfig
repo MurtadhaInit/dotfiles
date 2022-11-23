@@ -10,5 +10,5 @@
 	cmd = "code --wait --diff $LOCAL $REMOTE"
 [alias]
 	lg = log --pretty=format:'%an committed %h'
-[alia]
+[alias]
 	unstage = restore --staged .

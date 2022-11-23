@@ -26,7 +26,7 @@
 
 - Maybe add github links for the various projects installed / used right in the ZSH config files.
 
-  - The install script will generate the files ~/.fzf.zsh and ~/.fzf.bash which can then be sourced automatically (with the the install script) or manually.
+- The install script will generate the files ~/.fzf.zsh and ~/.fzf.bash which can then be sourced automatically (with the the install script) or manually.
 
 - Extensive detailed video: https://www.youtube.com/watch?v=bTLYiNvRIVI
 
@@ -64,7 +64,12 @@
 - Think about what step of the installation requires restarting the shell to load the relevant rc files (exec $SHELL).
 
 - brew tap oven-sh/bun
+
   - brew install bun
+
+- To use touch ID for sudo instead of supplying the password:
+  - Edit the file: sudo nano /etc/pam.d/sudo
+  - Add beneath the first commented line: auth sufficient pam_tid.so
 
 ## Notes about the operation of dotbot
 

@@ -37,12 +37,3 @@ else
 
     echo "$($POETRY_HOME/poetry_bin/poetry --version) has been installed"
 fi
-
-
-# === Install tldr-pages ===
-if exists tldr; then
-    echo "\ntldr pages already installed"
-else
-    echo "Installing tldr pages..."
-    pip3 install tldr
-fi
