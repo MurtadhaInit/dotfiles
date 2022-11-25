@@ -30,7 +30,6 @@
 
 - create:
     - ~/Work
-    - ~/.nvm # nvm root directory
     - ~/.pyenv # pyenv root directory
     - ~/.poetry # poetry root directory
 

@@ -22,6 +22,7 @@ alias trail='<<<${(F)path}'
 # the equivalents on the right are removed.
 typeset -U path
 path=(
+  "$VOLTA_HOME/bin" # Volta shims
   $path
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
