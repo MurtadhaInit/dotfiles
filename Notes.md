@@ -68,8 +68,11 @@
   - brew install bun
 
 - To use touch ID for sudo instead of supplying the password:
+
   - Edit the file: sudo nano /etc/pam.d/sudo
   - Add beneath the first commented line: auth sufficient pam_tid.so
+
+- Find a way (or make sure) to discard any changes made automatically to the ZSH config files during the installation of packages or apps (e.g. Anaconda adding its load scripts...etc).
 
 ## Notes about the operation of dotbot
 

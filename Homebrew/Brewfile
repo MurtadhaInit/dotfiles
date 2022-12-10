@@ -11,6 +11,8 @@ brew "xz"
 brew "python@3.10"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Download with resuming and segmented downloading
+brew "aria2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Core application library for C
@@ -35,6 +37,8 @@ brew "fontforge"
 brew "fzf"
 # Distributed revision control system
 brew "git"
+# Render markdown on the CLI
+brew "glow"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # Improved top (interactive process viewer)
@@ -51,8 +55,6 @@ brew "nano"
 brew "neofetch"
 # Platform built on V8 to build network applications
 brew "node"
-# Manage multiple Node.js versions
-brew "nvm"
 # Development kit for the Java programming language
 brew "openjdk"
 # Cryptography and SSL/TLS Toolkit
@@ -71,6 +73,14 @@ brew "speedtest-cli"
 brew "starship"
 # Tool Command Language
 brew "tcl-tk"
+# Simplified and community-driven man pages
+brew "tldr"
+# JavaScript toolchain manager for reproducible environments
+brew "volta"
+# Best command-line tool to install and switch between multiple versions of Xcode
+brew "xcodes"
+# Check your $HOME for unwanted files and directories
+brew "xdg-ninja"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
