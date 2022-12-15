@@ -3,7 +3,7 @@ command_timeout = 1000  # Default timeout for commands is 500ms
 add_newline = true      # A blank line before prompt start
 
 format = """
-($username$sudo)in ($hostname$env_var)at \
+($username$sudo)in ($hostname$os)at \
 $directory\
 $git_branch\
 $git_commit\
@@ -48,12 +48,31 @@ ssh_only = false
 format = "[$ssh_symbol$hostname]($style) "
 style = "green"
 
-[env_var.STARSHIP_DISTRO]
-# Shows a system/distribution icon for the OS
-# A corresponding script is sourced in zshrc
-format = "[$env_value]($style) "
+[os]
+disabled = false
+# if $version is not available we'll end up with 2 spaces
+format = "[$symbol$version]($style) "
 style = "white dimmed"
-variable = "STARSHIP_DISTRO"
+
+[os.symbols]
+Alpine = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+Fedora = " "
+Gentoo = " "
+Macos = " "
+Manjaro = " "
+Mint = " "
+NixOS = " "
+openSUSE = " "
+SUSE = " "
+Raspbian = " "
+Ubuntu = " "
+RedHatEnterprise = " "
+Linux = " "
+Windows = " "
+# Unknown = " "
 
 [directory]
 truncation_symbol = "…/"

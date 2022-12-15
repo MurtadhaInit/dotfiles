@@ -27,11 +27,13 @@
     ~/.config/iterm:
       create: true
       path: config/iterm
+    ~/.config/pypoetry:
+      create: true
+      path: config/pypoetry
 
 - create:
     - ~/Work
     - ~/.pyenv # pyenv root directory
-    - ~/.poetry # poetry root directory
 
 - shell:
     - command: ./Homebrew/setup_homebrew.zsh

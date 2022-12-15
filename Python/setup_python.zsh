@@ -7,6 +7,10 @@ echo "\n<<< Starting Python Setup >>>\n"
 # pyenv install 3...
 
 
+# Install with pipx:
+# pipx install --include-deps ansible
+# pipx install ansible-lint
+
 # === Install Anaconda with pyenv ===
 # conda config --set changeps1 False
 # This is to get rid of the line added to the prompt indicating the conda environment currently activated (we obtain this info from Starship).
@@ -14,26 +18,15 @@ echo "\n<<< Starting Python Setup >>>\n"
 # === Install poetry ===
 # - Python 3.7+ is required
 # - Poetry is installed to an isolated Python venv environment
-# - $POETRY_HOME is set to $HOME/.poetry
-# - $POETRY_HOME/poetry_bin is added to $path
 if exists poetry; then
     echo "$(poetry --version) is already installed"
 else
     echo "Installing Poetry (Python packaging and dependency management)..."
-    python3 -m venv $POETRY_HOME
-    $POETRY_HOME/bin/pip install --upgrade pip setuptools
-    $POETRY_HOME/bin/pip install poetry
-
-    # This is to avoid adding the entire $POETRY_HOME/bin directory to $path,
-    # which includes unneeded Python binaries (from poetry's venv).
-    mkdir $POETRY_HOME/poetry_bin
-    ln -s $POETRY_HOME/bin/poetry $POETRY_HOME/poetry_bin/poetry
-
-    # Tab completion
-    # These two lines are loaded in .zshrc:
-        # fpath+=~/.zfunc
-        # autoload -Uz compinit && compinit
-    $POETRY_HOME/poetry_bin/poetry completions zsh > ~/.zfunc/_poetry
-
-    echo "$($POETRY_HOME/poetry_bin/poetry --version) has been installed"
+    # install with pipx
+    pipx install poetry
+    # start a subshell to have the poetry command sourced in $path
+    zsh
+    # generate zsh command completion script to include in $fpath
+    poetry completions zsh > ~/.zfunc/_poetry
+    echo "$(poetry --version) has been installed"
 fi

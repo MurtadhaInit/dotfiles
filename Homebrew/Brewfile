@@ -5,16 +5,12 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 # Command-line interface for SQLite
 brew "sqlite"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Automate deployment, configuration, and upgrading
-brew "ansible"
 # Download with resuming and segmented downloading
 brew "aria2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Core application library for C
 brew "glib"
 # Portable Foreign Function Interface library
@@ -31,6 +27,8 @@ brew "exa"
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
 brew "pango"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Command-line outline and bitmap font editor/converter
 brew "fontforge"
 # Command-line fuzzy finder written in Go
@@ -49,6 +47,8 @@ brew "httpie"
 brew "less"
 # Mac App Store command-line interface
 brew "mas"
+# Nice to use pager for humans
+brew "moar"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
 # Fast, highly customisable system info script
@@ -61,6 +61,8 @@ brew "openjdk"
 brew "openssl@3"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
@@ -135,6 +137,12 @@ cask "thunderbird"
 cask "tower"
 # Virtual machines UI using QEMU
 cask "utm"
+# Development environment
+cask "vagrant"
+# Gives Vagrant VMware plugin access to various VMware functionalities
+cask "vagrant-vmware-utility"
+# Create, manage, and run virtual machines
+cask "vmware-fusion"
 # Rust-based terminal
 cask "warp"
 # Video communication and virtual meeting platform

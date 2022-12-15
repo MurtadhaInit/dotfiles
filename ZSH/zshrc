@@ -27,16 +27,31 @@ path=(
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
-  "$POETRY_HOME/poetry_bin"  # Poetry
+  "$HOME/.local/bin" # pipx
 )
 
 # ===== Handy Functions =====
+# make a directory and then cd into it
+# TODO: load it lazily? autoload -Uz mkcd
+function mkcd() {
+  mkdir -p "$@" && cd "$_";
+}
+
+# ===== Command completion =====
+# case insensitive path completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+# place additional command completion scripts here
 fpath+=~/.zfunc
-# This is for now used to load command completion for poetry
-# The script is created with: poetry completions zsh > ~/.zfunc/_poetry
+# load the zsh command completion system
 autoload -Uz compinit && compinit
-# A function that makes a new folder and cd into it
-autoload -Uz mkcd
+# load bash completions since they are compatible with zsh
+# so far, this is only used for pipx completions
+autoload -U bashcompinit && bashcompinit
+# pipx autocompletion
+eval "$(register-python-argcomplete pipx)"
+
+# TODO: The default Python interpreter to use by pipx. Replace with perm one.
+export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
 
 # ===== Customise Prompt(s) =====
 # Get system/distro logo for Starship

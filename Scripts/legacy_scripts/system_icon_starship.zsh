@@ -37,3 +37,13 @@ esac
 # Smaller icon for MacOS (better fit): 
 
 export STARSHIP_DISTRO="$ICON"
+
+# === Relevant starship.toml addition ===
+# [env_var.STARSHIP_DISTRO]
+# # Shows a system/distribution icon for the OS
+# # A corresponding script is sourced in zshrc
+# format = "[$env_value]($style) "
+# style = "white dimmed"
+# variable = "STARSHIP_DISTRO"
+
+# Add $env_var to the prompt format variable

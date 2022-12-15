@@ -74,6 +74,35 @@
 
 - Find a way (or make sure) to discard any changes made automatically to the ZSH config files during the installation of packages or apps (e.g. Anaconda adding its load scripts...etc).
 
+- Explore changing Anaconda configurations with .condarc and adding it to .dotfiles
+
+- Explore xdg-ninja to manage and organise application config files and place them in specified directories. Read: https://github.com/b3nj5m1n/xdg-ninja
+
+- Explore and configure glow: https://github.com/charmbracelet/glow
+
+- Explore pipx and see if we can change the installation of existing tools / apps to use it instead (e.g. Poetry, instead of manual install, or tldr pages, or ansible)
+
+- Consider placing Poetry zsh completions into /opt/homebrew/share/zsh/site-functions where other zsh completions are placed.
+
+- To show all formulae and casks from some tap:
+
+  - `brew tap-info some/tap --json | jq -r '.[]|(.formula_names[],.cask_tokens[])'`
+
+- Installing Vagrant and running VMware Fusion 13 (not the tech preview):
+  - `brew install vagrant`
+  - `vagrant install --cask vagrant-vmware-utility`
+  - `vagrant plugin install vagrant-vmware-desktop`
+  - To update: `vagrant plugin update vagrant-vmware-desktop`
+  - Create a Vagrantfile and do `vagrant up`
+  - If you get `vmrun` error then add this to the Vagrantfile:
+  ```
+  config.vm.provider :vmware_fusion do |v, o|
+    v.gui = true
+    # ...other config...
+  end
+  ```
+  - Guide: https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93
+
 ## Notes about the operation of dotbot
 
 - Link: https://github.com/anishathalye/dotbot
