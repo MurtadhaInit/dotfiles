@@ -84,6 +84,8 @@
 
 - Consider placing Poetry zsh completions into /opt/homebrew/share/zsh/site-functions where other zsh completions are placed.
 
+- Use the --zap option with Homebrew to delete lingering files when `brew uninstall`.
+
 - To show all formulae and casks from some tap:
 
   - `brew tap-info some/tap --json | jq -r '.[]|(.formula_names[],.cask_tokens[])'`

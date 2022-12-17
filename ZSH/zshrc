@@ -37,7 +37,7 @@ function mkcd() {
   mkdir -p "$@" && cd "$_";
 }
 
-# ===== Command completion =====
+# ===== Command Completion =====
 # case insensitive path completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 # place additional command completion scripts here
@@ -50,7 +50,8 @@ autoload -U bashcompinit && bashcompinit
 # pipx autocompletion
 eval "$(register-python-argcomplete pipx)"
 
-# TODO: The default Python interpreter to use by pipx. Replace with perm one.
+# The default Python interpreter to use by pipx
+# TODO: Replace with more perm one
 export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
 
 # ===== Customise Prompt(s) =====

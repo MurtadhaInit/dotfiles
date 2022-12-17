@@ -4,6 +4,7 @@ echo '.zprofile stuff are loaded!'
 # export BREW_PREFIX=$(brew --prefix) # Save Homebrew’s installed location
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 export PAGER=moar   # Default to moar instead of less
+export MOAR="-no-linenumbers"   # Default options for moar
 export NULLCMD=bat  # Default to bat instead of cat
 export STARSHIP_CONFIG="$HOME/.config/Starship/starship.toml" # Starship config
 export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
