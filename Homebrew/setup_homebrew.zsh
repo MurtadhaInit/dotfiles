@@ -16,13 +16,13 @@ fi
 # export HOMEBREW_CASK_OPTS="--no-quarantine"
 # https://github.com/Homebrew/homebrew-bundle/issues/474
 
-echo "\nInstalling software...\n"
-brew bundle --verbose --file=./Homebrew/Brewfile
-# Install from the Brewfile
+# Install from Brewfile
+echo "\nInstalling packages/applications...\n"
+brew bundle install --verbose --file=./Homebrew/Brewfile
 
+# brew cleanup --dry-run to know what is removed
 echo "\nCleaning up...\n"
 brew cleanup --verbose
-# brew cleanup --dry-run to know what is removed
 
 # TODO: explore brew bundle cleanup
 # TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f

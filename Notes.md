@@ -69,8 +69,10 @@
 
 - To use touch ID for sudo instead of supplying the password:
 
-  - Edit the file: sudo nano /etc/pam.d/sudo
-  - Add beneath the first commented line: auth sufficient pam_tid.so
+  - Edit the file: `sudo nano /etc/pam.d/sudo`
+  - Add beneath the first commented line: `auth sufficient pam_tid.so`
+  - Careful not to misspell anything cause that will break `sudo`!
+  - Also, this seems to go back to default after a system update!
 
 - Find a way (or make sure) to discard any changes made automatically to the ZSH config files during the installation of packages or apps (e.g. Anaconda adding its load scripts...etc).
 
@@ -92,18 +94,28 @@
 
 - Installing Vagrant and running VMware Fusion 13 (not the tech preview):
   - `brew install vagrant`
-  - `vagrant install --cask vagrant-vmware-utility`
-  - `vagrant plugin install vagrant-vmware-desktop`
-  - To update: `vagrant plugin update vagrant-vmware-desktop`
+  - For Qemu provider (better):
+    - Install qemu: `brew install qemu`
+    - `vagrant plugin install vagrant-qemu`
+    - Guide: https://github.com/ppggff/vagrant-qemu
+    - Working Ubuntu 22 box: https://app.vagrantup.com/perk/boxes/ubuntu-2204-arm64
+    - Working Ubuntu 20 box: https://app.vagrantup.com/perk/boxes/ubuntu-20.04-arm64
+    - To update: `vagrant plugin update`
+  - For Parallels provider:
+    - Guide: https://parallels.github.io/vagrant-parallels/docs/
+  - For VMware Fusion provider:
+    - `vagrant install --cask vagrant-vmware-utility`
+    - `vagrant plugin install vagrant-vmware-desktop`
+    - To update: `vagrant plugin update vagrant-vmware-desktop`
+    - Guide: https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93
+    - If you get `vmrun` error then add this to the Vagrantfile:
+    ```
+    config.vm.provider :vmware_fusion do |v, o|
+      v.gui = true
+      # ...other config...
+    end
+    ```
   - Create a Vagrantfile and do `vagrant up`
-  - If you get `vmrun` error then add this to the Vagrantfile:
-  ```
-  config.vm.provider :vmware_fusion do |v, o|
-    v.gui = true
-    # ...other config...
-  end
-  ```
-  - Guide: https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93
 
 ## Notes about the operation of dotbot
 
