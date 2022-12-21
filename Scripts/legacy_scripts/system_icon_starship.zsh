@@ -38,6 +38,10 @@ esac
 
 export STARSHIP_DISTRO="$ICON"
 
+# === Add to .zshrc ===
+# Get system/distro logo for Starship
+# [ -f $HOME/.config/Starship/system_icon.zsh ] && source $HOME/.config/Starship/system_icon.zsh
+
 # === Relevant starship.toml addition ===
 # [env_var.STARSHIP_DISTRO]
 # # Shows a system/distribution icon for the OS

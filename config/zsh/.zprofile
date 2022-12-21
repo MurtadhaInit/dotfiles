@@ -1,44 +1,16 @@
 echo '.zprofile stuff are loaded!'
 
 # ===== Set Variables =====
+# XDG-Ninja scheme
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 # export XDG_RUNTIME_DIR="/run/user/$UID"
 
-# export BREW_PREFIX=$(brew --prefix) # Save Homebrew’s installed location
-export HOMEBREW_NO_ANALYTICS=1  # Disable Homebrew Google analytics
-export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
-export NULLCMD=bat  # Default to bat instead of cat
-export STARSHIP_CONFIG="$HOME/.config/Starship/starship.toml" # Starship config
-export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
-export PYENV_ROOT="$HOME/.pyenv"  # pyenv root directory
-export VOLTA_HOME="$HOME/.volta"  # Volta root directory
+# Load all other environment variables
+[ -f "$ZDOTDIR/vars.zsh" ] && source "$ZDOTDIR/vars.zsh"
 
-# ===== Load Tools =====
-# Load Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/murtadha/.pyenv/versions/anaconda3-2022.05/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/murtadha/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh" ]; then
-        . "/Users/murtadha/.pyenv/versions/anaconda3-2022.05/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/murtadha/.pyenv/versions/anaconda3-2022.05/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-# The base environment is not activated by default
-# conda config --set auto_activate_base False
-
-# Load pyenv
-eval "$(pyenv init -)"
-
-# Load pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+# ===== Load CLI Tools =====
+# Load other tools
+[ -f "$ZDOTDIR/tools.zsh" ] && source "$ZDOTDIR/tools.zsh"

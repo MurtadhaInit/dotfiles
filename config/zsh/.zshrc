@@ -5,15 +5,7 @@ pfetch
 # man zshoptions
 
 # ===== Create Aliases =====
-alias ls=exa
-alias exa='exa -lah --git --group-directories-first --no-time'
-alias man=batman
-alias grep='grep --color'
-alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'  # Update the Brewfile in ~/.dotfiles/Homebrew
-# Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
-alias trail='<<<${(F)path}'
-# Don't get accustomed to a more forgivable version of rm if you do server work.
-# alias rm=trash
+[ -f "$ZDOTDIR/aliases.zsh" ] && source "$ZDOTDIR/aliases.zsh"
 
 # ===== Add Locations to $path Array =====
 # This enforces uniqueness on the array:
@@ -23,19 +15,16 @@ alias trail='<<<${(F)path}'
 typeset -U path
 path=(
   "$VOLTA_HOME/bin" # Volta shims
-  $path
+  "$HOME/.local/bin" # pipx tools/apps
+  "$(brew --prefix fzf)/bin" # fzf
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
-  "$HOME/.local/bin" # pipx
+  $path
 )
 
 # ===== Handy Functions =====
-# make a directory and then cd into it
-# TODO: load it lazily? autoload -Uz mkcd
-function mkcd() {
-  mkdir -p "$@" && cd "$_";
-}
+[ -f "$ZDOTDIR/functions.zsh" ] && source "$ZDOTDIR/functions.zsh"
 
 # ===== Command Completion =====
 # case insensitive path completion
@@ -49,21 +38,22 @@ autoload -Uz compinit && compinit
 autoload -U bashcompinit && bashcompinit
 # pipx autocompletion
 eval "$(register-python-argcomplete pipx)"
+# fzf autocompletion
+[[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.zsh" 2> /dev/null
+
+# fzf key bindings
+source "$(brew --prefix fzf)/shell/key-bindings.zsh"
 
 # The default Python interpreter to use by pipx
 # TODO: Replace with more perm one
 export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
 
 # ===== Customise Prompt(s) =====
-# Get system/distro logo for Starship
-[ -f $HOME/.config/Starship/system_icon.zsh ] && source $HOME/.config/Starship/system_icon.zsh
 # Load Starship
 eval "$(starship init zsh)"
 
 # ===== ZSH Plugins / CLI Tools =====
-# Load fzf configs: fzf setup (if needed), auto-completion and key bindings
-source $HOME/.config/fzf/.fzf.zsh
-# Load zoxide (cd replacement)
+# Load zoxide
 eval "$(zoxide init zsh)"
 # Load zsh-autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -75,6 +65,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # They are originally placed in the home directory.
 # No need to execute the install script again after
 # installation of fzf with Homebrew.
+# Those scripts were then placed in $HOME/.config/fzf/.fzf.zsh and sourced.
 
 # NOTE: That line that loads zoxide must be added after compinit
 # is called. A rebuild of the cache might be required by running
