@@ -15,6 +15,7 @@ fi
 # It's currently exported in zshrc:
 # export HOMEBREW_CASK_OPTS="--no-quarantine"
 # https://github.com/Homebrew/homebrew-bundle/issues/474
+# Possible solution: export the env variable in script?
 
 # Install from Brewfile
 echo "\nInstalling packages/applications...\n"

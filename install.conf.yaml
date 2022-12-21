@@ -5,12 +5,9 @@
 - clean: ["~"]
 
 - link:
-    ~/.zshrc: ZSH/zshrc
-    ~/.zprofile: ZSH/zprofile
-    ~/.zshenv: ZSH/zshenv
-    ~/.zfunc:
+    ~/.config/zsh:
       create: true
-      path: ZSH/zfunc
+      path: config/zsh
     ~/.gitconfig:
     ~/Scripts:
       create: true

@@ -20,6 +20,11 @@ else
     chsh -s "$(brew --prefix)/bin/zsh"
 fi
 
+# export ZDOTDIR="$HOME/.config/zsh"
+# TODO: this should be appended to /etc/zshenv which doesn't exist by default
+# Using sudo with echo and >> doesn't seem to work. Find another way to script it
+# Also, watch out if this file is reset / deleted with OS updates!
+
 # Make sh point to /bin/zsh instead of /bin/bash by default
 # if sh --version | grep -q zsh; then
 #     echo "sh already points to /bin/zsh"

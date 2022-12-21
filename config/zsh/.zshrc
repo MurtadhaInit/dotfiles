@@ -41,7 +41,7 @@ function mkcd() {
 # case insensitive path completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 # place additional command completion scripts here
-fpath+=~/.zfunc
+fpath+="$ZDOTDIR/.zfunc"
 # load the zsh command completion system
 autoload -Uz compinit && compinit
 # load bash completions since they are compatible with zsh

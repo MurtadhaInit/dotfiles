@@ -51,8 +51,6 @@
 
 - A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
 
-- Investigate ~/.local/ and remove if not needed.
-
 - Backup all Apps settings in the form of plist files? Those mostly located in ~/Library/Preferences
 
 - Export an environment variable for $(brew --prefix) and replace it everywhere in zsh dotfiles to avoid evaluating it everywhere.
@@ -84,7 +82,7 @@
 
 - Explore pipx and see if we can change the installation of existing tools / apps to use it instead (e.g. Poetry, instead of manual install, or tldr pages, or ansible)
 
-- Consider placing Poetry zsh completions into /opt/homebrew/share/zsh/site-functions where other zsh completions are placed.
+- Consider placing Poetry zsh completions into `$(brew --prefix)/share/zsh/site-functions` where other zsh completions are placed.
 
 - Use the --zap option with Homebrew to delete lingering files when `brew uninstall`.
 

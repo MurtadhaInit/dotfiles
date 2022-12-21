@@ -1,7 +1,14 @@
 echo '.zprofile stuff are loaded!'
 
 # ===== Set Variables =====
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+# export XDG_RUNTIME_DIR="/run/user/$UID"
+
 # export BREW_PREFIX=$(brew --prefix) # Save Homebrew’s installed location
+export HOMEBREW_NO_ANALYTICS=1  # Disable Homebrew Google analytics
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 export NULLCMD=bat  # Default to bat instead of cat
 export STARSHIP_CONFIG="$HOME/.config/Starship/starship.toml" # Starship config

@@ -25,6 +25,12 @@ else
     # restart the shell to have the poetry command sourced in $path
     exec $SHELL
     # generate zsh command completion script to include in $fpath
-    poetry completions zsh > ~/.zfunc/_poetry
+    if [ "$(which $SHELL)" = "$(brew --prefix)/bin/zsh" ]; then
+        # if current shell is Homebrew-installed zsh, add completions there
+        poetry completions zsh > $(brew --prefix)/share/zsh/site-functions/_poetry
+    else
+        # otherwise, add it in the default directory for user-defined completions
+        poetry completions zsh > "$ZDOTDIR/.zfunc/_poetry"
+    fi
     echo "$(poetry --version) has been installed"
 fi

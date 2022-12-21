@@ -1,4 +1,9 @@
 Brewfile.lock.json
 
+.zcompdump
+.zsh_history
+
+poetry.lock
+
 ### macOS ###
 .DS_Store
