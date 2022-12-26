@@ -13,6 +13,8 @@ brew "bash"
 brew "bat"
 # General-purpose data compression with high compression ratio
 brew "xz"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # Core application library for C
 brew "glib"
 # Portable Foreign Function Interface library
@@ -23,6 +25,8 @@ brew "libx11"
 brew "python@3.9"
 # Checks for bashisms in shell scripts
 brew "checkbashisms"
+# CPU architecture fetching tool
+brew "cpufetch"
 # Modern replacement for 'ls'
 brew "exa"
 # OpenType text shaping engine
@@ -41,16 +45,18 @@ brew "git"
 brew "glow"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
-# Improved top (interactive process viewer)
-brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
 brew "less"
+# Rainbows and unicorns in your console!
+brew "lolcat"
 # Mac App Store command-line interface
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
+# NCurses Disk Usage
+brew "ncdu"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Platform built on V8 to build network applications
@@ -69,6 +75,10 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 # Emulator for x86 and PowerPC
 brew "qemu"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Utility that provides fast incremental file transfer
+brew "rsync"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Command-line interface for https://speedtest.net bandwidth tests

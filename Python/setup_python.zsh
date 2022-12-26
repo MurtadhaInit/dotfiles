@@ -15,6 +15,7 @@ pyenv install --skip-existing 3.11:latest
 # === Install Python applications with pipx ===
 pipx install --include-deps ansible
 pipx install ansible-lint
+pipx install ntfy
 # --- Install poetry ---
 if exists poetry; then
     echo "$(poetry --version) is already installed"

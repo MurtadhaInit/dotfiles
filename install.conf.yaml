@@ -15,9 +15,12 @@
     ~/.config/bat:
       create: true
       path: config/bat
-    ~/.config/Starship:
+    ~/.config/btop:
       create: true
-      path: config/Starship
+      path: config/btop
+    ~/.config/starship:
+      create: true
+      path: config/starship
     ~/.config/fzf:
       create: true
       path: config/fzf

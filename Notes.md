@@ -64,6 +64,7 @@
 - Explore and configure glow: https://github.com/charmbracelet/glow
 
 - Installing Vagrant and running VMware Fusion 13 (not the tech preview):
+
   - `brew install vagrant`
   - For Qemu provider (better):
     - Install qemu: `brew install qemu`
@@ -87,6 +88,10 @@
     end
     ```
   - Create a Vagrantfile and do `vagrant up`
+
+- Explore rsync, rclone, btop, ncdu
+
+- How we we replicate `brew unlink` for installing conflicting formulae?
 
 ## Notes about the operation of dotbot
 
