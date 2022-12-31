@@ -25,6 +25,8 @@ brew "libx11"
 brew "python@3.9"
 # Checks for bashisms in shell scripts
 brew "checkbashisms"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
 # CPU architecture fetching tool
 brew "cpufetch"
 # Modern replacement for 'ls'
@@ -63,6 +65,8 @@ brew "neofetch"
 brew "node"
 # Development kit for the Java programming language
 brew "openjdk"
+# OpenBSD freely-licensed SSH connectivity tools
+brew "openssh"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
 # Pretty system information tool written in POSIX sh

@@ -93,6 +93,8 @@
 
 - How we we replicate `brew unlink` for installing conflicting formulae?
 
+- Find a way of securely backing up everything SSH, and manage Github keys in a better way + explore changing SSH port for homelab server
+
 ## Notes about the operation of dotbot
 
 - Link: https://github.com/anishathalye/dotbot
