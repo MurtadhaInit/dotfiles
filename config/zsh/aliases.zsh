@@ -1,5 +1,5 @@
 alias ls=exa
-alias exa='exa -lah --git --group-directories-first --no-time'
+alias exa='exa -lah --git --group-directories-first'
 alias man=batman
 alias grep='grep --color'
 alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'  # Update the Brewfile

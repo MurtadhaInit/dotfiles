@@ -8,7 +8,9 @@
     ~/.config/zsh:
       create: true
       path: config/zsh
-    ~/.gitconfig:
+    ~/.config/git:
+      create: true
+      path: config/git
     ~/Scripts:
       create: true
       path: Scripts
@@ -33,7 +35,7 @@
 
 - create:
     - ~/Work
-    - ~/.pyenv # pyenv root directory
+    # - ~/.pyenv # pyenv root directory
 
 - shell:
     - command: ./Homebrew/setup_homebrew.zsh

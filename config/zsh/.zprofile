@@ -1,5 +1,3 @@
-echo '.zprofile stuff are loaded!'
-
 # ===== Set Variables =====
 # XDG-Ninja scheme
 export XDG_DATA_HOME="$HOME/.local/share"

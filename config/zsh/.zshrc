@@ -1,11 +1,5 @@
-echo '.zshrc stuff are loaded!'
+# ===== Cosmetic info =====
 pfetch
-
-# ===== Change ZSH Options =====
-# man zshoptions
-
-# ===== Create Aliases =====
-[ -f "$ZDOTDIR/aliases.zsh" ] && source "$ZDOTDIR/aliases.zsh"
 
 # ===== Add Locations to $path Array =====
 # This enforces uniqueness on the array:
@@ -23,23 +17,17 @@ path=(
   $path
 )
 
+# ===== Customise Prompt(s) =====
+eval "$(starship init zsh)"
+
+# ===== Create Aliases =====
+[ -f "$ZDOTDIR/aliases.zsh" ] && source "$ZDOTDIR/aliases.zsh"
+
 # ===== Handy Functions =====
 [ -f "$ZDOTDIR/functions.zsh" ] && source "$ZDOTDIR/functions.zsh"
 
-# ===== Command Completion =====
-# case insensitive path completion
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-# place additional command completion scripts here
-fpath+="$ZDOTDIR/.zfunc"
-# load the zsh command completion system
-autoload -Uz compinit && compinit
-# load bash completions since they are compatible with zsh
-# so far, this is only used for pipx completions
-autoload -U bashcompinit && bashcompinit
-# pipx autocompletion
-eval "$(register-python-argcomplete pipx)"
-# fzf autocompletion
-[[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.zsh" 2> /dev/null
+# ===== ZSH Options & Command Completion =====
+[ -f "$ZDOTDIR/options.zsh" ] && source "$ZDOTDIR/options.zsh"
 
 # fzf key bindings
 source "$(brew --prefix fzf)/shell/key-bindings.zsh"
@@ -47,10 +35,6 @@ source "$(brew --prefix fzf)/shell/key-bindings.zsh"
 # The default Python interpreter to use by pipx
 # TODO: Replace with more perm one
 export PIPX_DEFAULT_PYTHON="$(pyenv which python)"
-
-# ===== Customise Prompt(s) =====
-# Load Starship
-eval "$(starship init zsh)"
 
 # ===== ZSH Plugins / CLI Tools =====
 # Load zoxide
