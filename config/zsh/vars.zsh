@@ -8,3 +8,5 @@ export PYENV_ROOT="$XDG_DATA_HOME/pyenv"  # pyenv root directory
 export VOLTA_HOME="$XDG_DATA_HOME/volta"  # Volta root directory
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"  # Vagrant root directory
 # export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"  # Docker
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"  # less history directory
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"  # Jupyter config directory

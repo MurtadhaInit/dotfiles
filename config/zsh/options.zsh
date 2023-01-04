@@ -3,6 +3,7 @@
 # Set the location for .zcompcache
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 # Set the location for .zsh_history
+# TODO: this keeps generating a .zsh_history file in $ZOTDIR for some reason
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 # case insensitive path completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
