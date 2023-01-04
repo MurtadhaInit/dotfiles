@@ -33,7 +33,6 @@ eval "$(starship init zsh)"
 source "$(brew --prefix fzf)/shell/key-bindings.zsh"
 
 # The default Python interpreter to use by pipx
-# TODO: Replace with more perm one
 export PIPX_DEFAULT_PYTHON="$(pyenv prefix 3.11.0)/bin/python"
 
 # ===== ZSH Plugins / CLI Tools =====

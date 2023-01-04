@@ -35,8 +35,6 @@ brew "exa"
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
 brew "pango"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Command-line outline and bitmap font editor/converter
 brew "fontforge"
 # Command-line fuzzy finder written in Go
@@ -45,6 +43,8 @@ brew "fzf"
 brew "git"
 # Render markdown on the CLI
 brew "glow"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -63,10 +63,12 @@ brew "ncdu"
 brew "neofetch"
 # Platform built on V8 to build network applications
 brew "node"
-# Development kit for the Java programming language
-brew "openjdk"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Modern shell for the GitHub era
+brew "nushell"
+# Development kit for the Java programming language
+brew "openjdk"
 # Pretty system information tool written in POSIX sh
 brew "pfetch"
 # Execute binaries from Python packages in isolated environments
