@@ -95,20 +95,19 @@ style = "yellow"
 
 [git_status]
 style = "red"
-# format = '[\($all_status$ahead_behind\)]($style) '
-conflicted = "ﲅ"
-# conflicted = "🏳"
-up_to_date = " "
-untracked = " "
-ahead = "⇡$count"
-diverged = "⇕⇡($ahead_count)⇣($behind_count)"
-behind = "⇣$count"
-stashed = " "
-modified = " "
-staged = '[++\($count\)](green)'
+format = '[\[ $all_status$ahead_behind\]]($style) '
 # renamed = "凜 "
 # renamed = "襁 "
+conflicted = "ﲅ "
+up_to_date = " "
+untracked = " "
+modified = " "
 deleted = " "
+stashed = " "
+staged = '[++$count](green) '
+diverged = "⇕⇡($ahead_count)⇣($behind_count) "
+ahead = "⇡$count "
+behind = "⇣$count "
 
 
 # === 1st Line: left hand side: environment ===
