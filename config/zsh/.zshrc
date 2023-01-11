@@ -15,6 +15,8 @@ path=(
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
   $path
+  "$GOROOT/bin" # GOROOT is managed by goenv
+  "$GOPATH/bin" # GOPATH is managed by goenv
 )
 
 # ===== Customise Prompt(s) =====

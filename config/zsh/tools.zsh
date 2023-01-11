@@ -24,5 +24,8 @@ eval "$(pyenv init -)"
 # we want pyenv after Anaconda for the `conda` command to be
 # parsed by pyenv shims
 
-# Load pyenv-virtualenv
+# pyenv-virtualenv: enable auto-activation
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# Load goenv
+eval "$(goenv init -)"

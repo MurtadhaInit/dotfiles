@@ -47,6 +47,8 @@ brew "glow"
 brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
+# Go version management
+brew "goenv"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
@@ -113,6 +115,8 @@ brew "zsh-syntax-highlighting"
 brew "eth-p/software/bat-extras"
 # Memory training application
 cask "anki"
+# Chromium based browser
+cask "arc"
 # Display management tool
 cask "betterdisplay"
 # Screen capturing tool
@@ -141,6 +145,8 @@ cask "kitty"
 cask "mongodb-compass"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Visual client for Helix Core
+cask "p4v"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Instant messaging application focusing on security
