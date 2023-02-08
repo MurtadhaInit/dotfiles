@@ -47,8 +47,6 @@ brew "glow"
 brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
-# Go version management
-brew "goenv"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
@@ -95,6 +93,8 @@ brew "starship"
 brew "tcl-tk"
 # Simplified and community-driven man pages
 brew "tldr"
+# Vi 'workalike' with many additional features
+brew "vim"
 # JavaScript toolchain manager for reproducible environments
 brew "volta"
 # Best command-line tool to install and switch between multiple versions of Xcode
@@ -113,6 +113,8 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
+# GPU-accelerated terminal emulator
+cask "alacritty"
 # Memory training application
 cask "anki"
 # Chromium based browser
@@ -121,10 +123,14 @@ cask "arc"
 cask "betterdisplay"
 # Screen capturing tool
 cask "cleanshot"
+# Multi-platform client-side cloud file encryption tool
+cask "cryptomator"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Collaborative team software
+cask "figma"
 # Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
 # Developer targeted fonts with a high number of glyphs
@@ -139,8 +145,6 @@ cask "istat-menus"
 cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
-# GPU-based terminal emulator
-cask "kitty"
 # Explore and manipulate your MongoDB data
 cask "mongodb-compass"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -151,6 +155,8 @@ cask "p4v"
 cask "rustdesk"
 # Instant messaging application focusing on security
 cask "signal"
+# Music streaming service
+cask "spotify"
 # Real time file synchronization software
 cask "syncthing"
 # Customizable email client
@@ -170,11 +176,13 @@ cask "zoom"
 # Collect, organize, cite, and share research sources
 cask "zotero"
 mas "AdGuard for Safari", id: 1440147259
+mas "Anybox", id: 1593408455
 mas "Bitwarden", id: 1352778147
 mas "Craft", id: 1487937127
 mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Darkroom", id: 953286746
+mas "Expenses", id: 1492055171
 mas "GoodLinks", id: 1474335294
 mas "GoodNotes", id: 1444383602
 mas "iA Writer", id: 775737590

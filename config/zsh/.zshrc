@@ -12,11 +12,11 @@ path=(
   "$HOME/.local/bin" # pipx tools/apps
   "$(brew --prefix fzf)/bin" # fzf
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
+  "$GOBREW_ROOT/.gobrew/bin" # gobrew binary
+  "$GOBREW_ROOT/.gobrew/current/bin" # active version of Go set by gobrew
   "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
   $path
-  "$GOROOT/bin" # GOROOT is managed by goenv
-  "$GOPATH/bin" # GOPATH is managed by goenv
 )
 
 # ===== Customise Prompt(s) =====

@@ -11,9 +11,6 @@
     ~/.config/git:
       create: true
       path: config/git
-    ~/Scripts:
-      create: true
-      path: Scripts
     ~/.config/bat:
       create: true
       path: config/bat
