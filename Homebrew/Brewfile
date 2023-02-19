@@ -1,4 +1,5 @@
 tap "eth-p/software"
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -113,6 +114,8 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
+# Terraform
+brew "hashicorp/tap/terraform"
 # GPU-accelerated terminal emulator
 cask "alacritty"
 # Memory training application
@@ -129,6 +132,8 @@ cask "cryptomator"
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Downloads videos from different websites
+cask "downie"
 # Collaborative team software
 cask "figma"
 # Developer targeted fonts with a high number of glyphs
@@ -151,6 +156,8 @@ cask "mongodb-compass"
 cask "obsidian"
 # Visual client for Helix Core
 cask "p4v"
+# Collaboration platform for API development
+cask "postman"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Instant messaging application focusing on security
