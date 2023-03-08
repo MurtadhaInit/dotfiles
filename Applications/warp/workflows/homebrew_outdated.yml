@@ -1,0 +1,4 @@
+name: List outdated Homebrew formulae and casks
+command: brew update &>/dev/null && brew outdated
+tags: ["homebrew"]
+description: Update taps then show currently outdated formulae and casks

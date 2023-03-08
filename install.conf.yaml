@@ -29,6 +29,9 @@
     ~/.config/pypoetry:
       create: true
       path: config/pypoetry
+    ~/.warp/workflows:
+      create: true
+      path: Applications/warp/workflows
 
 - create:
     - ~/Work

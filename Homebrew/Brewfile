@@ -142,6 +142,8 @@ cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 # Git client focusing on productivity
 cask "gitkraken"
+# Open-source video transcoder
+cask "handbrake"
 # Free and open-source media player
 cask "iina"
 # System monitoring app
@@ -154,12 +156,14 @@ cask "jetbrains-toolbox"
 cask "mongodb-compass"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Visual client for Helix Core
-cask "p4v"
 # Collaboration platform for API development
 cask "postman"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # Open source virtual/remote desktop application
 cask "rustdesk"
+# Web browser
+cask "sigmaos"
 # Instant messaging application focusing on security
 cask "signal"
 # Music streaming service
@@ -174,6 +178,8 @@ cask "tower"
 cask "utm"
 # Development environment
 cask "vagrant"
+# Keyboard configurator
+cask "via"
 # Create, manage, and run virtual machines
 cask "vmware-fusion"
 # Rust-based terminal
@@ -204,4 +210,5 @@ mas "NCalc Fx", id: 1449106995
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Slack", id: 803453959
 mas "Things", id: 904280696
