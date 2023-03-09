@@ -4,6 +4,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+tap "homebrew/services"
 # Command-line interface for SQLite
 brew "sqlite"
 # Download with resuming and segmented downloading
@@ -102,6 +103,8 @@ brew "volta"
 brew "xcodes"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
@@ -132,8 +135,6 @@ cask "cryptomator"
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
 cask "docker"
-# Downloads videos from different websites
-cask "downie"
 # Collaborative team software
 cask "figma"
 # Developer targeted fonts with a high number of glyphs
@@ -154,6 +155,8 @@ cask "iterm2"
 cask "jetbrains-toolbox"
 # Explore and manipulate your MongoDB data
 cask "mongodb-compass"
+# App to write, plan, collaborate, and get organized
+cask "notion"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Collaboration platform for API development

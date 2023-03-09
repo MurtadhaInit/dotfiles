@@ -1,6 +1,0 @@
-name: Cheat sheets using cheat.sh
-command: curl cheat.sh/{{search term}}
-arguments:
-  - name: search term
-    description: What to look for
-description: View a distilled summary of any technology available in cheat.sh
