@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-echo "\n<<< Fetching the Scripts directory >>>\n"
+echo "\n<<< Cloning the Scripts directory... >>>\n"
 
 # if the directory doesn't exist
 if [ ! -d "$HOME/Scripts" ]; then
@@ -8,5 +8,3 @@ if [ ! -d "$HOME/Scripts" ]; then
 else
     echo "~/Scripts is already in place"
 fi
-
-# add the obsidian_sync script as a cron job

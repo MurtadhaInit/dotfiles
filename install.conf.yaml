@@ -38,7 +38,10 @@
     # - ~/.pyenv # pyenv root directory
 
 - shell:
-    - command: ./setup_scripts/setup_scripts.zsh
+    - command: ./setup_scripts/clone_scripts.zsh
+      stdout: true
+      stderr: true
+    - command: ./setup_scripts/load_scripts.zsh
       stdout: true
       stderr: true
     - command: ./setup_scripts/setup_homebrew.zsh

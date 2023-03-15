@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Scripts"
+		},
+		{
+			"path": "../Obsidian"
+		}
+	],
+	"settings": {}
+}
