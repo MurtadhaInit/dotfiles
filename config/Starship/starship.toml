@@ -1,6 +1,6 @@
 # === Prompt-wide configurations ===
-command_timeout = 1000  # Default timeout for commands is 500ms
-add_newline = true      # A blank line before prompt start
+command_timeout = 1000 # Default timeout for commands is 500ms
+add_newline = true     # A blank line before prompt start
 
 format = """
 ($username$sudo)in ($hostname$os)at \
@@ -122,6 +122,9 @@ style = "yellow"
 # it's possible to show pyenv version
 
 [conda]
+# disabled because it takes too much space when
+# combined with the Python module
+disabled = true
 ignore_base = false
 symbol = "🅒 "
 style = "green"

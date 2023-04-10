@@ -95,6 +95,8 @@ brew "starship"
 brew "tcl-tk"
 # Simplified and community-driven man pages
 brew "tldr"
+# Terminal multiplexer
+brew "tmux"
 # Vi 'workalike' with many additional features
 brew "vim"
 # JavaScript toolchain manager for reproducible environments
@@ -137,6 +139,8 @@ cask "db-browser-for-sqlite"
 cask "docker"
 # Collaborative team software
 cask "figma"
+# Font with greater legibility and readability for low vision readers
+cask "font-atkinson-hyperlegible"
 # Developer targeted fonts with a high number of glyphs
 cask "font-fira-code-nerd-font"
 # Developer targeted fonts with a high number of glyphs
@@ -208,6 +212,7 @@ mas "Keynote", id: 409183694
 mas "MarginNote 3", id: 1423522373
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft Outlook", id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "NCalc Fx", id: 1449106995
 mas "Notability", id: 360593530

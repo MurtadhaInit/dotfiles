@@ -1,7 +1,7 @@
 # Notes about Dotfiles
 
-- The instructions for settings up and using pyenv-virtualenv: https://github.com/pyenv/pyenv-virtualenv
-- Example use-case scenario by me: https://stackoverflow.com/questions/57640272/how-can-i-install-anaconda-aside-an-existing-pyenv-installation-on-osx/73139031#73139031
+- The instructions for settings up and using pyenv-virtualenv: <https://github.com/pyenv/pyenv-virtualenv>
+- Example use-case scenario by me: <https://stackoverflow.com/questions/57640272/how-can-i-install-anaconda-aside-an-existing-pyenv-installation-on-osx/73139031#73139031>
 
 - Jetbrains Toolbox App will set the 'Tools' install location to the following by default:
   /Users/murtadha/Library/Application Support/JetBrains/Toolbox
@@ -17,12 +17,12 @@
 
 - Add .bash_profile (login shells) and .bashrc (interactive shells) to .dotfiles as well.
 
-- Extensive detailed video: https://www.youtube.com/watch?v=bTLYiNvRIVI
+- Extensive detailed video: <https://www.youtube.com/watch?v=bTLYiNvRIVI>
 
 - Try to understand `compinit` and `autoload` in zsh and the way it handles functions. Plus explore how autocompletion works (with the addition of the poetry autocompletion function in .zfunc for example).
 
-  - Important explanation: https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh?newreg=4c14dc7278974c4aae7f8266564f9f13
-  - And here: https://zsh.sourceforge.io/Doc/Release/Completion-System.html
+  - Important explanation: <https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh?newreg=4c14dc7278974c4aae7f8266564f9f13>
+  - And here: <https://zsh.sourceforge.io/Doc/Release/Completion-System.html>
 
 - Backup Automator scripts? Located in ~/Library/Services e.g. Open in VSCode
 
@@ -61,7 +61,7 @@
 
 - Explore changing Anaconda configurations with .condarc and adding it to .dotfiles
 
-- Explore and configure glow: https://github.com/charmbracelet/glow
+- Explore and configure glow: <https://github.com/charmbracelet/glow>
 
 - Installing Vagrant and running VMware Fusion 13 (not the tech preview):
 
@@ -69,41 +69,45 @@
   - For Qemu provider (better):
     - Install qemu: `brew install qemu`
     - `vagrant plugin install vagrant-qemu`
-    - Guide: https://github.com/ppggff/vagrant-qemu
-    - Working Ubuntu 22 box: https://app.vagrantup.com/perk/boxes/ubuntu-2204-arm64
-    - Working Ubuntu 20 box: https://app.vagrantup.com/perk/boxes/ubuntu-20.04-arm64
+    - Guide: <https://github.com/ppggff/vagrant-qemu>
+    - Working Ubuntu 22 box: <https://app.vagrantup.com/perk/boxes/ubuntu-2204-arm64>
+    - Working Ubuntu 20 box: <https://app.vagrantup.com/perk/boxes/ubuntu-20.04-arm64>
     - To update: `vagrant plugin update`
   - For Parallels provider:
-    - Guide: https://parallels.github.io/vagrant-parallels/docs/
+    - Guide: <https://parallels.github.io/vagrant-parallels/docs/>
   - For VMware Fusion provider:
     - `vagrant install --cask vagrant-vmware-utility`
     - `vagrant plugin install vagrant-vmware-desktop`
     - To update: `vagrant plugin update vagrant-vmware-desktop`
-    - Guide: https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93
+    - Guide: <https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93>
     - If you get `vmrun` error then add this to the Vagrantfile:
+
     ```
     config.vm.provider :vmware_fusion do |v, o|
       v.gui = true
       # ...other config...
     end
     ```
+
   - Create a Vagrantfile and do `vagrant up`
 
 - Explore rsync, rclone, btop, ncdu
 
-  - https://rclone.org/
+  - <https://rclone.org/>
 
 - How do we replicate `brew unlink` for installing conflicting formulae?
 
 - Find a way of securely backing up everything SSH, and explore changing SSH port for homelab server.
 
+- `brew upgrade` few dependencies caused them to be added to the Brewfile!
+
 ## Notes about the operation of dotbot
 
-- Link: https://github.com/anishathalye/dotbot
+- Link: <https://github.com/anishathalye/dotbot>
 
 - install.conf.yaml
   - Note: If the source location is omitted for links or it's set to `null` Dotbot will use the base name of the destination, with the leading `.` stripped if present.
 
 ## Notes about the operation of mas
 
-- Link: https://github.com/mas-cli/mas
+- Link: <https://github.com/mas-cli/mas>

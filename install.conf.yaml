@@ -20,6 +20,9 @@
     ~/.config/starship:
       create: true
       path: config/starship
+    ~/.config/tmux:
+      create: true
+      path: config/tmux
     ~/.config/fzf:
       create: true
       path: config/fzf
