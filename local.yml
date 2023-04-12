@@ -1,0 +1,18 @@
+- name: Main machine setup
+  hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update cache
+      ansible.builtin.apt:
+        update_cache: true
+      tags:
+        - scripts
+        - homebrew
+        - zsh
+        - node
+        - python
+        - go
+  tasks:
+    - ansible.builtin.include_tasks: tasks/zsh.yml
+    - ansible.builtin.include_tasks: tasks/node.yml
+# use which clause for different OSes

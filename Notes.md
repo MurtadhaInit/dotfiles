@@ -101,6 +101,9 @@
 
 - `brew upgrade` few dependencies caused them to be added to the Brewfile!
 
+- When using stow, use regex to exclude packages not ending with _win (for eg)
+  - `cd ~/.dotfiles/Applications && stow such such such`
+
 ## Notes about the operation of dotbot
 
 - Link: <https://github.com/anishathalye/dotbot>

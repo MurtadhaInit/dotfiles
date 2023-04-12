@@ -5,33 +5,6 @@
 - clean: ["~"]
 
 - link:
-    ~/.config/zsh:
-      create: true
-      path: config/zsh
-    ~/.config/git:
-      create: true
-      path: config/git
-    ~/.config/bat:
-      create: true
-      path: config/bat
-    ~/.config/btop:
-      create: true
-      path: config/btop
-    ~/.config/starship:
-      create: true
-      path: config/starship
-    ~/.config/tmux:
-      create: true
-      path: config/tmux
-    ~/.config/fzf:
-      create: true
-      path: config/fzf
-    ~/.config/iterm:
-      create: true
-      path: config/iterm
-    ~/.config/pypoetry:
-      create: true
-      path: config/pypoetry
     ~/.warp/workflows:
       create: true
       path: Applications/warp/workflows
@@ -47,7 +20,7 @@
     - command: ./setup_scripts/load_scripts.zsh
       stdout: true
       stderr: true
-    - command: ./setup_scripts/setup_homebrew.zsh
+    - command: ./setup_scripts/homebrew_apps.zsh
       stdout: true
       stderr: true
     - command: ./setup_scripts/setup_zsh.zsh
