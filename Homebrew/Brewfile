@@ -91,6 +91,8 @@ brew "shellcheck"
 brew "speedtest-cli"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 # Tool Command Language
 brew "tcl-tk"
 # Simplified and community-driven man pages

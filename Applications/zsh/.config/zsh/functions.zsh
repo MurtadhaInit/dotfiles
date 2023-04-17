@@ -8,8 +8,3 @@ function mkcd() {
 function chtsht() {
   curl cheat.sh/$@
 }
-
-# Remove apps
-function uninstall() {
-  $HOME/Scripts/utility_scripts/app-cleaner.sh $@
-}

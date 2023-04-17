@@ -28,11 +28,11 @@ eval "$(starship init zsh)"
 # ===== Handy Functions =====
 [ -f "$ZDOTDIR/functions.zsh" ] && source "$ZDOTDIR/functions.zsh"
 
+# ===== Keybinds / Shortcuts =====
+[ -f "$ZDOTDIR/keybinds.zsh" ] && source "$ZDOTDIR/keybinds.zsh"
+
 # ===== ZSH Options & Command Completion =====
 [ -f "$ZDOTDIR/options.zsh" ] && source "$ZDOTDIR/options.zsh"
-
-# fzf key bindings
-source "$(brew --prefix fzf)/shell/key-bindings.zsh"
 
 # The default Python interpreter to use by pipx
 export PIPX_DEFAULT_PYTHON="$(pyenv prefix 3.11.0)/bin/python"
