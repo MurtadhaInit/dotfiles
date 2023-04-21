@@ -3,14 +3,15 @@
   connection: local
   become: true
   vars:
-    - os_type:"{{ ansible_facts["distribution"] }}"
+    # the_os_type: "{{ ansible_facts["distribution"] }}"
 
   pre_tasks:
     - name: Update cache (apt)
       ansible.builtin.apt:
         update_cache: true
       changed_when: false
-      when: os_type == "Ubuntu"
+      # when: os_type == "Ubuntu"
+      when: ansible_facts["distribution"] == "Ubuntu"
       tags:
         - apps/packages
         # - scripts
@@ -23,7 +24,8 @@
       community.general.homebrew:
         update_homebrew: true
       changed_when: false
-      when: os_type == "MacOSX"
+      # when: os_type == "MacOSX"
+      when: ansible_facts["distribution"] == "MacOSX"
       tags:
         - apps/packages
 
