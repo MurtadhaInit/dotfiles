@@ -1,7 +1,7 @@
 - name: Main machine setup
   hosts: localhost
   connection: local
-  become: true
+  # become: true
   vars:
     # the_os_type: "{{ ansible_facts["distribution"] }}"
 
