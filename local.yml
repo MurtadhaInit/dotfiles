@@ -3,7 +3,7 @@
   connection: local
   become: true
   vars:
-    os_type:"{{ ansible_facts["distribution"] }}"
+    - os_type:"{{ ansible_facts["distribution"] }}"
 
   pre_tasks:
     - name: Update cache (apt)
