@@ -1,0 +1,5 @@
+- name: Install Homebrew packages
+  community.general.homebrew:
+    name: btop
+    state: present
+  tags: apps/packages

@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# check if a command exists
+function exists() {
+  command -v "$1" >/dev/null 2>&1
+  # This is equivalent to:
+  # command -v $1 1>/dev/null 2>/dev/null
+}
+
 # Install Homebrew if on MacOS and if not installed
 # TODO: add a condition to check the type of OS to install Ansible accordingly
 if exists brew; then
@@ -21,4 +28,4 @@ export PATH="$HOME/.local/bin:$PATH"
 pipx install --include-deps ansible
 
 # Clone the repo and execute the playbook
-ansible-pull -U # the ansible repo
+ansible-pull -U https://github.com/MurtadhaInit/dotfiles.git

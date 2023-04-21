@@ -1,3 +1,4 @@
+tap "cirruslabs/cli"
 tap "eth-p/software"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
@@ -33,6 +34,8 @@ brew "chezmoi"
 brew "cpufetch"
 # Modern replacement for 'ls'
 brew "exa"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
@@ -119,6 +122,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Run macOS VMs on Apple Silicon
+brew "cirruslabs/cli/tart"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
 # Terraform
@@ -159,7 +164,7 @@ cask "istat-menus"
 cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
-# Explore and manipulate your MongoDB data
+# Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
 # App to write, plan, collaborate, and get organized
 cask "notion"
@@ -198,7 +203,6 @@ cask "zoom"
 # Collect, organize, cite, and share research sources
 cask "zotero"
 mas "AdGuard for Safari", id: 1440147259
-mas "Anybox", id: 1593408455
 mas "Bitwarden", id: 1352778147
 mas "Craft", id: 1487937127
 mas "Dark Noise", id: 1465439395

@@ -1,18 +1,34 @@
 - name: Main machine setup
   hosts: localhost
+  connection: local
   become: true
+  vars:
+    - os_type:{{ansible_facts["distribution"]}}
+
   pre_tasks:
-    - name: Update cache
+    - name: Update cache (apt)
       ansible.builtin.apt:
         update_cache: true
+      changed_when: false
+      when: os_type == "Ubuntu"
       tags:
-        - scripts
-        - homebrew
-        - zsh
-        - node
-        - python
-        - go
+        - apps/packages
+        # - scripts
+        # - homebrew
+        # - zsh
+        # - node
+        # - python
+        # - go
+    - name: Update cache (Homebrew)
+      community.general.homebrew:
+        update_homebrew: true
+      changed_when: false
+      when: os_type == "MacOSX"
+      tags:
+        - apps/packages
+
   tasks:
-    - ansible.builtin.include_tasks: tasks/zsh.yml
-    - ansible.builtin.include_tasks: tasks/node.yml
+    - ansible.builtin.include_tasks: tasks/homebrew.yml
+    # - ansible.builtin.include_tasks: tasks/zsh.yml
+    # - ansible.builtin.include_tasks: tasks/node.yml
 # use which clause for different OSes
