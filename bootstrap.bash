@@ -27,5 +27,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # Install Ansible
 pipx install --include-deps ansible
 
-# Clone the repo and execute the playbook
-ansible-pull -U https://github.com/MurtadhaInit/dotfiles.git
+# Clone the repo and execute local.yml
+ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass

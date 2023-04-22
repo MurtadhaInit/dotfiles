@@ -1,0 +1,14 @@
+- name: Install ZSH with Homebrew
+  community.general.homebrew:
+    name: zsh
+    state: present
+  tags: apps/packages
+
+- name: Make it the default shell
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: "$(brew --prefix)/bin/zsh"
+  become: true
+
+- name: Install apps and packages with Homebrew
+  ansible.builtin.include_tasks: homebrew.yml

@@ -1,36 +1,40 @@
-- name: Main machine setup
+- name: Main development machine setup
   hosts: localhost
   connection: local
-  # become: true
   vars:
-    # the_os_type: "{{ ansible_facts["distribution"] }}"
+    os: ansible_facts["os_family"]
 
   pre_tasks:
-    - name: Update cache (apt)
-      ansible.builtin.apt:
-        update_cache: true
-      changed_when: false
-      # when: os_type == "Ubuntu"
-      when: ansible_facts["distribution"] == "Ubuntu"
-      tags:
-        - apps/packages
-        # - scripts
-        # - homebrew
-        # - zsh
-        # - node
-        # - python
-        # - go
-    - name: Update cache (Homebrew)
-      community.general.homebrew:
-        update_homebrew: true
-      changed_when: false
-      # when: os_type == "MacOSX"
-      when: ansible_facts["distribution"] == "MacOSX"
-      tags:
-        - apps/packages
+  - name: Update package manager cache (Homebrew)
+    when: os == "Darwin"
+    changed_when: false
+    tags:
+      - apps/packages
+    community.general.homebrew:
+      update_homebrew: true
+    
+  - name: Update package manager cache (apt)
+    when: os == "Debian"
+    changed_when: false
+    tags:
+      - apps/packages
+    ansible.builtin.apt:
+      update_cache: true
 
   tasks:
-    - ansible.builtin.include_tasks: tasks/homebrew.yml
-    # - ansible.builtin.include_tasks: tasks/zsh.yml
-    # - ansible.builtin.include_tasks: tasks/node.yml
-# use which clause for different OSes
+  - name: Tasks common to Unix systems (not Windows)
+    when: os != "Windows"
+    ansible.builtin.include_tasks: tasks/unix.yml
+
+  - name: MacOS machine setup
+    when: os == "Darwin"
+    ansible.builtin.include_tasks: tasks/macos/macos.yml
+      
+  - name: Linux machine setup
+    when: os == "Debian"
+    ansible.builtin.include_tasks: tasks/linux/linux.yml
+
+  # - name: Windows machine setup
+  #   when: os == "Windows"
+  #   ansible.builtin.include_tasks:
+      

@@ -1,0 +1,11 @@
+- name: Create 'Work' directory
+  ansible.builtin.file:
+    path: $HOME/Work
+    state: directory
+    mode: "0755"
+
+- name: Create 'Projects' directory
+  ansible.builtin.file:
+    path: $HOME/Projects
+    state: directory
+    mode: "0755"

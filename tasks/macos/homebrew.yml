@@ -1,5 +1,5 @@
 - name: Install Homebrew packages
   community.general.homebrew:
-    name: btop
+    name: pfetch
     state: present
   tags: apps/packages
