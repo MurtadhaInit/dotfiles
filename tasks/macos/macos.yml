@@ -7,7 +7,7 @@
 - name: Make it the default shell
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
-    shell: "$(brew --prefix)/bin/zsh"
+    shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
   become: true
 
 - name: Install apps and packages with Homebrew

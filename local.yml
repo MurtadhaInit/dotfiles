@@ -2,11 +2,11 @@
   hosts: localhost
   connection: local
   vars:
-    os: ansible_facts["os_family"]
+    os: "{{ ansible_facts['os_family'] | lower }}"
 
   pre_tasks:
   - name: Update package manager cache (Homebrew)
-    when: os == "Darwin"
+    when: os == "darwin"
     changed_when: false
     tags:
       - apps/packages
@@ -14,7 +14,7 @@
       update_homebrew: true
     
   - name: Update package manager cache (apt)
-    when: os == "Debian"
+    when: os == "debian"
     changed_when: false
     tags:
       - apps/packages
@@ -23,15 +23,15 @@
 
   tasks:
   - name: Tasks common to Unix systems (not Windows)
-    when: os != "Windows"
+    when: os != "windows"
     ansible.builtin.include_tasks: tasks/unix.yml
 
   - name: MacOS machine setup
-    when: os == "Darwin"
+    when: os == "darwin"
     ansible.builtin.include_tasks: tasks/macos/macos.yml
-      
+
   - name: Linux machine setup
-    when: os == "Debian"
+    when: os == "debian"
     ansible.builtin.include_tasks: tasks/linux/linux.yml
 
   # - name: Windows machine setup
