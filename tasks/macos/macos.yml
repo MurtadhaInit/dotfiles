@@ -1,14 +1,71 @@
 - name: Install ZSH with Homebrew
+  tags: apps/packages
   community.general.homebrew:
     name: zsh
     state: present
-  tags: apps/packages
+
+# this is for the next task that requires Homebrew env varialbes
+# - name: Temporarily copy ~/.zprofile to ~/.config/zsh/.zprofile
+#   block:
+#     - name: Create the destination directory
+#       ansible.builtin.file:
+#         path: $HOME/.config/zsh/
+#         state: directory
+#         mode: "0755"
+
+#     - name: Copy the .zprofile file
+#       ansible.builtin.copy:
+#         remote_src: true
+#         src: $HOME/.zprofile
+#         dest: $HOME/.config/zsh/.zprofile
+#         mode: preserve
 
 - name: Make it the default shell
+  become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
-  become: true
+    # it seems there is no need to include the path in /etc/shells
 
-- name: Install apps and packages with Homebrew
-  ansible.builtin.include_tasks: homebrew.yml
+# - name: Install Homebrew packages
+#   register: brewfile_cmd_output
+#   ansible.builtin.shell:
+#     cmd: export HOMEBREW_CASK_OPTS="--no-quarantine" && brew bundle install --verbose --file=./Homebrew/Brewfile
+
+- name: Install all apps and packages
+  block:
+    - name: Install brews
+      tags: apps/packages
+      community.general.homebrew:
+        name: "{{ lookup('file', 'homebrew_brews.txt') | tr \n , }}"
+        state: present
+
+    - name: Install casks
+      tags: apps/packages
+      community.general.homebrew:
+        name: "{{ lookup('file', 'homebrew_casks.txt') | tr \n , }}"
+        state: present
+
+    - name: Install App Store apps with mas
+      community.general.mas:
+
+- name: Install GNU stow
+  tags: apps/packages
+  community.general.homebrew:
+    name: stow
+    state: present
+
+# do the dotfiles with stow
+
+# clone repos
+
+# this should come after anything involving Homebrew
+# because the ~/.zprofile won't be picked up, and hence
+# no Homebrew loading nor related env varialbes
+- name: Change the default location of ZSH rc files
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/zshenv
+    content: 'export ZDOTDIR="$HOME/.config/zsh"'
+    owner: root
+    mode: u=rw,g=r,o=r

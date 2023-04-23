@@ -1,5 +1,0 @@
-- name: Install Homebrew packages
-  community.general.homebrew:
-    name: pfetch
-    state: present
-  tags: apps/packages
