@@ -4,28 +4,18 @@
     name: zsh
     state: present
 
-# this is for the next task that requires Homebrew env varialbes
-# - name: Temporarily copy ~/.zprofile to ~/.config/zsh/.zprofile
-#   block:
-#     - name: Create the destination directory
-#       ansible.builtin.file:
-#         path: $HOME/.config/zsh/
-#         state: directory
-#         mode: "0755"
-
-#     - name: Copy the .zprofile file
-#       ansible.builtin.copy:
-#         remote_src: true
-#         src: $HOME/.zprofile
-#         dest: $HOME/.config/zsh/.zprofile
-#         mode: preserve
-
 - name: Make it the default shell
   become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
-    # it seems there is no need to include the path in /etc/shells
+    # It seems there is no need to include the path in /etc/shells
+
+# NOTE: ansible_env is used to access env variables on the remote machine.
+# It's part of ansible facts collected about the remote node.
+
+# NOTE: lookup always accesses data on the control node, but
+# the control node and the remote node are the same machine here.
 
 # - name: Install Homebrew packages
 #   register: brewfile_cmd_output
@@ -37,25 +27,34 @@
     - name: Install brews
       tags: apps/packages
       community.general.homebrew:
-        name: "{{ lookup('file', 'homebrew_brews.txt') | tr \n , }}"
+        name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
         state: present
 
     - name: Install casks
       tags: apps/packages
       community.general.homebrew:
-        name: "{{ lookup('file', 'homebrew_casks.txt') | tr \n , }}"
+        name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
         state: present
 
     - name: Install App Store apps with mas
       community.general.mas:
 
-- name: Install GNU stow
-  tags: apps/packages
-  community.general.homebrew:
-    name: stow
-    state: present
+- name: Symlink all dotfiles using GNU Stow
+  block:
+    - name: What applications to stow for this machine
+      register: what_to_stow
+      ansible.builtin.shell:
+        chdir: "{{ ansible_env.HOME }}/.dotfiles/Applications/"
+        cmd: find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " "
+        # stow eveything in the folder
 
-# do the dotfiles with stow
+    - name: Stow those applications
+      # GNU Stow is installed earlier with Homebrew
+      ansible.builtin.shell:
+        chdir: "{{ ansible_env.HOME }}/.dotfiles/Applications/"
+        cmd: command -v stow 1>/dev/null 2>/dev/null && [ "$(basename "$(pwd)")" = "Applicatios" ] && stow --restow "{{ what_to_stow.stdout }}"
+
+# command -v stow 1>/dev/null 2>/dev/null && [[ $(basename $(pwd))=="Applicatios" ]] && stow --restow $(find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " ")
 
 # clone repos
 

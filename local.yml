@@ -24,7 +24,7 @@
   tasks:
   - name: Tasks common to Unix systems (not Windows)
     when: os != "windows"
-    ansible.builtin.include_tasks: tasks/unix.yml
+    ansible.builtin.include_tasks: tasks/unix/unix.yml
 
   - name: MacOS machine setup
     when: os == "darwin"
