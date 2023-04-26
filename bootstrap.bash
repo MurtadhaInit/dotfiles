@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash
+
 # check if a command exists
 function exists() {
   command -v "$1" >/dev/null 2>&1

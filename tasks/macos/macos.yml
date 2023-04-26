@@ -32,27 +32,34 @@
 
     - name: Install casks
       tags: apps/packages
+      environment:
+        HOMEBREW_CASK_OPTS: --no-quarantine
       community.general.homebrew:
         name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
         state: present
 
-    - name: Install App Store apps with mas
-      community.general.mas:
+    # TODO: come back after testing to work on this task
+    # - name: Install App Store apps with mas
+      # community.general.mas:
 
-- name: Symlink all dotfiles using GNU Stow
-  block:
-    - name: What applications to stow for this machine
-      register: what_to_stow
-      ansible.builtin.shell:
-        chdir: "{{ ansible_env.HOME }}/.dotfiles/Applications/"
-        cmd: find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " "
-        # stow eveything in the folder
-
-    - name: Stow those applications
-      # GNU Stow is installed earlier with Homebrew
-      ansible.builtin.shell:
-        chdir: "{{ ansible_env.HOME }}/.dotfiles/Applications/"
-        cmd: command -v stow 1>/dev/null 2>/dev/null && [ "$(basename "$(pwd)")" = "Applicatios" ] && stow --restow "{{ what_to_stow.stdout }}"
+- name: Symlink all dotfiles using...
+  tags: dotfiles
+  ansible.builtin.file:
+    state: link
+    src: "{{ ansible_env.HOME }}/.dotfiles/Applications/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    # relative src locations are relative to dest
+  with_items:
+    - { src: alacritty/alacritty, dest: .config/alacritty }
+    - { src: bat/bat, dest: .config/bat }
+    - { src: btop/btop, dest: .config/btop }
+    - { src: fzf/fzf, dest: .config/fzf }
+    - { src: git/git, dest: .config/git }
+    - { src: iterm/iterm, dest: .config/iterm }
+    - { src: pypoetry/pypoetry, dest: .config/pypoetry }
+    - { src: starship/starship, dest: .config/starship }
+    - { src: tmux/tmux, dest: .config/tmux }
+    - { src: zsh/zsh, dest: .config/zsh }
 
 # command -v stow 1>/dev/null 2>/dev/null && [[ $(basename $(pwd))=="Applicatios" ]] && stow --restow $(find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " ")
 
