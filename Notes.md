@@ -104,6 +104,13 @@
 - When using stow, use regex to exclude packages not ending with _win (for eg)
   - `cd ~/.dotfiles/Applications && stow such such such`
 
+- The typical ln command to use for dotfiles is:
+  `ln -sfhv src_dir symlink_dir`
+  - s for symolink line as opposed to hard link
+  - f for force (replace the symlink if it already exists)
+  - h for not following the link if it exists. Useful for symlinking directories.
+  - v for verbose
+
 ## Notes about the operation of dotbot
 
 - Link: <https://github.com/anishathalye/dotbot>

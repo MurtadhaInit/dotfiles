@@ -30,6 +30,7 @@
         name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
         state: present
 
+    # TODO: this task is causing all sorts of issues, from failing if the cask exists to failing due to Mac gatekeeping nonesense
     - name: Install casks
       tags: apps/packages
       environment:
@@ -42,24 +43,10 @@
     # - name: Install App Store apps with mas
       # community.general.mas:
 
-- name: Symlink all dotfiles using...
+- name: Symlink all dotfiles using a script
   tags: dotfiles
-  ansible.builtin.file:
-    state: link
-    src: "{{ ansible_env.HOME }}/.dotfiles/Applications/{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    # relative src locations are relative to dest
-  with_items:
-    - { src: alacritty/alacritty, dest: .config/alacritty }
-    - { src: bat/bat, dest: .config/bat }
-    - { src: btop/btop, dest: .config/btop }
-    - { src: fzf/fzf, dest: .config/fzf }
-    - { src: git/git, dest: .config/git }
-    - { src: iterm/iterm, dest: .config/iterm }
-    - { src: pypoetry/pypoetry, dest: .config/pypoetry }
-    - { src: starship/starship, dest: .config/starship }
-    - { src: tmux/tmux, dest: .config/tmux }
-    - { src: zsh/zsh, dest: .config/zsh }
+  ansible.builtin.script:
+    cmd: dotfiles.sh
 
 # command -v stow 1>/dev/null 2>/dev/null && [[ $(basename $(pwd))=="Applicatios" ]] && stow --restow $(find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " ")
 
