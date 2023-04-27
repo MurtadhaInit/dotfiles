@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash
+# curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash && rm bootstrap.bash
 
 # check if a command exists
 function exists() {
@@ -20,6 +20,8 @@ else
     export NONINTERACTIVE=1
     # Run the installer
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Disable Homebrew analytics
+    brew analytics off
 fi
 
 # Install pipx

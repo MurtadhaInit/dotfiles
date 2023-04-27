@@ -17,40 +17,43 @@
 # NOTE: lookup always accesses data on the control node, but
 # the control node and the remote node are the same machine here.
 
-# - name: Install Homebrew packages
-#   register: brewfile_cmd_output
-#   ansible.builtin.shell:
-#     cmd: export HOMEBREW_CASK_OPTS="--no-quarantine" && brew bundle install --verbose --file=./Homebrew/Brewfile
-
 - name: Install all apps and packages
   block:
-    - name: Install brews
+    - name: 1. Install essential brews
       tags: apps/packages
       community.general.homebrew:
         name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
         state: present
 
-    # TODO: this task is causing all sorts of issues, from failing if the cask exists to failing due to Mac gatekeeping nonesense
-    - name: Install casks
+    # NOTE: homebrew_cask module is used because homebrew is problematic
+    # for casks: e.g. failing if the cask is already installed.
+    - name: 2. Install essential casks
       tags: apps/packages
-      environment:
-        HOMEBREW_CASK_OPTS: --no-quarantine
-      community.general.homebrew:
+      community.general.homebrew_cask:
         name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
         state: present
+        install_options: no-quarantine
 
-    # TODO: come back after testing to work on this task
+    # NOTE: this is not needed now as App Store apps will be installed
+    # from the Brewfile
+    # NOTE: you need to be signed in to the Mac App Store with Apple ID
     # - name: Install App Store apps with mas
       # community.general.mas:
+        # id:
+          # - 798987
+          # - 877899
+        # state: present
 
-- name: Symlink all dotfiles using a script
+# setup tools (like language version managers)
+- name: Setup language-specific version managers
+  block:
+    - name: Setup pyenv
+
+  # GNU Stow was buggy when absolute paths were used
+- name: Symlink all dotfiles using a crude script
   tags: dotfiles
   ansible.builtin.script:
     cmd: dotfiles.sh
-
-# command -v stow 1>/dev/null 2>/dev/null && [[ $(basename $(pwd))=="Applicatios" ]] && stow --restow $(find . -type d -maxdepth 1 | cut -c 3- | tr "\n" " ")
-
-# clone repos
 
 # this should come after anything involving Homebrew
 # because the ~/.zprofile won't be picked up, and hence
@@ -62,3 +65,23 @@
     content: 'export ZDOTDIR="$HOME/.config/zsh"'
     owner: root
     mode: u=rw,g=r,o=r
+
+# clone repos
+
+# sign in to app store
+
+  # TODO: find a way to log the output to the terminal, as it's a long command
+- name: Install all other apps (including App Store ones) from Brewfile
+  tags: apps/packages
+  register: brewfile_cmd_output
+  environment:
+    HOMEBREW_CASK_OPTS: --no-quarantine
+  ansible.builtin.shell:
+    chdir: "{{ ansible_env.HOME }}/.dotfiles/Homebrew"
+    cmd: brew bundle install --verbose --file=./Brewfile
+
+- name: Homebrew cleanup
+  ansible.builtin.command: brew cleanup --verbose
+
+# TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
+
