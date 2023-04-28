@@ -1,5 +1,5 @@
 - name: Install ZSH with Homebrew
-  tags: apps/packages
+  tags: homebrew
   community.general.homebrew:
     name: zsh
     state: present
@@ -11,16 +11,12 @@
     shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
     # It seems there is no need to include the path in /etc/shells
 
-# NOTE: ansible_env is used to access env variables on the remote machine.
-# It's part of ansible facts collected about the remote node.
-
-# NOTE: lookup always accesses data on the control node, but
-# the control node and the remote node are the same machine here.
-
-- name: Install all apps and packages
+# TODO: populate the brews and casks txt files with essential development packages and stuff loaded in zsh rc files
+# This is to avoid errors when those are copied over in the dotfiles task
+- name: Install essential apps and packages
   block:
     - name: 1. Install essential brews
-      tags: apps/packages
+      tags: homebrew
       community.general.homebrew:
         name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
         state: present
@@ -28,7 +24,7 @@
     # NOTE: homebrew_cask module is used because homebrew is problematic
     # for casks: e.g. failing if the cask is already installed.
     - name: 2. Install essential casks
-      tags: apps/packages
+      tags: homebrew
       community.general.homebrew_cask:
         name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
         state: present
@@ -40,14 +36,12 @@
     # - name: Install App Store apps with mas
       # community.general.mas:
         # id:
-          # - 798987
-          # - 877899
+          # - 12345
+          # - 12345
         # state: present
 
-# setup tools (like language version managers)
 - name: Setup language-specific version managers
-  block:
-    - name: Setup pyenv
+  ansible.builtin.include_tasks: version_managers.yml
 
   # GNU Stow was buggy when absolute paths were used
 - name: Symlink all dotfiles using a crude script
@@ -66,13 +60,17 @@
     owner: root
     mode: u=rw,g=r,o=r
 
-# clone repos
+# TODO: clone repos
+
+# TODO: change system settings
 
 # sign in to app store
 
-  # TODO: find a way to log the output to the terminal, as it's a long command
+  # NOTE: this task takes a very long time when many apps need to be installed.
+  # TODO: find a way to log the output to the terminal, as it's a long command.
+  # and fine a way of ignoring errors of specific kind (if mas apps fail to install) due to forgetting to sign in to Apple ID
 - name: Install all other apps (including App Store ones) from Brewfile
-  tags: apps/packages
+  tags: homebrew
   register: brewfile_cmd_output
   environment:
     HOMEBREW_CASK_OPTS: --no-quarantine
@@ -81,7 +79,12 @@
     cmd: brew bundle install --verbose --file=./Brewfile
 
 - name: Homebrew cleanup
-  ansible.builtin.command: brew cleanup --verbose
+  ansible.builtin.command: brew cleanup --verbose --prune=all
 
 # TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 
+# NOTE: ansible_env is used to access env variables on the remote machine.
+# It's part of ansible facts collected about the remote node.
+
+# NOTE: lookup always accesses data on the control node, but
+# the control node and the remote node are the same machine here.

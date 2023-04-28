@@ -1,0 +1,4 @@
+- --include-deps ansible
+- ansible-lint
+- poetry
+- apprise

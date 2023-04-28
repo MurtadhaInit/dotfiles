@@ -9,7 +9,7 @@
     when: os == "darwin"
     changed_when: false
     tags:
-      - apps/packages
+      - homebrew
     community.general.homebrew:
       update_homebrew: true
     
@@ -17,7 +17,7 @@
     when: os == "debian"
     changed_when: false
     tags:
-      - apps/packages
+      - apt
     ansible.builtin.apt:
       update_cache: true
 

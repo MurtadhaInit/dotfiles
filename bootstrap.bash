@@ -10,7 +10,7 @@ function exists() {
 }
 
 # Install Homebrew if on MacOS and if not installed
-# TODO: add a condition to check the type of OS to install Ansible accordingly
+# TODO: transfer the installation of Homebrew to the macos playbook and use virtualenv to install Ansible agnosticly after checking for the existence of Python 3
 if exists brew; then
     echo "brew exists, skipping install..."
 else
@@ -24,6 +24,7 @@ else
     brew analytics off
 fi
 
+# TODO: install Ansible in a virtual env instead then delete it afterwards
 # Install pipx
 brew install pipx
 export PATH="$HOME/.local/bin:$PATH"
