@@ -22,19 +22,19 @@ fi
 
 cd "$HOME/ansible-temp" || exit
 
-if ! exists pip; then
+if ! exists pip3; then
   curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
   python3 get-pip.py --user
 fi
 
-python3 -m pip install --upgrade pip
+python3 -m pip3 install --upgrade pip3
 
-if ! pip show virtualenv 1>/dev/null 2>&1; then
-  pip install virtualenv
+if ! pip3 show virtualenv 1>/dev/null 2>&1; then
+  pip3 install virtualenv
 fi
 
-if ! pip show setuptools 1>/dev/null 2>&1; then
-  pip install setuptools
+if ! pip3 show setuptools 1>/dev/null 2>&1; then
+  pip3 install setuptools
 fi
 
 # NOTE: virtualenv (along with setuptools) are also needed by a task using the pip module
