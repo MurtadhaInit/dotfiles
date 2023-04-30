@@ -111,6 +111,8 @@
   - h for not following the link if it exists. Useful for symlinking directories.
   - v for verbose
 
+- Add an Ansible task to install my font
+
 ## Notes about the operation of dotbot
 
 - Link: <https://github.com/anishathalye/dotbot>

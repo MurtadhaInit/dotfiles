@@ -2,6 +2,8 @@
 
 # curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash && rm bootstrap.bash
 
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash
+
 # check if a command exists
 function exists() {
   command -v "$1" >/dev/null 2>&1
@@ -9,28 +11,43 @@ function exists() {
   # command -v $1 1>/dev/null 2>/dev/null
 }
 
-# Install Homebrew if on MacOS and if not installed
-# TODO: transfer the installation of Homebrew to the macos playbook and use virtualenv to install Ansible agnosticly after checking for the existence of Python 3
-if exists brew; then
-    echo "brew exists, skipping install..."
-else
-    echo "Installing Homebrew..."
-    # To achieve a non-interactive run of the Homebrew installer
-    # that doesn’t prompt for passwords
-    export NONINTERACTIVE=1
-    # Run the installer
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    # Disable Homebrew analytics
-    brew analytics off
+if ! exists python3; then
+  echo "Python needs to be installed"
+  exit
 fi
 
-# TODO: install Ansible in a virtual env instead then delete it afterwards
-# Install pipx
-brew install pipx
-export PATH="$HOME/.local/bin:$PATH"
+if [ ! -d "$HOME/ansible-temp" ]; then
+  mkdir "$HOME/ansible-temp"
+fi
 
-# Install Ansible
-pipx install --include-deps ansible
+cd "$HOME/ansible-temp" || exit
+
+if ! exists pip; then
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  python3 get-pip.py --user
+fi
+
+python3 -m pip install --upgrade pip
+
+if ! pip show virtualenv 1>/dev/null 2>&1; then
+  pip install virtualenv
+fi
+
+if ! pip show setuptools 1>/dev/null 2>&1; then
+  pip install setuptools
+fi
+
+# NOTE: virtualenv (along with setuptools) are also needed by a task using the pip module
+
+python3 -m virtualenv ansible-setup
+source ansible-setup/bin/activate
+
+pip install ansible
 
 # Clone the repo and execute local.yml
 ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass
+
+deactivate
+
+# when done...
+# rm -rf ansible-temp

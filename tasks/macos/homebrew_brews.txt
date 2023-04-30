@@ -1,1 +1,15 @@
+bash
+bat
+exa
+fd
+fzf
+ncdu
 pfetch
+starship
+tldr
+vim
+tmux
+zoxide
+zsh-autosuggestions
+zsh-syntax-highlighting
+eth-p/software/bat-extras

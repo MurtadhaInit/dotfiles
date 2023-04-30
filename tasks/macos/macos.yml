@@ -1,3 +1,6 @@
+- name: Install Homebrew
+  ansible.builtin.include_tasks: install_homebrew.yml
+
 - name: Install ZSH with Homebrew
   tags: homebrew
   community.general.homebrew:
@@ -11,8 +14,6 @@
     shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
     # It seems there is no need to include the path in /etc/shells
 
-# TODO: populate the brews and casks txt files with essential development packages and stuff loaded in zsh rc files
-# This is to avoid errors when those are copied over in the dotfiles task
 - name: Install essential apps and packages
   block:
     - name: 1. Install essential brews
@@ -30,18 +31,12 @@
         state: present
         install_options: no-quarantine
 
-    # NOTE: this is not needed now as App Store apps will be installed
-    # from the Brewfile
-    # NOTE: you need to be signed in to the Mac App Store with Apple ID
-    # - name: Install App Store apps with mas
-      # community.general.mas:
-        # id:
-          # - 12345
-          # - 12345
-        # state: present
+# TODO: uncomment and test this
+# - name: Setup language-specific version managers (e.g. pyenv)
+  # ansible.builtin.include_tasks: version_managers.yml
 
-- name: Setup language-specific version managers
-  ansible.builtin.include_tasks: version_managers.yml
+- name: Clone and manage Git repositories
+  ansible.builtin.include_tasks: git_repositories.yml
 
   # GNU Stow was buggy when absolute paths were used
 - name: Symlink all dotfiles using a crude script
@@ -49,37 +44,58 @@
   ansible.builtin.script:
     cmd: dotfiles.sh
 
-# this should come after anything involving Homebrew
-# because the ~/.zprofile won't be picked up, and hence
-# no Homebrew loading nor related env varialbes
+  # This should only be performed after a successful symlinking of dotfiles
+  # to avoid broken zsh (and hence undefined Homebrew env variables)
 - name: Change the default location of ZSH rc files
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/zshenv
-    content: 'export ZDOTDIR="$HOME/.config/zsh"'
-    owner: root
-    mode: u=rw,g=r,o=r
+  block:
+    - name: Check if ZSH rc directory was correctly symlinked earlier
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.config/zsh"
+      register: zsh_config_dir
 
-# TODO: clone repos
+    - name: Change the location of ZSH rc files
+      when: zsh_config_dir.stat.exist and zsh_config_dir.stat.islnk
+      become: true
+      ansible.builtin.copy:
+        dest: /etc/zshenv
+        content: 'export ZDOTDIR="$HOME/.config/zsh"'
+        owner: root
+        mode: u=rw,g=r,o=r
+
+  # TODO: uncomment and test this
+# - name: Setup launchd agents (MacOS running services)
+#   ansible.builtin.include_tasks: launchd_agents.yml
 
 # TODO: change system settings
 
-# sign in to app store
+# sign in to app store before the next task
 
-  # NOTE: this task takes a very long time when many apps need to be installed.
   # TODO: find a way to log the output to the terminal, as it's a long command.
   # and fine a way of ignoring errors of specific kind (if mas apps fail to install) due to forgetting to sign in to Apple ID
-- name: Install all other apps (including App Store ones) from Brewfile
-  tags: homebrew
-  register: brewfile_cmd_output
-  environment:
-    HOMEBREW_CASK_OPTS: --no-quarantine
-  ansible.builtin.shell:
-    chdir: "{{ ansible_env.HOME }}/.dotfiles/Homebrew"
-    cmd: brew bundle install --verbose --file=./Brewfile
 
-- name: Homebrew cleanup
-  ansible.builtin.command: brew cleanup --verbose --prune=all
+  # NOTE: this task takes a very long time when many apps need to be installed.
+- name: Install all other apps (including App Store ones) from Brewfile
+  block:
+    - name: Install mas (for App Store apps)
+      tags: homebrew
+      community.general.homebrew:
+        name: mas
+        state: present
+
+    - name: Install everything else from Brewfile
+      # assume this will always install new things (always changed)
+      changed_when: true
+      tags: homebrew
+      environment:
+        HOMEBREW_CASK_OPTS: --no-quarantine
+      ansible.builtin.command:
+        chdir: "{{ ansible_env.HOME }}/.dotfiles/Homebrew"
+        cmd: brew bundle install --verbose --file=./Brewfile
+
+    - name: Homebrew cleanup
+      # assume this will always lead to some sort of change
+      changed_when: true
+      ansible.builtin.command: brew cleanup --verbose --prune=all
 
 # TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 

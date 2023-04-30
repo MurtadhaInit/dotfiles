@@ -1,3 +1,5 @@
+# TODO: organise tags better to separate the type of tasks
+
 - name: Main development machine setup
   hosts: localhost
   connection: local
