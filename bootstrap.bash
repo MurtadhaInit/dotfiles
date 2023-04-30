@@ -27,7 +27,7 @@ if ! exists pip3; then
   python3 get-pip.py --user
 fi
 
-python3 -m pip3 install --upgrade pip3
+python3 -m pip install --upgrade pip
 
 if ! pip3 show virtualenv 1>/dev/null 2>&1; then
   pip3 install virtualenv
