@@ -54,7 +54,8 @@
       register: zsh_config_dir
 
     - name: Change the location of ZSH rc files
-      when: zsh_config_dir.stat.exist and zsh_config_dir.stat.islnk
+      # the path ~/.config/zsh exists and is a symlink
+      when: zsh_config_dir.stat.islnk is defined and zsh_config_dir.stat.islnk
       become: true
       ansible.builtin.copy:
         dest: /etc/zshenv

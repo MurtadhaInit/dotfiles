@@ -1,11 +1,11 @@
 - name: Check if Homebrew is installed
   ansible.builtin.shell:
     cmd: command -v brew 1>/dev/null 2>/dev/null
-  changed_when: false
   register: brew_exists
+  changed_when: false
   # fail for any exit code other than 0 or 1.
   # e.g. if 'command' is not even defined for some reason (code 127)
-  failed_when: brew_exists.rc != 0 or brew_exists.rc != 1
+  failed_when: brew_exists.rc != 0 and brew_exists.rc != 1
 
 - name: Install Homebrew if it doesn't exist
   when: brew_exists.rc == 1
@@ -18,6 +18,5 @@
     cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 - name: Disable Homebrew analytics
-  when: brew_installed.rc == 0
   changed_when: true
   ansible.builtin.command: brew analytics off
