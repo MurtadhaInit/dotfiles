@@ -1,0 +1,20 @@
+# TODO: test if the environment variable is taking effect or it's the zsh rc files the second time (after dotfiles have been symlinked)
+- name: Create the Volta home directory
+  ansible.builtin.file:
+    path: $HOME/.local/share/volta
+    state: directory
+    mode: "0755"
+
+- name: Install Volta
+  tags: homebrew
+  environment:
+    VOLTA_HOME: "$HOME/.local/share/volta"
+  community.general.homebrew:
+    name: volta
+    state: present
+
+- name: Always install the latest LTS versions of Node and npm
+  # assume this task will usually result in a change
+  changed_when: true
+  ansible.builtin.shell:
+    cmd: volta install node && volta install npm

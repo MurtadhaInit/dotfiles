@@ -1,0 +1,12 @@
+- name: Install ZSH with Homebrew
+  tags: homebrew
+  community.general.homebrew:
+    name: zsh
+    state: present
+
+- name: Make it the default shell
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
+    # It seems there is no need to include the path in /etc/shells

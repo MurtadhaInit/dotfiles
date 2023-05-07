@@ -1,42 +1,26 @@
 - name: Install Homebrew
-  ansible.builtin.include_tasks: install_homebrew.yml
+  ansible.builtin.include_tasks: tasks/install_homebrew.yml
 
-- name: Install ZSH with Homebrew
-  tags: homebrew
-  community.general.homebrew:
-    name: zsh
-    state: present
-
-- name: Make it the default shell
-  become: true
-  ansible.builtin.user:
-    name: "{{ ansible_env.USER }}"
-    shell: "{{ ansible_env.HOMEBREW_PREFIX }}/bin/zsh"
-    # It seems there is no need to include the path in /etc/shells
+- name: Setup ZSH
+  ansible.builtin.include_tasks: tasks/setup_zsh.yml
 
 - name: Install essential apps and packages
-  block:
-    - name: 1. Install essential brews
-      tags: homebrew
-      community.general.homebrew:
-        name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
-        state: present
+  ansible.builtin.include_tasks: tasks/essentials.yml
 
-    # NOTE: homebrew_cask module is used because homebrew is problematic
-    # for casks: e.g. failing if the cask is already installed.
-    - name: 2. Install essential casks
-      tags: homebrew
-      community.general.homebrew_cask:
-        name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
-        state: present
-        install_options: no-quarantine
+- name: Setup Node
+  tags: node
+  ansible.builtin.include_tasks: tasks/setup_node.yml
 
-# TODO: uncomment and test this
-# - name: Setup language-specific version managers (e.g. pyenv)
-  # ansible.builtin.include_tasks: version_managers.yml
+- name: Setup Python and pipx apps
+  tags: python
+  ansible.builtin.include_tasks: tasks/setup_python.yml
+
+# - name: Setup Go
+#   tags: go
+#   ansible.builtin.include_tasks: tasks/setup_go.yml
 
 - name: Clone and manage Git repositories
-  ansible.builtin.include_tasks: git_repositories.yml
+  ansible.builtin.include_tasks: tasks/git_repositories.yml
 
   # GNU Stow was buggy when absolute paths were used
 - name: Symlink all dotfiles using a crude script
@@ -44,59 +28,22 @@
   ansible.builtin.script:
     cmd: dotfiles.sh
 
-  # This should only be performed after a successful symlinking of dotfiles
-  # to avoid broken zsh (and hence undefined Homebrew env variables)
 - name: Change the default location of ZSH rc files
-  block:
-    - name: Check if ZSH rc directory was correctly symlinked earlier
-      ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.config/zsh"
-      register: zsh_config_dir
-
-    - name: Change the location of ZSH rc files
-      # the path ~/.config/zsh exists and is a symlink
-      when: zsh_config_dir.stat.islnk is defined and zsh_config_dir.stat.islnk
-      become: true
-      ansible.builtin.copy:
-        dest: /etc/zshenv
-        content: 'export ZDOTDIR="$HOME/.config/zsh"'
-        owner: root
-        mode: u=rw,g=r,o=r
+  ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
 
   # TODO: uncomment and test this
 # - name: Setup launchd agents (MacOS running services)
-#   ansible.builtin.include_tasks: launchd_agents.yml
+#   ansible.builtin.include_tasks: tasks/launchd_agents.yml
 
 # TODO: change system settings
 
 # sign in to app store before the next task
 
-  # TODO: find a way to log the output to the terminal, as it's a long command.
-  # and fine a way of ignoring errors of specific kind (if mas apps fail to install) due to forgetting to sign in to Apple ID
-
   # NOTE: this task takes a very long time when many apps need to be installed.
 - name: Install all other apps (including App Store ones) from Brewfile
-  block:
-    - name: Install mas (for App Store apps)
-      tags: homebrew
-      community.general.homebrew:
-        name: mas
-        state: present
+  tags: all_apps
+  ansible.builtin.include_tasks: tasks/all_apps.yml
 
-    - name: Install everything else from Brewfile
-      # assume this will always install new things (always changed)
-      changed_when: true
-      tags: homebrew
-      environment:
-        HOMEBREW_CASK_OPTS: --no-quarantine
-      ansible.builtin.command:
-        chdir: "{{ ansible_env.HOME }}/.dotfiles/Homebrew"
-        cmd: brew bundle install --verbose --file=./Brewfile
-
-    - name: Homebrew cleanup
-      # assume this will always lead to some sort of change
-      changed_when: true
-      ansible.builtin.command: brew cleanup --verbose --prune=all
 
 # TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 

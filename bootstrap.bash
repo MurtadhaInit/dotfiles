@@ -50,4 +50,4 @@ ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOM
 deactivate
 
 # when done...
-# rm -rf ansible-temp
+rm -rf ansible-temp

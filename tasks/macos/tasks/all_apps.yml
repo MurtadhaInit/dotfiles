@@ -1,0 +1,25 @@
+# TODO: find a way to log the output to the terminal, as it's a long command.
+# and find a way of ignoring errors of specific kind (if mas apps
+# fail to install) due to forgetting to sign in to Apple ID while
+# also printing a debug message if that occurs.
+
+- name: Install mas (for App Store apps)
+  tags: homebrew
+  community.general.homebrew:
+    name: mas
+    state: present
+
+- name: Install everything else from Brewfile
+  # assume this will always install new things (always changed)
+  changed_when: true
+  tags: homebrew
+  environment:
+    HOMEBREW_CASK_OPTS: --no-quarantine
+  ansible.builtin.command:
+    chdir: "{{ ansible_env.HOME }}/.dotfiles/Homebrew"
+    cmd: brew bundle install --verbose --file=./Brewfile
+
+- name: Homebrew cleanup
+  # assume this will always lead to some sort of change
+  changed_when: true
+  ansible.builtin.command: brew cleanup --verbose --prune=all

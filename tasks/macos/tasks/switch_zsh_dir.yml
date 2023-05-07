@@ -1,0 +1,19 @@
+# NOTE: this should only be performed after a successful symlinking
+# of dotfiles to avoid broken zsh as well as undefined Homebrew
+# env variables
+
+- name: Check if ZSH rc directory was correctly symlinked earlier
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.config/zsh"
+  register: zsh_config_dir
+
+- name: Change the location of ZSH rc files
+  # the path ~/.config/zsh exists and is a symlink
+  # TODO: add a check of return code 0 from dotfiles.sh
+  when: zsh_config_dir.stat.islnk is defined and zsh_config_dir.stat.islnk
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/zshenv
+    content: 'export ZDOTDIR="$HOME/.config/zsh"'
+    owner: root
+    mode: u=rw,g=r,o=r

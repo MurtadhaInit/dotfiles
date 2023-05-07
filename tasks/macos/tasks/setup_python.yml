@@ -1,0 +1,63 @@
+# NOTE: setting up Python this way is still messy. E.g. pipx will
+# rely on the pyenv global version installed for all applications,
+# and changing or upgrading that version will break the virtual
+# environments used by pipx for those apps
+
+- name: Create the pyenv root directory
+  ansible.builtin.file:
+    path: $HOME/.local/share/pyenv
+    state: directory
+    mode: "0755"
+
+- name: Install pyenv
+  tags: homebrew
+  environment:
+    PYENV_ROOT: "$HOME/.local/share/pyenv"
+  community.general.homebrew:
+    name: pyenv
+    state: present
+
+# NOTE: this will always install the latest Python version available
+# to pyenv, but it won't set it as the 'global' one, i.e. it won't
+# make it available in the shell.
+- name: Install the latest version of Python 3 using pyenv
+  # assume this task will often result in a change (install new Python ver)
+  changed_when: true
+  ansible.builtin.command:
+    # NOTE: a faster interpreter, but longer build time
+    # https://github.com/pyenv/pyenv/blob/master/plugins/python-build/README.md#building-for-maximum-performance
+    # TODO: test with this instead
+    # cmd: env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install --skip-existing 3
+    cmd: pyenv install --skip-existing 3
+
+  # NOTE: to make the playbook idempotent and avoid changing the
+  # 'global' Python version everytime the previous step installs
+  # a newer version, we skip this task if the current global version
+  # doesn't match the latest known (i.e. available) Python version.
+  # https://github.com/pyenv/pyenv#prefix-auto-resolution-to-the-latest-version
+- name: Set the 'global' Python 3 version using pyenv
+  ansible.builtin.shell:
+    cmd: '[ "$(pyenv latest 3)" = "$(pyenv latest --known 3)" ] && pyenv global 3'
+    # This task will always set the global Python version the first
+    # time the playbook is ran because the latest was just installed.
+
+- name: Install pipx
+  tags: homebrew
+  community.general.homebrew:
+    name: pipx
+    state: present
+
+- name: Install Python applications with pipx
+  ansible.builtin.command:
+    cmd: "pipx install {{ item }}"
+  with_items: "{{ lookup('file', 'files/pipx_apps.txt') }}"
+
+  # NOTE: this assumes Homebrew-installed zsh is the default shell
+  # TODO: test with this to avoid that assumption?:
+  # when: '[ "$(which $SHELL)" = "$(brew --prefix)/bin/zsh" ]'
+- name: Setup Poetry command completions
+  environment:
+    # for pipx tools/apps to be accessible (namely, poetry)
+    PATH: "$HOME/.local/bin:{{ ansible_env.PATH }}"
+  ansible.builtin.shell:
+    cmd: poetry completions zsh > $(brew --prefix)/share/zsh/site-functions/_poetry

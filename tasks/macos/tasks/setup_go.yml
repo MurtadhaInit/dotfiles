@@ -1,0 +1,12 @@
+# - name: Install gobrew
+#   environment:
+#     GOBREW_ROOT: "$HOME/.local/share/gobrew"
+#   ansible.builtin.shell:
+#     cmd: curl -sLk https://git.io/gobrew | sh
+
+# - name: Install the latest version of Go
+#   environment:
+#     GOBREW_ROOT: "$HOME/.local/share/gobrew"
+#     PATH: "$GOBREW_ROOT/.gobrew/bin:{{ ansible_env.PATH }}"
+#   ansible.builtin.command:
+#     cmd: gobrew use latest

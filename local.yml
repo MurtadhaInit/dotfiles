@@ -1,4 +1,5 @@
 # TODO: organise tags better to separate the type of tasks
+# TODO: also setup an automated test solution for the entire project. Maybe using GitHub actions and Tart?
 
 - name: Main development machine setup
   hosts: localhost
