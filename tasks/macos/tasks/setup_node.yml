@@ -8,7 +8,7 @@
 - name: Install Volta
   tags: homebrew
   environment:
-    VOLTA_HOME: "$HOME/.local/share/volta"
+    VOLTA_HOME: ~/.local/share/volta
   community.general.homebrew:
     name: volta
     state: present

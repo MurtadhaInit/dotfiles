@@ -2,7 +2,15 @@
 
 # curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash && rm bootstrap.bash
 
-# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash
+# ===== First run =====
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && ./ansible-temp/ansible-setup/bin/ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass -vvv --skip-tags all_apps
+
+# ===== Subsequent runs =====
+# ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass
+
+# If Python, pipx, and ansible (through pipx) were successfully
+# installed, replace the above with just ansible-playbook and
+# delete ~/ansible-temp
 
 # check if a command exists
 function exists() {
@@ -44,10 +52,7 @@ source ansible-setup/bin/activate
 
 pip install ansible
 
-# Clone the repo and execute local.yml
-ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass
-
 deactivate
 
 # when done...
-rm -rf ansible-temp
+# rm -rf ansible-temp

@@ -44,6 +44,11 @@
   tags: all_apps
   ansible.builtin.include_tasks: tasks/all_apps.yml
 
+# TODO: copy all apps' settings (.plist files)
+
+# TODO: install my patched font
+
+# TODO: use ansible vault for SSH
 
 # TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f
 

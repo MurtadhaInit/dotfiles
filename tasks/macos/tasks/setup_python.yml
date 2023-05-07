@@ -12,7 +12,7 @@
 - name: Install pyenv
   tags: homebrew
   environment:
-    PYENV_ROOT: "$HOME/.local/share/pyenv"
+    PYENV_ROOT: ~/.local/share/pyenv
   community.general.homebrew:
     name: pyenv
     state: present
@@ -55,9 +55,10 @@
   # NOTE: this assumes Homebrew-installed zsh is the default shell
   # TODO: test with this to avoid that assumption?:
   # when: '[ "$(which $SHELL)" = "$(brew --prefix)/bin/zsh" ]'
+  # TODO: check if the _poetry file exists to skip this task
 - name: Setup Poetry command completions
   environment:
     # for pipx tools/apps to be accessible (namely, poetry)
-    PATH: "$HOME/.local/bin:{{ ansible_env.PATH }}"
+    PATH: ~/.local/bin:{{ ansible_env.PATH }}
   ansible.builtin.shell:
     cmd: poetry completions zsh > $(brew --prefix)/share/zsh/site-functions/_poetry
