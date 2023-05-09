@@ -19,9 +19,6 @@
 #   tags: go
 #   ansible.builtin.include_tasks: tasks/setup_go.yml
 
-- name: Clone and manage Git repositories
-  ansible.builtin.include_tasks: tasks/git_repositories.yml
-
   # GNU Stow was buggy when absolute paths were used
 - name: Symlink all dotfiles using a crude script
   tags: dotfiles
@@ -30,6 +27,22 @@
 
 - name: Change the default location of ZSH rc files
   ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
+
+- name: Install Git
+  tags: homebrew
+  community.general.homebrew:
+    name: git
+    state: present
+
+- name: Clone personal Git repositories
+  tags: git
+  ansible.builtin.include_tasks: tasks/git_repositories.yml
+  with_items:
+    - { repo_URL: https://github.com/MurtadhaInit/scripts.git, repo_dest: "{{ ansible_env.HOME }}/Scripts" }
+
+- name: Setup tmux
+  tags: tmux
+  ansible.builtin.include_tasks: tasks/setup_tmux.yml
 
   # TODO: uncomment and test this
 # - name: Setup launchd agents (MacOS running services)

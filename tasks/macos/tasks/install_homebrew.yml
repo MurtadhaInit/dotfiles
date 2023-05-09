@@ -10,13 +10,16 @@
 - name: Install Homebrew if it doesn't exist
   when: brew_exists.rc == 1
   changed_when: brew_exists.rc == 1
-  register: brew_installed
   # don't prompt for sudo password for the installer
   environment:
     NONINTERACTIVE: "1"
   ansible.builtin.shell:
     cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  register: brew_installed
 
 - name: Disable Homebrew analytics
-  changed_when: true
+  # execute only once when Homebrew is first installed
+  when: brew_installed.rc is defined and brew_installed.rc == 0
+  changed_when: analytics_off.rc is defined
   ansible.builtin.command: brew analytics off
+  register: analytics_off

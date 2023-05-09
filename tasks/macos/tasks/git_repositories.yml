@@ -1,23 +1,12 @@
-# TODO: distinguish between repos that need to be cloned once and those that need updating regularly (e.g. apps)
-# TODO: include loops to deal with multiple repos
-
-- name: Install Git
-  tags: homebrew
-  community.general.homebrew:
-    name: git
-    state: present
-
-- name: Check if the repository already exists
+- name: Check if the destination directory already exists
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/Scripts"
-  register: repo_dir
+    path: "{{ item.repo_dest }}"
+  register: repo_dest_dir
 
-- name: Clone the specified repos (if not cloned before)
-  when: repo_dir.stat.isdir is not defined
+- name: Clone the repo if not cloned before
+  when: repo_dest_dir.stat.isdir is not defined
   ansible.builtin.git:
     clone: true
     repo: "{{ item.repo_URL }}"
     dest: "{{ item.repo_dest }}"
     update: false
-  with_items:
-    - { repo_URL: https://github.com/MurtadhaInit/scripts.git, repo_dest: "{{ ansible_env.HOME }}/Scripts" }
