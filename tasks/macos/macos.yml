@@ -7,6 +7,15 @@
 - name: Install essential apps and packages
   ansible.builtin.include_tasks: tasks/essentials.yml
 
+  # GNU Stow was buggy when absolute paths were used
+- name: Symlink all dotfiles using a crude script
+  tags: dotfiles
+  ansible.builtin.script:
+    cmd: dotfiles.sh
+
+- name: Change the default location of ZSH rc files
+  ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
+
 - name: Setup Node
   tags: node
   ansible.builtin.include_tasks: tasks/setup_node.yml
@@ -18,15 +27,6 @@
 # - name: Setup Go
 #   tags: go
 #   ansible.builtin.include_tasks: tasks/setup_go.yml
-
-  # GNU Stow was buggy when absolute paths were used
-- name: Symlink all dotfiles using a crude script
-  tags: dotfiles
-  ansible.builtin.script:
-    cmd: dotfiles.sh
-
-- name: Change the default location of ZSH rc files
-  ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
 
 - name: Install Git
   tags: homebrew

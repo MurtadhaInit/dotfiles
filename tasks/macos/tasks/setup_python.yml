@@ -12,6 +12,7 @@
 - name: Install pyenv
   tags: homebrew
   environment:
+    # TODO: exporting the room directory doesn't seem to help...
     PYENV_ROOT: ~/.local/share/pyenv
   community.general.homebrew:
     name: pyenv

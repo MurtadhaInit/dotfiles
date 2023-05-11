@@ -19,6 +19,7 @@ $golang\
 $fill\
 $os$shell$shlvl\
 $line_break\
+$hostname\
 $sudo\
 $character"""
 
@@ -139,6 +140,12 @@ format = '[\(lvl $shlvl\)]($style) '
 style = "flamingo dimmed"
 
 # === 2nd Line: left hand side ===
+[hostname]
+ssh_symbol = "󰣀 "
+ssh_only = true
+format = "[$ssh_symbol]($style) "
+style = "bold green"
+
 [sudo]
 disabled = false
 style = "rosewater"
@@ -276,13 +283,6 @@ crust = "#11111b"
 # format = "[$user]($style) "
 # style_user = "yellow"
 # style_root = "red"
-
-# [hostname]
-# ssh_symbol = " "
-# ssh_only = false
-# # trim_at = ""
-# format = "[$ssh_symbol$hostname]($style) "
-# style = "green"
 
 # [jobs]
 # number_threshold = 1

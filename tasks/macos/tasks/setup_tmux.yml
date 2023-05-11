@@ -16,7 +16,7 @@
   # NOTE: assume tmux.conf has been symlinked already
 - name: Install tmux plugins
   # execute only when tpm is installed the first time
-  when: tpm_cloned.changed is true
+  when: tpm_cloned.changed is true or tpm_dir.stat.isdir is defined and tpm_dir.stat.isdir is true
   changed_when: tpm_plugins_installed.rc is defined
   ansible.builtin.command: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm/bin/install_plugins"
   register: tpm_plugins_installed

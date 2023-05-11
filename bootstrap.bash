@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-# curl https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash > bootstrap.bash && chmod +x bootstrap.bash && ./bootstrap.bash && rm bootstrap.bash
-
 # ===== First run =====
-# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && ./ansible-temp/ansible-setup/bin/ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass -vvv --skip-tags all_apps
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && ./ansible-temp/ansible-setup/bin/ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass --skip-tags all_apps
+
+# Sign in with Apple ID and remove --skip-tags all_apps to do a full install
 
 # ===== Subsequent runs =====
-# ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass
+# ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --skip-tags all_apps
 
 # If Python, pipx, and ansible (through pipx) were successfully
 # installed, replace the above with just ansible-playbook and

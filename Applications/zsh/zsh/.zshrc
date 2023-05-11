@@ -1,6 +1,3 @@
-# ===== Cosmetic info =====
-pfetch
-
 # ===== Add Locations to $path Array =====
 # This enforces uniqueness on the array:
 # Duplicate items added to the right are removed,

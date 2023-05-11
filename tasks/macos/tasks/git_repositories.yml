@@ -3,7 +3,7 @@
     path: "{{ item.repo_dest }}"
   register: repo_dest_dir
 
-- name: Clone the repo if not cloned before
+- name: Clone repo if directory does not exist
   when: repo_dest_dir.stat.isdir is not defined
   ansible.builtin.git:
     clone: true
