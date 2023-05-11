@@ -141,9 +141,9 @@ style = "flamingo dimmed"
 
 # === 2nd Line: left hand side ===
 [hostname]
-ssh_symbol = "󰣀 "
+ssh_symbol = " "
 ssh_only = true
-format = "[$ssh_symbol]($style) "
+format = "[$ssh_symbol]($style)"
 style = "bold green"
 
 [sudo]

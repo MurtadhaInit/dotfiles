@@ -7,6 +7,9 @@
 - name: Install essential apps and packages
   ansible.builtin.include_tasks: tasks/essentials.yml
 
+- name: Setup font
+  ansible.builtin.include_tasks: tasks/setup_font.yml
+
   # GNU Stow was buggy when absolute paths were used
 - name: Symlink all dotfiles using a crude script
   tags: dotfiles
@@ -16,13 +19,14 @@
 - name: Change the default location of ZSH rc files
   ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
 
-- name: Setup Node
-  tags: node
-  ansible.builtin.include_tasks: tasks/setup_node.yml
+# TODO: fix the root directory problem with pyenv and volta
+# - name: Setup Node
+#   tags: node
+#   ansible.builtin.include_tasks: tasks/setup_node.yml
 
-- name: Setup Python and pipx apps
-  tags: python
-  ansible.builtin.include_tasks: tasks/setup_python.yml
+# - name: Setup Python and pipx apps
+#   tags: python
+#   ansible.builtin.include_tasks: tasks/setup_python.yml
 
 # - name: Setup Go
 #   tags: go
