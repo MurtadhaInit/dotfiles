@@ -111,7 +111,8 @@
   - h for not following the link if it exists. Useful for symlinking directories.
   - v for verbose
 
-- Add an Ansible task to install my font
+- `sh -c 'curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 
 ## Notes about the operation of dotbot
 

@@ -1,0 +1,15 @@
+- name: Install GNU Stow
+  tags: homebrew
+  community.general.homebrew:
+    name: stow
+    state: present
+
+- name: Stow everything in the Applications directory
+  # assume the command is always going to be executed
+  changed_when: true
+  args:
+    chdir: "{{ ansible_env.HOME }}/.dotfiles/Applications"
+  ansible.builtin.shell: |
+    set -o pipefail
+    [ "$(basename "$(pwd)")" = "Applications" ]
+    stow --restow $(find . -type d -maxdepth 1 -mindepth 1 | cut -c 3- | tr "\n" " ")

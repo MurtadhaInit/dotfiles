@@ -7,14 +7,17 @@
 - name: Install essential apps and packages
   ansible.builtin.include_tasks: tasks/essentials.yml
 
-- name: Setup font
-  ansible.builtin.include_tasks: tasks/setup_font.yml
+  # This task requires Ansible Vault password
+- name: Copy primary font files (Nerd-Font-patched manually)
+  tags: vault
+  ansible.builtin.copy:
+    src: "{{ ansible_env.HOME }}/.dotfiles/Fonts/comic_code_ligatures_patched/"
+    dest: "{{ ansible_env.HOME }}/Library/Fonts/"
+    mode: preserve
 
-  # GNU Stow was buggy when absolute paths were used
-- name: Symlink all dotfiles using a crude script
+- name: Symlink all dotfiles using GNU Stow
   tags: dotfiles
-  ansible.builtin.script:
-    cmd: dotfiles.sh
+  ansible.builtin.include_tasks: tasks/stow.yml
 
 - name: Change the default location of ZSH rc files
   ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
@@ -39,14 +42,20 @@
     state: present
 
 - name: Clone personal Git repositories
-  tags: git
+  tags: personal_repos
   ansible.builtin.include_tasks: tasks/git_repositories.yml
   with_items:
     - { repo_URL: https://github.com/MurtadhaInit/scripts.git, repo_dest: "{{ ansible_env.HOME }}/Scripts" }
 
+- name: Setup Alacritty
+  ansible.builtin.include_tasks: tasks/setup_alacritty.yml
+
 - name: Setup tmux
   tags: tmux
   ansible.builtin.include_tasks: tasks/setup_tmux.yml
+
+- name: Setup bat
+  ansible.builtin.include_tasks: tasks/setup_bat.yml
 
   # TODO: uncomment and test this
 # - name: Setup launchd agents (MacOS running services)
@@ -62,8 +71,6 @@
   ansible.builtin.include_tasks: tasks/all_apps.yml
 
 # TODO: copy all apps' settings (.plist files)
-
-# TODO: install my patched font
 
 # TODO: use ansible vault for SSH
 

@@ -1,5 +1,0 @@
-- name: Copy the fonts
-  ansible.builtin.copy:
-    src: "{{ ansible_env.HOME }}/.dotfiles/Fonts/comic_code_ligatures_patched/"
-    dest: "{{ ansible_env.HOME }}/Library/Fonts/"
-    mode: preserve

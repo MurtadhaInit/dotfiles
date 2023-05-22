@@ -1,12 +1,22 @@
 #!/usr/bin/env bash
 
-# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# On a fresh system, this script assumes the existence of Python and Git.
+# It creates a virtualenv in a temporary directory and installs Ansible
+# within it. It then clones the dotfiles repo if not present already.
+# Running ansible-playbook is a separate command to give flexibility in
+# terms of arguments and avoid obscuring it inside the script.
+
+# NOTE: we can't use ansible-pull because we can't pass options
+# that require interaction to ansible-pull (e.g. --ask-vault-pass
+# or even --ask-become-pass) despite misleading docs.
+
+# *********** What to run on a new system ***********
 
 # ===== First run =====
-# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && ./ansible-temp/ansible-setup/bin/ansible-pull --url https://github.com/MurtadhaInit/dotfiles.git --directory $HOME/.dotfiles --ask-become-pass --ask-vault-pass --skip-tags all_apps
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
 
 # ===== Subsequent runs =====
-# ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+# $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
 
 # If Python, pipx, and ansible (through pipx) were successfully
 # installed, replace the above with just ansible-playbook and
@@ -14,7 +24,7 @@
 
 # Sign in with Apple ID and remove --skip-tags all_apps to do a full install
 
-# $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# ***************************************************
 
 # check if a command exists
 function exists() {
@@ -49,14 +59,21 @@ if ! pip3 show setuptools 1>/dev/null 2>&1; then
   pip3 install setuptools
 fi
 
-# NOTE: virtualenv (along with setuptools) are also needed by a task using the pip module
-
 python3 -m virtualenv ansible-setup
 source ansible-setup/bin/activate
 
 pip install ansible
 
 deactivate
+
+if exists git; then
+  if [ ! -d "$HOME/.dotfiles" ]; then
+    git clone https://github.com/MurtadhaInit/dotfiles.git "$HOME/.dotfiles"
+  fi
+else
+  echo "Git needs to be installed"
+  exit
+fi
 
 # when done...
 # rm -rf ansible-temp
