@@ -13,3 +13,8 @@
     set -o pipefail
     [ "$(basename "$(pwd)")" = "Applications" ]
     stow --restow $(find . -type d -maxdepth 1 -mindepth 1 | cut -c 3- | tr "\n" " ")
+
+# NOTE: the Applications directory needs to be 2 levels away
+# from the home directory. Since GNU Stow does not support
+# absolute paths due to a bug, the target directory is set
+# to ../../ from the Applications directory.
