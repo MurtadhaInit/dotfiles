@@ -4,6 +4,7 @@
   register: repo_dest_dir
 
 - name: Clone repo if directory does not exist
+  # noqa: latest
   when: repo_dest_dir.stat.isdir is not defined
   ansible.builtin.git:
     clone: true

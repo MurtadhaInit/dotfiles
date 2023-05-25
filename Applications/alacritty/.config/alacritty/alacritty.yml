@@ -53,8 +53,64 @@ cursor:
 env:
   TERM: xterm-256color
 
+# colour theme
 import:
   - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
 #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
 #  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
 #  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+
+key_bindings:
+  # \x1b = escape
+  # \x02 = control-b (default tmux prefix)
+
+  # ===== Alacritty behaviour =====
+  # CMD + Shift + m: toggle maximising for the Alacritty window
+  - { key: M, mods: Command|Shift, action: "ToggleMaximized" }
+  # CMD + Shift + n: new Alacritty window
+  - { key: N, mods: Command|Shift, action: "CreateNewWindow" }
+  # find a functionality for CMD + n or unbind it (by default it does what the above does)
+
+  # ===== tmux behaviour =====
+  # CMD + m: maximise current pane
+  - { key: M, mods: Command, chars: "\x02z" }
+  # CMD + t: create a new tmux window
+  - { key: T, mods: Command, chars: "\x02c" }
+  # CMD + Shift + t: pass prefix + t to invoke tmux-sessionzier
+  - { key: T, mods: Command|Shift, chars: "\x02t" }
+  # CMD + Shift + [ or ]: switch to previous or next window
+  - { key: LBracket, mods: Command|Shift, chars: "\x02p" }
+  - { key: RBracket, mods: Command|Shift, chars: "\x02n" }
+  # CMD + 1, 2, 3... 9: switch to the window with that number
+  - { key: Key1, mods: Command, chars: "\x021" }
+  - { key: Key2, mods: Command, chars: "\x022" }
+  - { key: Key3, mods: Command, chars: "\x023" }
+  - { key: Key4, mods: Command, chars: "\x024" }
+  - { key: Key5, mods: Command, chars: "\x025" }
+  - { key: Key6, mods: Command, chars: "\x026" }
+  - { key: Key7, mods: Command, chars: "\x027" }
+  - { key: Key8, mods: Command, chars: "\x028" }
+  - { key: Key9, mods: Command, chars: "\x029" }
+  # CMD + w: close current pane (close window if it has one pane)
+  - { key: W, mods: Command, chars: "\x02x" }
+  # CMD + Shift + w: kill current session
+  # - { key: W, mods: Command|Shift, chars: "\x02:kill-session\x0a" }
+  # CMD + l: toggle between the two most recent windows
+  - { key: L, mods: Command, chars: "\x02l" }
+  # CMD + Shift + l: toggle between the two most recent sessions
+  - { key: L, mods: Command|Shift, chars: "\x02L" }
+  # CMD + k: open session manager
+  - { key: K, mods: Command, chars: "\x02s" }
+
+  # CMD + Shift + h: create a horizontal split
+  # - { key: H, mods: Command|Shift, chars: "\x02h" }
+  # CMD + Shift + v: create a vertical split
+  # - { key: V, mods: Command|Shift, chars: "\x02v" }
+  # CMD + Shift + t: create a new tmux pane below
+  # - { key: T, mods: Command|Shift, chars: "\x02h" }
+  # ... : create a window out of the current pane
+
+  # ===== nvim behaviour =====
+  # CMD + s: save current buffer (Esc first, in case in insert mode)
+  - { key: S, mods: Command, chars: "\x1b:w\x0a" }
+

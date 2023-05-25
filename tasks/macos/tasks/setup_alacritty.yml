@@ -4,6 +4,7 @@
   register: alacritty_cat_dir
 
 - name: Clone Catppuccin theme repo if directory doesn't exist
+  # noqa: latest
   when: alacritty_cat_dir.stat.isdir is not defined
   ansible.builtin.git:
     clone: true

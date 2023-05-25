@@ -49,7 +49,9 @@ local plugins = {
         end,
     },
     -- vim-commentary
-    'tpope/vim-commentary'
+    'tpope/vim-commentary',
+    -- vim-tmux-navigator
+    'christoomey/vim-tmux-navigator'
 }
 
 local opts = {}

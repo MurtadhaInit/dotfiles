@@ -5,6 +5,7 @@
   register: tpm_dir
 
 - name: Clone tpm repo if directory doesn't exist
+  # noqa: latest
   when: tpm_dir.stat.isdir is not defined
   ansible.builtin.git:
     clone: true
@@ -13,16 +14,16 @@
     update: false
   register: tpm_cloned
 
-  # NOTE: assume tmux.conf has been symlinked already
-- name: Install tmux plugins
-  # execute only when tpm is installed the first time
-  when: tpm_cloned.changed is true or tpm_dir.stat.isdir is defined and tpm_dir.stat.isdir is true
-  changed_when: tpm_plugins_installed.rc is defined
-  ansible.builtin.command: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm/bin/install_plugins"
-  register: tpm_plugins_installed
+  # TODO: a way to install tpm plugins without errors?
+# - name: Install tmux plugins
+#   # execute only when tpm is installed the first time
+#   when: tpm_cloned.changed is true or tpm_dir.stat.isdir is defined and tpm_dir.stat.isdir is true
+#   changed_when: tpm_plugins_installed.rc is defined
+#   ansible.builtin.command: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm/bin/install_plugins"
+#   register: tpm_plugins_installed
 
 # - name: Keep tmux plugins up to date
-#   when: 
+#   when:
 #   # assume constant change to keep plugins always up to date
 #   changed_when: true
 #   ansible.builtin.command: "{{ ansible_env.HOME }}/.config/tmux/plugins/tpm/bin/update_plugins all"
