@@ -28,8 +28,8 @@ brew "libx11"
 brew "python@3.9"
 # Checks for bashisms in shell scripts
 brew "checkbashisms"
-# Manage your dotfiles across multiple diverse machines, securely
-brew "chezmoi"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
 # CPU architecture fetching tool
 brew "cpufetch"
 # Modern replacement for 'ls'
@@ -48,8 +48,6 @@ brew "fzf"
 brew "git"
 # Render markdown on the CLI
 brew "glow"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Generate introspection data for GObject libraries
 brew "gobject-introspection"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -58,6 +56,8 @@ brew "httpie"
 brew "less"
 # Rainbows and unicorns in your console!
 brew "lolcat"
+# Move files and folders to the trash
+brew "macos-trash"
 # Mac App Store command-line interface
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
@@ -66,6 +66,8 @@ brew "nano"
 brew "ncdu"
 # Fast, highly customisable system info script
 brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Cryptography and SSL/TLS Toolkit
@@ -74,14 +76,14 @@ brew "openssl@3"
 brew "nushell"
 # Development kit for the Java programming language
 brew "openjdk"
-# Pretty system information tool written in POSIX sh
-brew "pfetch"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Emulator for x86 and PowerPC
 brew "qemu"
 # Search tool like grep and The Silver Searcher
@@ -106,8 +108,6 @@ brew "tmux"
 brew "vim"
 # JavaScript toolchain manager for reproducible environments
 brew "volta"
-# Best command-line tool to install and switch between multiple versions of Xcode
-brew "xcodes"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
 # Fork of youtube-dl with additional features and fixes
@@ -134,6 +134,8 @@ cask "alacritty"
 cask "anki"
 # Chromium based browser
 cask "arc"
+# Multi-track audio editor and recorder
+cask "audacity"
 # Display management tool
 cask "betterdisplay"
 # Screen capturing tool
@@ -226,3 +228,4 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "Things", id: 904280696
+mas "Xcode", id: 497799835
