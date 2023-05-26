@@ -15,24 +15,23 @@ window:
   opacity: 1
   startup_mode: Windowed
   dynamic_title: true
-
-option_as_alt: OnlyLeft # macos setting
+  option_as_alt: Both # macos setting
 
 scrolling:
   history: 10000
   multiplier: 3
 
 font:
-  size: 14
+  size: 15
   normal:
     family: ComicCodeLigatures Nerd Font
-    style: Medium
+    style: Regular
   bold:
     family: ComicCodeLigatures Nerd Font
     style: Bold
   italic:
     family: ComicCodeLigatures Nerd Font
-    style: Medium Italic
+    style: Italic
   bold_italic:
     family: ComicCodeLigatures Nerd Font
     style: Bold Italic
