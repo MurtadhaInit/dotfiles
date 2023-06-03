@@ -1,13 +1,13 @@
 - name: 1. Install essential brews
   tags: homebrew
   community.general.homebrew:
-    name: "{{ lookup('file', 'files/homebrew_brews.txt') | replace('\n', ',') }}"
+    name: "{{ lookup('file', 'homebrew_brews.txt') | replace('\n', ',') }}"
     state: present
 
 - name: 2. Install essential casks
   tags: homebrew
   community.general.homebrew_cask:
-    name: "{{ lookup('file', 'files/homebrew_casks.txt') | replace('\n', ',') }}"
+    name: "{{ lookup('file', 'homebrew_casks.txt') | replace('\n', ',') }}"
     state: present
     install_options: no-quarantine
 

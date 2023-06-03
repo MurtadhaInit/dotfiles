@@ -25,19 +25,17 @@
       update_cache: true
 
   tasks:
-  - name: Tasks common to Unix systems (not Windows)
-    when: os != "windows"
-    ansible.builtin.include_tasks: tasks/unix/unix.yml
-
   - name: MacOS machine setup
     when: os == "darwin"
-    ansible.builtin.include_tasks: tasks/macos/macos.yml
+    ansible.builtin.include_role:
+      name: macos
 
   - name: Linux machine setup
     when: os == "debian"
-    ansible.builtin.include_tasks: tasks/linux/linux.yml
+    ansible.builtin.include_role:
+      name: linux
 
-  # - name: Windows machine setup
-  #   when: os == "Windows"
-  #   ansible.builtin.include_tasks:
-      
+  - name: Windows machine setup
+    when: os == "Windows"
+    ansible.builtin.include_role:
+      name: windows

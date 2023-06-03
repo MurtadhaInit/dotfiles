@@ -16,7 +16,7 @@
     state: link
     src: "{{ ansible_env.HOME }}/Scripts/periodic_scripts/{{ item }}.plist"
     dest: "{{ ansible_env.HOME }}/Library/LaunchAgents/{{ item }}.plist"
-  with_items: "{{ lookup('file', 'files/launchd_agents.txt') }}"
+  with_items: "{{ lookup('file', 'launchd_agents.txt') }}"
 
 # TODO: does this even work for user agents (as opposed to system-wide services?)
 # TODO: the syntax is different for enabling and starting agents. Can this resolve it automatically?
@@ -25,4 +25,4 @@
     enabled: true
     state: started
     name: "{{ item }}"
-  with_items: "{{ lookup('file', 'files/launchd_agents.txt') }}"
+  with_items: "{{ lookup('file', 'launchd_agents.txt') }}"

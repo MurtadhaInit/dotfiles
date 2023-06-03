@@ -1,11 +1,14 @@
+- name: Create usual directories
+  ansible.builtin.include_tasks: create_dirs.yml
+
 - name: Install Homebrew
-  ansible.builtin.include_tasks: tasks/install_homebrew.yml
+  ansible.builtin.include_tasks: install_homebrew.yml
 
 - name: Setup ZSH
-  ansible.builtin.include_tasks: tasks/setup_zsh.yml
+  ansible.builtin.include_tasks: setup_zsh.yml
 
 - name: Install essential apps and packages
-  ansible.builtin.include_tasks: tasks/essentials.yml
+  ansible.builtin.include_tasks: essentials.yml
 
   # This task requires Ansible Vault password
 - name: Copy primary font files (Nerd-Font-patched manually)
@@ -17,25 +20,25 @@
 
 - name: Symlink all dotfiles using GNU Stow
   tags: dotfiles
-  ansible.builtin.include_tasks: tasks/stow.yml
+  ansible.builtin.include_tasks: stow.yml
 
 - name: Change the default location of ZSH rc files
-  ansible.builtin.include_tasks: tasks/switch_zsh_dir.yml
+  ansible.builtin.include_tasks: switch_zsh_dir.yml
 
 # TODO: fix the root directory problem with pyenv and volta
 # - name: Setup Node
 #   tags: node
-#   ansible.builtin.include_tasks: tasks/setup_node.yml
+#   ansible.builtin.include_tasks: setup_node.yml
 
 # - name: Setup Python and pipx apps
 #   tags: python
-#   ansible.builtin.include_tasks: tasks/setup_python.yml
+#   ansible.builtin.include_tasks: setup_python.yml
 
 # - name: Setup Go
 #   tags: go
-#   ansible.builtin.include_tasks: tasks/setup_go.yml
+#   ansible.builtin.include_tasks: setup_go.yml
 
-- name: Install Git
+- name: Install latest version of Git
   tags: homebrew
   community.general.homebrew:
     name: git
@@ -43,23 +46,23 @@
 
 - name: Clone personal Git repositories
   tags: personal_repos
-  ansible.builtin.include_tasks: tasks/git_repositories.yml
+  ansible.builtin.include_tasks: git_repositories.yml
   with_items:
     - { repo_URL: https://github.com/MurtadhaInit/scripts.git, repo_dest: "{{ ansible_env.HOME }}/Scripts" }
 
 - name: Setup Alacritty
-  ansible.builtin.include_tasks: tasks/setup_alacritty.yml
+  ansible.builtin.include_tasks: setup_alacritty.yml
 
 - name: Setup tmux
   tags: tmux
-  ansible.builtin.include_tasks: tasks/setup_tmux.yml
+  ansible.builtin.include_tasks: setup_tmux.yml
 
 - name: Setup bat
-  ansible.builtin.include_tasks: tasks/setup_bat.yml
+  ansible.builtin.include_tasks: setup_bat.yml
 
   # TODO: uncomment and test this
 # - name: Setup launchd agents (MacOS running services)
-#   ansible.builtin.include_tasks: tasks/launchd_agents.yml
+#   ansible.builtin.include_tasks: launchd_agents.yml
 
 # TODO: change system settings
 # Check out these files:
@@ -72,7 +75,7 @@
   # NOTE: this task takes a very long time when many apps need to be installed.
 - name: Install all other apps (including App Store ones) from Brewfile
   tags: all_apps
-  ansible.builtin.include_tasks: tasks/all_apps.yml
+  ansible.builtin.include_tasks: all_apps.yml
 
 # TODO: copy all apps' settings (.plist files)
 

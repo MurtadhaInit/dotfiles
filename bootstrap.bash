@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 # On a fresh system, this script assumes the existence of Python and Git.
-# It creates a virtualenv in a temporary directory and installs Ansible
-# within it. It then clones the dotfiles repo if not present already.
-# Running ansible-playbook is a separate command to give flexibility in
+# 1. It creates a virtualenv in a temporary directory and installs Ansible
+# within it.
+# 2. It then clones the dotfiles repo if not present already.
+# 3. Running ansible-playbook is a separate command to give flexibility in
 # terms of arguments and avoid obscuring it inside the script.
 
 # NOTE: we can't use ansible-pull because we can't pass options
@@ -68,7 +69,7 @@ deactivate
 
 if exists git; then
   if [ ! -d "$HOME/.dotfiles" ]; then
-    git clone https://github.com/MurtadhaInit/dotfiles.git "$HOME/.dotfiles"
+    git clone --recursive https://github.com/MurtadhaInit/dotfiles.git "$HOME/.dotfiles"
   fi
 else
   echo "Git needs to be installed"

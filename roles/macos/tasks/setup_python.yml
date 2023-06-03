@@ -51,7 +51,7 @@
 - name: Install Python applications with pipx
   ansible.builtin.command:
     cmd: "pipx install {{ item }}"
-  with_items: "{{ lookup('file', 'files/pipx_apps.txt') }}"
+  with_items: "{{ lookup('file', 'pipx_apps.txt') }}"
 
   # NOTE: this assumes Homebrew-installed zsh is the default shell
   # TODO: test with this to avoid that assumption?:
