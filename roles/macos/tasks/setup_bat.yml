@@ -16,7 +16,7 @@
       # noqa: latest
       ansible.builtin.git:
         clone: true
-        repo: git@github.com:catppuccin/bat.git
+        repo: https://github.com/catppuccin/bat.git
         dest: "{{ ansible_env.HOME }}/.config/bat/catppuccin"
         update: false
 
