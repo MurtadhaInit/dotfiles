@@ -2,20 +2,25 @@ tap "cirruslabs/cli"
 tap "eth-p/software"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
-tap "homebrew/core"
 tap "homebrew/services"
+tap "pulumi/tap"
+# C library implementing the SSH2 protocol
+brew "libssh2"
 # Command-line interface for SQLite
 brew "sqlite"
 # Download with resuming and segmented downloading
 brew "aria2"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Official Amazon AWS command-line interface
+brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# General-purpose data compression with high compression ratio
-brew "xz"
+# Yet another cross-platform graphical process/system monitor
+brew "bottom"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # Core application library for C
@@ -32,6 +37,8 @@ brew "checkbashisms"
 brew "coreutils"
 # CPU architecture fetching tool
 brew "cpufetch"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
 # Modern replacement for 'ls'
 brew "exa"
 # Simple, fast and user-friendly alternative to find
@@ -48,8 +55,6 @@ brew "fzf"
 brew "git"
 # Render markdown on the CLI
 brew "glow"
-# Generate introspection data for GObject libraries
-brew "gobject-introspection"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Pager program similar to more
@@ -78,6 +83,8 @@ brew "nushell"
 brew "openjdk"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+brew "prettier"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
@@ -112,6 +119,8 @@ brew "volta"
 brew "xdg-ninja"
 # Fork of youtube-dl with additional features and fixes
 brew "yt-dlp"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
+brew "zellij"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
@@ -128,8 +137,8 @@ brew "cirruslabs/cli/tart"
 brew "eth-p/software/bat-extras"
 # Terraform
 brew "hashicorp/tap/terraform"
-# GPU-accelerated terminal emulator
-cask "alacritty"
+# Pulumi - Modern Infrastructure as Code. Any cloud, any language 
+brew "pulumi/tap/pulumi"
 # Memory training application
 cask "anki"
 # Chromium based browser
@@ -142,6 +151,8 @@ cask "betterdisplay"
 cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
+# API documentation browser and code snippet manager
+cask "dash"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
@@ -151,9 +162,7 @@ cask "figma"
 # Font with greater legibility and readability for low vision readers
 cask "font-atkinson-hyperlegible"
 # Developer targeted fonts with a high number of glyphs
-cask "font-fira-code-nerd-font"
-# Developer targeted fonts with a high number of glyphs
-cask "font-jetbrains-mono-nerd-font"
+cask "font-symbols-only-nerd-font"
 # Git client focusing on productivity
 cask "gitkraken"
 # Open-source video transcoder
@@ -200,6 +209,12 @@ cask "via"
 cask "vmware-fusion"
 # Rust-based terminal
 cask "warp"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
+# Network protocol analyzer
+cask "wireshark"
+# Application for configuring any YubiKey
+cask "yubico-yubikey-manager"
 # Video communication and virtual meeting platform
 cask "zoom"
 # Collect, organize, cite, and share research sources
