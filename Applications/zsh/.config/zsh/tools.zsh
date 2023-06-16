@@ -8,3 +8,6 @@ eval "$(pyenv init -)"
 
 # pyenv-virtualenv: enable auto-activation
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# Load direnv
+eval "$(direnv hook zsh)"

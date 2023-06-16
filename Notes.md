@@ -13,12 +13,6 @@
   /Users/murtadha/Library/Preferences/com.jetbrains.toolbox.plist
 - Can we automate the installation of JetBrains IDEs with the Toolbox app? Possibly with one of its scripts?
 
-- Think about replacing /opt/homebrew in the setup_scripts with the variable that leads to that directory / tool (for it to be more evergreen and not hardcoded).
-
-- Add .bash_profile (login shells) and .bashrc (interactive shells) to .dotfiles as well.
-
-- Extensive detailed video: <https://www.youtube.com/watch?v=bTLYiNvRIVI>
-
 - Try to understand `compinit` and `autoload` in zsh and the way it handles functions. Plus explore how autocompletion works (with the addition of the poetry autocompletion function in .zfunc for example).
 
   - Important explanation: <https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh?newreg=4c14dc7278974c4aae7f8266564f9f13>
@@ -26,29 +20,13 @@
 
 - Backup Automator scripts? Located in ~/Library/Services e.g. Open in VSCode
 
-- a function "docker-cleanup" that stops and removes all containers and removes all images?
-
-- Use Ansible instead of Dotbot?
-
 - Find a way to have a "reserved" Python version (potentially with pyenv) for applications that depend on it like pipx.
 
 - Periodically backup Zotero data folder with Git?
 
 - A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
 
-- Backup all Apps settings in the form of plist files? Those mostly located in ~/Library/Preferences
-
-- Export an environment variable for $(brew --prefix) and replace it everywhere in zsh dotfiles to avoid evaluating it everywhere.
-
-- Save iStat Menus settings
-
 - Backup .gitkraken folder.
-
-- Think about what step of the installation requires restarting the shell to load the relevant rc files (exec $SHELL).
-
-- brew tap oven-sh/bun
-
-  - brew install bun
 
 - To use touch ID for sudo instead of supplying the password:
 
@@ -56,8 +34,6 @@
   - Add beneath the first commented line: `auth sufficient pam_tid.so`
   - Careful not to misspell anything cause that will break `sudo`!
   - Also, this seems to go back to default after a system update!
-
-- Find a way (or make sure) to discard any changes made automatically to the ZSH config files during the installation of packages or apps (e.g. Anaconda adding its load scripts...etc).
 
 - Explore changing Anaconda configurations with .condarc and adding it to .dotfiles
 
@@ -95,32 +71,4 @@
 
   - <https://rclone.org/>
 
-- How do we replicate `brew unlink` for installing conflicting formulae?
-
 - Find a way of securely backing up everything SSH, and explore changing SSH port for homelab server.
-
-- `brew upgrade` few dependencies caused them to be added to the Brewfile!
-
-- When using stow, use regex to exclude packages not ending with _win (for eg)
-  - `cd ~/.dotfiles/Applications && stow such such such`
-
-- The typical ln command to use for dotfiles is:
-  `ln -sfhv src_dir symlink_dir`
-  - s for symolink line as opposed to hard link
-  - f for force (replace the symlink if it already exists)
-  - h for not following the link if it exists. Useful for symlinking directories.
-  - v for verbose
-
-- `sh -c 'curl -fLo $HOME/.config/nvim/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
-
-## Notes about the operation of dotbot
-
-- Link: <https://github.com/anishathalye/dotbot>
-
-- install.conf.yaml
-  - Note: If the source location is omitted for links or it's set to `null` Dotbot will use the base name of the destination, with the leading `.` stripped if present.
-
-## Notes about the operation of mas
-
-- Link: <https://github.com/mas-cli/mas>

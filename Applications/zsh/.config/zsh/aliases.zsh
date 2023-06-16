@@ -1,5 +1,5 @@
 alias ls=exa
-alias exa='exa -lah --git --group-directories-first'
+alias exa='exa -lah --git --icons --group-directories-first'
 alias man=batman
 alias grep='grep --color'
 # Update the Brewfile after adding a package

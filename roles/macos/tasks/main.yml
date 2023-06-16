@@ -50,9 +50,6 @@
   with_items:
     - { repo_URL: https://github.com/MurtadhaInit/scripts.git, repo_dest: "{{ ansible_env.HOME }}/Scripts" }
 
-- name: Setup Alacritty
-  ansible.builtin.include_tasks: setup_alacritty.yml
-
 - name: Setup tmux
   tags: tmux
   ansible.builtin.include_tasks: setup_tmux.yml
@@ -78,6 +75,7 @@
   ansible.builtin.include_tasks: all_apps.yml
 
 # TODO: copy all apps' settings (.plist files)
+# Those mostly located in ~/Library/Preferences
 
 # TODO: use ansible vault for SSH
 

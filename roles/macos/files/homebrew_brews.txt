@@ -1,11 +1,13 @@
+zellij
+starship
+neovim
 bash
-exa
 fd
+tree
+exa
 fzf
 ncdu
-starship
 tldr
-vim
 tmux
 zoxide
 zsh-autosuggestions

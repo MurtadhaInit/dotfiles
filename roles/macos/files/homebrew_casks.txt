@@ -1,4 +1,5 @@
-alacritty
+wezterm
+visual-studio-code
 iterm2
 warp
 docker

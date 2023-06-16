@@ -1,3 +1,6 @@
+export EDITOR="$(command -v nvim 2>/dev/null || command -v vim)"
+export VISUAL="$(command -v code 2>/dev/null || command -v nvim)"
+
 export HOMEBREW_NO_ANALYTICS=1  # Disable Homebrew Google analytics
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 
