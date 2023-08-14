@@ -4,7 +4,10 @@ tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
+tap "jesseduffield/lazygit"
 tap "pulumi/tap"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # C library implementing the SSH2 protocol
 brew "libssh2"
 # Command-line interface for SQLite
@@ -45,6 +48,8 @@ brew "libgit2"
 brew "exa"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Fast and simple Node.js version manager
+brew "fnm"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
@@ -53,6 +58,8 @@ brew "pango"
 brew "fontforge"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # Render markdown on the CLI
@@ -77,8 +84,6 @@ brew "neofetch"
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Modern shell for the GitHub era
 brew "nushell"
 # Development kit for the Java programming language
@@ -117,8 +122,6 @@ brew "tmux"
 brew "tree"
 # Vi 'workalike' with many additional features
 brew "vim"
-# JavaScript toolchain manager for reproducible environments
-brew "volta"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
 # Fork of youtube-dl with additional features and fixes
@@ -141,6 +144,8 @@ brew "cirruslabs/cli/tart"
 brew "eth-p/software/bat-extras"
 # Terraform
 brew "hashicorp/tap/terraform"
+# A simple terminal UI for git commands, written in Go
+brew "jesseduffield/lazygit/lazygit"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
 brew "pulumi/tap/pulumi"
 # Memory training application
@@ -155,12 +160,12 @@ cask "betterdisplay"
 cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
-# API documentation browser and code snippet manager
-cask "dash"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Online diagram software
+cask "drawio"
 # Collaborative team software
 cask "figma"
 # Font with greater legibility and readability for low vision readers
@@ -179,6 +184,8 @@ cask "istat-menus"
 cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
+# App to manage software development and track bugs
+cask "linear-linear"
 # Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
 # App to write, plan, collaborate, and get organized
@@ -245,6 +252,7 @@ mas "Microsoft Word", id: 462054704
 mas "NCalc Fx", id: 1449106995
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
+mas "Omnivore", id: 1564031042
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "Things", id: 904280696
@@ -254,19 +262,24 @@ vscode "aaron-bond.better-comments"
 vscode "akamud.vscode-theme-onedark"
 vscode "antfu.theme-vitesse"
 vscode "arcticicestudio.nord-visual-studio-code"
+vscode "astro-build.astro-vscode"
 vscode "asvetliakov.vscode-neovim"
 vscode "atomiks.moonlight"
 vscode "azemoh.one-monokai"
 vscode "Catppuccin.catppuccin-vsc"
+vscode "ChakrounAnas.turbo-console-log"
 vscode "DavidAnson.vscode-markdownlint"
 vscode "dbaeumer.vscode-eslint"
+vscode "donjayamanne.githistory"
 vscode "dracula-theme.theme-dracula"
 vscode "dustypomerleau.tol"
 vscode "eamodio.gitlens"
+vscode "emmanuelbeziat.vscode-great-icons"
 vscode "enkia.tokyo-night"
 vscode "Equinusocio.vsc-community-material-theme"
 vscode "Equinusocio.vsc-material-theme"
 vscode "equinusocio.vsc-material-theme-icons"
+vscode "esbenp.prettier-vscode"
 vscode "GitHub.codespaces"
 vscode "GitHub.github-vscode-theme"
 vscode "GitHub.remotehub"
@@ -274,6 +287,7 @@ vscode "github.vscode-github-actions"
 vscode "GitHub.vscode-pull-request-github"
 vscode "golang.go"
 vscode "hediet.vscode-drawio"
+vscode "hyrious.import-cost"
 vscode "KevinRose.vsc-python-indent"
 vscode "kisstkondoros.vscode-gutter-preview"
 vscode "mechatroner.rainbow-csv"
@@ -311,7 +325,6 @@ vscode "samuelcolvin.jinjahtml"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "tal7aouy.theme"
 vscode "tamasfe.even-better-toml"
-vscode "teabyii.ayu"
 vscode "timonwong.shellcheck"
 vscode "tinkertrain.theme-panda"
 vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
@@ -321,5 +334,5 @@ vscode "vscjava.vscode-java-dependency"
 vscode "vscjava.vscode-java-pack"
 vscode "vscjava.vscode-java-test"
 vscode "vscjava.vscode-maven"
-vscode "vscode-icons-team.vscode-icons"
+vscode "WallabyJs.console-ninja"
 vscode "wayou.vscode-todo-highlight"
