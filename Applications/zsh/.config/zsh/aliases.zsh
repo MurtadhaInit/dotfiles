@@ -1,5 +1,6 @@
 alias ls=exa
 alias exa='exa -lah --git --icons --group-directories-first'
+alias lg='lazygit'
 alias man=batman
 alias grep='grep --color'
 # Update the Brewfile after adding a package

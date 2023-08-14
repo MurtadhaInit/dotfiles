@@ -136,8 +136,8 @@ brew "zoxide"
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
-# Fish shell like syntax highlighting for zsh
-brew "zsh-syntax-highlighting"
+# Feature-rich syntax highlighting for Zsh
+brew "zsh-fast-syntax-highlighting"
 # Run macOS VMs on Apple Silicon
 brew "cirruslabs/cli/tart"
 # Bash scripts that integrate bat with various command-line tools

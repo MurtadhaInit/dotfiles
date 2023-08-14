@@ -9,7 +9,7 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Starship config
 
 export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"  # pyenv root directory
-export VOLTA_HOME="$XDG_DATA_HOME/volta"  # Volta root directory
+export FNM_DIR="$XDG_DATA_HOME/fnm"  # fnm root directory
 export GOBREW_ROOT="$XDG_DATA_HOME/gobrew"  # gobrew root directory
 export GOROOT="$GOBREW_ROOT/.gobrew/current/go"  # Set GOROOT according to the active version of Go set by gobrew
 export VAGRANT_HOME="$XDG_DATA_HOME/vagrant"  # Vagrant root directory

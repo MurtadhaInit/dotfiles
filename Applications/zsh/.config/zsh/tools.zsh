@@ -11,3 +11,6 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 # Load direnv
 eval "$(direnv hook zsh)"
+
+# Load fnm
+eval "$(fnm env --use-on-cd)"
