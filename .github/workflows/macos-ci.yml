@@ -1,0 +1,35 @@
+name: CI for MacOS machine setup
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-ansible-role:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout dotfiles repository
+        uses: actions/checkout@v3
+        with:
+          submodules: "true"
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Create a temporary directory to install Ansible in
+        run: |
+          mkdir $HOME/ansible-temp
+
+      - name: Install Ansible in a virtualenv
+        working-directory: $HOME/ansible-temp
+        run: |
+          python3 -m virtualenv ansible-setup
+          source ansible-setup/bin/activate
+          pip install ansible
+
+      - name: Run the Ansible playbook
+        run: |
+          $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
