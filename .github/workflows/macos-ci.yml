@@ -3,17 +3,22 @@ name: CI for MacOS machine setup
 on:
   workflow_dispatch: # be able to run the workflow manually
   push:
-    branches: [main]
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master]
 
 jobs:
   test-ansible-role:
     runs-on: macos-latest
+    # env:
+    #   SUPER_SECRET: $ {{secrets.ANISBLE_VAULT}}
 
     steps:
       - name: Checkout dotfiles repository
         uses: actions/checkout@v3
         with:
           submodules: "true"
+          path: ${{ env.HOME }}/
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -22,10 +27,10 @@ jobs:
 
       - name: Create a temporary directory to install Ansible in
         run: |
-          mkdir ~/ansible-temp
+          mkdir ${{ env.HOME }}/ansible-temp
 
       - name: Install Ansible in a virtualenv
-        working-directory: $HOME/ansible-temp
+        working-directory: ${{ env.HOME }}/ansible-temp
         run: |
           python3 -m virtualenv ansible-setup
           source ansible-setup/bin/activate
@@ -33,4 +38,4 @@ jobs:
 
       - name: Run the Ansible playbook
         run: |
-          ~/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+          ${{ env.HOME }}/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
