@@ -29,6 +29,7 @@ jobs:
       - name: Install latest version of Ansible
         run: |
           python3 -m pip install --user ansible
+          echo 'export PATH="$(python -m site --user-base)/bin:$PATH"' >> ~/.bashrc
 
       - name: Run the Ansible playbook
         working-directory: ${{ github.workspace }}/.dotfiles
