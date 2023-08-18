@@ -1,3 +1,4 @@
+# TODO: find a way to clone the repo to $HOME/.dotfiles
 name: CI for MacOS machine setup
 
 on:
@@ -18,24 +19,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: "true"
-          path: ${{ env.HOME }}/
+          path: .dotfiles
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      - name: Create a temporary directory to install Ansible in
+      - name: Install latest version of Ansible
         run: |
-          mkdir ${{ env.HOME }}/ansible-temp
-
-      - name: Install Ansible in a virtualenv
-        working-directory: ${{ env.HOME }}/ansible-temp
-        run: |
-          python3 -m virtualenv ansible-setup
-          source ansible-setup/bin/activate
-          pip install ansible
+          python3 -m pip install --user ansible
 
       - name: Run the Ansible playbook
+        working-directory: ${{ github.workspace }}/.dotfiles
         run: |
-          ${{ env.HOME }}/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+          ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
