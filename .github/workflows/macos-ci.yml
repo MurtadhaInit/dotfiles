@@ -33,4 +33,4 @@ jobs:
       - name: Run the Ansible playbook
         working-directory: ${{ github.workspace }}/.dotfiles
         run: |
-          ./ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+          ansible-playbook local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
