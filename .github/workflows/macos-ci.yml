@@ -28,12 +28,14 @@ jobs:
 
       - name: Install latest version of Ansible
         run: |
-          python3 -m pip install --user ansible
+          python3 -m pip install --user --no-warn-script-location ansible
           echo "$(python -m site --user-base)/bin" >> $GITHUB_PATH
-        #   echo "/Users/runner/Library/Python/3.11/bin" >> $GITHUB_PATH
-        #   echo 'export PATH="$(python -m site --user-base)/bin:$PATH"' >> ~/.bashrc
 
       - name: Run the Ansible playbook
         working-directory: ${{ github.workspace }}/.dotfiles
+        env:
+          ANSIBLE_VAULT_PASS: ${{ secrets.ANSIBLE_VAULT_PASS }}
         run: |
-          ansible-playbook local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+          echo "$ANSIBLE_VAULT_PASS" > ./vault_pass 
+          ansible-playbook local.yml --ask-become-pass --vault-pass-file ./vault_pass --skip-tags all_apps
+          rm ./vault_pass
