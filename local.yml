@@ -8,34 +8,34 @@
     os: "{{ ansible_facts['os_family'] | lower }}"
 
   pre_tasks:
-  - name: Update package manager cache (Homebrew)
-    when: os == "darwin"
-    changed_when: false
-    tags:
-      - homebrew
-    community.general.homebrew:
-      update_homebrew: true
-    
-  - name: Update package manager cache (apt)
-    when: os == "debian"
-    changed_when: false
-    tags:
-      - apt
-    ansible.builtin.apt:
-      update_cache: true
+    # - name: Update package manager cache (Homebrew)
+    #   when: os == "darwin"
+    #   changed_when: false
+    #   tags:
+    #     - homebrew
+    #   community.general.homebrew:
+    #     update_homebrew: true
+
+    - name: Update package manager cache (apt)
+      when: os == "debian"
+      changed_when: false
+      tags:
+        - apt
+      ansible.builtin.apt:
+        update_cache: true
 
   tasks:
-  - name: MacOS machine setup
-    when: os == "darwin"
-    ansible.builtin.include_role:
-      name: macos
+    - name: MacOS machine setup
+      when: os == "darwin"
+      ansible.builtin.include_role:
+        name: macos
 
-  - name: Linux machine setup
-    when: os == "debian"
-    ansible.builtin.include_role:
-      name: linux
+    - name: Linux machine setup
+      when: os == "debian"
+      ansible.builtin.include_role:
+        name: linux
 
-  - name: Windows machine setup
-    when: os == "Windows"
-    ansible.builtin.include_role:
-      name: windows
+    - name: Windows machine setup
+      when: os == "Windows"
+      ansible.builtin.include_role:
+        name: windows
