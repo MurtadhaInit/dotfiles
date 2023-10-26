@@ -1,3 +1,14 @@
--- after selecting text you can move it up or down with Shift + k / j
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- retain copied text after pasting it (don't yank the selected text)
+keymap("v", "p", '"_dP', opts)
+
+-- vim.commentary functionality
+vim.cmd [[
+    xmap gc  <Plug>VSCodeCommentary
+    nmap gc  <Plug>VSCodeCommentary
+    omap gc  <Plug>VSCodeCommentary
+    nmap gcc <Plug>VSCodeCommentaryLine
+]]
+
