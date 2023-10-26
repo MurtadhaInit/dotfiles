@@ -4,6 +4,8 @@ command_timeout = 1000       # Default timeout for commands is 500ms
 add_newline = true           # A blank line before prompt start
 
 format = """
+$hostname\
+$sudo\
 $directory\
 $git_branch\
 $git_commit\
@@ -17,14 +19,8 @@ $vagrant\
 $java\
 $golang\
 $fill\
-$os$shell$shlvl\
-$line_break\
-$hostname\
-$sudo\
-$character"""
-
-right_format = """
-$cmd_duration"""
+$os$shell$shlvl$cmd_duration\
+"""
 
 # === 1st Line: left hand side ===
 [directory]
@@ -152,13 +148,9 @@ style = "rosewater"
 symbol = " "
 format = "[$symbol]($style)"
 
-[character]
-success_symbol = "[❯](bold green)"
-error_symbol = "[❯](bold red)"
-
 # === 2nd Line: right hand side ===
 [cmd_duration]
-format = "[took  $duration]($style)"
+format = "[ $duration]($style)"
 style = "flamingo"
 
 # === Misc. ===

@@ -5,7 +5,12 @@ export HOMEBREW_NO_ANALYTICS=1  # Disable Homebrew Google analytics
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 
 export NULLCMD=bat  # Default to bat instead of cat
-export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Starship config
+
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+  export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # Starship config
+else
+  export STARSHIP_CONFIG="$HOME/.config/starship/starship_warp.toml" # Starship Warp config
+fi
 
 export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"  # pyenv root directory
