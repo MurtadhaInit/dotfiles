@@ -1,6 +1,6 @@
-# My Ultimate Dotfiles & Development Machine Setup
+# Dotfiles & Development Machine Setup
 
-This is my IaC workflow for automating and bootstrapping the full setup of my main machine using Ansible.
+This is my IaC workflow for automating and bootstrapping the full setup of my main development machine using Ansible.
 
 ## In summary
 
