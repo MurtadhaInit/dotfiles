@@ -26,8 +26,6 @@ brew "libgit2"
 brew "bat"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
-# Resource monitor. C++ version and continuation of bashtop and bpytop
-brew "btop"
 # Core application library for C
 brew "glib"
 # X.Org: Core X11 protocol client library
