@@ -1,5 +1,5 @@
-alias ls=exa
-alias exa='exa -lah --git --icons --group-directories-first'
+alias ls='eza -lah --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y%t%l:%M%P"'
+alias tree='tree -daC'
 alias lg='lazygit'
 alias man=batman
 alias grep='grep --color'
