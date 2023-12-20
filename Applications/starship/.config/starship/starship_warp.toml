@@ -126,15 +126,6 @@ Linux = " "
 Windows = " "
 # Unknown = " "
 
-[shell]
-disabled = false
-style = "pink"
-
-[shlvl]
-disabled = false
-format = '[\(lvl $shlvl\)]($style) '
-style = "flamingo dimmed"
-
 # === 2nd Line: left hand side ===
 [hostname]
 ssh_symbol = " "
