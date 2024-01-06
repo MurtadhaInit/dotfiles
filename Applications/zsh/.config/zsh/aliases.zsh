@@ -1,6 +1,7 @@
-alias ls='eza -lah --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y%t%l:%M%P"'
+alias ls='eza -lah --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"'
 alias tree='tree -daC'
-alias lg='lazygit'
+alias lzg='lazygit'
+alias lzd='lazydocker'
 alias man=batman
 alias grep='grep --color'
 # Update the Brewfile after adding a package

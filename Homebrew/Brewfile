@@ -4,6 +4,7 @@ tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
+tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "pulumi/tap"
 # Cryptography and SSL/TLS Toolkit
@@ -38,8 +39,8 @@ brew "coreutils"
 brew "cpufetch"
 # Load/unload environment variables based on $PWD
 brew "direnv"
-# Modern replacement for 'ls'
-brew "exa"
+# Modern, maintained replacement for ls
+brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Fast and simple Node.js version manager
@@ -146,6 +147,8 @@ brew "eth-p/software/bat-extras"
 brew "hashicorp/tap/packer"
 # Terraform
 brew "hashicorp/tap/terraform"
+# A simple terminal UI for docker, written in Go
+brew "jesseduffield/lazydocker/lazydocker"
 # A simple terminal UI for git commands, written in Go
 brew "jesseduffield/lazygit/lazygit"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
@@ -243,7 +246,6 @@ mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Darkroom", id: 953286746
 mas "Expenses", id: 1492055171
-mas "Goodnotes", id: 1444383602
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Keka", id: 470158793
@@ -285,6 +287,8 @@ vscode "enkia.tokyo-night"
 vscode "esbenp.prettier-vscode"
 vscode "expo.vscode-expo-tools"
 vscode "GitHub.codespaces"
+vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
 vscode "GitHub.github-vscode-theme"
 vscode "GitHub.remotehub"
 vscode "github.vscode-github-actions"
@@ -292,6 +296,7 @@ vscode "GitHub.vscode-pull-request-github"
 vscode "golang.go"
 vscode "hediet.vscode-drawio"
 vscode "hyrious.import-cost"
+vscode "kdl-org.kdl"
 vscode "KevinRose.vsc-python-indent"
 vscode "kisstkondoros.vscode-gutter-preview"
 vscode "mechatroner.rainbow-csv"
@@ -341,3 +346,4 @@ vscode "vscjava.vscode-maven"
 vscode "vscode-icons-team.vscode-icons"
 vscode "WallabyJs.console-ninja"
 vscode "wayou.vscode-todo-highlight"
+vscode "yoavbls.pretty-ts-errors"
