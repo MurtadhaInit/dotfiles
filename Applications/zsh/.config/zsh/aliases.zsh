@@ -2,8 +2,11 @@ alias ls='eza -lah --group-directories-first --git --icons=auto --time-style="+%
 alias tree='tree -daC'
 alias lzg='lazygit'
 alias lzd='lazydocker'
+alias zj='zellij'
+alias zjt='zellij run --floating --close-on-exit --cwd "$HOME/Scripts/utility_scripts/zellij-new-tab/" -- ./zellij-new-tab'
 alias man=batman
 alias grep='grep --color'
+
 # Update the Brewfile after adding a package
 alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'
 alias brew_outdated='brew update &>/dev/null && brew outdated'
