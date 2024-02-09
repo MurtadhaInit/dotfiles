@@ -1,33 +1,64 @@
+"$schema" = 'https://starship.rs/config-schema.json' # editor autocomplete
+
 # === Prompt-wide configurations ===
 palette = 'catppuccin_mocha'
 command_timeout = 1000       # Default timeout for commands is 500ms
 add_newline = true           # A blank line before prompt start
 
 format = """
-$hostname\
+$character\
+$username\
 $sudo\
+$hostname\
+$localip\
 $directory\
 $git_branch\
 $git_commit\
 $git_state\
 $git_status\
-$docker_context\
-$nodejs\
-$python\
-$rust\
-$vagrant\
-$java\
-$golang\
+$cmd_duration\
 $fill\
-$os$shell$shlvl$cmd_duration\
+$all
 """
 
+# included but disabled to exclude it from $all
+[character]
+disabled = true
+success_symbol = "[](bold green)"
+error_symbol = "[](bold red)"
+
 # === 1st Line: left hand side ===
+[username]
+format = "[ $user]($style) "
+
+[sudo]
+disabled = false
+style = "bold rosewater"
+# symbol = '\[sudo\] '
+symbol = " "
+format = "[$symbol]($style)"
+
+[hostname]
+ssh_only = true
+ssh_symbol = " "
+# ssh_symbol = "󰣀 "
+format = "[$ssh_symbol$hostname ]($style)"
+
+[localip]
+disabled = false
+# only shown with SSH
+
 [directory]
 truncation_symbol = "…/"
 home_symbol = " ~"
 truncate_to_repo = false
+truncation_length = 5
 style = "bold blue"
+
+[directory.substitutions]
+"~/Projects/OpenUniversity/" = "  "
+"~/Projects/" = "  "
+"~/Work/" = "  "
 
 [git_branch]
 symbol = " "
@@ -45,12 +76,14 @@ style = "bold yellow"
 
 [git_status]
 style = "bold maroon"
-format = '[\[ $all_status$ahead_behind\]]($style) '
+format = '[$all_status$ahead_behind]($style)'
 # renamed = "凜 "
 # renamed = "襁 "
-conflicted = "ﲅ "
+conflicted = "󰞇 "
 up_to_date = " "
-untracked = " "
+# untracked = " "
+untracked = "󱄁 "
+# untracked = " "
 modified = " "
 deleted = " "
 stashed = "󰏗 "
@@ -59,90 +92,64 @@ diverged = "⇕⇡($ahead_count)⇣($behind_count) "
 ahead = "⇡$count "
 behind = "⇣$count "
 
+[cmd_duration]
+format = "[[took](text dimmed)  $duration]($style)"
+style = "flamingo"
 
-# === 1st Line: left hand side: environment ===
+# === 1st Line: right hand side ===
 [nodejs]
 symbol = "󰎙 "
 style = "bold green"
 not_capable_style = "red"
-format = '[via](text dimmed) [$symbol($version )]($style)'
+format = '[$symbol($version )]($style)'
 
 [python]
 symbol = "󰌠 "
 style = "bold yellow"
-format = '[via](text dimmed) [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 # it's possible to show pyenv version
 
 [rust]
 symbol = " "
 style = "bold red"
-format = '[via](text dimmed) [$symbol($version )]($style)'
+format = '[$symbol($version )]($style)'
 
 [docker_context]
 symbol = " "
 style = "bold blue"
-format = '[via](text dimmed) [$symbol$context]($style) '
+format = '[$symbol$context]($style) '
 
 [vagrant]
 symbol = "⍱ "
 # symbol = "Vargrant"
 style = "bold cyan"
-format = '[via](text dimmed) [$symbol($version )]($style)'
+format = '[$symbol($version )]($style)'
 
 [java]
 symbol = " "
 style = "bold red"
-format = '[via](text dimmed) [${symbol}(${version} )]($style)'
+format = '[${symbol}(${version} )]($style)'
 
 [golang]
 symbol = "󰟓 "
 style = "bold cyan"
-format = '[via](text dimmed) [$symbol($version )]($style)'
+format = '[$symbol($version )]($style)'
 
-# === 1st Line: right hand side ===
-[os]
-disabled = false
-# if $version is not available we'll end up with 2 spaces
+[package]
+symbol = " "
 format = "[$symbol$version]($style) "
-style = "lavender"
 
-[os.symbols]
-Alpine = " "
-Arch = " "
-CentOS = " "
-Debian = " "
-Fedora = " "
-Gentoo = " "
-Macos = " "
-Manjaro = " "
-Mint = " "
-NixOS = " "
-openSUSE = " "
-SUSE = " "
-Raspbian = " "
-Ubuntu = " "
-RedHatEnterprise = " "
-Linux = " "
-Windows = " "
-# Unknown = " "
+[aws]
+symbol = " "
+format = "[$symbol($profile )(\\($region\\) )(\\[$duration\\] )]($style)"
 
-# === 2nd Line: left hand side ===
-[hostname]
-ssh_symbol = " "
-ssh_only = true
-format = "[$ssh_symbol]($style)"
-style = "bold green"
+[lua]
+symbol = " "
+format = "[$symbol($version )]($style)"
 
-[sudo]
-disabled = false
-style = "rosewater"
-symbol = " "
-format = "[$symbol]($style)"
-
-# === 2nd Line: right hand side ===
-[cmd_duration]
-format = "[ $duration]($style)"
-style = "flamingo"
+[ruby]
+symbol = " "
+format = "[$symbol($version )]($style)"
 
 # === Misc. ===
 [fill]
@@ -261,11 +268,25 @@ base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
-# [username]
-# show_always = true
-# format = "[$user]($style) "
-# style_user = "yellow"
-# style_root = "red"
+# [os.symbols]
+# Alpine = " "
+# Arch = " "
+# CentOS = " "
+# Debian = " "
+# Fedora = " "
+# Gentoo = " "
+# Macos = " "
+# Manjaro = " "
+# Mint = " "
+# NixOS = " "
+# openSUSE = " "
+# SUSE = " "
+# Raspbian = " "
+# Ubuntu = " "
+# RedHatEnterprise = " "
+# Linux = " "
+# Windows = " "
+# Unknown = " "
 
 # [jobs]
 # number_threshold = 1
@@ -289,10 +310,3 @@ crust = "#11111b"
 # symbol = "🅒 "
 # style = "green"
 
-# [ruby]
-# symbol = " "
-# style = "red"
-
-# [package]
-# symbol = "📦 "
-# style = "208"
