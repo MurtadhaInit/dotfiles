@@ -1,8 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json' # editor autocomplete
-# NOTE: Unlike the Warp config, the right_format module was not used to
-# produce the right prompt. This is because that module places elements
-# on the same line as the input location. So fill is used instead.
-# This has been avoided by Warp's default behaviour of creating a new line.
+# NOTE: Warp will automatically place the prompt on a new line, hence
+# there is no need to specifically do that in the Starship config.
+# Doing it will result in two lines followed by the third line added by Warp.
 
 # === Prompt-wide configurations ===
 palette = 'catppuccin_mocha'
@@ -19,11 +18,10 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
-$git_status\
-$fill\
-$all$cmd_duration\
-$line_break
+$git_status
 """
+
+right_format = "$all$cmd_duration"
 
 # === Misc. ===
 [fill]
