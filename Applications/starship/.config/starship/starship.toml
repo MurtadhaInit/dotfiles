@@ -10,7 +10,6 @@ command_timeout = 1500       # Default timeout for commands is 500ms
 add_newline = true           # A blank line before prompt start
 
 format = """
-$character\
 $username\
 $sudo\
 $hostname\
@@ -22,7 +21,8 @@ $git_state\
 $git_status\
 $fill\
 $all$cmd_duration\
-$line_break
+$line_break\
+$character
 """
 
 # === Misc. ===
@@ -31,9 +31,12 @@ symbol = " "
 
 # included but disabled to exclude it from $all
 [character]
-disabled = true
-success_symbol = "[](bold green)"
-error_symbol = "[](bold red)"
+success_symbol = "[󰅂](bold green)"
+error_symbol = "[󰅂](bold red)"
+vimcmd_symbol = "[󰅁](bold green)"
+vimcmd_replace_one_symbol = "[󰅁](bold purple)"
+vimcmd_replace_symbol = "[󰅁](bold purple)"
+vimcmd_visual_symbol = "[󰅁](bold yellow)"
 
 # === 1st Line: left hand side ===
 [username]
@@ -67,6 +70,7 @@ style = "bold blue"
 "~/Projects/OpenUniversity/" = "  "
 "~/Projects/" = "  "
 "~/Work/" = "  "
+"~/.dotfiles/" = " "
 
 [git_branch]
 symbol = " "

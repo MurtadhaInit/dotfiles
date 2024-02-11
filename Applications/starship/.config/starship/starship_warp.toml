@@ -65,6 +65,7 @@ style = "bold blue"
 "~/Projects/OpenUniversity/" = "  "
 "~/Projects/" = "  "
 "~/Work/" = "  "
+"~/.dotfiles/" = " "
 
 [git_branch]
 symbol = " "
