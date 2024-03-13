@@ -6,6 +6,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
+tap "localsend/localsend"
 tap "pulumi/tap"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
@@ -97,7 +98,7 @@ brew "pyenv-virtualenv"
 brew "python@3.10"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
-# Emulator for x86 and PowerPC
+# Generic machine emulator and virtualizer
 brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
@@ -139,7 +140,7 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Feature-rich syntax highlighting for Zsh
 brew "zsh-fast-syntax-highlighting"
-# Run macOS VMs on Apple Silicon
+# Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
 # Bash scripts that integrate bat with various command-line tools
 brew "eth-p/software/bat-extras"
@@ -161,13 +162,15 @@ cask "arc"
 cask "audacity"
 # Display management tool
 cask "betterdisplay"
+# Web browser focusing on privacy
+cask "brave-browser"
 # Screen capturing tool
 cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
-# App to build and share containerized applications and microservices
+# App to build and share containerised applications and microservices
 cask "docker"
 # Online diagram software
 cask "drawio"
@@ -189,14 +192,20 @@ cask "istat-menus"
 cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
+# Free cross-platform office suite, fresh version
+cask "libreoffice"
 # App to manage software development and track bugs
 cask "linear-linear"
+# An open source cross-platform alternative to AirDrop
+cask "localsend"
 # Online collaborative whiteboard platform
 cask "miro"
 # Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
-# App to write, plan, collaborate, and get organized
+# App to write, plan, collaborate, and get organised
 cask "notion"
+# Calendar for professionals and teams
+cask "notion-calendar"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Collaboration platform for API development
@@ -211,7 +220,7 @@ cask "sigmaos"
 cask "signal"
 # Music streaming service
 cask "spotify"
-# Real time file synchronization software
+# Real time file synchronisation software
 cask "syncthing"
 # Native GUI tool for relational databases
 cask "tableplus"
