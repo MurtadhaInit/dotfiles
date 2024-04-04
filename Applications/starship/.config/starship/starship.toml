@@ -29,7 +29,6 @@ $character
 [fill]
 symbol = " "
 
-# included but disabled to exclude it from $all
 [character]
 success_symbol = "[󰅂](bold green)"
 error_symbol = "[󰅂](bold red)"
@@ -103,11 +102,14 @@ diverged = "⇕⇡($ahead_count)⇣($behind_count) "
 ahead = "⇡$count "
 behind = "⇣$count "
 
+# === 1st Line: right hand side ===
 [cmd_duration]
 format = "[ $duration]($style)"
 style = "flamingo"
 
-# === 1st Line: right hand side ===
+[direnv]
+disabled = false
+
 [nodejs]
 symbol = "󰎙 "
 format = '[$symbol($version )]($style)'
@@ -316,4 +318,7 @@ crust = "#11111b"
 # RedHatEnterprise = " "
 # Linux = " "
 # Windows = " "
+# AlmaLinux = " "
+# Kali = " "
+# RockyLinux = " "
 # Unknown = " "
