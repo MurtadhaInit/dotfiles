@@ -8,6 +8,7 @@ set scrolloff=10
 
 " highlight first matched text pattern when searching
 set incsearch
+
 " ignore case when searching
 set ignorecase
 
@@ -20,7 +21,8 @@ map Q gq
 Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
-
+" NERDTree
+Plug 'preservim/nerdtree'
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action

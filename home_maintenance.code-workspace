@@ -1,14 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../Scripts"
-		},
-		{
-			"path": "../Obsidian"
-		}
-	],
-	"settings": {}
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "ansible.python.interpreterPath": "/Users/murtadha/.local/share/pyenv/versions/3.12.0/bin/python"
+  }
 }

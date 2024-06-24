@@ -58,7 +58,7 @@
     - Guide: <https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93>
     - If you get `vmrun` error then add this to the Vagrantfile:
 
-    ```
+    ```shell
     config.vm.provider :vmware_fusion do |v, o|
       v.gui = true
       # ...other config...
