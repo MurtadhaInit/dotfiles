@@ -6,12 +6,8 @@ export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-i
 
 export NULLCMD=bat  # Default to bat instead of cat
 
-# Starship config file loaded based on terminal
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-  export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml" # for any terminal
-else
-  export STARSHIP_CONFIG="$HOME/.config/starship/starship_warp.toml" # for Warp
-fi
+# Starship prompt config file
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"  # Android SDKs location
 export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
