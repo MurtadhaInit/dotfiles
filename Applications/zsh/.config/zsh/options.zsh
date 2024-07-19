@@ -12,11 +12,8 @@ zstyle ':completion:*' menu yes select
 # place additional command completion scripts here
 fpath+="$ZDOTDIR/.zfunc"
 # load the zsh command completion system and set the location for .zcompdump
-# load bash completions since they are compatible with zsh
-# so far, this is only used for pipx completions
-autoload -Uz compinit bashcompinit
+autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
-bashcompinit
 
 # autoload -U bashcompinit && bashcompinit
 
