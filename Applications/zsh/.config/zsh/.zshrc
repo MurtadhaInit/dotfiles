@@ -36,6 +36,8 @@ eval "$(starship init zsh)"
 export PIPX_DEFAULT_PYTHON="$(pyenv prefix 3.11.0)/bin/python"
 
 # ===== ZSH Plugins / CLI Tools =====
+# Load Atuin (command history)
+eval "$(atuin init zsh)"
 # Load zoxide
 eval "$(zoxide init zsh)"
 # Load zsh-autosuggestions
