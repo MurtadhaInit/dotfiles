@@ -23,8 +23,7 @@ config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
 -- Font
 config.font = wezterm.font_with_fallback {
     { family = 'Comic Code Ligatures', weight = 'Medium' },
-    { family = 'ComicCodeLigatures Nerd Font Propo', weight = 'Medium' },
-    -- { family = 'Symbols Nerd Font Mono', scale = 0.90 }
+    { family = 'Symbols Nerd Font Mono' }
 }
 config.use_cap_height_to_scale_fallback_fonts = true -- do we even need this?
 config.font_size = 15.0

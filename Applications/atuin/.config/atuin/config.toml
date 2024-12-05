@@ -30,9 +30,6 @@ show_preview = false
 ## possible values: emacs, subl
 # word_jump_mode = "emacs"
 
-## number of context lines to show when scrolling by pages
-# scroll_context_lines = 1
-
 ## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
 ## alt-0 .. alt-9
 # ctrl_n_shortcuts = false
