@@ -14,14 +14,14 @@ brew "openssl@3"
 brew "libssh2"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# C library of Git core methods that is re-entrant and linkable
-brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Yet another cross-platform graphical process/system monitor
@@ -48,6 +48,8 @@ brew "wangle"
 brew "fb303"
 # Shared library for Watchman and Eden projects
 brew "edencommon"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -167,10 +169,12 @@ brew "jesseduffield/lazydocker/lazydocker"
 brew "jesseduffield/lazygit/lazygit"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
 brew "pulumi/tap/pulumi"
+# Application launcher and productivity software
+cask "alfred"
 # Memory training application
 cask "anki"
-# Chromium based browser
-cask "arc"
+# Tool to flash OS images to SD cards & USB drives
+cask "balenaetcher"
 # Display management tool
 cask "betterdisplay"
 # Web browser focusing on privacy
@@ -208,6 +212,8 @@ cask "jetbrains-toolbox"
 cask "libreoffice"
 # App to manage software development and track bugs
 cask "linear-linear"
+# Customise mouse behavior
+cask "linearmouse"
 # Online collaborative whiteboard platform
 cask "miro"
 # Interactive tool for analyzing MongoDB data
@@ -218,6 +224,10 @@ cask "notion"
 cask "notion-calendar"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Replacement for Docker Desktop
+cask "orbstack"
+# Utility to uninstall apps and remove leftover files from old/uninstalled apps
+cask "pearcleaner"
 # Collaboration platform for API development
 cask "postman"
 # Client for Proton Drive
@@ -226,8 +236,6 @@ cask "proton-drive"
 cask "proton-mail"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
-# Move and resize windows using keyboard shortcuts or snap areas
-cask "rectangle"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Web browser
@@ -252,6 +260,8 @@ cask "utm"
 cask "vagrant"
 # Keyboard configurator
 cask "via"
+# Multimedia player
+cask "vlc"
 # Create, manage, and run virtual machines
 cask "vmware-fusion"
 # Rust-based terminal
@@ -264,6 +274,8 @@ cask "wireshark"
 cask "yubico-yubikey-manager"
 # Multiplayer code editor
 cask "zed"
+# Gecko based web browser
+cask "zen-browser"
 # Video communication and virtual meeting platform
 cask "zoom"
 # Collect, organise, cite, and share research sources
@@ -286,9 +298,11 @@ mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "NCalc Fx", id: 1449106995
 mas "Numbers", id: 409203825
+mas "Obsidian Web Clipper", id: 6720708363
 mas "Omnivore", id: 1564031042
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
+mas "Telegram", id: 747648890
 mas "Things", id: 904280696
 mas "Xcode", id: 497799835
 mas "xSearch", id: 1579902068
@@ -311,7 +325,6 @@ vscode "dbaeumer.vscode-eslint"
 vscode "donjayamanne.githistory"
 vscode "dracula-theme.theme-dracula"
 vscode "dustypomerleau.tol"
-vscode "eamodio.gitlens"
 vscode "emmanuelbeziat.vscode-great-icons"
 vscode "enkia.tokyo-night"
 vscode "esbenp.prettier-vscode"
@@ -370,9 +383,11 @@ vscode "streetsidesoftware.code-spell-checker"
 vscode "sumneko.lua"
 vscode "svelte.svelte-vscode"
 vscode "tamasfe.even-better-toml"
+vscode "thenuprojectcontributors.vscode-nushell-lang"
 vscode "timonwong.shellcheck"
 vscode "visualstudioexptteam.intellicode-api-usage-examples"
 vscode "visualstudioexptteam.vscodeintellicode"
+vscode "vscjava.vscode-gradle"
 vscode "vscjava.vscode-java-debug"
 vscode "vscjava.vscode-java-dependency"
 vscode "vscjava.vscode-java-pack"
