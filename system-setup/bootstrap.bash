@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# This script will:
+# 1. Install Git, Homebrew (on MacOS), and nu
+# 2. Clone the dotfiles repo
+# 3. Initiate the setup process
+
+# check if a command exists
+function exists() {
+  command -v "$1" >/dev/null 2>&1
+  # This is equivalent to:
+  # command -v $1 1>/dev/null 2>/dev/null
+}
+
+OS_TYPE=$(uname)
+case "$OS_TYPE" in
+  ("Darwin")
+    # Install Homebrew without user interaction
+    # This will also install Xcode Command Line Tools if not present TODO: confirm so
+    if ! exists brew; then
+      echo "Installing Homebrew..."
+      NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      brew analytics off
+    fi
+    
+    if ! exists git; then
+      echo "Installing Git..."
+      brew install git
+    fi
+    
+    if [ ! -d "$HOME/.dotfiles" ]; then
+      git clone --recursive https://github.com/MurtadhaInit/dotfiles.git "$HOME/.dotfiles"
+    else
+      echo "Dotfiles directory present ✅"
+    fi
+
+    if ! exists nu; then
+      echo "Installing Nushell..."
+      brew install nushell
+    fi
+    ;;
+  ("Linux")
+    # Linux-specific actions
+    ;;
+  ("CYGWIN"* | "MINGW"* | "MSYS"*)
+    # Windows-specific actions
+    ;;
+  (*)
+    echo "Unknown OS: $OS_TYPE"
+    exit 1
+    ;;
+esac
+
+
+"$HOME/.dotfiles/system-setup/start.nu"

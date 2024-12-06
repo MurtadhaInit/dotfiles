@@ -1,0 +1,17 @@
+# Development
+wezterm
+# visual-studio-code
+iterm2
+warp
+docker
+jetbrains-toolbox
+utm
+
+# Productivity
+notion
+obsidian
+
+# Misc
+iina
+signal
+zotero

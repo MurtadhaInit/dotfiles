@@ -1,0 +1,14 @@
+# Development
+zellij
+starship
+neovim
+bash
+fd
+tree
+eza
+fzf
+ncdu
+tldr
+zoxide
+zsh-autosuggestions
+eth-p/software/bat-extras
