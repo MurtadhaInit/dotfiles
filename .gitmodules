@@ -1,6 +1,3 @@
 [submodule "Applications/nvim/.config/nvim"]
 	path = Applications/nvim/.config/nvim
 	url = https://github.com/MurtadhaInit/nvim.git
-[submodule "roles/macos"]
-	path = roles/macos
-	url = git@github.com:MurtadhaInit/macos-ansible-setup.git
