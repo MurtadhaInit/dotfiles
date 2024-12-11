@@ -58,7 +58,8 @@ esac
 
 if [ "$#" -eq 0 ]; then
     # No arguments provided
-    "$HOME"/.dotfiles/system-setup/start.nu --skip-tasks ["8-all-apps"]
+    "$HOME"/.dotfiles/system-setup/start.nu --skip
+    # "$HOME"/.dotfiles/system-setup/start.nu --skip-tasks ["8-all-apps"]
 else
     # Pass all arguments to the nushell script
     "$HOME"/.dotfiles/system-setup/start.nu "$@"
