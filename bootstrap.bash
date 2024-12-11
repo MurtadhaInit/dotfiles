@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash
 # TODO: add something (this bash script or the nushell script) to PATH to facilitate easy future runs
 
 # This script will:
