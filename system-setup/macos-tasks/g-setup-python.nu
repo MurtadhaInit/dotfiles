@@ -1,0 +1,20 @@
+export const order = 7
+
+def setup_python [] {
+  use ../utils/utils.nu ensure_homebrew_package
+  print "Setting up Python..."
+
+  mkdir --verbose $"($nu.home-path)/.local/share/pyenv"
+  with-env { PYENV_ROOT: "~/.local/share/pyenv", PYTHON_CONFIGURE_OPTS: "--enable-optimizations --with-lto", PYTHON_CFLAGS: "-march=native -mtune=native" } {
+    ensure_homebrew_package "pyenv"
+    if not (which python | get path.0 | str contains "pyenv") {
+      print "Installing the latest version of Python 3 with pyenv..."
+      pyenv install --skip-existing 3
+      pyenv global 3
+    } else {
+      print "Python 3 is already installed through pyenv ✅"
+    }
+  }
+}
+
+setup_python

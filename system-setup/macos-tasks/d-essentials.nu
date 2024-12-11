@@ -1,6 +1,9 @@
-print "Installing essential tools and applications with Homebrew..."
+export const order = 3
 
 def install_essentials_with_homebrew [formulae_file: string, casks_file: string] {
+  use ../utils/utils.nu ensure_homebrew_package
+  print "Installing essential tools and applications with Homebrew..."
+
   let formulae = open $formulae_file
       | lines
       | filter {|line|

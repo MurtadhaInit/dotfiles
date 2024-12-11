@@ -1,4 +1,5 @@
 # Development
+git
 zellij
 starship
 neovim

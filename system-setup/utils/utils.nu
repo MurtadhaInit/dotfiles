@@ -16,3 +16,14 @@ export def ensure_homebrew_package [pkg: string, --cask] {
     print $"($pkg) is already installed ✅"
   }
 }
+
+export def ensure_repo [repo_url: string, repo_dest: string] {
+  # TODO: support private repos by incorporating a credentials solution for SSH
+  # TODO: add a flag to recursively add submodules too and use this function whenever a repo needs to be cloned
+  if (not ($repo_dest | path exists) or (ls $repo_dest | length) == 0) {
+    git clone https://github.com/catppuccin/bat.git $repo_dest
+    print $"Successfully cloned repo to ($repo_dest) ✅"
+  } else {
+    print $"($repo_dest) exists and is non-empty \(repo cloned\) ✅"
+  }
+}
