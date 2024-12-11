@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+# TODO: add something (this bash script or the nushell script) to PATH to facilitate easy future runs
+
 # This script will:
 # 1. Install Git, Homebrew (on MacOS), and nu
 # 2. Clone the dotfiles repo
