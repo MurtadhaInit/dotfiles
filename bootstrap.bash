@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/refs/heads/main/system-setup/bootstrap.bash | bash
+# curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/refs/heads/main/bootstrap.bash | bash
 # TODO: add something (this bash script or the nushell script) to PATH to facilitate easy future runs
 
 # This script will:

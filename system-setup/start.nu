@@ -36,6 +36,10 @@ def main [--skip, --select, --skip-tasks: list = []] {
     let selection = $tasks | get name | input list --multi "Select tasks to run:"
     $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
   }
+
+  if ($to_skip != []) {
+    print $"Skipping tasks: ($to_skip | str join ', ')"
+  }
   for task in $tasks {
     if not ($task.name in $to_skip) {
       ^nu $task.path
