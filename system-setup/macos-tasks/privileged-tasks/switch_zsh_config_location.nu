@@ -13,7 +13,7 @@ def change_default_zsh_config_location [] {
     # this file does not exist by default
     touch "/etc/zshenv"
     # The file needs to be owned by root and to have the permissions rw r r
-    chown root:root "/etc/zshenv"
+    chown root:wheel "/etc/zshenv"
     chmod 644 "/etc/zshenv"
     # See which step needs to happen first: the permission change or content addition
   } else {
