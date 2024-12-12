@@ -1,17 +1,35 @@
 # Development
+figma
+drawio
 wezterm
 # visual-studio-code
-iterm2
 warp
 docker
 jetbrains-toolbox
-utm
+balenaetcher
 
 # Productivity
 notion
 obsidian
+alfred
+anki
+proton-mail
+
+# Browsers
+brave-browser
+tor-browser
+# TODO
+
+# Fonts
+font-atkinson-hyperlegible
+font-symbols-only-nerd-font
 
 # Misc
 iina
 signal
 zotero
+cleanshot
+istat-menus
+vlc
+pearcleaner
+yubico-yubikey-manager

@@ -1,15 +1,24 @@
 # Development
 git
+atuin
+bat
+bottom
+zoxide
+bash
+direnv
+gh
+macos-trash
 zellij
 starship
 neovim
-bash
 fd
 tree
 eza
 fzf
 ncdu
 tldr
-zoxide
 zsh-autosuggestions
+zsh-fast-syntax-highlighting
 eth-p/software/bat-extras
+jesseduffield/lazydocker/lazydocker
+jesseduffield/lazygit/lazygit

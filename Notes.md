@@ -72,3 +72,5 @@
   - <https://rclone.org/>
 
 - Find a way of securely backing up everything SSH, and explore changing SSH port for homelab server.
+
+- Remove VMWare Fusion because it can't be removed
