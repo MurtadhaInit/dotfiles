@@ -1,6 +1,7 @@
 #!/usr/bin/env nu
 
 def main [--skip, --select, --skip-tasks: list = []] {
+  cd $"($nu.home-path)/.dotfiles/system-setup"
   let tasks_dir = match $nu.os-info.name {
     "macos" => {
       print "MacOS detected 🍎"
