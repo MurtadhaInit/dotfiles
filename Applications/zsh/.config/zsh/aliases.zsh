@@ -1,4 +1,4 @@
-alias ls='eza -lah --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"'
+alias ls='eza -lahgo --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"'
 alias tree='tree -daC'
 alias lzg='lazygit'
 alias lzd='lazydocker'
