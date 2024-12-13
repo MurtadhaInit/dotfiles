@@ -3,7 +3,7 @@ def setup_go [] {
   print "Setting up Go..."
 
   if not (command_exists "gobrew") {
-    with-env { GOBREW_ROOT: "$HOME/.local/share/gobrew" } {
+    with-env { GOBREW_ROOT: $"($nu.home-path)/.local/share/gobrew" } {
       curl -sLk https://git.io/gobrew | sh
       print "Successfully installed gobrew ✅"
       ^$"($env.GOBREW_ROOT)/.gobrew/bin/gobrew" use latest

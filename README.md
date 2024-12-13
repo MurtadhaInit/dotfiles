@@ -1,49 +1,52 @@
 # Dotfiles & Development Machine Setup
 
-This is my IaC workflow for automating and bootstrapping the full setup of my main development machine using Ansible.
+This is my simple IaC solution for automating the full setup of my main development machine (only MacOS for now) using Nushell scripts.
 
-## What is included
+## 🔧 How it works
 
-- _All my dotfiles_: the configuration files used for apps and CLI tools I regularly use.
-  - Among those is my [NeoVim config](https://github.com/MurtadhaInit/nvim) as a Git submodule.
-- _Brewfile_: this stores a list of every GUI and CLI app I'm currently using on my MacOS machine, as well as App Store apps and VSCode extensions.
-- _An Ansible roles directory_: which for now at least, only includes a [macos role](https://github.com/MurtadhaInit/macos-ansible-setup) as a Git submodule.
-  - This defines the steps needed to setup my main MacOS machine.
-- _A `bootstrap.bash` script_: responsible for bootstrapping the setup process.
-  - This is done by first making sure Python is available, then installing Ansible in a virtual environment, cloning this repository if not present, and finally running the playbook.
-
-## How to use this workflow
-
-Run the following command in a terminal on the target machine directly (or through SSH):
+Run the following command in a terminal on the target machine:
 
 ```shell
-curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/main/bootstrap.bash | bash && $HOME/ansible-temp/ansible-setup/bin/ansible-playbook ~/.dotfiles/local.yml --ask-become-pass --ask-vault-pass --skip-tags all_apps
+curl -sSfL https://raw.githubusercontent.com/MurtadhaInit/dotfiles/refs/heads/main/bootstrap.bash | bash
 ```
 
-> Note: this workflow assumes the availability of Python, Bash, and Git on the target machine.
+> Note: the scripts are designed to be idempotent with checks in place, so running them again won't necessarily redo the defined tasks.
 
-## What this workflow does
+## 📋 What is included
 
-1. The bootstrap script does the following in order:
-   - it makes sure Python 3 is installed
-   - it creates the directory `~/ansible-temp`
-   - it installs pip3 if missing and upgrades it
-   - it installs `virtualenv` and `setuptools`
-   - it creates a virtualenv in that directory and it installs Ansible within it
-   - and finally if `~/.dotfiles` doesn't exist, it will clone this repository in that location.
-2. The command you used to pull this bootstrap file and run it will then use Ansible from that temporary location to run the relevant playbook depending on the type of operating system.
-3. The MacOS playbook includes tasks that achieve the following:
-   - install Homebrew
-   - install and setup ZSH and make it the default shell
-   - install essential CLI apps and tools
-   - apply my dotfiles
-   - configure different tools (like language version managers)
-   - optionally install all other apps (requires being already signed in to the App Store)
-   - and finally install the latest versions of Python, Node, and others.
-   - For more details, check out the [MacOS role](https://github.com/MurtadhaInit/macos-ansible-setup) repository.
+- **Dotfiles**: configuration files for apps and CLI tools I regularly use.
+  - Among those is my [NeoVim config](https://github.com/MurtadhaInit/nvim) as a Git submodule.
+- **Brewfile**: a list of every GUI and CLI tool I'm currently using on my MacOS machine, as well as App Store apps and VSCode extensions.
+- **Nushell scripts**: in the `system-setup` directory to automate setting up a new machine from scratch.
 
-## Important Disclaimer
+## ⚙️ What this workflow does
 
-This entire workflow is still under development. It lacks proper testing, and reproducibility is not guaranteed. There are also a few bugs and shortcomings that are yet to be ironed out.
+1. The bootstrap Bash script does the following in order:
+    - Install Git, Homebrew (on MacOS), and nu if not present.
+    - Clone this repository to `~/.dotfiles`.
+    - Initiate the setup process by executing `start.nu`, passing in any provided arguments.
+2. The start script will detect the operating system and execute the scripted tasks in the relevant directory in `system-setup`, skipping (or selecting) ones based on the arguments being passed either interactively or programmatically (if you fork the repo and edit the script).
 
-Use at your own risk!
+## 🍎 MacOS Tasks
+
+- Create the required directories
+- Symlink all dotfiles using GNU Stow
+- Setup ZSH
+  - Install the latest version with Homebrew
+  - Make it the default interactive shell for the current user
+  - Switch the default location it looks for its configuration files to be `~/.config/zsh`
+- Install a handful of CLI tools and application defined in a separate file using Homebrew
+- Setup Node
+  - Install `fnm`
+  - Install the latest and the latest LTS versions of Node
+- Setup Python
+  - Install `pyenv`
+  - Download the use the latest Python 3 version
+- Setup `bat` (Install it and setup its themes)
+- Setup `Warp` (Install it and setup its themes)
+- Clone a defined set of repositories to their destinations
+- Setup Go
+  - Install `gobrew`
+  - Install the latest version of Go
+- Setup `tmux` (Installation and plugins)
+- Use a `Brewfile` to install everything else (formulas, casks, and App Store apps) with Homebrew, which will require an Apple ID log in.

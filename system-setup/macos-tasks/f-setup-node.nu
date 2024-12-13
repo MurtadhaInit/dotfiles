@@ -4,7 +4,7 @@ def setup_node [] {
   use ../utils/utils.nu ensure_homebrew_package
   print "Setting up fnm for Node version management..."
 
-  with-env {FNM_DIR: "$HOME/.local/share/fnm"} {
+  with-env {FNM_DIR: $"($nu.home-path)/.local/share/fnm"} {
     ensure_homebrew_package "fnm"
     if not (which node | get path.0 | str contains "fnm_multishells") {
       print "Installing the latest and the latest LTS versions of Node and npm with fnm..."
