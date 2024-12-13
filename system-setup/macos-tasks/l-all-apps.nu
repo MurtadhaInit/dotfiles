@@ -7,9 +7,11 @@ def brewfile_installation [] {
   ensure_homebrew_package "mas"
   with-env { HOMEBREW_CASK_OPTS: "--no-quarantine" } {
     cd $"($nu.home-path)/.dotfiles/Homebrew"
-    brew bundle install --verbose --file=./Brewfile
-    print "Initiating Homebrew cleanup..."
-    brew cleanup --verbose --prune=all
+    if not (brew bundle check --verbose --no-upgrade --file=./Brewfile) {
+      brew bundle install --no-upgrade --verbose --cleanup --file=./Brewfile
+    }
+    # print "Initiating Homebrew cleanup..."
+    # brew cleanup --verbose --prune=all
   }
 }
 

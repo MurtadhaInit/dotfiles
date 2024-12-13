@@ -11,6 +11,7 @@ def setup_python [] {
       print "Installing the latest version of Python 3 with pyenv..."
       pyenv install --skip-existing 3
       pyenv global 3
+      print "Successfully installed and set up the latest version of Python 3 ✅"
     } else {
       print "Python 3 is already installed through pyenv ✅"
     }
