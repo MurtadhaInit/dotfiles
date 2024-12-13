@@ -1,6 +1,6 @@
 # Dotfiles & Development Machine Setup
 
-This is my simple IaC solution for automating the full setup of my main development machine (only MacOS for now) using Nushell scripts.
+This is my simple solution for automating the full setup of my main development machine (only MacOS for now) using Nushell scripts.
 
 ## 🔧 How it works
 
