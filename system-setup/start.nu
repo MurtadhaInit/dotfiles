@@ -57,9 +57,6 @@ def get_tasks [tasks_dir: string] {
     } | sort-by name
 }
 
-# TODO: add a task for decrypting encrypted font files and copying them over
-# src: "{{ ansible_env.HOME }}/.dotfiles/Fonts/comic_code_ligatures_patched/"
-# dest: "{{ ansible_env.HOME }}/Library/Fonts/"
 # TODO: test everything on a fresh machine (vm)
 
 # TODO: change system settings

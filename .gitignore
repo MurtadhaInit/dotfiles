@@ -4,3 +4,6 @@ poetry.lock
 
 ### macOS ###
 .DS_Store
+
+### Decrypted font files ###
+Fonts/decrypted/

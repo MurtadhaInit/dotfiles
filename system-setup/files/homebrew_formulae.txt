@@ -5,6 +5,7 @@ bat
 bottom
 zoxide
 bash
+pipx
 direnv
 gh
 macos-trash
