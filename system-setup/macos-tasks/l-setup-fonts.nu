@@ -19,7 +19,12 @@ def main [--encrypt] {
     ($path | path basename) != ".DS_Store"
   }
   if (($content | length) == 0) {
-    decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
+    try {
+      decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
+    } catch {
+      print "Could not decrypt fonts ❗️"
+      return
+    }
   } else {
     print "Fonts seem to be already decrypted (directory non-empty) ✅"
   }
@@ -45,9 +50,12 @@ def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
       mkdir $target_path
     }
     if (($path | path type) == file) {
-      print $"Encrypting: ($path | path basename)..."
       let output_path = $target_path + ".age"
-      age --encrypt --identity $key_file --output $output_path $path
+      # do not overwrite existing encrypted files
+      if not ($output_path | path exists) {
+        print $"Encrypting: ($path | path basename)..."
+        age --encrypt --identity $key_file --output $output_path $path
+      }
     }
   }
 }
