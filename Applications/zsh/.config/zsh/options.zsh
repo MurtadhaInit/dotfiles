@@ -18,7 +18,5 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 # autoload -U bashcompinit && bashcompinit
 
 # === Command completions for other tools ===
-# pipx autocompletion
-eval "$(register-python-argcomplete pipx)"
 # fzf autocompletion
 [[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.zsh" 2> /dev/null

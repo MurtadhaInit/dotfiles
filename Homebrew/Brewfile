@@ -101,8 +101,6 @@ brew "node"
 brew "nushell"
 # Development kit for the Java programming language
 brew "openjdk"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Python version management

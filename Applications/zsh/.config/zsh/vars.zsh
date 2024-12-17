@@ -10,7 +10,6 @@ export NULLCMD=bat  # Default to bat instead of cat
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"  # Android SDKs location
-export POETRY_CONFIG_DIR="$HOME/.config/pypoetry"  # poetry config directory
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"  # pyenv root directory
 export FNM_DIR="$XDG_DATA_HOME/fnm"  # fnm root directory
 export GOBREW_ROOT="$XDG_DATA_HOME/gobrew"  # gobrew root directory

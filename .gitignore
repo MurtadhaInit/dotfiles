@@ -1,7 +1,5 @@
 Brewfile.lock.json
 
-poetry.lock
-
 ### macOS ###
 .DS_Store
 

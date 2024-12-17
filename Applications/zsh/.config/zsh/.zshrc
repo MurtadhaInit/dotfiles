@@ -5,7 +5,7 @@
 # the equivalents on the right are removed.
 typeset -U path
 path=(
-  "$HOME/.local/bin" # pipx tools/apps
+  "$HOME/.local/bin" # for a bunch of stuff including personal scripts
   "$(brew --prefix fzf)/bin" # fzf
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "$GOBREW_ROOT/.gobrew/bin" # gobrew binary
@@ -31,9 +31,6 @@ eval "$(starship init zsh)"
 
 # ===== ZSH Options & Command Completion =====
 [ -f "$ZDOTDIR/options.zsh" ] && source "$ZDOTDIR/options.zsh"
-
-# The default Python interpreter to use by pipx
-export PIPX_DEFAULT_PYTHON="$(pyenv prefix 3.11.0)/bin/python"
 
 # ===== ZSH Plugins / CLI Tools =====
 # Load Atuin (command history)
