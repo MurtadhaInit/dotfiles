@@ -18,5 +18,8 @@ compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 # autoload -U bashcompinit && bashcompinit
 
 # === Command completions for other tools ===
+# uv and uvx autocompletion
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 # fzf autocompletion
 [[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.zsh" 2> /dev/null
