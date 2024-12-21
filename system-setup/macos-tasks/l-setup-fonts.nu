@@ -1,14 +1,17 @@
-def main [--encrypt] {
+def main [
+  --encrypt
+  --non-interactive = false
+  decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted"
+  encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted"
+  key_file: string = $"($nu.home-path)/.keys/key.txt"
+] {
   use ../utils/utils.nu ensure_homebrew_package
   print "Setting up fonts..."
   ensure_homebrew_package "age"
 
-  let decrypted_dir = $"($nu.home-path)/.dotfiles/Fonts/decrypted"
-  let encrypted_dir = $"($nu.home-path)/.dotfiles/Fonts/encrypted"
   # The key file is the age identity file (akin to the private key)
   # The key file also contains the recipient (akin to public key) as a comment
   # which is parsed automatically when encrypting with the --identity flag
-  let key_file = $"($nu.home-path)/.keys/key.txt"
 
   if ($encrypt) {
     encrypt_path_content_with_age $decrypted_dir $encrypted_dir $key_file
@@ -20,7 +23,11 @@ def main [--encrypt] {
   }
   if (($content | length) == 0) {
     try {
-      decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
+      if ($non_interactive) {
+        decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
+      } else {
+        decrypt_path_content_with_age $encrypted_dir $decrypted_dir ""
+      }
     } catch {
       print "Could not decrypt fonts ❗️"
       return
@@ -66,6 +73,23 @@ def decrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
     exit 1
   }
   mkdir $dest_dir
+
+  if ($key_file == "") {
+    let default_key_file = $"($nu.home-path)/.keys/key.txt"
+    if ($default_key_file | path exists) {
+      print $"The file ($default_key_file) already exists, using it as an identity..."
+      key_file = $default_key_file
+    } else {
+      let identity = (input --suppress-output $"Enter the content of the identity file: \nThe content will be written to ($default_key_file)") | str trim
+      try {
+        $identity | save $default_key_file
+        key_file = $default_key_file
+      } catch {
+        print $"Could not save the identity file at ($default_key_file) ❗️"
+        return
+      }
+    }
+  }
 
   let unprocessed_paths = glob $"($dir)/**"
   | where { |path|
