@@ -83,13 +83,12 @@ def decrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
       print $"The file ($default_key_file) already exists, using it as an identity..."
       $key_file = $default_key_file
     } else {
-      let identity = (input --suppress-output $"Enter the content of the identity file: \nThe content will be written to ($default_key_file)") | str trim
+      let identity = (input --suppress-output $"Enter the content of the identity file\nThe content of the identity file will be written to ($default_key_file):\n") | str trim
       $key_file = try {
         $identity | save $default_key_file
         $default_key_file
       } catch {
-        print $"Could not save the identity file at ($default_key_file) ❗️"        
-        return
+        error make {msg: $"Could not save the identity file at ($default_key_file) ❗️"}
       }
     }
   }
