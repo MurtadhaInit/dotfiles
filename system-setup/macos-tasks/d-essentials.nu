@@ -10,42 +10,37 @@ def install_essentials_with_homebrew [formulae_file: string, casks_file: string]
           not ($line | str starts-with "#") and ($line | str trim) != ""
       }
 
-  if ($formulae | is-empty) {
-    print "No formulae found to install"
-    return
-  }
-
-  print $'Installing: ($formulae | str join ", ")'
-  try {
-    for formula in $formulae {
-      ensure_homebrew_package $formula
-    }
-    print $"Successfully installed ($formulae | length) formulae ✅"
-  } catch {
-    print "Failed to install some formulae ❗️"
-    exit 1
-  }
-  
   let casks = open $casks_file
       | lines
       | filter {|line|
           not ($line | str starts-with "#") and ($line | str trim) != ""
       }
 
-  if ($casks | is-empty) {
-    print "No casks found to install"
+  if (($formulae | append $casks) | is-empty) {
+    print "No formulae or casks found to install"
     return
   }
 
-  print $'Installing: ($casks | str join ", ")'
-  try {
-    for cask in $casks {
-      ensure_homebrew_package $cask --cask
+  with-env { HOMEBREW_CASK_OPTS: "--no-quarantine", HOMEBREW_NO_INSTALL_UPGRADE: "1" } {
+    if not ($formulae | is-empty) {
+      print $'Installing formulae: ($formulae | str join ", ")'
+      try {
+        brew install --quiet ...$formulae
+        print $"Successfully installed ($formulae | length) formulae ✅"
+      } catch {
+        print "Failed to install some formulae ❗️"
+      }
     }
-    print $"Successfully installed ($casks | length) casks ✅"
-  } catch {
-    print "Failed to install some casks ❗️"
-    exit 1
+
+    if not ($casks | is-empty) {
+      print $'Installing casks: ($casks | str join ", ")'
+      try {
+        brew install --quiet --cask ...$casks
+        print $"Successfully installed ($casks | length) casks ✅"
+      } catch {
+        print "Failed to install some casks ❗️"
+      }
+    }
   }
 }
 

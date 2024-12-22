@@ -1,6 +1,5 @@
 def main [
   --encrypt
-  --non-interactive = false
   decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted"
   encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted"
   key_file: string = $"($nu.home-path)/.keys/key.txt"
@@ -26,11 +25,7 @@ def main [
 
   if ((dir_content $decrypted_dir | length) == 0) {
     try {
-      if ($non_interactive) {
-        decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
-      } else {
-        decrypt_path_content_with_age $encrypted_dir $decrypted_dir ""
-      }
+      decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
     } catch {
       print "Could not decrypt fonts ❗️"
       return
@@ -68,33 +63,12 @@ def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
   }
 }
 
-# passing an empty string for the key_file will make this function
-# look for the identity file in ~/.keys/key.txt and if not found,
-# it will prompt the user for the content of the identity file,
-# it will then created it in that location and use it for decryption
 def decrypt_path_content_with_age [dir: string, dest_dir: string, key_file: string] {
   if not ($dir | path exists) {
     print $"($dir) does not exist ❗️"
     exit 1
   }
   mkdir $dest_dir
-
-  mut key_file = $key_file
-  if ($key_file == "") {
-    let default_key_file = $"($nu.home-path)/.keys/key.txt"
-    if ($default_key_file | path exists) {
-      print $"The file ($default_key_file) already exists, using it as an identity..."
-      $key_file = $default_key_file
-    } else {
-      let identity = (input --suppress-output $"Enter the content of the identity file\nThe content of the identity file will be written to ($default_key_file):\n") | str trim
-      $key_file = try {
-        $identity | save $default_key_file
-        $default_key_file
-      } catch {
-        error make {msg: $"Could not save the identity file at ($default_key_file) ❗️"}
-      }
-    }
-  }
 
   for path in (glob $"($dir)/**") {
     if (($path | path basename) != ".DS_Store" and $path != $dir) {
