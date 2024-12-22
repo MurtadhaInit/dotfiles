@@ -88,7 +88,7 @@ brew "libffi"
 # Rainbows and unicorns in your console!
 brew "lolcat"
 # Move files and folders to the trash
-brew "macos-trash"
+brew "macos-trash", link: true
 # Mac App Store command-line interface
 brew "mas"
 # Free (GNU) replacement for the Pico text editor

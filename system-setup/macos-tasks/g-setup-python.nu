@@ -16,6 +16,8 @@ def setup_python [] {
       print "Python 3 is already installed through pyenv ✅"
     }
   }
+
+  ensure_homebrew_package "uv"
 }
 
 setup_python

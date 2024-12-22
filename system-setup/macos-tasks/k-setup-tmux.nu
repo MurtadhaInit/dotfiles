@@ -13,9 +13,9 @@ def setup_tmux [] {
     print "Failed to install tmux plugins ❗️"
     return
   }
-  
+
   ^$"($nu.home-path)/.config/tmux/plugins/tpm/bin/update_plugins" all
   print "Successfully updated all tmux plugins ✅"
 }
 
-setup_tmux
+# setup_tmux
