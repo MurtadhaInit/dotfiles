@@ -17,11 +17,14 @@ def main [
     encrypt_path_content_with_age $decrypted_dir $encrypted_dir $key_file
   }
 
-  let content = glob --no-dir --no-symlink $"($decrypted_dir)/**"
-  | where { |path|
-    ($path | path basename) != ".DS_Store"
+  def dir_content [dir: string] {
+    glob --no-dir --no-symlink $"($dir)/**"
+      | where { |path|
+        ($path | path basename) != ".DS_Store"
+      }
   }
-  if (($content | length) == 0) {
+
+  if ((dir_content $decrypted_dir | length) == 0) {
     try {
       if ($non_interactive) {
         decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
@@ -35,7 +38,7 @@ def main [
   } else {
     print "Fonts seem to be already decrypted (directory non-empty) ✅"
   }
-  cp --no-clobber --verbose ...$content $"($nu.home-path)/Library/Fonts/"
+  cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
 }
 
 def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: string] {
