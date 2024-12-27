@@ -2,7 +2,7 @@ def main [
   --encrypt
   decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted"
   encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted"
-  key_file: string = $"($nu.home-path)/.keys/key.txt"
+  key_file: string = $"($nu.home-path)/.ssh/keys/age.txt"
 ] {
   use ../utils/utils.nu ensure_homebrew_package
   print "Setting up fonts..."

@@ -145,6 +145,7 @@ symbol = " "
 format = "[$symbol$version]($style) "
 
 [aws]
+disabled = true
 symbol = " "
 format = "[$symbol($profile )(\\($region\\) )(\\[$duration\\] )]($style)"
 expiration_symbol = "󰃰"
