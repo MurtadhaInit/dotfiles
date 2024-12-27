@@ -197,6 +197,8 @@ cask "figma"
 cask "font-atkinson-hyperlegible"
 cask "font-fira-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Git client for simultaneous branches on top of your existing workflow
 cask "gitbutler"
 # Git client focusing on productivity
