@@ -25,7 +25,12 @@ def main [--skip, --select, --skip-tasks: list = []] {
   mut to_skip = []
   # skip tasks interactively
   if ($skip) {
-    $to_skip = $tasks | get name | input list --multi "Select tasks to skip:"
+    let selection = $tasks | get name | input list --multi "Select tasks to skip:"
+    if ($selection != null) {
+      $to_skip = $selection
+    } else {
+      exit 1
+    }
   }
   # skip tasks programmatically
   if ($skip_tasks != []) {
@@ -34,7 +39,12 @@ def main [--skip, --select, --skip-tasks: list = []] {
   # select tasks interactively
   if ($select) {
     let selection = $tasks | get name | input list --multi "Select tasks to run:"
-    $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
+    if ($selection != null) {
+      $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
+    } else {
+      print "Nothing selected..."
+      exit 0
+    }
   }
 
   if ($to_skip != []) {

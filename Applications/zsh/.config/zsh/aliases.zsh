@@ -9,7 +9,11 @@ alias grep='grep --color'
 
 # Update the Brewfile after adding a package
 alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'
+# Show outdated formulas & casks
 alias brew_outdated='brew update &>/dev/null && brew outdated'
 
 # Using parameter expansion, apply the newline-separator option to the lowercase array version of 'path' and redirect the result to standard output using hereword (the default for which we've changed to bat).
 alias trail='<<<${(F)path}'
+
+# dotfile script
+alias dot="$HOME/.dotfiles/system-setup/start.nu --select"
