@@ -3,7 +3,7 @@ figma
 drawio
 wezterm
 # visual-studio-code
-warp
+ghostty
 docker
 jetbrains-toolbox
 balenaetcher
