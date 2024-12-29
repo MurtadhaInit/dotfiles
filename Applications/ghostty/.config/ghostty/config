@@ -20,3 +20,4 @@ window-save-state = always
 confirm-close-surface = false
 quit-after-last-window-closed = true
 auto-update = check
+mouse-scroll-multiplier = 0.75
