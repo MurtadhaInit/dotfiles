@@ -25,10 +25,3 @@ scrollback_lines_to_serialize 0 // serialize all scrollback
 
 // TODO
 // default_layout "default"
-
-// TODO
-// A key -> value map of environment variables that will be set for each terminal pane Zellij starts.
-//env {
-//    RUST_BACKTRACE 1
-//    FOO "bar"
-//}
