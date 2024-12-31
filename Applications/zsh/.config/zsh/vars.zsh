@@ -4,6 +4,13 @@ export VISUAL="$(command -v code 2>/dev/null || command -v nvim)"
 export HOMEBREW_NO_ANALYTICS=1  # Disable Homebrew Google analytics
 export HOMEBREW_CASK_OPTS="--no-quarantine" # Disable Apple "trusted app" post-installation dialogues
 
+# By default, this is ~/.aws/config and by default it doesn't contain credentials
+# Credentials is typically in a separate file in ~/.aws/credentials
+# Credentials and config have been combined into a single config file here to be used.
+export AWS_CONFIG_FILE="$HOME/.ssh/keys/aws-config-credentials"
+# Location of the credentials file is also changed even though it's not used nor existent
+export AWS_SHARED_CREDENTIALS_FILE="$HOME/.ssh/keys/aws-credentials"
+
 export NULLCMD=bat  # Default to bat instead of cat
 
 # Starship prompt config file
