@@ -209,8 +209,6 @@ cask "handbrake"
 cask "iina"
 # System monitoring app
 cask "istat-menus"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Free cross-platform office suite, fresh version
@@ -253,8 +251,6 @@ cask "spotify"
 cask "steam"
 # Real time file synchronisation software
 cask "syncthing"
-# Native GUI tool for relational databases
-cask "tableplus"
 # Customizable email client
 cask "thunderbird"
 # Web browser focusing on security
