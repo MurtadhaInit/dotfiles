@@ -14,7 +14,7 @@
 //     plugin-manager location="zellij:plugin-manager"
 // }
 
-default_shell "nu" // Default: $SHELL
+// default_shell "nu" // Default: $SHELL
 pane_frames false // less clutter
 theme "catppuccin-mocha" // Catppuccin is built-in
 // scroll_buffer_size 50000
