@@ -172,8 +172,6 @@ brew "jesseduffield/lazydocker/lazydocker"
 brew "jesseduffield/lazygit/lazygit"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
 brew "pulumi/tap/pulumi"
-# Application launcher and productivity software
-cask "alfred"
 # Memory training application
 cask "anki"
 # Tool to flash OS images to SD cards & USB drives
@@ -201,8 +199,6 @@ cask "font-symbols-only-nerd-font"
 cask "ghostty"
 # Git client for simultaneous branches on top of your existing workflow
 cask "gitbutler"
-# Git client focusing on productivity
-cask "gitkraken"
 # Open-source video transcoder
 cask "handbrake"
 # Free and open-source media player
@@ -213,8 +209,6 @@ cask "istat-menus"
 cask "jetbrains-toolbox"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
-# App to manage software development and track bugs
-cask "linear-linear"
 # Customise mouse behavior
 cask "linearmouse"
 # Online collaborative whiteboard platform
@@ -239,6 +233,8 @@ cask "proton-drive"
 cask "proton-mail"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
+# Control your tools with a few keystrokes
+cask "raycast"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Web browser
