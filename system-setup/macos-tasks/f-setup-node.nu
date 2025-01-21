@@ -1,7 +1,7 @@
 export const order = 6
 
 def setup_node [] {
-  use ../utils/utils.nu ensure_homebrew_package
+  use ../utils/utils.nu [ensure_homebrew_package, command_exists]
   print "Setting up fnm for Node version management..."
 
   with-env {FNM_DIR: $"($nu.home-path)/.local/share/fnm"} {
@@ -13,6 +13,13 @@ def setup_node [] {
     } else {
       print "Node is already installed through fnm ✅"
     }
+  }
+  
+  if not (command_exists pnpm) {
+    corepack enable pnpm
+    print "Enabled pnpm ✅"
+  } else {
+    print "pnpm is already present ✅"
   }
 
   # Install npm global packages: required dependencies for "import cost" vscode extension
