@@ -7,6 +7,9 @@ alias zjt='zellij run --floating --close-on-exit --cwd "$HOME/Scripts/utility_sc
 alias man=batman
 alias grep='grep --color'
 
+# To open nvim with the separate nvim-vscode config to update/debug nvim as used inside VSCode
+alias nvim-vscode='NVIM_APPNAME="nvim-vscode" nvim' 
+
 # Update the Brewfile after adding a package
 alias bbd='brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile'
 # Show outdated formulas & casks
