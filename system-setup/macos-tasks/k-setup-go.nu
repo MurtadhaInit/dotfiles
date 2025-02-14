@@ -11,6 +11,8 @@ def setup_go [] {
     }
   } else {
     print "gobrew is already installed and Go is setup ✅"
+
+    gobrew self-update
   }
 }
 
