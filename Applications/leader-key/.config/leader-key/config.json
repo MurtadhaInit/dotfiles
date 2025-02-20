@@ -1,0 +1,79 @@
+{
+  "type" : "group",
+  "actions" : [
+    {
+      "key" : "t",
+      "label" : "Terminal",
+      "value" : "/Applications/Ghostty.app",
+      "type" : "application"
+    },
+    {
+      "actions" : [
+        {
+          "label" : "",
+          "value" : "raycast://confetti",
+          "key" : "p",
+          "type" : "url"
+        },
+        {
+          "value" : "raycast://extensions/raycast/system/open-camera",
+          "key" : "c",
+          "type" : "url",
+          "label" : ""
+        }
+      ],
+      "type" : "group",
+      "key" : "r",
+      "label" : "Raycast"
+    },
+    {
+      "type" : "group",
+      "key" : "w",
+      "actions" : [
+        {
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/maximize",
+          "key" : "f",
+          "label" : "Fill - Maximise"
+        }
+      ],
+      "label" : "Window"
+    },
+    {
+      "value" : "/Users/murtadha/Applications/IntelliJ IDEA Ultimate.app",
+      "type" : "application",
+      "label" : "",
+      "key" : "i"
+    },
+    {
+      "type" : "application",
+      "value" : "/Applications/Visual Studio Code.app",
+      "label" : "",
+      "key" : "v"
+    },
+    {
+      "value" : "/Applications/Brave Browser.app",
+      "label" : "Browser",
+      "key" : "b",
+      "type" : "application"
+    },
+    {
+      "value" : "/Applications/Obsidian.app",
+      "key" : "o",
+      "label" : "Obsidian",
+      "type" : "application"
+    },
+    {
+      "label" : "Zotero",
+      "key" : "z",
+      "type" : "application",
+      "value" : "/Applications/Zotero.app"
+    },
+    {
+      "type" : "application",
+      "value" : "/Applications/Notion.app",
+      "label" : "Notion",
+      "key" : "n"
+    }
+  ]
+}
