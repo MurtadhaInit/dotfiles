@@ -6,7 +6,10 @@ tap "homebrew/services"
 tap "jesseduffield/lazydocker"
 tap "jesseduffield/lazygit"
 tap "localsend/localsend"
+tap "oven-sh/bun"
 tap "pulumi/tap"
+# Run your GitHub Actions locally
+brew "act"
 # Simple, modern, secure file encryption
 brew "age"
 # Cryptography and SSL/TLS Toolkit
@@ -23,6 +26,8 @@ brew "xz"
 brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# C library of Git core methods that is re-entrant and linkable
+brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # C/C++ and Java libraries for Unicode and globalization
@@ -51,8 +56,6 @@ brew "wangle"
 brew "fb303"
 # Shared library for Watchman and Eden projects
 brew "edencommon"
-# C library of Git core methods that is re-entrant and linkable
-brew "libgit2"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -129,8 +132,6 @@ brew "starship"
 brew "stow"
 # Tool Command Language
 brew "tcl-tk"
-# Simplified and community-driven man pages
-brew "tldr"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -139,8 +140,6 @@ brew "tree"
 brew "uv"
 # Vi 'workalike' with many additional features
 brew "vim"
-# Watch files and take action when they change
-brew "watchman"
 # Check your $HOME for unwanted files and directories
 brew "xdg-ninja"
 # Feature-rich command-line audio/video downloader
@@ -170,14 +169,18 @@ brew "hashicorp/tap/terraform"
 brew "jesseduffield/lazydocker/lazydocker"
 # A simple terminal UI for git commands, written in Go
 brew "jesseduffield/lazygit/lazygit"
+# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
+brew "oven-sh/bun/bun"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
 brew "pulumi/tap/pulumi"
 # Memory training application
 cask "anki"
+# API development platform
+cask "apidog"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# Display management tool
-cask "betterdisplay"
+# Cross platform SQL editor and database management app
+cask "beekeeper-studio"
 # Web browser focusing on privacy
 cask "brave-browser"
 # Screen capturing tool
@@ -186,6 +189,10 @@ cask "cleanshot"
 cask "cryptomator"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# UI to create reproducible developer environments based on a devcontainer.json
+cask "devpod"
+# Voice and text chat software
+cask "discord"
 # App to build and share containerised applications and microservices
 cask "docker"
 # Online diagram software
@@ -207,6 +214,8 @@ cask "iina"
 cask "istat-menus"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
+# Application launcher
+cask "leader-key"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
 # Customise mouse behavior
@@ -217,8 +226,6 @@ cask "miro"
 cask "mongodb-compass"
 # App to write, plan, collaborate, and get organised
 cask "notion"
-# Calendar for professionals and teams
-cask "notion-calendar"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Replacement for Docker Desktop
@@ -231,6 +238,8 @@ cask "postman"
 cask "proton-drive"
 # Client for Proton Mail and Proton Calendar
 cask "proton-mail"
+# VPN client focusing on security
+cask "protonvpn"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Control your tools with a few keystrokes
@@ -241,12 +250,12 @@ cask "rustdesk"
 cask "sigmaos"
 # Instant messaging application focusing on security
 cask "signal"
-# Music streaming service
-cask "spotify"
 # Video game digital distribution service
 cask "steam"
 # Real time file synchronisation software
 cask "syncthing"
+# Native GUI tool for relational databases
+cask "tableplus"
 # Customizable email client
 cask "thunderbird"
 # Web browser focusing on security
@@ -299,11 +308,11 @@ mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "Telegram", id: 747648890
 mas "Things", id: 904280696
+mas "WhatsApp", id: 310633997
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
 mas "xSearch", id: 1579902068
 mas "Yubico Authenticator", id: 1497506650
-mas "‎WhatsApp", id: 310633997
 vscode "aaron-bond.better-comments"
 vscode "antfu.theme-vitesse"
 vscode "arcticicestudio.nord-visual-studio-code"
