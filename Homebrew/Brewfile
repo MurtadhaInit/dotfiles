@@ -206,6 +206,8 @@ cask "font-symbols-only-nerd-font"
 cask "ghostty"
 # Git client for simultaneous branches on top of your existing workflow
 cask "gitbutler"
+# Web browser
+cask "google-chrome"
 # Open-source video transcoder
 cask "handbrake"
 # Free and open-source media player
@@ -294,6 +296,7 @@ mas "Expenses", id: 1492055171
 mas "Front Row", id: 6480318506
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
+mas "Infuse", id: 1136220934
 mas "Keka", id: 470158793
 mas "Keynote", id: 409183694
 mas "LocalSend", id: 1661733229
