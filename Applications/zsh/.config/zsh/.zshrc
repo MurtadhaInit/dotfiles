@@ -6,13 +6,14 @@
 typeset -U path
 path=(
   "$HOME/.local/bin" # for a bunch of stuff including personal scripts
+  "$XDG_CACHE_HOME/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
   "$(brew --prefix fzf)/bin" # fzf
   "$(brew --prefix openjdk)/bin" # Homebrew JDK
   "$GOBREW_ROOT/.gobrew/bin" # gobrew binary
   "$GOBREW_ROOT/.gobrew/current/bin" # active version of Go set by gobrew
   "$ANDROID_HOME/emulator" # Android Development
   "$ANDROID_HOME/platform-tools" # Android Development
-  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # VSCode. # TODO: install through Homebrew and remove this
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" # JetBrains
   $path
 )

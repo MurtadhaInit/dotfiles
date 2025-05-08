@@ -11,8 +11,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' menu yes select
 # place additional command completion scripts here. # TODO: might delete
 fpath+="$ZDOTDIR/.zfunc"
-# and load the command completions scripts from Homebrew-installed tools
-fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+# NOTE: Command completion scripts for Homebrew-installed tools are automatically added to:
+# $HOMEBREW_PREFIX/share/zsh/site-functions which is appended to $fpath
 # load the zsh command completion system and set the location for .zcompdump
 autoload -Uz compinit
 compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
