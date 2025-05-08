@@ -24,6 +24,14 @@ def setup_node [] {
 
   # Install npm global packages: required dependencies for "import cost" vscode extension
   # npm install --global esbuild prettier
+
+  ensure_homebrew_package "oven-sh/bun/bun"
+  print "Installing global JS packages (tools) with Bun..."
+  if not (command_exists codex) {
+    bun install --global @openai/codex
+  } else {
+    print "codex is already installed through Bun ✅"
+  }
 }
 
 setup_node
