@@ -1,0 +1,144 @@
+{
+  "Install": [
+    {
+      "winget": "Obsidian.Obsidian",
+      "choco": "obsidian"
+    },
+    {
+      "winget": "Ghisler.TotalCommander",
+      "choco": "TotalCommander"
+    },
+    {
+      "winget": "Audacity.Audacity",
+      "choco": "audacity"
+    },
+    {
+      "winget": "OpenWhisperSystems.Signal",
+      "choco": "signal"
+    },
+    {
+      "winget": "VideoLAN.VLC",
+      "choco": "vlc"
+    },
+    {
+      "winget": "Discord.Discord",
+      "choco": "discord"
+    },
+    {
+      "winget": "Microsoft.VisualStudioCode",
+      "choco": "vscode"
+    },
+    {
+      "winget": "Valve.Steam",
+      "choco": "steam-client"
+    },
+    {
+      "winget": "Plex.PlexMediaServer",
+      "choco": "plexmediaserver"
+    },
+    {
+      "winget": "CodecGuide.K-LiteCodecPack.Standard",
+      "choco": "k-litecodecpack-standard"
+    },
+    {
+      "winget": "LibreWolf.LibreWolf",
+      "choco": "librewolf"
+    },
+    {
+      "winget": "HandBrake.HandBrake",
+      "choco": "handbrake"
+    },
+    {
+      "winget": "Anaconda.Anaconda3",
+      "choco": "anaconda3"
+    },
+    {
+      "winget": "TheDocumentFoundation.LibreOffice",
+      "choco": "libreoffice-fresh"
+    },
+    {
+      "winget": "DigitalScholar.Zotero",
+      "choco": "zotero"
+    },
+    {
+      "winget": "GitHub.cli",
+      "choco": "git;gh"
+    },
+    {
+      "winget": "GoLang.Go",
+      "choco": "golang"
+    },
+    {
+      "winget": "7zip.7zip",
+      "choco": "7zip"
+    },
+    {
+      "winget": "Brave.Brave",
+      "choco": "brave"
+    },
+    {
+      "winget": "JetBrains.Toolbox",
+      "choco": "jetbrainstoolbox"
+    },
+    {
+      "winget": "Git.Git",
+      "choco": "git"
+    },
+    {
+      "winget": "Klocman.BulkCrapUninstaller",
+      "choco": "bulk-crap-uninstaller"
+    },
+    {
+      "winget": "Docker.DockerDesktop",
+      "choco": "docker-desktop"
+    }
+  ],
+  "WPFTweaks": [
+    "WPFTweaksRestorePoint",
+    "WPFTweaksHome",
+    "WPFTweaksTele",
+    "WPFTweaksConsumerFeatures",
+    "WPFTweaksDeleteTempFiles",
+    "WPFTweaksRemoveEdge",
+    "WPFTweaksDVR",
+    "WPFTweaksRemoveOnedrive",
+    "WPFTweaksRightClickMenu",
+    "WPFTweaksRecallOff",
+    "WPFTweaksRemoveCopilot",
+    "WPFTweaksEdgeDebloat",
+    "WPFTweaksPowershell7",
+    "WPFTweaksDiskCleanup",
+    "WPFTweaksPowershell7Tele",
+    "WPFTweaksServices",
+    "WPFTweaksWifi",
+    "WPFTweaksLoc"
+  ],
+  "WPFInstall": [
+    "WPFInstallobsidian",
+    "WPFInstalltotalcommander",
+    "WPFInstallaudacity",
+    "WPFInstallsignal",
+    "WPFInstallvlc",
+    "WPFInstalldiscord",
+    "WPFInstallvscode",
+    "WPFInstallsteam",
+    "WPFInstallplex",
+    "WPFInstallklite",
+    "WPFInstalllibrewolf",
+    "WPFInstallhandbrake",
+    "WPFInstallanaconda3",
+    "WPFInstalllibreoffice",
+    "WPFInstallzotero",
+    "WPFInstallgithubcli",
+    "WPFInstallgolang",
+    "WPFInstall7zip",
+    "WPFInstallbrave",
+    "WPFInstalljetbrains",
+    "WPFInstallgit",
+    "WPFInstallbulkcrapuninstaller",
+    "WPFInstalldockerdesktop"
+  ],
+  "WPFFeature": [
+    "WPFFeaturewsl"
+  ]
+}
