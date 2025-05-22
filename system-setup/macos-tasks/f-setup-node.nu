@@ -27,11 +27,7 @@ def setup_node [] {
 
   ensure_homebrew_package "oven-sh/bun/bun"
   print "Installing global JS packages (tools) with Bun..."
-  if not (command_exists codex) {
-    bun install --global @openai/codex
-  } else {
-    print "codex is already installed through Bun ✅"
-  }
+  bun install --global @openai/codex @anthropic-ai/claude-code
 }
 
 setup_node
