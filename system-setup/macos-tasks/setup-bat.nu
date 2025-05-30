@@ -1,4 +1,4 @@
-export const order = 8
+# priority: 6
 
 def setup_bat [] {
   use ../utils/utils.nu [ensure_homebrew_package, ensure_repo]

@@ -1,3 +1,5 @@
+# priority: 2
+
 def main [
   --encrypt
   decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted"

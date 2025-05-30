@@ -1,4 +1,4 @@
-export const order = 4
+# priority: 11
 
 def symlink_dotfiles [] {
   use ../utils/utils.nu ensure_homebrew_package

@@ -1,4 +1,4 @@
-export const order = 6
+# priority: 8
 
 def setup_node [] {
   use ../utils/utils.nu [ensure_homebrew_package, command_exists]

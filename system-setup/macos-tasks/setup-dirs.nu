@@ -1,4 +1,4 @@
-export const order = 1
+# priority: 12
 
 def setup_dirs [] {
   use ../utils/utils.nu ensure_homebrew_package

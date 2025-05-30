@@ -1,4 +1,4 @@
-export const order = 9
+# priority: 1
 
 def brewfile_installation [] {
   use ../utils/utils.nu ensure_homebrew_package

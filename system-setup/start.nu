@@ -4,19 +4,19 @@ def main [--skip, --select, --skip-tasks: list = []] {
   cd $"($nu.home-path)/.dotfiles/system-setup"
   let tasks_dir = match $nu.os-info.name {
     "macos" => {
-      print "MacOS detected 🍎"
+      print "🍎 MacOS detected"
       "macos-tasks"
     },
     "windows" => {
-      print "Windows detected 🪟"
+      print "🪟 Windows detected"
       exit 1
     },
     "linux" => {
-      print "Linux detected 🐧"
+      print "🐧 Linux detected"
       exit 1
     },
     _ => {
-      print "Unknown OS"
+      print "❗ Unknown OS"
       exit 1
     }
   }
@@ -38,7 +38,7 @@ def main [--skip, --select, --skip-tasks: list = []] {
   }
   # select tasks interactively
   if ($select) {
-    let selection = $tasks | get name | input list --multi "Select tasks to run:"
+    let selection = $tasks | get name | input list --multi "Select tasks to run"
     if ($selection != null) {
       $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
     } else {
@@ -48,23 +48,38 @@ def main [--skip, --select, --skip-tasks: list = []] {
   }
 
   if ($to_skip != []) {
-    print $"Skipping tasks: ($to_skip | str join ', ')"
+    print $"Skipping tasks: ($to_skip | str join ', ')\n"
   }
   for task in $tasks {
     if not ($task.name in $to_skip) {
       ^nu $task.path
     }
   }
-  print "Done! 🚀"
+  print "🚀 Done!"
+}
+
+def get_priority [file: string] {
+  try { 
+    open -r $file
+    | lines
+    | parse '# priority: {prio}'
+    | get prio.0
+    | into int
+  } catch { 
+    0
+  }
 }
 
 def get_tasks [tasks_dir: string] {
-  glob $"($tasks_dir)/*.nu" | each { |item|
+  glob $"($tasks_dir)/*.nu"
+  | each { |item|
       {
         path: $item,
         name: ($item | path parse).stem,
+        priority: (get_priority $item) 
       }
-    } | sort-by name
+    }
+  | sort-by -r priority
 }
 
 # TODO: test everything on a fresh machine (vm)

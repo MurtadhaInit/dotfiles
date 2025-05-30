@@ -1,3 +1,5 @@
+# priority: 3
+
 def setup_tmux [] {
   use ../utils/utils.nu [ensure_homebrew_package, ensure_repo]
   print "Setting up tmux..."

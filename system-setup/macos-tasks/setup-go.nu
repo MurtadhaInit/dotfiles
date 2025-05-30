@@ -1,3 +1,5 @@
+# priority: 4
+
 def setup_go [] {
   use ../utils/utils.nu command_exists
   print "Setting up Go..."

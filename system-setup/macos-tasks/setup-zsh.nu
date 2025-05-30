@@ -1,4 +1,4 @@
-export const order = 2
+# priority: 10
 
 def setup_zsh [] {
   print "Setting up ZSH..."

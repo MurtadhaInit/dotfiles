@@ -1,4 +1,4 @@
-export const order = 7
+# priority: 7
 
 def setup_python [] {
   use ../utils/utils.nu [ensure_homebrew_package, command_exists]

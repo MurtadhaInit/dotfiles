@@ -1,3 +1,5 @@
+# priority: 5
+
 def clone_repos [] {
   use ../utils/utils.nu ensure_repo
   print "Cloning repos..."

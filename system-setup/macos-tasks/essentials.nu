@@ -1,4 +1,4 @@
-export const order = 3
+# priority: 9
 
 def install_essentials_with_homebrew [formulae_file: string, casks_file: string] {
   use ../utils/utils.nu ensure_homebrew_package
