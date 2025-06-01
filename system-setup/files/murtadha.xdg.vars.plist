@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>murtadha.xdg.vars</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/sh</string>
+      <string>-c</string>
+      <string>
+        launchctl setenv XDG_CONFIG_HOME /Users/murtadha/.config &&
+        launchctl setenv XDG_CACHE_HOME /Users/murtadha/.cache &&
+        launchctl setenv XDG_DATA_HOME /Users/murtadha/.local/share &&
+        launchctl setenv XDG_STATE_HOME /Users/murtadha/.local/state &&
+        launchctl setenv XDG_RUNTIME_DIR /Users/murtadha/.local/run &&
+        launchctl setenv XDG_BIN_HOME /Users/murtadha/.local/bin
+      </string>
+    </array>
+    <key>RunAtLoad</key>
+    <true />
+    <key>ServiceIPC</key>
+    <false/>
+  </dict>
+</plist>
