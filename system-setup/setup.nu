@@ -1,6 +1,10 @@
 #!/usr/bin/env nu
 
-def main [--skip, --select, --skip-tasks: list = []] {
+def main [
+  --skip,
+  --all,
+  --skip-tasks: list = []
+  ] {
   cd $"($nu.home-path)/.dotfiles/system-setup"
   let tasks_dir = match $nu.os-info.name {
     "macos" => {
@@ -23,21 +27,22 @@ def main [--skip, --select, --skip-tasks: list = []] {
 
   let tasks = get_tasks $tasks_dir
   mut to_skip = []
+
   # skip tasks interactively
   if ($skip) {
-    let selection = $tasks | get name | input list --multi "Select tasks to skip:"
+    let selection = $tasks | get name | input list --multi "Select tasks to skip"
     if ($selection != null) {
       $to_skip = $selection
-    } else {
-      exit 1
     }
   }
+
   # skip tasks programmatically
   if ($skip_tasks != []) {
     $to_skip = [...$skip_tasks]
   }
+
   # select tasks interactively
-  if ($select) {
+  if (not $all and not $skip and $skip_tasks == []) {
     let selection = $tasks | get name | input list --multi "Select tasks to run"
     if ($selection != null) {
       $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
@@ -52,20 +57,20 @@ def main [--skip, --select, --skip-tasks: list = []] {
   }
   for task in $tasks {
     if not ($task.name in $to_skip) {
-      ^nu $task.path
+      nu $task.path
     }
   }
   print "🚀 Done!"
 }
 
 def get_priority [file: string] {
-  try { 
+  try {
     open -r $file
     | lines
     | parse '# priority: {prio}'
     | get prio.0
     | into int
-  } catch { 
+  } catch {
     0
   }
 }

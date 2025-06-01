@@ -19,4 +19,4 @@ alias brew_outdated='brew update &>/dev/null && brew outdated'
 alias trail='<<<${(F)path}'
 
 # dotfiles script
-alias dot="$HOME/.dotfiles/system-setup/start.nu --select"
+alias dot="$HOME/.dotfiles/system-setup/setup.nu"
