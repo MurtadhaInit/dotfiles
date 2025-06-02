@@ -1,79 +1,67 @@
 {
-  "type" : "group",
   "actions" : [
     {
       "key" : "t",
       "label" : "Terminal",
-      "value" : "/Applications/Ghostty.app",
-      "type" : "application"
+      "type" : "application",
+      "value" : "/Applications/Ghostty.app"
     },
     {
       "actions" : [
         {
-          "label" : "",
-          "value" : "raycast://confetti",
-          "key" : "p",
-          "type" : "url"
-        },
-        {
-          "value" : "raycast://extensions/raycast/system/open-camera",
           "key" : "c",
+          "label" : "",
           "type" : "url",
-          "label" : ""
+          "value" : "raycast://extensions/raycast/system/open-camera"
         }
       ],
-      "type" : "group",
       "key" : "r",
-      "label" : "Raycast"
+      "label" : "Raycast",
+      "type" : "group"
     },
     {
-      "type" : "group",
-      "key" : "w",
       "actions" : [
         {
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/maximize",
           "key" : "f",
-          "label" : "Fill - Maximise"
+          "label" : "Fill - Maximise",
+          "type" : "url",
+          "value" : "raycast://extensions/raycast/window-management/maximize"
         }
       ],
-      "label" : "Window"
+      "key" : "w",
+      "label" : "Window",
+      "type" : "group"
     },
     {
-      "value" : "/Users/murtadha/Applications/IntelliJ IDEA Ultimate.app",
-      "type" : "application",
+      "key" : "v",
       "label" : "",
-      "key" : "i"
-    },
-    {
       "type" : "application",
-      "value" : "/Applications/Visual Studio Code.app",
-      "label" : "",
-      "key" : "v"
+      "value" : "/Applications/Visual Studio Code.app"
     },
     {
-      "value" : "/Applications/Brave Browser.app",
-      "label" : "Browser",
       "key" : "b",
-      "type" : "application"
+      "label" : "Browser",
+      "type" : "application",
+      "value" : "/Applications/Brave Browser.app"
     },
     {
-      "value" : "/Applications/Obsidian.app",
       "key" : "o",
       "label" : "Obsidian",
-      "type" : "application"
+      "type" : "application",
+      "value" : "/Applications/Obsidian.app"
     },
     {
-      "label" : "Zotero",
       "key" : "z",
+      "label" : "Zotero",
       "type" : "application",
       "value" : "/Applications/Zotero.app"
     },
     {
-      "type" : "application",
-      "value" : "/Applications/Notion.app",
+      "key" : "n",
       "label" : "Notion",
-      "key" : "n"
+      "type" : "application",
+      "value" : "/Applications/Notion.app"
     }
-  ]
+  ],
+  "type" : "group"
 }
