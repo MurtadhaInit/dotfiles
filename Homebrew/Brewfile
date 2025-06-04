@@ -195,8 +195,6 @@ cask "cryptomator"
 cask "db-browser-for-sqlite"
 # UI to create reproducible developer environments based on a devcontainer.json
 cask "devpod"
-# App to build and share containerised applications and microservices
-cask "docker"
 # Online diagram software
 cask "drawio"
 # Collaborative team software
@@ -272,6 +270,8 @@ cask "utm"
 cask "vagrant"
 # Keyboard configurator
 cask "via"
+# Open-source code editor
+cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # Create, manage, and run virtual machines
@@ -297,7 +297,6 @@ mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Darkroom", id: 953286746
 mas "Expenses", id: 1492055171
-mas "Front Row", id: 6480318506
 mas "iA Writer", id: 775737590
 mas "iMovie", id: 408981434
 mas "Infuse", id: 1136220934
