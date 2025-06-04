@@ -170,7 +170,7 @@ alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu # dotfiles script
-alias ls = ls -da
+alias ls = ls -a
 
 # === Tools ===
 # Carapace command completions
