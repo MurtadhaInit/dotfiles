@@ -160,7 +160,7 @@ $env.PATH = [
 ] | uniq # remove duplicates
 
 # === Aliases ===
-alias tree = tree -daC
+alias tree = tree -aC
 alias lzg = lazygit
 alias lzd = lazydocker
 alias man = batman

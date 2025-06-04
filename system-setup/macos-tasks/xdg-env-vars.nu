@@ -18,8 +18,6 @@ def setup_xdg_vars [file: string] {
   } else {
     print $"Service ($service_name) is already loaded ✅"
   }
-
-  # print $"Successfully set XDG_* environment variables ✅"
 }
 
 setup_xdg_vars "./files/murtadha.xdg.vars.plist"

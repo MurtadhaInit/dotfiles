@@ -12,8 +12,6 @@
   /Users/murtadha/Library/Preferences/com.jetbrains.toolbox.plist
 - Can we automate the installation of JetBrains IDEs with the Toolbox app? Possibly with one of its scripts?
 
-- Backup Automator scripts? Located in ~/Library/Services e.g. Open in VSCode
-
 - Periodically backup Zotero data folder with Git?
 
 - A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
