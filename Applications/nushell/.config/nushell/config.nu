@@ -144,9 +144,6 @@ if not ($env.MANPATH? | is-empty) {
 
 # === $PATH ===
 $env.PATH = [
-    # Homebrew setup as per `brew shellenv` 
-    "/opt/homebrew/bin"
-    "/opt/homebrew/sbin"
     $"($env.XDG_BIN_HOME)"
     $"($env.PYENV_ROOT)/shims"
     $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
@@ -156,6 +153,10 @@ $env.PATH = [
     # $"($env.ANDROID_HOME)/emulator" # Android Development
     # $"($env.ANDROID_HOME)/platform-tools" # Android Development
     $"($nu.home-path)/Library/Application Support/JetBrains/Toolbox/scripts"
+
+    # Homebrew setup as per `brew shellenv` 
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
     ...$env.PATH
 ] | uniq # remove duplicates
 
