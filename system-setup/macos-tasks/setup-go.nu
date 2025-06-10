@@ -1,7 +1,7 @@
 # priority: 4
 
 def setup_go [] {
-  use ../utils/utils.nu command_exists
+  use ../utils/utils.nu command_exists ensure_homebrew_package
   print "Setting up Go..."
 
   if not (command_exists "gobrew") {
@@ -16,6 +16,11 @@ def setup_go [] {
 
     gobrew self-update
   }
+
+  # print "Installing global Go packages (tools)..."
+  # go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+  ensure_homebrew_package sqlc
+  ensure_homebrew_package golangci-lint
 }
 
 setup_go

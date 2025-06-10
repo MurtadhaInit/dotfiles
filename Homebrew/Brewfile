@@ -80,6 +80,8 @@ brew "git-delta"
 brew "glow"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# Fast linters runner for Go
+brew "golangci-lint"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # C/C++ and Java libraries for Unicode and globalization
@@ -130,6 +132,8 @@ brew "rsync"
 brew "shellcheck"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
+# Generate type safe Go from SQL
+brew "sqlc"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
