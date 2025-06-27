@@ -132,6 +132,7 @@ load-env {
     PYENV_ROOT: $"($env.XDG_DATA_HOME)/pyenv", # pyenv root directory
     FNM_DIR: $"($env.XDG_DATA_HOME)/fnm", # fnm root directory
     GOBREW_ROOT: $"($env.XDG_DATA_HOME)/gobrew", # gobrew root directory
+    GOPATH: $"($env.XDG_DATA_HOME)/gobrew/.gobrew/current/go", # needed for global Go tools `go install ...`
     JUPYTER_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/jupyter", # Jupyter config directory
     LESSHISTFILE: $"($env.XDG_CACHE_HOME)/less/history" # less history directory
 }
