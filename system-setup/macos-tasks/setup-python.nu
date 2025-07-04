@@ -18,6 +18,9 @@ def setup_python [] {
   }
 
   ensure_homebrew_package "uv"
+
+  print "Installing global Python packages (tools) with uv..."
+  uv tool install sqlfluff
 }
 
 setup_python
