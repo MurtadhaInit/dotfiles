@@ -10,7 +10,6 @@
       "actions" : [
         {
           "key" : "c",
-          "label" : "",
           "type" : "url",
           "value" : "raycast://extensions/raycast/system/open-camera"
         }
@@ -34,7 +33,6 @@
     },
     {
       "key" : "v",
-      "label" : "",
       "type" : "application",
       "value" : "/Applications/Visual Studio Code.app"
     },
