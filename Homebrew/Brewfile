@@ -132,8 +132,6 @@ brew "rsync"
 brew "shellcheck"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
-# Generate type safe Go from SQL
-brew "sqlc"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -213,7 +211,7 @@ cask "gitbutler"
 # Web browser
 cask "google-chrome"
 # Open-source video transcoder
-cask "handbrake"
+cask "handbrake-app"
 # Free and open-source media player
 cask "iina"
 # System monitoring app
@@ -226,6 +224,8 @@ cask "leader-key"
 cask "legcord"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
+# Web browser
+cask "librewolf"
 # Customise mouse behavior
 cask "linearmouse"
 # Online collaborative whiteboard platform
@@ -261,7 +261,7 @@ cask "signal"
 # Video game digital distribution service
 cask "steam"
 # Real time file synchronisation software
-cask "syncthing"
+cask "syncthing-app"
 # Native GUI tool for relational databases
 cask "tableplus"
 # Customizable email client
@@ -283,7 +283,9 @@ cask "vmware-fusion"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 # Network protocol analyzer
-cask "wireshark"
+cask "wireshark-app"
+# REST, GraphQL and gRPC client
+cask "yaak"
 # Application for configuring any YubiKey
 cask "yubico-yubikey-manager"
 # Multiplayer code editor
