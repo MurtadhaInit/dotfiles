@@ -171,7 +171,8 @@ alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu # dotfiles script
-alias ls = ls -a
+alias ls = do { ls -al | select mode size user group modified type name | sort-by modified | reverse | sort-by type }
+alias eza = eza -lahg --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"
 
 # === Tools ===
 # Carapace command completions
