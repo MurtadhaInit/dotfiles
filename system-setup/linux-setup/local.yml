@@ -5,36 +5,37 @@
   become: true
 
   tasks:
+    - name: Setup password-less sudo
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/murtadha
+        mode: "0440"
+        owner: root
+        group: root
+        content: "murtadha ALL=(ALL) NOPASSWD: ALL"
+
     - name: Install packages
       ansible.builtin.package:
         state: present
         name:
           - htop
           - tmux
-          - ansible
+          # - ansible
 
-    - name: Copy wallpaper file
-      ansible.builtin.copy:
-        src: files/wallpaper.png
-        dest: /usr/share/background/ansible-wallpaper.png
-        owner: root
-        group: root
-        mode: u+rw
+    # - name: Copy wallpaper file
+    #   ansible.builtin.copy:
+    #     src: files/wallpaper.png
+    #     dest: /usr/share/background/ansible-wallpaper.png
+    #     owner: root
+    #     group: root
+    #     mode: u+rw
 
-    - name: Set wallpaper
-      community.general.dconf:
-        state: present
-        key: "/org/gnome/desktop/background/picture-uri"
-        value: "'file:///usr/share/background/ansible-wallpaper.png'"
+    # - name: Set wallpaper
+    #   community.general.dconf:
+    #     state: present
+    #     key: "/org/gnome/desktop/background/picture-uri"
+    #     value: "'file:///usr/share/background/ansible-wallpaper.png'"
 
         # python3-psutil needs to be installed from apt for the dconf module
         # Install from apt the dconf-cli and then do dconf dump / > settings.txt to see all configs
     # - name: Add user
     #   system: yes
-    - name: Setup sudo for this user
-      ansible.builtin.copy:
-        src: files/sudoer_murtadha
-        dest: /etc/sudoers.d/murtadha
-        owner: root
-        group: root
-        mode: 0440
