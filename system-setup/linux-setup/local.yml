@@ -23,7 +23,9 @@
         group: root
         content: "{{ invoking_user }} ALL=(ALL) NOPASSWD: ALL"
     # - name: Generate SSH keys locally (using a role)
+    # - name: Make sure the line Host * AddKeysToAgent yes is present in ~/.ssh/config
     # - name: Improve DNF
+    # - name: Import a task or role for configuring GNOME
 
     - name: Install packages
       ansible.builtin.package:
