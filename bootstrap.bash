@@ -70,7 +70,7 @@ case "$OS_TYPE" in
       sudo dnf install ansible -y
     fi
 
-    ansible-playbook --ask-become system-setup/linux-setup/local.yml
+    ansible-playbook --ask-become "$HOME/.dotfiles/system-setup/linux-setup/local.yml"
     ;;
   ("CYGWIN"* | "MINGW"* | "MSYS"*)
     # Windows-specific actions
