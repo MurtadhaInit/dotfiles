@@ -2,16 +2,23 @@
 - name: Setup Linux workstation
   hosts: localhost
   connection: local
+  gather_facts: true
+  # TODO: remove and only add to specific tasks that require sudo
   become: true
 
   tasks:
-    - name: Setup password-less sudo
+    - name: Set the hostname
+      ansible.builtin.hostname:
+        name: "{{ ansible_distribution | lower }}-workstation"
+
+    - name: Enable password-less sudo
       ansible.builtin.copy:
-        dest: /etc/sudoers.d/murtadha
+        dest: "/etc/sudoers.d/{{ ansible_user_id }}"
         mode: "0440"
         owner: root
         group: root
-        content: "murtadha ALL=(ALL) NOPASSWD: ALL"
+        content: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL"
+    # - name: Improve DNF
 
     - name: Install packages
       ansible.builtin.package:
@@ -19,7 +26,11 @@
         name:
           - htop
           - tmux
-          # - ansible
+
+    - name: Remove Firefox
+      ansible.builtin.package:
+        state: absent
+        name: firefox
 
     # - name: Copy wallpaper file
     #   ansible.builtin.copy:
