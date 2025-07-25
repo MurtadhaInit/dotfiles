@@ -7,17 +7,22 @@
   become: true
 
   tasks:
+    - name: Record the current logged-in user that invoked the playbook
+      ansible.builtin.set_fact:
+        invoking_user: "{{ lookup('env', 'USER') }}"
+
     - name: Set the hostname
       ansible.builtin.hostname:
         name: "{{ ansible_distribution | lower }}-workstation"
 
     - name: Enable password-less sudo
       ansible.builtin.copy:
-        dest: "/etc/sudoers.d/{{ ansible_user_id }}"
+        dest: "/etc/sudoers.d/{{ invoking_user }}"
         mode: "0440"
         owner: root
         group: root
-        content: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL"
+        content: "{{ invoking_user }} ALL=(ALL) NOPASSWD: ALL"
+    # - name: Generate SSH keys locally (using a role)
     # - name: Improve DNF
 
     - name: Install packages
