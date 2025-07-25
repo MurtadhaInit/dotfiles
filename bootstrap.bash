@@ -41,9 +41,36 @@ case "$OS_TYPE" in
       echo "Installing Nushell..."
       brew install nushell
     fi
+
+    if [ "$#" -eq 0 ]; then
+        # No arguments provided
+        "$HOME"/.dotfiles/system-setup/setup.nu --skip
+        # "$HOME"/.dotfiles/system-setup/start.nu --skip-tasks ["8-all-apps"]
+    else
+        # Pass all arguments to the nushell script
+        "$HOME"/.dotfiles/system-setup/setup.nu "$@"
+    fi
     ;;
   ("Linux")
-    # Linux-specific actions
+    # IMPORTANT: this assumes a Fedora system (with DNF)
+    # TODO: refactor to specifically run this block on Fedora-like distributions only
+    if ! exists git; then
+      echo "Installing Git..."
+      sudo dnf install git -y
+    fi
+
+    if [ ! -d "$HOME/.dotfiles" ]; then
+      git clone --recursive https://github.com/MurtadhaInit/dotfiles.git "$HOME/.dotfiles"
+    else
+      echo "Dotfiles directory present ✅"
+    fi
+
+    if ! exists ansible-playbook; then
+      echo "Installing Ansible..."
+      sudo dnf install ansible -y
+    fi
+
+    ansible-playbook --ask-become system-setup/linux-setup/local.yml
     ;;
   ("CYGWIN"* | "MINGW"* | "MSYS"*)
     # Windows-specific actions
@@ -53,13 +80,3 @@ case "$OS_TYPE" in
     exit 1
     ;;
 esac
-
-
-if [ "$#" -eq 0 ]; then
-    # No arguments provided
-    "$HOME"/.dotfiles/system-setup/setup.nu --skip
-    # "$HOME"/.dotfiles/system-setup/start.nu --skip-tasks ["8-all-apps"]
-else
-    # Pass all arguments to the nushell script
-    "$HOME"/.dotfiles/system-setup/setup.nu "$@"
-fi
