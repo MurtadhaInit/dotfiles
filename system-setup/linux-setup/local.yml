@@ -24,7 +24,26 @@
         content: "{{ invoking_user }} ALL=(ALL) NOPASSWD: ALL"
     # - name: Generate SSH keys locally (using a role)
     # - name: Make sure the line Host * AddKeysToAgent yes is present in ~/.ssh/config
-    # - name: Improve DNF
+    - name: Ensure dnf.conf exists and has a [main] section
+      ansible.builtin.lineinfile:
+        path: /etc/dnf/dnf.conf
+        create: true
+        line: "[main]"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Configuring and improving DNF
+      ansible.builtin.blockinfile:
+        path: /etc/dnf/dnf.conf
+        marker: "# {mark} Ansible block: configuring DNF"
+        insertafter: '^\[main\]'
+        block: |
+          fastestmirror=True
+          max_parallel_downloads=10
+          defaultyes=True
+          keepcache=True
+
     # - name: Import a task or role for configuring GNOME
 
     - name: Install packages
