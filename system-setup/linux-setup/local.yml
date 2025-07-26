@@ -64,14 +64,42 @@
         state: absent
         name: firefox
 
-    - name: Install packages
+    - name: Prepare to install Nushell
+      ansible.builtin.copy:
+        dest: /etc/yum.repos.d/fury-nushell.repo
+        owner: root
+        group: root
+        mode: '0644'
+        content: |
+          [gemfury-nushell]
+          name=Gemfury Nushell Repo
+          baseurl=https://yum.fury.io/nushell/
+          enabled=1
+          gpgcheck=0
+          gpgkey=https://yum.fury.io/nushell/gpg.key
+
+    - name: Install essential packages
       ansible.builtin.dnf5:
         update_cache: true
         state: present
         name:
-          - htop
-          - tmux
+          - nushell
           - stow
+          # - htop
+          # - tmux
+
+    - name: Make sure Nushell is present in the list of shells
+      ansible.builtin.lineinfile:
+        state: present
+        path: /etc/shells
+        line: "/usr/bin/nu"
+
+    # TODO: uncomment when it's ready to make Nushell the default on linux workstation
+    # - name: "Make Nushell the default interactive shell for {{ invoking_user }}"
+    #   ansible.builtin.user:
+    #     state: present
+    #     name: "{{ invoking_user }}"
+    #     shell: /usr/bin/nu
 
     - name: Symlink dotfiles with GNU Stow
       ansible.builtin.shell:
