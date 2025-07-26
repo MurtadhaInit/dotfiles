@@ -50,6 +50,8 @@
       ansible.builtin.file:
         path: "{{ home_dir }}/{{ item }}"
         state: directory
+        owner: "{{ invoking_user }}"
+        group: "{{ invoking_user }}"
         mode: "0755"
       loop:
         - Work
@@ -74,9 +76,9 @@
     - name: Symlink dotfiles with GNU Stow
       ansible.builtin.shell:
         chdir: "{{ home_dir }}/.dotfiles/Applications"
-        cmd: stow -v --restow */
+        cmd: stow -v */
       register: stow_result
-      changed_when: "'LINK:' in stow_result.stdout"
+      changed_when: ("LINK:" in stow_result.stdout) or ("LINK:" in stow_result.stderr)
 
     # - name: Copy wallpaper file
     #   ansible.builtin.copy:
