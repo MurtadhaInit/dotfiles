@@ -1,7 +1,6 @@
 # priority: 12
 
 def setup_dirs [] {
-  use ../utils/utils.nu ensure_homebrew_package
   print "Creating directories..."
 
   let paths_to_create = [
