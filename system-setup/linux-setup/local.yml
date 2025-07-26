@@ -10,6 +10,7 @@
     - name: Record the current logged-in user that invoked the playbook
       ansible.builtin.set_fact:
         invoking_user: "{{ lookup('env', 'USER') }}"
+        home_dir: "{{ lookup('env', 'HOME') }}"
 
     - name: Set the hostname
       ansible.builtin.hostname:
@@ -22,6 +23,7 @@
         owner: root
         group: root
         content: "{{ invoking_user }} ALL=(ALL) NOPASSWD: ALL"
+        validate: "/usr/sbin/visudo -cf %s"
     # - name: Generate SSH keys locally (using a role)
     # - name: Make sure the line Host * AddKeysToAgent yes is present in ~/.ssh/config
     - name: Ensure dnf.conf exists and has a [main] section
@@ -44,19 +46,37 @@
           defaultyes=True
           keepcache=True
 
-    # - name: Import a task or role for configuring GNOME
+    - name: Create directories
+      ansible.builtin.file:
+        path: "{{ home_dir }}/{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - Work
+        - Projects
 
-    - name: Install packages
-      ansible.builtin.package:
-        state: present
-        name:
-          - htop
-          - tmux
+    # - name: Import a task or role for configuring GNOME
 
     - name: Remove Firefox
       ansible.builtin.package:
         state: absent
         name: firefox
+
+    - name: Install packages
+      ansible.builtin.dnf5:
+        update_cache: true
+        state: present
+        name:
+          - htop
+          - tmux
+          - stow
+
+    - name: Symlink dotfiles with GNU Stow
+      ansible.builtin.shell:
+        chdir: "{{ home_dir }}/.dotfiles/Applications"
+        cmd: stow -v --restow */
+      register: stow_result
+      changed_when: "'LINK:' in stow_result.stdout"
 
     # - name: Copy wallpaper file
     #   ansible.builtin.copy:
@@ -74,5 +94,3 @@
 
         # python3-psutil needs to be installed from apt for the dconf module
         # Install from apt the dconf-cli and then do dconf dump / > settings.txt to see all configs
-    # - name: Add user
-    #   system: yes
