@@ -109,6 +109,7 @@
           # from custom developer repos
           - nushell
     - name: Install essential packages (Homebrew)
+      become: false
       community.general.homebrew:
         state: present
         name:
