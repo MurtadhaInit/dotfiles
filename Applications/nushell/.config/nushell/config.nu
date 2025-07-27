@@ -101,13 +101,16 @@ $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 # Colour theme
 source "themes/catppuccin_mocha.nu"
 
+# All Homebrew shell setup is derived from: brew shellenv --help
+const brew_prefix = (if $nu.os-info.name == 'macos' {'/opt/homebrew'} else {'/home/linuxbrew/.linuxbrew'})
+
 # === Environment Variables ===
 load-env {
     # Homebrew setup as per `brew shellenv`
-    HOMEBREW_PREFIX: "/opt/homebrew",
-    HOMEBREW_CELLAR: "/opt/homebrew/Cellar",
-    HOMEBREW_REPOSITORY: "/opt/homebrew",
-    INFOPATH: $"/opt/homebrew/share/info:($env.INFOPATH? | default '')",
+    HOMEBREW_PREFIX: $brew_prefix,
+    HOMEBREW_CELLAR: $"($brew_prefix)/Cellar",
+    HOMEBREW_REPOSITORY: (if $nu.os-info.name == 'macos' {$brew_prefix} else {$"($brew_prefix)/Homebrew"}),
+    INFOPATH: $"($brew_prefix)/share/info:($env.INFOPATH? | default '')",
 
     VISUAL: "code",
     EDITOR: "vim",
@@ -155,8 +158,8 @@ $env.PATH = [
     $"($nu.home-path)/Library/Application Support/JetBrains/Toolbox/scripts"
 
     # Homebrew setup as per `brew shellenv` 
-    "/opt/homebrew/bin"
-    "/opt/homebrew/sbin"
+    $"($brew_prefix)/bin"
+    $"($brew_prefix)/sbin"
     ...$env.PATH
 ] | uniq # remove duplicates
 
@@ -171,6 +174,7 @@ alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu # dotfiles script
+# TODO: fix ls by either simplifying or passing passed arguments to the alias to ls
 alias ls = do { ls -al | select mode size user group modified type name | sort-by modified | reverse | sort-by type }
 alias eza = eza -lahg --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"
 
