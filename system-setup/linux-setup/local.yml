@@ -79,14 +79,12 @@
           gpgcheck=0
           gpgkey=https://yum.fury.io/nushell/gpg.key
 
-    # - name: Install Terra - add the terra-release repository. Was going to be added for bottom
-    #   ansible.builtin.dnf5:
-    #     disable_gpg_check: true
-      # TODO: add the rpm fusion repos and the nushell repo this way too (and even others like librewolf and chrome and vscode)
-    # - name: Add the Terra repository
-    #   block:
-    #     - name: Add the repository
-    #       ansible.builtin.yum_repository:
+    # TODO: use ansible.builtin.yum_repository in a block to add the repo first then install terra-release
+    # TODO: add the rpm fusion repos and the nushell repo this way too (and even others like librewolf and chrome and vscode)
+    - name: Add the Terra (terra-release) repository
+      ansible.builtin.command:
+        cmd: dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
+        creates: /etc/yum.repos.d/terra.repo
 
     - name: Install Homebrew - for newer packages, e.g. CLI tools
       become: false
@@ -96,17 +94,25 @@
       environment:
         NONINTERACTIVE: "1"
 
-      # TODO: possibly make this into a block with certain things installed with dnf and others with Homebrew
+      # TODO: make this into a block with certain things installed with dnf (e.g. ghostty from terra) and others with Homebrew (e.g. up-to-date CLI tools)
     - name: Install essential packages
       ansible.builtin.dnf5:
         update_cache: true
         state: present
         name:
-          - nushell
           - stow
           - bat
           # bottom is installed from terra
           # - bottom
+          # from Terra
+          - ghostty
+          # from custom developer repos
+          - nushell
+    - name: Install essential packages (Homebrew)
+      community.general.homebrew:
+        state: present
+        name:
+          - zoxide
 
     - name: Make sure Nushell is present in the list of shells
       ansible.builtin.lineinfile:
