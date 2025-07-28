@@ -101,16 +101,18 @@
         state: present
         name:
           - stow
-          # remove
-          - bat
           # from Terra
           - ghostty
           # from custom developer repos
           - nushell
-    - name: Install essential packages (Homebrew)
+    - name: Homebrew taps
+      become: false
+      community.general.homebrew_tap:
+        name:
+          - jesseduffield/lazydocker
+    - name: Homebrew packages
       become: false
       community.general.homebrew:
-        state: present
         name:
           - zoxide
           - atuin
