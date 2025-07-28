@@ -101,9 +101,8 @@
         state: present
         name:
           - stow
+          # remove
           - bat
-          # bottom is installed from terra
-          # - bottom
           # from Terra
           - ghostty
           # from custom developer repos
@@ -114,6 +113,30 @@
         state: present
         name:
           - zoxide
+          - atuin
+          - git
+          - bat
+          - bottom
+          - bash
+          - direnv
+          - gh
+          - starship
+          - neovim
+          - carapace
+          - eza
+          - jesseduffield/lazydocker/lazydocker
+          - lazygit
+
+    # - name: Node-based development
+    #   environment:
+    #     FNM_DIR: "{{ home_dir }}/.local/share/fnm"
+    #   block:
+    #     - name: Install fnm
+    #       community.general.homebrew:
+    #         state: present
+    #         name:
+    #           - fnm
+    #     - name: Install Node
 
     - name: Make sure Nushell is present in the list of shells
       ansible.builtin.lineinfile:
