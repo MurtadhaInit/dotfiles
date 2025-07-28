@@ -11,8 +11,9 @@ macos-trash
 zellij
 starship
 neovim
-fd
+carapace
 tree
+fd
 eza
 fzf
 ncdu
@@ -21,4 +22,4 @@ zsh-autosuggestions
 zsh-fast-syntax-highlighting
 eth-p/software/bat-extras
 jesseduffield/lazydocker/lazydocker
-jesseduffield/lazygit/lazygit
+lazygit
