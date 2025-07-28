@@ -129,17 +129,8 @@
           - jesseduffield/lazydocker/lazydocker
           - lazygit
 
-    # - name: Node-based development
-    #   environment:
-    #     FNM_DIR: "{{ home_dir }}/.local/share/fnm"
-    #   block:
-    #     - name: Install fnm
-    #       community.general.homebrew:
-    #         state: present
-    #         name:
-    #           - fnm
-    #     - name: Install Node
-
+    # - name: Install all the flatpaks using the flatpak module
+    # - name: Call a nushell script to setup node and its dev env and others (python...)
     - name: Make sure Nushell is present in the list of shells
       ansible.builtin.lineinfile:
         state: present
