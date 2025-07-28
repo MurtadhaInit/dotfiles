@@ -3,6 +3,8 @@ export def command_exists [cmd: string] {
 }
 
 export def ensure_homebrew_package [pkg: string, --cask] {
+  const brew = (if $nu.os-info.name == "macos" {"/opt/homebrew/bin/brew"} else {"/home/linuxbrew/.linuxbrew/bin/brew"})
+
   let check_result = do { brew list $pkg } | complete
   if $check_result.exit_code != 0 {
     print $"Installing ($pkg)..."
