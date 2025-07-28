@@ -6,7 +6,7 @@ def setup_node [] {
 
   with-env {FNM_DIR: $"($nu.home-path)/.local/share/fnm"} {
     ensure_homebrew_package "fnm"
-    if not (which node | get path.0 | str contains "fnm_multishells") {
+    if (which node | is-empty) or not (which node | get path.0 | str contains "fnm_multishells") {
       print "Installing the latest and the latest LTS versions of Node and npm with fnm..."
       fnm install --latest
       fnm install --lts
@@ -16,14 +16,15 @@ def setup_node [] {
   }
   
   if not (command_exists pnpm) {
-    corepack enable pnpm
-    print "Enabled pnpm ✅"
+    if (command_exists corepack) {
+      ^corepack enable pnpm
+      print "Enabled pnpm ✅"
+    } else {
+      print "Couldn't find corepack. pnpm not added ❗️"
+    }
   } else {
     print "pnpm is already present ✅"
   }
-
-  # Install npm global packages: required dependencies for "import cost" vscode extension
-  # npm install --global esbuild prettier
 
   ensure_homebrew_package "oven-sh/bun/bun"
   print "Installing global JS packages (tools) with Bun..."
