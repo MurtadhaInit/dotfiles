@@ -196,7 +196,6 @@ alias eza = eza -lahg --group-directories-first --git --icons=auto --time-style=
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 mkdir ($nu.data-dir | path join "vendor/autoload")
 carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
-# source ($nu.data_dir | path join "vendor/autoload/carapace.nu") 
 
 # Direnv
 $env.config.hooks.env_change.PWD = (
@@ -226,7 +225,6 @@ if not (which fnm | is-empty) {
 # Zoxide
 mkdir ($nu.data-dir | path join "vendor/autoload")
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
-# source ~/.zoxide.nu
 
 # Atuin command history
 mkdir ($nu.data-dir | path join "vendor/autoload")
