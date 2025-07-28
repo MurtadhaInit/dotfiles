@@ -101,16 +101,16 @@ $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 # Colour theme
 source "themes/catppuccin_mocha.nu"
 
-# In macOS those variables are defined earlier in the chain by a service (.plist file)
+# Linux setup. In macOS those variables are defined earlier in the chain by a service (.plist file)
 if $nu.os-info.name != "macos" {
     load-env {
-        XDG_CONFIG_HOME: /Users/murtadha/.config
-        XDG_CACHE_HOME: /Users/murtadha/.cache
-        XDG_DATA_HOME: /Users/murtadha/.local/share
-        XDG_STATE_HOME: /Users/murtadha/.local/state
+        XDG_CONFIG_HOME: /home/murtadha/.config
+        XDG_CACHE_HOME: /home/murtadha/.cache
+        XDG_DATA_HOME: /home/murtadha/.local/share
+        XDG_STATE_HOME: /home/murtadha/.local/state
         # TODO: this should be /run/user/$UID
-        # XDG_RUNTIME_DIR: /Users/murtadha/.local/run
-        XDG_BIN_HOME: /Users/murtadha/.local/bin
+        # XDG_RUNTIME_DIR: /home/murtadha/.local/run
+        XDG_BIN_HOME: /home/murtadha/.local/bin
     }
 }
 
