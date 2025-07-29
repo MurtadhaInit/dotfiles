@@ -80,6 +80,14 @@
           gpgkey=https://yum.fury.io/nushell/gpg.key
 
     # TODO: use ansible.builtin.yum_repository in a block to add the repo first then install terra-release
+    - name: Add Yum repository for Docker
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/fedora/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+        owner: root
+        group: root
+        mode: '0644'
+
     # TODO: add the rpm fusion repos and the nushell repo this way too (and even others like librewolf and chrome and vscode)
     - name: Add the Terra (terra-release) repository
       ansible.builtin.command:
@@ -100,11 +108,32 @@
         update_cache: true
         state: present
         name:
+          - dnf-plugins-core
           - stow
           # from Terra
           - ghostty
           # from custom developer repos
           - nushell
+          # Install the latest version of Docker
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+
+    - name: Start Docker service
+      ansible.builtin.systemd:
+        name: docker
+        enabled: true
+        state: started
+    - name: Add the current user to the newly created 'docker' group (to avoid sudo)
+      ansible.builtin.user:
+        name: "{{ invoking_user }}"
+        append: true
+        groups:
+          - docker
+    # Log out then back in for group membership to be re-evaluated
+
     - name: Homebrew taps
       become: false
       community.general.homebrew_tap:
