@@ -11,7 +11,7 @@ def main [
   --skip-tasks: list<string> = [] # specify the exact names of tasks to skip
   ]: nothing -> nothing {
   cd $"($nu.home-path)/.dotfiles/system-setup"
-  let tasks_dir = match $nu.os-info.name {
+  let os_tasks_dir = match $nu.os-info.name {
     "macos" => {
       print "🍎 MacOS detected"
       "macos-tasks"
@@ -30,7 +30,9 @@ def main [
     }
   }
 
-  let tasks = get_tasks $tasks_dir
+  let os_tasks = get_tasks $os_tasks_dir
+  let shared_tasks = get_tasks "shared-tasks"
+  let tasks = $shared_tasks ++ $os_tasks
   mut to_skip = []
 
   # skip tasks interactively
@@ -86,7 +88,7 @@ def get_tasks [tasks_dir: string] {
       {
         path: $item,
         name: ($item | path parse).stem,
-        priority: (get_priority $item) 
+        priority: (get_priority $item)
       }
     }
   | sort-by -r priority
