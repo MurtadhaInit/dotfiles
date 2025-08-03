@@ -1,22 +1,27 @@
 #!/usr/bin/env nu
 
+# Setup a workstation through a number of Nushell scripts.
+#
+# After detecting the OS type, relevant tasks will be shown.
+# Each task represents a step to configure the current system.
+# Navigate with keyboard and pick the tasks to be performed.
 def main [
-  --skip,
-  --all,
-  --skip-tasks: list = []
-  ] {
+  --skip # select the tasks to skip and execute the rest (opposite of normal operation)
+  --all # execute all tasks (unattended)
+  --skip-tasks: list<string> = [] # specify the exact names of tasks to skip
+  ]: nothing -> nothing {
   cd $"($nu.home-path)/.dotfiles/system-setup"
   let tasks_dir = match $nu.os-info.name {
     "macos" => {
       print "🍎 MacOS detected"
       "macos-tasks"
     },
-    "windows" => {
-      print "🪟 Windows detected"
-      exit 1
-    },
     "linux" => {
       print "🐧 Linux detected"
+      exit 1
+    },
+    "windows" => {
+      print "🪟 Windows detected, unfortunately..."
       exit 1
     },
     _ => {

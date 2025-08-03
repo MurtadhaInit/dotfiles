@@ -27,7 +27,7 @@ def setup_node [] {
   }
 
   ensure_homebrew_package "oven-sh/bun/bun"
-  print "Installing global JS packages (tools) with Bun..."
+  print "Installing/updating global JS packages (tools) with Bun..."
   bun install --global @openai/codex @anthropic-ai/claude-code @google/gemini-cli
 }
 
