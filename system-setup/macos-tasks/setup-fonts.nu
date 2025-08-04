@@ -1,51 +1,66 @@
 # priority: 2
 
-def main [
-  --encrypt
-  decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted"
-  encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted"
-  key_file: string = $"($nu.home-path)/.ssh/keys/age.txt"
+# Decrypt the content of the `encrypted_dir` into `decrypted_dir` using `age`
+#
+# By default, if the `decrypted_dir` is empty the files in `encrypted_dir` are decrypted
+# to it. And then all files in `decrypted_dir` are copied (without overwriting) to the
+# relevant OS fonts directory.
+#
+# The key file is the age identity file (akin to the private key)
+# The key file also contains the recipient (akin to public key) as a comment
+# which is parsed automatically when encrypting with the --identity flag
+def setup_fonts [
+  --encrypt # encrypt the content of the `decrypted_dir` into the `encrypted_dir`
+  decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted" # the directory whose content is in plaintext
+  encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted" # the directory whose content is in cyphertext
+  key_file: string = $"($nu.home-path)/.ssh/keys/age.txt" # the 'age' identity file used for encryption/decryption
 ] {
   use ../utils/utils.nu ensure_homebrew_package
-  print "Setting up fonts..."
+  print "🔄 Setting up fonts..."
   ensure_homebrew_package "age"
-
-  # The key file is the age identity file (akin to the private key)
-  # The key file also contains the recipient (akin to public key) as a comment
-  # which is parsed automatically when encrypting with the --identity flag
 
   if ($encrypt) {
     encrypt_path_content_with_age $decrypted_dir $encrypted_dir $key_file
-  }
-
-  def dir_content [dir: string] {
-    glob --no-dir --no-symlink $"($dir)/**"
-      | where { |path|
-        ($path | path basename) != ".DS_Store"
-      }
+    return
   }
 
   if ((dir_content $decrypted_dir | length) == 0) {
     try {
       decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
     } catch {
-      print "Could not decrypt fonts ❗️"
+      print "⚠️ Could not decrypt fonts"
       return
     }
   } else {
-    print "Fonts seem to be already decrypted (directory non-empty) ✅"
+    print "✅ Fonts seem to be already decrypted (directory not empty)"
   }
-  cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+
+  if ($nu.os-info.name == "macos") {
+    cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+  } else {
+    mkdir $"($nu.home-path)/.local/share/fonts/"
+    cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
+    ^fc-cache -fv
+  }
 }
 
-def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: string] {
+# Encrypt the content of `dir` into `dest_dir` using the identity file in `key_file`
+def encrypt_path_content_with_age [
+  dir: string # the source directory with plaintext content to encrypt
+  dest_dir: string # the destination directory to place cyphertext content into
+  key_file: string # the `age` identity file to use for encryption
+  --overwrite # overwrite existing destination cyphertext files if found
+] {
   if not ($dir | path exists) {
-    print $"($dir) does not exist ❗️"
+    print $"⚠️ ($dir) does not exist"
+    exit 1
+  } else if ((dir_content $dir | length) == 0) {
+    print $"⚠️ ($dir) is empty"
     exit 1
   }
   mkdir $dest_dir
 
-  for path in (glob $"($dir)/**") {
+  for path in (glob $"($dir)/**/*") {
     if (($path | path basename) != ".DS_Store" and $path != $dir) {
       let rel_path = $path | path relative-to $dir
       let target_path = $dest_dir | path join $rel_path
@@ -55,9 +70,12 @@ def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
       }
       if (($path | path type) == file) {
         let output_path = $target_path + ".age"
+        if ($overwrite) {
+            print $"🔄 Encrypting: ($path | path basename)..."
+            age --encrypt --identity $key_file --output $output_path $path
         # do not overwrite existing encrypted files
-        if not ($output_path | path exists) {
-          print $"Encrypting: ($path | path basename)..."
+        } else if not ($output_path | path exists) {
+          print $"🔄 Encrypting: ($path | path basename)..."
           age --encrypt --identity $key_file --output $output_path $path
         }
       }
@@ -65,14 +83,22 @@ def encrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
   }
 }
 
-def decrypt_path_content_with_age [dir: string, dest_dir: string, key_file: string] {
+# Decrypt the content of `dir` into `dest_dir` using the identity file in `key_file`
+def decrypt_path_content_with_age [
+  dir: string # the source directory with cyphertext content to decrypt
+  dest_dir: string # the destination directory to place decrypted content into
+  key_file: string # the `age` identity file to use for decryption
+] {
   if not ($dir | path exists) {
-    print $"($dir) does not exist ❗️"
+    print $"⚠️ ($dir) does not exist"
+    exit 1
+  } else if ((dir_content $dir | length) == 0) {
+    print $"⚠️ ($dir) is empty"
     exit 1
   }
   mkdir $dest_dir
 
-  for path in (glob $"($dir)/**") {
+  for path in (glob $"($dir)/**/*") {
     if (($path | path basename) != ".DS_Store" and $path != $dir) {
       let rel_path = $path | path relative-to $dir
       let target_path = $dest_dir | path join $rel_path
@@ -81,10 +107,17 @@ def decrypt_path_content_with_age [dir: string, dest_dir: string, key_file: stri
         mkdir $target_path
       }
       if (($path | path type) == file) {
-        print $"Decrypting: ($path | path basename)..."
+        print $"🔄 Decrypting: ($path | path basename)..."
         let output_path = $target_path | path parse | reject extension | path join
         age --decrypt --identity $key_file --output $output_path $path
       }
     }
   }
+}
+
+def dir_content [dir: string] {
+  glob --no-dir --no-symlink $"($dir)/**/*"
+    | where { |path|
+      ($path | path basename) != ".DS_Store"
+    }
 }
