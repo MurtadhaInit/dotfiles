@@ -132,6 +132,7 @@ load-env {
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
     HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues 
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
+    EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
 
     # By default, this is ~/.aws/config and by default it doesn't contain credentials
     # Credentials is typically in a separate file in ~/.aws/credentials
@@ -194,7 +195,7 @@ alias ls = do {|...rest|
     | reverse
     | sort-by type
 }
-alias eza = eza -lahg --group-directories-first --git --icons=auto --time-style="+%d-%b-%Y %l:%M%P"
+alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
 
 # === Tools ===
 # Carapace command completions
