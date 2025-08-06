@@ -1,7 +1,3 @@
-# Nushell Config File
-#
-# version = "0.104.0"
-
 $env.config = {
     show_banner: false
     edit_mode: vi # or emacs
@@ -101,7 +97,7 @@ $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 # Colour theme
 source "themes/catppuccin_mocha.nu"
 
-# Linux setup. In macOS those variables are defined earlier in the chain by a service (.plist file)
+# Linux setup. In macOS these variables are set earlier by a service (.plist file)
 if $nu.os-info.name != "macos" {
     load-env {
         XDG_CONFIG_HOME: /home/murtadha/.config
@@ -128,7 +124,6 @@ load-env {
     VISUAL: "code",
     EDITOR: "vim",
 
-    # TODO: it's originally without quotes
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
     HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues 
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
@@ -142,9 +137,6 @@ load-env {
     AWS_SHARED_CREDENTIALS_FILE: $"($nu.home-path)/.ssh/keys/aws-credentials",
 
     # "NULLCMD": "bat" # Default to bat instead of cat
-    # "ANDROID_HOME": $"($nu.home-path)/Library/Android/sdk" # Android SDKs location
-    # "VAGRANT_HOME": $"($env.XDG_DATA_HOME)/vagrant" # Vagrant root directory
-    # "DOCKER_CONFIG": $"($env.XDG_CONFIG_HOME)/docker" # Docker
 
     PYENV_ROOT: $"($env.XDG_DATA_HOME)/pyenv", # pyenv root directory
     FNM_DIR: $"($env.XDG_DATA_HOME)/fnm", # fnm root directory
@@ -161,14 +153,11 @@ if not ($env.MANPATH? | is-empty) {
 
 # === $PATH ===
 $env.PATH = [
-    $"($env.XDG_BIN_HOME)"
+    $"($env.XDG_BIN_HOME)" # Python binaries installed with `uv tool install` (among others)
     $"($env.PYENV_ROOT)/shims"
     $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
-    # $"(brew --prefix openjdk)/bin" # Homebrew JDK
     $"($env.GOBREW_ROOT)/.gobrew/bin" # gobrew binary
     $"($env.GOBREW_ROOT)/.gobrew/current/bin" # active version of Go set by gobrew
-    # $"($env.ANDROID_HOME)/emulator" # Android Development
-    # $"($env.ANDROID_HOME)/platform-tools" # Android Development
     $"($nu.home-path)/Library/Application Support/JetBrains/Toolbox/scripts"
 
     # Homebrew setup as per `brew shellenv` 
@@ -187,7 +176,7 @@ alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 # Update the Brewfile after adding a package
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }
-alias dot = ~/.dotfiles/system-setup/setup.nu # dotfiles script
+alias dot = ~/.dotfiles/system-setup/setup.nu
 alias ls = do {|...rest|
     ls -al ...($rest | default -e ["."])
     | select mode size user group modified type name
@@ -223,6 +212,7 @@ if not (which fnm | is-empty) {
     $env.config.hooks.env_change.PWD = (
         $env.config.hooks.env_change.PWD? | append {
             condition: {|| ['.nvmrc' '.node-version' 'package.json'] | any {|el| $el | path exists}}
+            # NOTE: consider adding: --version-file-strategy recursive
             code: {|| ^fnm use --install-if-missing}
         }
     )
