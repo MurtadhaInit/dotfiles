@@ -21,8 +21,11 @@ def setup_python [] {
   ensure_homebrew_package "uv"
 
   print "🔄 Installing global Python packages (tools) with uv..."
+  # NOTE: The --with-executables-from flag will install those packages as
+  # dependencies (if they're not already so) AND include their executables
   uv tool install sqlfluff
-  # use uv to install Ansible along with its dependencies
+  uv tool install ruff
+  uv tool install --with-executables-from ansible-core,ansible-lint ansible
 }
 
 setup_python
