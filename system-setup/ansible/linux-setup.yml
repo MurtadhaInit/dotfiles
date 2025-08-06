@@ -6,7 +6,7 @@
   become: true
 
   tasks:
-    - name: Record the current logged-in user that invoked the playbook
+    - name: Record the current logged-in user that invoked the playbook and their home directory
       ansible.builtin.set_fact:
         invoking_user: "{{ lookup('env', 'USER') }}"
         home_dir: "{{ lookup('env', 'HOME') }}"

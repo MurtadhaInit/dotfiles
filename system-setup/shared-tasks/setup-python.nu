@@ -26,6 +26,8 @@ def setup_python [] {
   uv tool install sqlfluff
   uv tool install ruff
   uv tool install --with-executables-from ansible-core,ansible-lint ansible
+
+  uv tool upgrade --all
 }
 
 setup_python
