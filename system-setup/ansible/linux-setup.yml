@@ -23,9 +23,11 @@
         group: root
         content: "{{ invoking_user }} ALL=(ALL) NOPASSWD: ALL"
         validate: "/usr/sbin/visudo -cf %s"
+
     # - name: Generate SSH keys locally (using a role)
     # - name: Make sure the line Host * AddKeysToAgent yes is present in ~/.ssh/config
-    - name: Ensure dnf.conf exists and has a [main] section
+
+    - name: Ensure dnf.conf exists and has a [main] section (for configuration)
       ansible.builtin.lineinfile:
         path: /etc/dnf/dnf.conf
         create: true
@@ -45,18 +47,6 @@
           defaultyes=True
           keepcache=True
 
-    - name: Create directories
-      become: false
-      ansible.builtin.file:
-        path: "{{ home_dir }}/{{ item }}"
-        state: directory
-        owner: "{{ invoking_user }}"
-        group: "{{ invoking_user }}"
-        mode: "0755"
-      loop:
-        - Work
-        - Projects
-
     # - name: Import a task or role for configuring GNOME
 
     - name: Remove Firefox
@@ -65,7 +55,8 @@
         name: firefox
 
       # TODO: convert this to the yum_repository module instead
-    - name: Prepare to install Nushell (add its repository)
+      # TODO: might actually install Nushell from Homebrew
+    - name: Add the Nushell repository for dnf installation
       ansible.builtin.copy:
         dest: /etc/yum.repos.d/fury-nushell.repo
         owner: root
@@ -94,7 +85,7 @@
         cmd: dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release -y
         creates: /etc/yum.repos.d/terra.repo
 
-    - name: Install Homebrew - for newer packages, e.g. CLI tools
+    - name: Install Homebrew
       become: false
       ansible.builtin.shell:
         cmd: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -102,92 +93,51 @@
       environment:
         NONINTERACTIVE: "1"
 
-      # TODO: make this into a block with certain things installed with dnf (e.g. ghostty from terra) and others with Homebrew (e.g. up-to-date CLI tools)
     - name: Install essential packages
       ansible.builtin.dnf5:
         update_cache: true
         state: present
         name:
           - dnf-plugins-core
-          - stow
+          # - stow TODO: remove!
           # from Terra
           - ghostty
           # from custom developer repos
           - nushell
-          # Install the latest version of Docker
+            # Install the latest version of Docker
           - docker-ce
           - docker-ce-cli
           - containerd.io
           - docker-buildx-plugin
           - docker-compose-plugin
 
-    - name: Start Docker service
+    - name: Start the Docker service
       ansible.builtin.systemd:
         name: docker
         enabled: true
         state: started
+
     - name: Add the current user to the newly created 'docker' group (to avoid sudo)
+      # Log out then back in for group membership to be re-evaluated
       ansible.builtin.user:
         name: "{{ invoking_user }}"
         append: true
         groups:
           - docker
-    # Log out then back in for group membership to be re-evaluated
-
-    - name: Homebrew taps
-      become: false
-      community.general.homebrew_tap:
-        name:
-          - jesseduffield/lazydocker
-    - name: Homebrew packages
-      become: false
-      community.general.homebrew:
-        name:
-          - zoxide
-          - atuin
-          - git
-          - bat
-          - bottom
-          - bash
-          - direnv
-          - gh
-          - starship
-          - neovim
-          - carapace
-          - eza
-          - jesseduffield/lazydocker/lazydocker
-          - lazygit
 
     # - name: Install all the flatpaks using the flatpak module
-    # - name: Call a nushell script to setup node and its dev env and others (python...)
+
     - name: Make sure Nushell is present in the list of shells
       ansible.builtin.lineinfile:
         state: present
         path: /etc/shells
         line: "/usr/bin/nu"
 
-    # TODO: uncomment when it's ready to make Nushell the default on linux workstation
-    # - name: "Make Nushell the default interactive shell for {{ invoking_user }}"
-    #   ansible.builtin.user:
-    #     state: present
-    #     name: "{{ invoking_user }}"
-    #     shell: /usr/bin/nu
-
-    - name: Symlink dotfiles with GNU Stow
-      become: false
-      ansible.builtin.shell:
-        chdir: "{{ home_dir }}/.dotfiles/Applications"
-        cmd: stow -v */
-      register: stow_result
-      changed_when: ("LINK:" in stow_result.stdout) or ("LINK:" in stow_result.stderr)
-
-    # - name: Copy wallpaper file
-    #   ansible.builtin.copy:
-    #     src: files/wallpaper.png
-    #     dest: /usr/share/background/ansible-wallpaper.png
-    #     owner: root
-    #     group: root
-    #     mode: u+rw
+    - name: "Make Nushell the default interactive shell for {{ invoking_user }}"
+      ansible.builtin.user:
+        state: present
+        name: "{{ invoking_user }}"
+        shell: /usr/bin/nu
 
     # - name: Set wallpaper
     #   community.general.dconf:
