@@ -11,6 +11,7 @@
 # which is parsed automatically when encrypting with the --identity flag
 def setup_fonts [
   --encrypt # encrypt the content of the `decrypted_dir` into the `encrypted_dir`
+  --overwrite # overwrite existing user fonts with the provided ones (useful for font updates)
   decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted" # the directory whose content is in plaintext
   encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted" # the directory whose content is in cyphertext
   key_file: string = $"($nu.home-path)/.ssh/keys/age.txt" # the 'age' identity file used for encryption/decryption
@@ -36,10 +37,10 @@ def setup_fonts [
   }
 
   if ($nu.os-info.name == "macos") {
-    cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+    cp (if $overwrite {''} else {'--no-clobber'}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
   } else {
     mkdir $"($nu.home-path)/.local/share/fonts/"
-    cp --no-clobber --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
+    cp (if $overwrite {''} else {'--no-clobber'}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
     ^fc-cache -fv
   }
 }

@@ -4,6 +4,8 @@ def setup_zsh [] {
   print "Setting up ZSH..."
   use ../utils/utils.nu ensure_homebrew_package
   ensure_homebrew_package "zsh"
+  ensure_homebrew_package "zsh-autosuggestions"
+  ensure_homebrew_package "zsh-fast-syntax-highlighting"
 
   let homebrew_zsh_path = $"($env.HOMEBREW_PREFIX)/bin/zsh"
   if not ($homebrew_zsh_path | path exists) {

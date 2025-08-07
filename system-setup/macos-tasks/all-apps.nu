@@ -1,21 +1,14 @@
 # priority: 1
 
-def brewfile_installation [] {
-  use ../utils/utils.nu ensure_homebrew_package
-  print "Installing/upgrading everything from Brewfile (including App Store apps)..."
+def install_everything [] {
+  use ../utils/utils.nu [ensure_homebrew_package install_from_brewfile]
+  print "🔄 Installing everything from Brewfile (including App Store apps)..."
 
   ensure_homebrew_package "mas"
-  with-env { HOMEBREW_CASK_OPTS: "--no-quarantine" } {
-    cd $"($nu.home-path)/.dotfiles/Homebrew"
-    let check = do { brew bundle check --verbose --no-upgrade --file=./Brewfile } | complete
-    if ($check.exit_code != 0) {
-      brew bundle install --no-upgrade --verbose --cleanup --file=./Brewfile
-    } else {
-      print $check.stdout
-    }
-    # print "Initiating Homebrew cleanup..."
-    # brew cleanup --verbose --prune=all
-  }
+  # TODO: pause here to make sure the user is logged-in to the app store
+  let brewfile = $"($nu.home-path)/.dotfiles/Homebrew/Brewfile"
+
+  install_from_brewfile $brewfile --just-those
 }
 
-brewfile_installation
+install_everything
