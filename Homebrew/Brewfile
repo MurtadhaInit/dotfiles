@@ -1,11 +1,6 @@
 tap "cirruslabs/cli"
-tap "eth-p/software"
 tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "jesseduffield/lazydocker"
-tap "jesseduffield/lazygit"
-tap "localsend/localsend"
 tap "oven-sh/bun"
 tap "pulumi/tap"
 # Run your GitHub Actions locally
@@ -30,6 +25,8 @@ brew "bash"
 brew "libgit2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Bash scripts that integrate bat with various command-line tools
+brew "bat-extras"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
 # Core application library for C
@@ -46,6 +43,8 @@ brew "coreutils"
 brew "cpufetch"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Modern, maintained replacement for ls
+brew "eza"
 # Collection of reusable C++ library artifacts developed at Facebook
 brew "folly"
 # C++14 implementation of the TLS-1.3 standard
@@ -54,10 +53,6 @@ brew "fizz"
 brew "wangle"
 # Thrift functions for querying information from a service
 brew "fb303"
-# Shared library for Watchman and Eden projects
-brew "edencommon"
-# Modern, maintained replacement for ls
-brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Fast and simple Node.js version manager
@@ -82,46 +77,28 @@ brew "glow"
 brew "gnutls"
 # Fast linters runner for Go
 brew "golangci-lint"
-# User-friendly cURL replacement (command-line HTTP client)
-brew "httpie"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@76"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Handy way to save and run project-specific commands
 brew "just"
 # Tool to move from `docker-compose` to Kubernetes
 brew "kompose"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Pager program similar to more
 brew "less"
-# Portable Foreign Function Interface library
-brew "libffi"
-# Rainbows and unicorns in your console!
-brew "lolcat"
-# Move files and folders to the trash
-brew "macos-trash", link: true
 # Mac App Store command-line interface
 brew "mas"
 # Free (GNU) replacement for the Pico text editor
 brew "nano"
-# NCurses Disk Usage
-brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Modern shell for the GitHub era
 brew "nushell"
-# Development kit for the Java programming language
-brew "openjdk"
-# Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
-brew "prettier"
 # Python version management
 brew "pyenv"
-# Pyenv plugin to manage virtualenv
-brew "pyenv-virtualenv"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Search tool like grep and The Silver Searcher
@@ -136,8 +113,6 @@ brew "speedtest-cli"
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
-# Tool Command Language
-brew "tcl-tk"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -165,16 +140,12 @@ brew "zsh-fast-syntax-highlighting"
 brew "cirruslabs/cli/cirrus"
 # Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
-# Bash scripts that integrate bat with various command-line tools
-brew "eth-p/software/bat-extras"
 # Packer
 brew "hashicorp/tap/packer"
 # Terraform
 brew "hashicorp/tap/terraform"
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
-# A simple terminal UI for git commands, written in Go
-brew "jesseduffield/lazygit/lazygit"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
 brew "oven-sh/bun/bun"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
@@ -224,8 +195,6 @@ cask "leader-key"
 cask "legcord"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
-# Web browser
-cask "librewolf"
 # Customise mouse behavior
 cask "linearmouse"
 # Online collaborative whiteboard platform
@@ -278,16 +247,12 @@ cask "via"
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
-# Create, manage, and run virtual machines
-cask "vmware-fusion"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 # Network protocol analyzer
 cask "wireshark-app"
 # REST, GraphQL and gRPC client
 cask "yaak"
-# Application for configuring any YubiKey
-cask "yubico-yubikey-manager"
 # Multiplayer code editor
 cask "zed"
 # Gecko based web browser
