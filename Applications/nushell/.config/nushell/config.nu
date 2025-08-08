@@ -138,7 +138,6 @@ load-env {
 
     # "NULLCMD": "bat" # Default to bat instead of cat
 
-    PYENV_ROOT: $"($env.XDG_DATA_HOME)/pyenv", # pyenv root directory
     FNM_DIR: $"($env.XDG_DATA_HOME)/fnm", # fnm root directory
     GOBREW_ROOT: $"($env.XDG_DATA_HOME)/gobrew", # gobrew root directory
     GOPATH: $"($env.XDG_DATA_HOME)/gobrew/.gobrew/current/go", # needed for global Go tools `go install ...`
@@ -155,7 +154,6 @@ if not ($env.MANPATH? | is-empty) {
 # === $PATH ===
 $env.PATH = [
     $"($env.XDG_BIN_HOME)" # Python binaries installed with `uv tool install` (among others)
-    $"($env.PYENV_ROOT)/shims"
     $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
     $"($env.GOBREW_ROOT)/.gobrew/bin" # gobrew binary
     $"($env.GOBREW_ROOT)/.gobrew/current/bin" # active version of Go set by gobrew
