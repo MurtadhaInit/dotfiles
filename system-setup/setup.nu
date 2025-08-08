@@ -18,7 +18,7 @@ def main [
     },
     "linux" => {
       print "🐧 Linux detected"
-      exit 1
+      "linux-tasks"
     },
     "windows" => {
       print "🪟 Windows detected, unfortunately..."
