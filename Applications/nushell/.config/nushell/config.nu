@@ -142,6 +142,7 @@ load-env {
     FNM_DIR: $"($env.XDG_DATA_HOME)/fnm", # fnm root directory
     GOBREW_ROOT: $"($env.XDG_DATA_HOME)/gobrew", # gobrew root directory
     GOPATH: $"($env.XDG_DATA_HOME)/gobrew/.gobrew/current/go", # needed for global Go tools `go install ...`
+    ANSIBLE_HOME: $"($env.XDG_DATA_HOME)/ansible"
     JUPYTER_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/jupyter", # Jupyter config directory
     LESSHISTFILE: $"($env.XDG_CACHE_HOME)/less/history" # less history directory
 }
@@ -179,18 +180,17 @@ alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu
 alias ls = do {|...rest|
     ls -al ...($rest | default -e ["."])
-    | select mode size user group modified type name
     | sort-by modified
     | reverse
     | sort-by type
+    | select name size modified mode user group
 }
 alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
+alias macopen = ^open
 
 # === Tools ===
 # Carapace command completions
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
-mkdir ($nu.data-dir | path join "vendor/autoload")
-carapace _carapace nushell | save -f ($nu.data-dir | path join "vendor/autoload/carapace.nu")
 
 # Direnv
 $env.config.hooks.env_change.PWD = (
@@ -217,18 +217,6 @@ if not (which fnm | is-empty) {
         }
     )
 }
-
-# Zoxide
-mkdir ($nu.data-dir | path join "vendor/autoload")
-zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
-
-# Atuin command history
-mkdir ($nu.data-dir | path join "vendor/autoload")
-atuin init nu | save -f ($nu.data-dir | path join "vendor/autoload/atuin.nu")
-
-# Starship prompt
-mkdir ($nu.data-dir | path join "vendor/autoload")
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 # fzf theme (Catppuccin mocha)
 $env.FZF_DEFAULT_OPTS = "
