@@ -9,7 +9,7 @@
 # The key file is the age identity file (akin to the private key)
 # The key file also contains the recipient (akin to public key) as a comment
 # which is parsed automatically when encrypting with the --identity flag
-def setup_fonts [
+export def setup_fonts [
   --encrypt # encrypt the content of the `decrypted_dir` into the `encrypted_dir`
   --overwrite # overwrite existing user fonts with the provided ones (useful for font updates)
   decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted" # the directory whose content is in plaintext
@@ -37,10 +37,10 @@ def setup_fonts [
   }
 
   if ($nu.os-info.name == "macos") {
-    cp (if $overwrite {''} else {'--no-clobber'}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+    cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
   } else {
     mkdir $"($nu.home-path)/.local/share/fonts/"
-    cp (if $overwrite {''} else {'--no-clobber'}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
+    cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
     ^fc-cache -fv
   }
 }
@@ -84,6 +84,7 @@ def encrypt_path_content_with_age [
   }
 }
 
+# TODO: also add a --overwrite flag and pass it down from the main function
 # Decrypt the content of `dir` into `dest_dir` using the identity file in `key_file`
 def decrypt_path_content_with_age [
   dir: string # the source directory with cyphertext content to decrypt
