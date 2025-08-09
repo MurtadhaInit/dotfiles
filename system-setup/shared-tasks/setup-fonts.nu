@@ -25,6 +25,7 @@ export def setup_fonts [
     return
   }
 
+  mkdir $decrypted_dir
   if ((dir_content $decrypted_dir | length) == 0) {
     try {
       decrypt_path_content_with_age $encrypted_dir $decrypted_dir $key_file
@@ -123,3 +124,5 @@ def dir_content [dir: string] {
       ($path | path basename) != ".DS_Store"
     }
 }
+
+setup_fonts
