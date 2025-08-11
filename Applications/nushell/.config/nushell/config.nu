@@ -176,7 +176,7 @@ alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu
-alias ls = do {|...rest|
+alias nls = do {|...rest|
     ls -al ...($rest | default -e ["."])
     | sort-by modified
     | reverse
@@ -184,6 +184,7 @@ alias ls = do {|...rest|
     | select name size modified mode user group
 }
 alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
+alias ls = eza
 alias macopen = ^open
 
 # === Tools ===
