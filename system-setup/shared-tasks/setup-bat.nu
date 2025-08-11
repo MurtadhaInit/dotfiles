@@ -5,13 +5,15 @@ def setup_bat [] {
   print "🔄 Setting up bat..."
 
   ensure_homebrew_package "bat"
+  # which is also $"(bat --config-dir)/themes"
   let themes_dir = $"($nu.home-path)/.config/bat/themes"
   mkdir $themes_dir
 
+  # TODO: make sure it overwrites existing files (for updates)
   let repo_dir = $"($nu.home-path)/.config/bat/catppuccin"
   ensure_repo "https://github.com/catppuccin/bat.git" $repo_dir
 
-  cp --verbose --no-clobber ...(glob $"($repo_dir)/themes/*") $themes_dir
+  cp --verbose ...(glob $"($repo_dir)/themes/*") $themes_dir
 
   ^bat cache --build
   print "✅ bat is successfully set up"

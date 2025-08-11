@@ -6,7 +6,7 @@
 # 1. Install Homebrew and then Git (with Homebrew)
 # 2. Clone the dotfiles repo to ~/.dotfiles
 # 3. Install Nushell with Homebrew
-# 4. Initiate the setup process with Nu scripts
+# 4. Initiate the setup process with Nu scripts (plus Ansible for Linux)
 
 # check if a command exists
 function exists() {
