@@ -1,80 +1,31 @@
-# git:
-#   paging:
-#     colorArg: always
-#     pager: delta --dark --paging=never
+git:
+  paging:
+    colorArg: always
+    # -s (see delta --help) is for side-by-side diffing
+    pager: delta --paging=never -s
 
-theme:
-  lightTheme: false 
-  # -- Mocha --
-  activeBorderColor:
-    - "#a6e3a1" # Green
-    - bold
-  inactiveBorderColor:
-    - "#cdd6f4" # Text
-  optionsTextColor:
-    - "#89b4fa" # Blue
-  selectedLineBgColor:
-    - "#313244" # Surface0
-  selectedRangeBgColor:
-    - "#313244" # Surface0
-  cherryPickedCommitBgColor:
-    - "#94e2d5" # Teal
-  cherryPickedCommitFgColor:
-    - "#89b4fa" # Blue
-  unstagedChangesColor:
-    - red       # Red
-  # -- Latte --
-  # activeBorderColor:
-  #   - "#40a02b" # Green
-  #   - bold
-  # inactiveBorderColor:
-  #   - "#4c4f69" # Text
-  # optionsTextColor:
-  #   - "#1e66f5" # Blue
-  # selectedLineBgColor:
-  #   - "#ccd0da" # Surface0
-  # selectedRangeBgColor:
-  #   - "#ccd0da" # Surface0
-  # cherryPickedCommitBgColor:
-  #   - "#179299" # Teal
-  # cherryPickedCommitFgColor:
-  #   - "#1e66f5" # Blue
-  # unstagedChangesColor:
-  #   - red       # Red
-  # -- Frappe --
-  # activeBorderColor:
-  #   - "#a6d189" # Green
-  #   - bold
-  # inactiveBorderColor:
-  #   - "#c6d0f5" # Text
-  # optionsTextColor:
-  #   - "#8caaee" # Blue
-  # selectedLineBgColor:
-  #   - "#414559" # Surface0
-  # selectedRangeBgColor:
-  #   - "#414559" # Surface0
-  # cherryPickedCommitBgColor:
-  #   - "#81c8be" # Teal
-  # cherryPickedCommitFgColor:
-  #   - "#8caaee" # Blue
-  # unstagedChangesColor:
-  #   - red       # Red
-  # -- Macchiato --
-  # activeBorderColor:
-  #   - "#a6da95" # Green
-  #   - bold
-  # inactiveBorderColor:
-  #   - "#cad3f5" # Text
-  # optionsTextColor:
-  #   - "#8aadf4" # Blue
-  # selectedLineBgColor:
-  #   - "#363a4f" # Surface0
-  # selectedRangeBgColor:
-  #   - "#363a4f" # Surface0
-  # cherryPickedCommitBgColor:
-  #   - "#8bd5ca" # Teal
-  # cherryPickedCommitFgColor:
-  #   - "#8aadf4" # Blue
-  # unstagedChangesColor:
-  #   - red       # Red
+gui:
+  # other Catppuccin flavours and accents at: https://github.com/catppuccin/lazygit/tree/main/themes
+  theme:
+    activeBorderColor:
+      - '#b4befe'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#b4befe'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
 
+  authorColors:
+    '*': '#b4befe'

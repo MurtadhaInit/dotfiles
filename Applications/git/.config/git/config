@@ -14,5 +14,9 @@
     cmd = code --wait $MERGED
 [alias]
     lg = log --oneline --decorate --graph --all --pretty
-[alias]
     unstage = restore --staged .
+
+[include]
+	path = ./delta/catppuccin.gitconfig
+[delta]
+	features = catppuccin-mocha

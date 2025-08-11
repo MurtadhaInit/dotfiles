@@ -4,6 +4,8 @@
 # tap "oven-sh/bun"
 
 # Brews
+brew "bash"
+brew "git-delta"
 brew "atuin"
 brew "bat"
 brew "bat-extras"
