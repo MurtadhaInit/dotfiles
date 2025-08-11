@@ -1,9 +1,15 @@
-# Run `bat --list-themes` for a list of all available themes
---theme="Catppuccin Mocha"
+# This is `bat`s configuration file. Each line either contains a comment or
+# a command-line option that you want to pass to `bat` by default. You can
+# run `bat --help` to get a list of all possible configuration options.
+
+# Specify desired highlighting theme (e.g. "TwoDark"). Run `bat --list-themes`
+# for a list of all available themes
+--theme-dark="Catppuccin Mocha"
+--theme-light="Catppuccin Latte"
 
 # Enable this to use italic text on the terminal. This is not supported on all
 # terminal emulators (like tmux, by default):
-#--italic-text=always
+--italic-text=always
 
 # Uncomment the following line to disable automatic paging:
 #--paging=never
@@ -22,3 +28,6 @@
 --map-syntax "zshenv:Bourne Again Shell (bash)"
 --map-syntax "zprofile:Bourne Again Shell (bash)"
 --map-syntax "Brewfile:Bourne Again Shell (bash)"
+
+# Line numbers take up too much space (and is unnecessary)
+--style=-numbers,+header-filesize
