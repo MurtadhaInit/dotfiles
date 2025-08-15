@@ -185,6 +185,17 @@
     nerd-fonts.symbols-only
   ];
 
+  # Garbage Collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 6m";
+  };
+
+  # System upgrades
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
