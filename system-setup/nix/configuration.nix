@@ -149,6 +149,7 @@
         carapace
         fd
         delta
+        obsidian
       ];
     };
   };
@@ -176,6 +177,12 @@
     curl
     vim
     librewolf
+  ];
+
+  # Font packages
+  fonts.packages = with pkgs; [
+    atkinson-hyperlegible
+    nerd-fonts.symbols-only
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
