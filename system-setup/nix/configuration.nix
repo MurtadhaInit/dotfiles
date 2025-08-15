@@ -22,6 +22,17 @@
   networking.hostName = "nixos-workstation"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Automatically mount internal HDDs
+  fileSystems."/run/media/murtadha/Files" = {
+    device = "/dev/disk/by-uuid/4EF611C1F611A9EB";
+    fsType = "ntfs3";
+  };
+
+  fileSystems."/run/media/murtadha/New Volume" = {
+    device = "/dev/disk/by-uuid/008A4B1F8A4B1098";
+    fsType = "ntfs3";
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -184,6 +195,8 @@
     atkinson-hyperlegible
     nerd-fonts.symbols-only
   ];
+  fonts.enableDefaultPackages = true; # causes some "basic" fonts to be installed for reasonable Unicode coverage
+  # fonts.fontDir.enable = true; # for Flatpak applications to find system fonts
 
   # Garbage Collection
   nix.gc = {
