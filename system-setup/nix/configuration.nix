@@ -196,7 +196,7 @@
     nerd-fonts.symbols-only
   ];
   fonts.enableDefaultPackages = true; # causes some "basic" fonts to be installed for reasonable Unicode coverage
-  # fonts.fontDir.enable = true; # for Flatpak applications to find system fonts
+  fonts.fontDir.enable = true; # for Flatpak applications to find system fonts (other steps are needed)
 
   # Garbage Collection
   nix.gc = {
