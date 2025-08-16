@@ -164,9 +164,9 @@
         ruff
         sqlfluff
         starship
-        atuin
+        atuin # also available as a flake
         bat
-        eza
+        eza # also available as a flake
         zoxide
         fzf
         ripgrep
