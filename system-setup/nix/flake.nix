@@ -1,20 +1,21 @@
 {
-  description = "Murtadha's Workstation";
+  description = "Workstation Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = inputs: {
-    nixosConfigurations = {
-      murtadha = inputs.nixpkgs.lib.nixosSystem {
-        modules = [
-          ./configuration.nix
-          # ./modules/apps.nix
-        ];
-        specialArgs = { inherit inputs; };
+  outputs =
+    { self, nixpkgs, ... }:
+    let
+      lib = nixpkgs.lib;
+    in
+    {
+      nixosConfigurations = {
+        nixos-workstation = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./configuration.nix ];
+        };
       };
     };
-  };
 }
