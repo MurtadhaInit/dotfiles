@@ -161,6 +161,16 @@
         fd
         delta
         obsidian
+        gh
+        drawio
+        legcord
+        tableplus
+        zotero
+        qbittorrent
+        tree
+        zed-editor
+        bottom
+        lazydocker
       ];
     };
   };
