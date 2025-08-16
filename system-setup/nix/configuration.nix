@@ -164,12 +164,13 @@
         gh
         drawio
         legcord
-        tableplus
+        # tableplus this is only available on the macOS platform
         zotero
         qbittorrent
         tree
         zed-editor
         bottom
+        lazygit
         lazydocker
       ];
     };
