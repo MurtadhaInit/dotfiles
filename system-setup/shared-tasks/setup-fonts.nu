@@ -40,6 +40,7 @@ export def setup_fonts [
   if ($nu.os-info.name == "macos") {
     cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
   } else {
+    # or $XDG_DATA_HOME/fonts
     mkdir $"($nu.home-path)/.local/share/fonts/"
     cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
     ^fc-cache -fv

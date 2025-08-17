@@ -185,6 +185,7 @@
         bottom
         lazygit
         lazydocker
+        libreoffice-qt6-fresh
       ];
     };
   };
@@ -195,6 +196,9 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Install Steam
+  programs.steam.enable = true;
 
   # Enbale Nushell
   environment.shells = [
@@ -220,7 +224,7 @@
     nerd-fonts.symbols-only
   ];
   fonts.enableDefaultPackages = true; # causes some "basic" fonts to be installed for reasonable Unicode coverage
-  fonts.fontDir.enable = true; # for Flatpak applications to find system fonts (other steps are needed)
+  # fonts.fontDir.enable = true; # for Flatpak applications to find system fonts (other steps are needed)
 
   # Garbage Collection
   nix.gc = {
@@ -244,8 +248,11 @@
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
+    # enableSSHSupport = true; # disabled because it conflicts with ssh.startAgent (can't both be enabled)
   };
+
+  # Start the OpenSSH agent when you log in to avoid re-entering the passphrase everytime you make an SSH connection
+  programs.ssh.startAgent = true;
 
   # List services that you want to enable:
 
