@@ -186,6 +186,9 @@
         lazygit
         lazydocker
         libreoffice-qt6-fresh
+        hunspell # for libreoffice (spellcheck)
+        hunspellDicts.en-us # for libreoffice (spellcheck)
+        hunspellDicts.en-gb-ise # for libreoffice (spellcheck)
       ];
     };
   };
@@ -230,12 +233,15 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 6m";
+    options = "--delete-older-than 3m";
   };
 
-  # System upgrades
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  # TODO: System upgrades
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   allowReboot = false;
+  #   flake = ~/.dotfiles/system-setup/nix/flake.nix;
+  # };
 
   # Enable Flakes
   nix.settings.experimental-features = [
