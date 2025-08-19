@@ -1,9 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
 {
   imports = [
     # Include the results of the hardware scan.
@@ -57,15 +52,15 @@
   time.timeZone = "Asia/Amman";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ar_JO.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
+    LC_MEASUREMENT = "ar_JO.UTF-8";
+    LC_MONETARY = "ar_JO.UTF-8";
     LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
+    LC_NUMERIC = "en_GB.UTF-8";
     LC_PAPER = "ar_JO.UTF-8";
     LC_TELEPHONE = "ar_JO.UTF-8";
     LC_TIME = "en_US.UTF-8";
@@ -177,7 +172,6 @@
         gh
         drawio
         legcord
-        # tableplus this is only available on the macOS platform
         zotero
         qbittorrent
         tree
@@ -223,11 +217,12 @@
 
   # Font packages
   fonts.packages = with pkgs; [
-    atkinson-hyperlegible
+    # atkinson-hyperlegible
+    atkinson-hyperlegible-next
+    atkinson-hyperlegible-mono
     nerd-fonts.symbols-only
   ];
   fonts.enableDefaultPackages = true; # causes some "basic" fonts to be installed for reasonable Unicode coverage
-  # fonts.fontDir.enable = true; # for Flatpak applications to find system fonts (other steps are needed)
 
   # Garbage Collection
   nix.gc = {
