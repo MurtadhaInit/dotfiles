@@ -161,6 +161,7 @@
         starship
         atuin # also available as a flake
         bat
+        bat-extras.core
         eza # also available as a flake
         zoxide
         fzf
@@ -228,7 +229,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 3m";
+    options = "--delete-older-than 30d";
   };
 
   # TODO: System upgrades
@@ -254,6 +255,12 @@
 
   # Start the OpenSSH agent when you log in to avoid re-entering the passphrase everytime you make an SSH connection
   programs.ssh.startAgent = true;
+
+  # Some configurations for SSH (as in ~/.ssh/config)
+  programs.ssh.extraConfig = ''
+    Host github.com
+      IdentityFile ~/.ssh/keys/github
+  '';
 
   # List services that you want to enable:
 
