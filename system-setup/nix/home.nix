@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  # information about the user and their home path that's going ot be managed
   home.username = "murtadha";
   home.homeDirectory = "/home/murtadha";
 
@@ -15,8 +14,7 @@
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
+  # Install Nix packages into your environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
