@@ -10,9 +10,7 @@
 
     # System-level modules
     ../../system/nvidia.nix
-
-    # User-level modules
-    ../../user/fonts.nix
+    ../../system/fonts.nix
   ];
 
   # Bootloader.

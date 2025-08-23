@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    # home-manager modules
+    ../../user/ssh.nix
+  ];
+
   # information about the user and their home path that's going ot be managed
   home.username = "murtadha";
   home.homeDirectory = "/home/murtadha";
