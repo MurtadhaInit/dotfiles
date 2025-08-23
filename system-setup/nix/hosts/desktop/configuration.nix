@@ -5,8 +5,10 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
 
+    # Host-specific hardware modules
+    ./hardware/storage.nix
+
     # System-level modules
-    ../../system/storage.nix
     ../../system/nvidia.nix
 
     # User-level modules
@@ -195,7 +197,7 @@
     # enableSSHSupport = true; # disabled because it conflicts with ssh.startAgent (can't both be enabled)
   };
 
-  # Start the OpenSSH agent when you log in to avoid re-entering the passphrase everytime you make an SSH connection
+  # Start the OpenSSH private key agent when you log in (to avoid re-entering the passphrase everytime you make an SSH connection)
   programs.ssh.startAgent = true;
 
   # Some configurations for SSH (as in ~/.ssh/config)
