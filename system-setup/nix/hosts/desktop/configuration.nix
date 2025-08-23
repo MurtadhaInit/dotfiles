@@ -193,17 +193,6 @@
     # enableSSHSupport = true; # disabled because it conflicts with ssh.startAgent (can't both be enabled)
   };
 
-  # Start the OpenSSH private key agent when you log in (to avoid re-entering the passphrase everytime you make an SSH connection)
-  programs.ssh.startAgent = true;
-
-  # Some configurations for SSH (as in ~/.ssh/config)
-  programs.ssh.extraConfig = ''
-    Host github.com
-      IdentityFile ~/.ssh/keys/github
-  '';
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
