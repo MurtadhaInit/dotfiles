@@ -1,8 +1,16 @@
 { config, pkgs, ... }:
+
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
+    # System-level modules
+    ../../system/storage.nix
+    ../../system/nvidia.nix
+
+    # User-level modules
+    ../../user/fonts.nix
   ];
 
   # Bootloader.
@@ -12,34 +20,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-f8bb3e60-c4ed-4046-b493-da44bffd2882".device =
-    "/dev/disk/by-uuid/f8bb3e60-c4ed-4046-b493-da44bffd2882";
   networking.hostName = "nixos-workstation"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Automatically mount internal HDDs
-  fileSystems."/run/media/murtadha/Files" = {
-    device = "/dev/disk/by-uuid/4EF611C1F611A9EB";
-    fsType = "ntfs-3g";
-    options = [
-      "defaults"
-      "nofail"
-      "uid=1000"
-      "gid=100"
-    ];
-  };
-  fileSystems."/run/media/murtadha/New Volume" = {
-    device = "/dev/disk/by-uuid/008A4B1F8A4B1098";
-    fsType = "ntfs-3g";
-    options = [
-      "defaults"
-      "nofail"
-      "uid=1000"
-      "gid=100"
-    ];
-  };
-  boot.supportedFilesystems = [ "ntfs" ];
-  # services.udisks2.enable = true; # is that needed by any means?
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -102,39 +84,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # === Nvidia setup ===
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
-    powerManagement.enable = true;
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    open = false;
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     murtadha = {
@@ -185,6 +134,7 @@
         hunspellDicts.en-us # for libreoffice (spellcheck)
         hunspellDicts.en-gb-ise # for libreoffice (spellcheck)
         dig
+        signal-desktop
       ];
     };
   };
@@ -216,15 +166,6 @@
     vim
     librewolf
   ];
-
-  # Font packages
-  fonts.packages = with pkgs; [
-    # atkinson-hyperlegible
-    atkinson-hyperlegible-next
-    atkinson-hyperlegible-mono
-    nerd-fonts.symbols-only
-  ];
-  fonts.enableDefaultPackages = true; # causes some "basic" fonts to be installed for reasonable Unicode coverage
 
   # Garbage Collection
   nix.gc = {
