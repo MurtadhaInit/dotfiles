@@ -23,14 +23,14 @@
       nixosConfigurations = {
         nixos-workstation = lib.nixosSystem {
           inherit system;
-          modules = [ ./configuration.nix ];
+          modules = [ ./hosts/desktop/configuration.nix ];
         };
       };
 
       homeConfigurations = {
         murtadha = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home.nix ];
+          modules = [ ./hosts/desktop/home.nix ];
         };
       };
     };
