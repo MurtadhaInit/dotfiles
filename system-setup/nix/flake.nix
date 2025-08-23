@@ -25,8 +25,8 @@
     {
       nixosConfigurations = {
         nixos-workstation = lib.nixosSystem {
-          inherit system;
-          # inherit pkgs; # maybe this is needed...
+          # inherit system;
+          inherit pkgs; # maybe it's possible to use this option instead...
           modules = [ ./hosts/desktop/configuration.nix ];
         };
       };
