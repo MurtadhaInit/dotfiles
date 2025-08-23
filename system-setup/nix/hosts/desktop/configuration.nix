@@ -94,45 +94,6 @@
       shell = pkgs.nushell;
       packages = with pkgs; [
         kdePackages.kate
-        neovim
-        ghostty
-        brave
-        vlc
-        localsend
-        vscode
-        stow
-        nixfmt-rfc-style
-        uv
-        ruff
-        sqlfluff
-        starship
-        atuin # also available as a flake
-        bat
-        bat-extras.core
-        eza # also available as a flake
-        zoxide
-        fzf
-        ripgrep
-        carapace
-        fd
-        delta
-        obsidian
-        gh
-        drawio
-        legcord
-        zotero
-        qbittorrent
-        tree
-        zed-editor
-        bottom
-        lazygit
-        lazydocker
-        libreoffice-qt6-fresh
-        hunspell # for libreoffice (spellcheck)
-        hunspellDicts.en-us # for libreoffice (spellcheck)
-        hunspellDicts.en-gb-ise # for libreoffice (spellcheck)
-        dig
-        signal-desktop
       ];
     };
   };
