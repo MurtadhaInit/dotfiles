@@ -2,10 +2,8 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-
     # Host-specific hardware modules
+    ./hardware/hardware-configuration.nix # the generated results of the hardware scan
     ./hardware/storage.nix
 
     # System-level modules
