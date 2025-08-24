@@ -9,6 +9,7 @@
     # System-level modules
     ../../system/nvidia.nix
     ../../system/fonts.nix
+    ../../system/nh.nix
   ];
 
   # Bootloader.
@@ -126,12 +127,7 @@
     librewolf
   ];
 
-  # Garbage Collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+  programs.ssh.startAgent = true;
 
   # TODO: System upgrades
   # system.autoUpgrade = {
