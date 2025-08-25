@@ -5,11 +5,11 @@
     enable = true;
     addKeysToAgent = "yes";
 
-    # to be appended to ~/.ssh/config
-    extraConfig = ''
-      Host github.com
-        IdentityFile ~/.ssh/keys/github
-    '';
+    matchBlocks = {
+      "github.com" = {
+        identityFile = "~/.ssh/keys/github";
+      };
+    };
   };
 
   # Enable the OpenSSH private key agent
