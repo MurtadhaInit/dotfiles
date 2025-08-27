@@ -127,8 +127,6 @@
     librewolf
   ];
 
-  programs.ssh.startAgent = true;
-
   # TODO: System upgrades
   # system.autoUpgrade = {
   #   enable = true;
