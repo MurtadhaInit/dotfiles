@@ -10,6 +10,7 @@
     ../../system/nvidia.nix
     ../../system/fonts.nix
     ../../system/nh.nix
+    ../../system/zsa.nix
   ];
 
   # Bootloader.
