@@ -7,10 +7,11 @@
     ./hardware/storage.nix
 
     # System-level modules
-    ../../system/nvidia.nix
-    ../../system/fonts.nix
-    ../../system/nh.nix
-    ../../system/zsa.nix
+    ../../modules/system/nvidia.nix
+    ../../modules/system/fonts.nix
+    ../../modules/system/nh.nix
+    ../../modules/system/zsa.nix
+    ../../modules/system/locale.nix
   ];
 
   # Bootloader.
@@ -20,7 +21,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos-workstation"; # Define your hostname.
+  networking.hostName = "nixos-workstation";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -29,24 +30,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Asia/Amman";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ar_JO.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "ar_JO.UTF-8";
-    LC_MONETARY = "ar_JO.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "ar_JO.UTF-8";
-    LC_TELEPHONE = "ar_JO.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.

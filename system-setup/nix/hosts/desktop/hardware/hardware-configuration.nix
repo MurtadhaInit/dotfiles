@@ -27,11 +27,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/c0705669-a03c-4104-9b80-f3fad40af6a5";
-  #   fsType = "ext4";
-  # };
-
   fileSystems."/" = {
     device = "/dev/mapper/luks-31646094-5231-48d4-bb97-03e3ccee2501";
     fsType = "ext4";
@@ -48,10 +43,6 @@
       "dmask=0077"
     ];
   };
-
-  # swapDevices = [
-  #   { device = "/dev/disk/by-uuid/09cd6f33-21d0-4a2c-8ca6-d32a87d08e9e"; }
-  # ];
 
   swapDevices = [
     { device = "/dev/mapper/luks-f8bb3e60-c4ed-4046-b493-da44bffd2882"; }

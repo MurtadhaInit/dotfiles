@@ -3,8 +3,8 @@
 {
   imports = [
     # home-manager modules
-    ../../user/ssh.nix
-    ../../user/packages.nix
+    ../../modules/user/ssh.nix
+    ../../modules/user/packages.nix
   ];
 
   # information about the user and their home path that's going ot be managed
