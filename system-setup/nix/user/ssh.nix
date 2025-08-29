@@ -3,9 +3,13 @@
 {
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
+    enableDefaultConfig = false;
 
     matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+      };
+
       "github.com" = {
         identityFile = "~/.ssh/keys/github";
       };
