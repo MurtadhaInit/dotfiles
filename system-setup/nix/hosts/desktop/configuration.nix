@@ -94,7 +94,6 @@
     git
     curl
     vim
-    librewolf
   ];
 
   # TODO: System upgrades

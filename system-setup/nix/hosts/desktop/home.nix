@@ -5,6 +5,7 @@
     # home-manager modules
     ../../modules/user/ssh.nix
     ../../modules/user/packages.nix
+    ../../modules/user/librewolf.nix
   ];
 
   # information about the user and their home path that's going ot be managed
