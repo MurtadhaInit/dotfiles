@@ -14,7 +14,32 @@
     ../../modules/system/locale.nix
     ../../modules/system/audio.nix
     ../../modules/system/firewall.nix
+    ../../modules/system/networking.nix
   ];
+
+  networking.hostName = "nixos-workstation";
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users = {
+    murtadha = {
+      isNormalUser = true;
+      description = "Murtadha";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      shell = pkgs.nushell;
+      packages = with pkgs; [
+        kdePackages.kate
+      ];
+    };
+  };
+
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "murtadha";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -22,16 +47,6 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "nixos-workstation";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -53,29 +68,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = {
-    murtadha = {
-      isNormalUser = true;
-      description = "Murtadha";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
-      shell = pkgs.nushell;
-      packages = with pkgs; [
-        kdePackages.kate
-      ];
-    };
-  };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "murtadha";
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Install Steam
   programs.steam.enable = true;
 
@@ -84,11 +76,7 @@
     pkgs.nushell
   ];
 
-  # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     wget
     git
@@ -116,9 +104,6 @@
     enable = true;
     # enableSSHSupport = true; # disabled because it conflicts with ssh.startAgent (can't both be enabled)
   };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
