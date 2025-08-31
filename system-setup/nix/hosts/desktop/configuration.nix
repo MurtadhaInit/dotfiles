@@ -15,6 +15,7 @@
     ../../modules/system/audio.nix
     ../../modules/system/firewall.nix
     ../../modules/system/networking.nix
+    ../../modules/system/default-shell.nix
   ];
 
   networking.hostName = "nixos-workstation";
@@ -28,7 +29,6 @@
         "networkmanager"
         "wheel"
       ];
-      shell = pkgs.nushell;
       packages = with pkgs; [
         kdePackages.kate
       ];
@@ -70,11 +70,6 @@
 
   # Install Steam
   programs.steam.enable = true;
-
-  # Enbale Nushell
-  environment.shells = [
-    pkgs.nushell
-  ];
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
