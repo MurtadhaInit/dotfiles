@@ -30,7 +30,6 @@
     drawio
     legcord
     zotero
-    qbittorrent
     tree
     bottom
     lazygit
@@ -41,6 +40,7 @@
     hunspellDicts.en-gb-ise # for libreoffice (spellcheck)
     dig
     signal-desktop
+    rustdesk-flutter
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
