@@ -7,6 +7,7 @@
     ../../modules/user/packages.nix
     ../../modules/user/librewolf.nix
     ../../modules/user/qbittorrent.nix
+    ../../modules/user/nushell.nix
   ];
 
   # information about the user and their home path that's going ot be managed
