@@ -10,7 +10,6 @@
     localsend
     vscode
     stow
-    nixfmt-rfc-style
     uv
     ruff
     sqlfluff
@@ -42,6 +41,10 @@
     signal-desktop
     rustdesk-flutter
     age
+    nixfmt-rfc-style # Nix formatter
+    nil # Nix LSP
+    nixd # Nix LSP
+    nur.repos.charmbracelet.crush
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
