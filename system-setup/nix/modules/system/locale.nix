@@ -8,7 +8,6 @@
     extraLocales = [ "ar_IQ.UTF-8/UTF-8" ];
 
     extraLocaleSettings = {
-      LANGUAGE = "en:ar";
 
       LC_ADDRESS = "ar_JO.UTF-8";
       LC_IDENTIFICATION = "ar_JO.UTF-8";
