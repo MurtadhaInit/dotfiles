@@ -105,6 +105,8 @@ brew "qemu"
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Fast and accurate code counter with complexity and COCOMO estimates
+brew "scc"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Command-line interface for https://speedtest.net bandwidth tests
@@ -113,6 +115,8 @@ brew "speedtest-cli"
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Official tldr client written in Rust
+brew "tlrc"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -137,6 +141,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Feature-rich syntax highlighting for Zsh
 brew "zsh-fast-syntax-highlighting"
+# A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
+brew "charmbracelet/tap/crush"
 brew "cirruslabs/cli/cirrus"
 # Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
@@ -172,7 +178,8 @@ cask "devpod"
 cask "drawio"
 # Collaborative team software
 cask "figma"
-cask "font-atkinson-hyperlegible"
+cask "font-atkinson-hyperlegible-mono"
+cask "font-atkinson-hyperlegible-next"
 cask "font-fira-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
