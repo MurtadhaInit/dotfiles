@@ -89,16 +89,12 @@ brew "lazygit"
 brew "less"
 # Mac App Store command-line interface
 brew "mas"
-# Free (GNU) replacement for the Pico text editor
-brew "nano"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Modern shell for the GitHub era
 brew "nushell"
-# Python version management
-brew "pyenv"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Search tool like grep and The Silver Searcher
@@ -220,10 +216,6 @@ cask "pearcleaner"
 cask "postman"
 # Client for Proton Drive
 cask "proton-drive"
-# Client for Proton Mail and Proton Calendar
-cask "proton-mail"
-# VPN client focusing on security
-cask "protonvpn"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Control your tools with a few keystrokes
