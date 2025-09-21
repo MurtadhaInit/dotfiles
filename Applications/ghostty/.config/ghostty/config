@@ -2,7 +2,6 @@
 font-family = Comic Code Ligatures Medium
 font-size = 15
 adjust-cell-height = 10%
-# TODO: automate the theme repo clone and setup with Nix
 theme = dark:catppuccin-mocha.conf,light:catppuccin-latte.conf
 mouse-hide-while-typing = true
 window-padding-balance = true
