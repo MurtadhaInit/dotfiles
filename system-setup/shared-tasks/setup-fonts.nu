@@ -37,18 +37,19 @@ export def setup_fonts [
     print "✅ Fonts seem to be already decrypted (directory not empty)"
   }
 
+  let arg = (if $overwrite {[]} else {['--no-clobber']})
   if ($nu.os-info.name == "macos") {
-    cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
   } else {
     # or $XDG_DATA_HOME/fonts
     mkdir $"($nu.home-path)/.local/share/fonts/"
-    cp ...(if $overwrite {[]} else {['--no-clobber']}) --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
+    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
     ^fc-cache -fv
   }
 }
 
 # Encrypt the content of `dir` into `dest_dir` using the identity file in `key_file`
-def encrypt_path_content_with_age [
+export def encrypt_path_content_with_age [
   dir: string # the source directory with plaintext content to encrypt
   dest_dir: string # the destination directory to place cyphertext content into
   key_file: string # the `age` identity file to use for encryption
@@ -63,9 +64,12 @@ def encrypt_path_content_with_age [
   }
   mkdir $dest_dir
 
-  for path in (glob $"($dir)/**/*") {
-    if (($path | path basename) != ".DS_Store" and $path != $dir) {
-      let rel_path = $path | path relative-to $dir
+  let normalized_key = ($key_file | path expand)
+  let normalized_dir = if $dir == "./" { $env.PWD } else { $dir | path expand } # to avoid malformed glob patterns
+
+  for path in (glob $"($normalized_dir)/**/*") {
+    if (($path | path basename) != ".DS_Store" and $path != $normalized_dir) {
+      let rel_path = $path | path relative-to $normalized_dir
       let target_path = $dest_dir | path join $rel_path
 
       if (($path | path type) == dir) {
@@ -75,11 +79,11 @@ def encrypt_path_content_with_age [
         let output_path = $target_path + ".age"
         if ($overwrite) {
             print $"🔄 Encrypting: ($path | path basename)..."
-            age --encrypt --identity $key_file --output $output_path $path
+            age --encrypt --identity $normalized_key --output $output_path $path
         # do not overwrite existing encrypted files
         } else if not ($output_path | path exists) {
           print $"🔄 Encrypting: ($path | path basename)..."
-          age --encrypt --identity $key_file --output $output_path $path
+          age --encrypt --identity $normalized_key --output $output_path $path
         }
       }
     }
@@ -88,7 +92,7 @@ def encrypt_path_content_with_age [
 
 # TODO: also add a --overwrite flag and pass it down from the main function
 # Decrypt the content of `dir` into `dest_dir` using the identity file in `key_file`
-def decrypt_path_content_with_age [
+export def decrypt_path_content_with_age [
   dir: string # the source directory with cyphertext content to decrypt
   dest_dir: string # the destination directory to place decrypted content into
   key_file: string # the `age` identity file to use for decryption
@@ -102,9 +106,12 @@ def decrypt_path_content_with_age [
   }
   mkdir $dest_dir
 
-  for path in (glob $"($dir)/**/*") {
-    if (($path | path basename) != ".DS_Store" and $path != $dir) {
-      let rel_path = $path | path relative-to $dir
+  let normalized_key = ($key_file | path expand)
+  let normalized_dir = if $dir == "./" { $env.PWD } else { $dir | path expand } # to avoid malformed glob patterns
+
+  for path in (glob $"($normalized_dir)/**/*") {
+    if (($path | path basename) != ".DS_Store" and $path != $normalized_dir) {
+      let rel_path = $path | path relative-to $normalized_dir
       let target_path = $dest_dir | path join $rel_path
 
       if (($path | path type) == dir) {
@@ -113,14 +120,16 @@ def decrypt_path_content_with_age [
       if (($path | path type) == file) {
         print $"🔄 Decrypting: ($path | path basename)..."
         let output_path = $target_path | path parse | reject extension | path join
-        age --decrypt --identity $key_file --output $output_path $path
+        age --decrypt --identity $normalized_key --output $output_path $path
       }
     }
   }
 }
 
 def dir_content [dir: string] {
-  glob --no-dir --no-symlink $"($dir)/**/*"
+  let normalized_dir = if $dir == "./" { $env.PWD } else { $dir | path expand } # to avoid malformed glob patterns
+
+  glob --no-dir --no-symlink $"($normalized_dir)/**/*"
     | where { |path|
       ($path | path basename) != ".DS_Store"
     }
