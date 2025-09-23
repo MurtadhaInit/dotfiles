@@ -11,6 +11,10 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -19,6 +23,7 @@
       nixpkgs,
       home-manager,
       nur,
+      agenix,
       ...
     }:
     let
@@ -42,7 +47,10 @@
       homeConfigurations = {
         murtadha = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./hosts/desktop/home.nix ];
+          modules = [
+            ./hosts/desktop/home.nix
+            agenix.homeManagerModules.default
+          ];
         };
       };
     };

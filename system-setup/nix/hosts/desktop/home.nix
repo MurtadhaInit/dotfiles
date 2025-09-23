@@ -9,6 +9,7 @@
     ../../modules/user/qbittorrent.nix
     ../../modules/user/nushell.nix
     ../../modules/user/ghostty.nix
+    ../../modules/user/agenix-fonts.nix
     ../../modules/user/bun.nix
   ];
 
