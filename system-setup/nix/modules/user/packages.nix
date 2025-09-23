@@ -46,7 +46,6 @@
     nixd # Nix LSP
     nur.repos.charmbracelet.crush
     papers # cause Okular is kinda trash
-    bun
     claude-code
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

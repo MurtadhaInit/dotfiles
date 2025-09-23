@@ -9,6 +9,7 @@
     ../../modules/user/qbittorrent.nix
     ../../modules/user/nushell.nix
     ../../modules/user/ghostty.nix
+    ../../modules/user/bun.nix
   ];
 
   # information about the user and their home path that's going ot be managed
