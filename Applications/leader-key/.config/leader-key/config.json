@@ -1,7 +1,7 @@
 {
   "actions" : [
     {
-      "key" : "t",
+      "key" : "g",
       "label" : "Terminal",
       "type" : "application",
       "value" : "/Applications/Ghostty.app"
@@ -9,24 +9,13 @@
     {
       "actions" : [
         {
-          "key" : "c",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/system/open-camera"
-        }
-      ],
-      "key" : "r",
-      "label" : "Raycast",
-      "type" : "group"
-    },
-    {
-      "actions" : [
-        {
           "key" : "f",
-          "label" : "Fill - Maximise",
-          "type" : "url",
-          "value" : "raycast://extensions/raycast/window-management/maximize"
+          "label" : "Fill",
+          "type" : "command",
+          "value" : "shortcuts run \"Window Fill\""
         }
       ],
+      "iconPath" : "window.horizontal",
       "key" : "w",
       "label" : "Window",
       "type" : "group"
@@ -53,12 +42,6 @@
       "label" : "Zotero",
       "type" : "application",
       "value" : "/Applications/Zotero.app"
-    },
-    {
-      "key" : "n",
-      "label" : "Notion",
-      "type" : "application",
-      "value" : "/Applications/Notion.app"
     }
   ],
   "type" : "group"
