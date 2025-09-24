@@ -11,6 +11,7 @@
     ../../modules/user/ghostty.nix
     ../../modules/user/agenix-fonts.nix
     ../../modules/user/bun.nix
+    ../../modules/user/bat.nix
   ];
 
   # information about the user and their home path that's going ot be managed
