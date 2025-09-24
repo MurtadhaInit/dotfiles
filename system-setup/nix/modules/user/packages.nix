@@ -33,7 +33,7 @@
     bottom
     lazygit
     lazydocker
-    libreoffice-qt6-fresh
+    libreoffice-qt-fresh
     hunspell # for libreoffice (spellcheck)
     hunspellDicts.en-us # for libreoffice (spellcheck)
     hunspellDicts.en-gb-ise # for libreoffice (spellcheck)

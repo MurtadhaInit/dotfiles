@@ -6,7 +6,7 @@
 }:
 
 let
-  # the catppuccin themes repo for Nushell
+  # the Catppuccin themes repo for Nushell
   catppuccin-nushell = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "nushell";
@@ -14,17 +14,16 @@ let
     hash = "sha256-tQ3Br6PaLBUNIXY56nDjPkthzvgEsNzOp2gHDkZVQo0=";
   };
 
-  # the theme flavour file in the repo
-  mochaTheme = "${catppuccin-nushell}/themes/catppuccin_mocha.nu";
+  # the actual Nushell theme files
+  themes-dir = "${catppuccin-nushell}/themes/";
 in
 {
   programs.nushell = {
     enable = true;
     configFile.source = ../../../../Applications/nushell/.config/nushell/config.nu;
+  };
 
-    # source the theme file
-    extraConfig = ''
-      source ${mochaTheme}
-    '';
+  xdg.configFile = {
+    "nushell/themes".source = themes-dir;
   };
 }
