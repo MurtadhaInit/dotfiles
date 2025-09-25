@@ -5,7 +5,6 @@
     neovim
     zed-editor
     ghostty
-    brave
     vlc
     localsend
     vscode

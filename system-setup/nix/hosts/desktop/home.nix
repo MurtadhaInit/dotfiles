@@ -12,6 +12,7 @@
     ../../modules/user/agenix-fonts.nix
     ../../modules/user/bun.nix
     ../../modules/user/bat.nix
+    ../../modules/user/brave.nix
   ];
 
   # information about the user and their home path that's going ot be managed
