@@ -16,7 +16,6 @@
     atuin # also available as a flake
     bat
     bat-extras.core
-    eza # also available as a flake
     zoxide
     fzf
     ripgrep
