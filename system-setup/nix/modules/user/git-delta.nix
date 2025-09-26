@@ -18,6 +18,7 @@ in
     delta
   ];
 
+  # Nix-style of configuring Git without external config files: https://nixos.wiki/wiki/Git
   xdg.configFile = {
     "git/config".source = ../../../../Applications/git/.config/git/config;
     "git/ignore".source = ../../../../Applications/git/.config/git/ignore;

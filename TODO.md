@@ -3,3 +3,4 @@
 1. Remove the eza theme file for catppuccin from ./Applications as this is linked from the cloned repo in home-manager config
 2. Configure Nushell tools to generate their respective configs whenever they are updated (carapace, atuin, starship, and zoxide). See setup-nushell.nu
 3. Remove the Catppuccin theme file for Delta (in Applications, the git/delta directory) as this is now sourced from the git repo for Catppuccin for Delta.
+4. Adjust the fetchFromGithub in all home-manager config files to pull the repos through flake inputs instead (the current setup pins to a particular commit through the hash).

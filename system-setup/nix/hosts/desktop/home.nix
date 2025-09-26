@@ -16,6 +16,7 @@
     ../../modules/user/bottom.nix
     ../../modules/user/eza.nix
     ../../modules/user/git-delta.nix
+    ../../modules/user/lazygit.nix
   ];
 
   # information about the user and their home path that's going ot be managed

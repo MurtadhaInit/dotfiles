@@ -25,7 +25,6 @@
     legcord
     zotero
     tree
-    lazygit
     lazydocker
     libreoffice-qt-fresh
     hunspell # for libreoffice (spellcheck)
