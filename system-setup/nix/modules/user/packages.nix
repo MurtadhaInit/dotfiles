@@ -7,7 +7,6 @@
     ghostty
     vlc
     localsend
-    vscode
     stow
     uv
     ruff
