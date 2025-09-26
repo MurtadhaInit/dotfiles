@@ -14,14 +14,11 @@
     sqlfluff
     starship
     atuin # also available as a flake
-    bat
-    bat-extras.core
     zoxide
     fzf
     ripgrep
     carapace
     fd
-    delta
     obsidian
     gh
     drawio

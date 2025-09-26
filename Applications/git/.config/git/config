@@ -1,6 +1,9 @@
+[init]
+	defaultBranch = main
 [user]
 	name = Murtadha
 	email = 78985176+MurtadhaInit@users.noreply.github.com
+
 [core]
 	editor = code --wait
 	autocrlf = input
@@ -12,10 +15,12 @@
 	tool = vscode
 [mergetool "vscode"]
     cmd = code --wait $MERGED
+
 [alias]
     lg = log --oneline --decorate --graph --all --pretty
     unstage = restore --staged .
 
+# Delta theme setup
 [include]
 	path = ./delta/catppuccin.gitconfig
 [delta]
