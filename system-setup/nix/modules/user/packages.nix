@@ -29,7 +29,6 @@
     legcord
     zotero
     tree
-    bottom
     lazygit
     lazydocker
     libreoffice-qt-fresh
