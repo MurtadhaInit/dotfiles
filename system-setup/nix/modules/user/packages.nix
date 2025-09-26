@@ -11,7 +11,6 @@
     uv
     ruff
     sqlfluff
-    starship
     atuin # also available as a flake
     zoxide
     fzf

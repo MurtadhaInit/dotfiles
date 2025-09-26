@@ -19,6 +19,7 @@
     ../../modules/user/lazygit.nix
     ../../modules/user/vscode.nix
     ../../modules/user/jetbrains.nix
+    ../../modules/user/starship.nix
   ];
 
   # information about the user and their home path that's going ot be managed
