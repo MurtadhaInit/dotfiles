@@ -42,6 +42,13 @@
       "label" : "Zotero",
       "type" : "application",
       "value" : "/Applications/Zotero.app"
+    },
+    {
+      "iconPath" : "/System/Library/CoreServices/Finder.app",
+      "key" : "f",
+      "label" : "Finder",
+      "type" : "application",
+      "value" : "/System/Library/CoreServices/Finder.app"
     }
   ],
   "type" : "group"
