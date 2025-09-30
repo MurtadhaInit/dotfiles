@@ -32,9 +32,6 @@
     signal-desktop
     rustdesk-flutter
     age
-    nixfmt-rfc-style # Nix formatter
-    nil # Nix LSP
-    nixd # Nix LSP
     nur.repos.charmbracelet.crush
     papers # cause Okular is kinda trash
     claude-code
