@@ -98,7 +98,17 @@ $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 source "themes/catppuccin_mocha.nu"
 
 # Linux setup. In macOS these variables are set earlier by a service (.plist file)
-if $nu.os-info.name != "macos" {
+if $nu.os-info.name == "macos" {
+    load-env {
+        # TODO: use the $nu var to get the home directory
+        XDG_CONFIG_HOME: /Users/murtadha/.config
+        XDG_CACHE_HOME: /Users/murtadha/.cache
+        XDG_DATA_HOME: /Users/murtadha/.local/share
+        XDG_STATE_HOME: /Users/murtadha/.local/state
+        XDG_RUNTIME_DIR: /Users/murtadha/.local/run
+        XDG_BIN_HOME: /Users/murtadha/.local/bin
+    }
+} else {
     load-env {
         XDG_CONFIG_HOME: /home/murtadha/.config
         XDG_CACHE_HOME: /home/murtadha/.cache
@@ -224,3 +234,6 @@ $env.FZF_DEFAULT_OPTS = "
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8
 --color=selected-bg:#45475A
 --color=border:#6C7086,label:#CDD6F4"
+
+# Nix
+source "scripts/nix.nu"

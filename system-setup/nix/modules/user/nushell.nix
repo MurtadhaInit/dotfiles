@@ -20,7 +20,8 @@ in
 {
   programs.nushell = {
     enable = true;
-    configFile.source = ../../../../Applications/nushell/.config/nushell/config.nu;
+    configFile.source = ../../../../Applications/nushell/Library
+    + "/Application Support/nushell/config.nu";
   };
 
   xdg.configFile = {
