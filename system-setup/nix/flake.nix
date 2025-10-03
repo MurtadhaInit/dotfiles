@@ -25,30 +25,38 @@
       nur,
       agenix,
       ...
-    }:
+    }@inputs:
+    # TODO: use extraSpecialArgs to pass arguments to home-manager modules
     let
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [ nur.overlays.default ];
-      };
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [ nur.overlays.default ];
+        };
     in
     {
       nixosConfigurations = {
-        nixos-workstation = lib.nixosSystem {
-          # inherit system;
-          inherit pkgs; # maybe it's possible to use this option instead...
+        nixos-workstation = nixpkgs.lib.nixosSystem {
+          pkgs = pkgsFor "x86_64-linux";
           modules = [ ./hosts/desktop/configuration.nix ];
         };
       };
 
       homeConfigurations = {
-        murtadha = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+        "murtadha@nixos-workstation" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsFor "x86_64-linux";
           modules = [
             ./hosts/desktop/home.nix
+            agenix.homeManagerModules.default
+          ];
+        };
+
+        "murtadha@MacBookPro.localdomain" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsFor "aarch64-darwin";
+          modules = [
+            ./hosts/macOS/home.nix
             agenix.homeManagerModules.default
           ];
         };

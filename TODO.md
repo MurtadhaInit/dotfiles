@@ -6,3 +6,4 @@
 4. Adjust the fetchFromGithub in all home-manager config files to pull the repos through flake inputs instead (the current setup pins to a particular commit through the hash).
 5. See if the SSH config still requires any other improvements or changes.
 6. Research and understand further the use of agenix and the setup config created for fonts.
+7. Remove the shared Nushell task for setting up XDG_ en vars for macOS. This is not needed anymore as I've decided to let Nushell use the default (inconvenient) location for config.
