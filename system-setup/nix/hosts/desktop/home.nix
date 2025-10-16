@@ -21,6 +21,8 @@
     ../../modules/user/jetbrains.nix
     ../../modules/user/starship.nix
     ../../modules/user/nix-development.nix
+    ../../modules/user/helix.nix
+    ../../modules/user/terraform.nix
   ];
 
   # information about the user and their home path that's going ot be managed

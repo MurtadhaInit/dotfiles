@@ -1,0 +1,30 @@
+theme = "catppuccin_mocha"
+
+[editor]
+scrolloff = 7      # default is 5
+cursorline = true
+color-modes = true
+true-color = true  # to override auto-detection in cases of false negatives
+# bufferline = "multiple"
+# shell = ["nu", "-c"]
+end-of-line-diagnostics = "error"
+scroll-lines = 1                  # default is 3
+# popup-border = "all"  # TODO: check this
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+center = ["version-control"]
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+prefix-len = 3       # default is 1
+
+[editor.lsp]
+# display-inlay-hints = true

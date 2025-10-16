@@ -1,0 +1,11 @@
+[[language]]
+name = "nix"
+auto-format = true
+
+[[language]]
+name = "hcl"
+auto-format = true
+
+[[language]]
+name = "tfvars"
+auto-format = true
