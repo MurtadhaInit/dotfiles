@@ -200,6 +200,7 @@ alias macopen = ^open
 # === Tools ===
 # Carapace command completions
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+$env.CARAPACE_MATCH = "1"   # to do case insensitive match
 
 # Direnv
 $env.config.hooks.env_change.PWD = (
