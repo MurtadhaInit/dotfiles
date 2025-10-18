@@ -9,3 +9,7 @@ auto-format = true
 [[language]]
 name = "tfvars"
 auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true

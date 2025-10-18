@@ -1,15 +1,15 @@
 theme = "catppuccin_mocha"
 
 [editor]
-scrolloff = 7      # default is 5
+scrolloff = 7                     # default is 5
 cursorline = true
 color-modes = true
-true-color = true  # to override auto-detection in cases of false negatives
-# bufferline = "multiple"
-# shell = ["nu", "-c"]
+true-color = true                 # to override auto-detection in cases of false negatives
+bufferline = "multiple"
 end-of-line-diagnostics = "error"
 scroll-lines = 1                  # default is 3
 # popup-border = "all"  # TODO: check this
+# shell = ["nu", "-c"]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -18,6 +18,9 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
+
+[editor.soft-wrap]
+enable = true
 
 [editor.statusline]
 center = ["version-control"]
