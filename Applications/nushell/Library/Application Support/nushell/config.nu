@@ -132,7 +132,7 @@ load-env {
     INFOPATH: $"($brew_prefix)/share/info:($env.INFOPATH? | default '')",
 
     VISUAL: "code",
-    EDITOR: "vim",
+    EDITOR: "hx",
 
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
     HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues 

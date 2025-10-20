@@ -13,3 +13,41 @@ auto-format = true
 [[language]]
 name = "python"
 auto-format = true
+
+# NOTE: all config below is copy-pasted
+[[language]]
+name = "go"
+auto-format = true
+language-servers = ["gopls", "golangci-lint-lsp"]
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = [
+  "golangci-lint",
+  "run",
+  "--output.json.path",
+  "stdout",
+  "--show-stats=false",
+  "--issues-exit-code=1",
+]
+
+[[language]]
+name = "astro"
+scope = "source.astro"
+injection-regex = "astro"
+file-types = ["astro"]
+language-servers = ["astro-ls"]
+formatter = { command = "prettier", args = [
+  "--plugin",
+  "prettier-plugin-astro",
+  "--parser",
+  "astro",
+] }
+auto-format = true
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = { typescript = { tsdk = "/Users/murtadha/.cache/.bun/install/global/node_modules/typescript/lib" } }

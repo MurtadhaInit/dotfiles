@@ -8,7 +8,7 @@ true-color = true                 # to override auto-detection in cases of false
 bufferline = "multiple"
 end-of-line-diagnostics = "error"
 scroll-lines = 1                  # default is 3
-# popup-border = "all"  # TODO: check this
+popup-border = "all"              # other options: popup, menu, or none
 # shell = ["nu", "-c"]
 
 [editor.cursor-shape]
@@ -28,6 +28,14 @@ center = ["version-control"]
 [editor.inline-diagnostics]
 cursor-line = "hint"
 prefix-len = 3       # default is 1
+
+[keys.normal]
+# Esc for 3 purposes: to close, to deselect (;), and to collapse to one cursor (,)
+esc = ["collapse_selection", "keep_primary_selection"]
+
+[keys.normal.space]
+q = ":quit"
+w = ":write" # this overwrites Space + w for 'Window' menu
 
 [editor.lsp]
 # display-inlay-hints = true
