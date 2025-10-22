@@ -8,6 +8,8 @@
     ../../modules/user/ghostty.nix
     ../../modules/user/helix.nix
     ../../modules/user/eza.nix
+    ../../modules/user/bat.nix
+
     ../../modules/user/terraform.nix
   ];
 
@@ -67,4 +69,5 @@
   programs.nushell.installPackage = false;
   programs.ghostty.installPackage = false;
   programs.eza.installPackage = false;
+  programs.bat.installPackage = false;
 }
