@@ -1,11 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.starship = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 
   xdg.configFile = {
-    "starship/starship.toml".source = ../../../../Applications/starship/.config/starship/starship.toml;
+    "starship/starship.toml".source = ../../../../Applications/starship/starship.toml;
   };
 }
