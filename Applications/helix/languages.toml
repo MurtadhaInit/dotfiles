@@ -1,6 +1,19 @@
 [[language]]
 name = "nix"
 auto-format = true
+language-servers = ["nixd", "nil"]
+
+[language-server.nixd]
+command = "nixd"
+args = ["--semantic-tokens=true"]
+
+[language-server.nixd.config.nixd]
+nixpkgs = { expr = "import (builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").inputs.nixpkgs {}" }
+formatting = { command = ["nixfmt"] }
+
+[language-server.nixd.config.nixd.options]
+home-manager = { expr = "(builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").homeConfigurations.\"murtadha@MacBookPro.localdomain\".options" }
+nixos = { expr = "(builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").nixosConfigurations.nixos-workstation.options" }
 
 [[language]]
 name = "hcl"

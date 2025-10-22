@@ -38,4 +38,4 @@ q = ":quit"
 w = ":write" # this overwrites Space + w for 'Window' menu
 
 [editor.lsp]
-# display-inlay-hints = true
+display-inlay-hints = true
