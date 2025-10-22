@@ -1,5 +1,5 @@
-# font-family = MonoLisa Cursive Medium
-font-family = Comic Code Ligatures Medium
+font-family = MonoLisa Cursive
+# font-family = Comic Code Ligatures Medium
 font-size = 14
 adjust-cell-height = 10%
 theme = dark:catppuccin-mocha.conf,light:catppuccin-latte.conf

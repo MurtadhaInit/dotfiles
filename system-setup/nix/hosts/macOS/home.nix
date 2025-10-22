@@ -5,6 +5,7 @@
     # home-manager modules
     ../../modules/user/nix-development.nix
     ../../modules/user/nushell.nix
+    ../../modules/user/ghostty.nix
     ../../modules/user/helix.nix
     ../../modules/user/terraform.nix
   ];
@@ -61,6 +62,7 @@
   programs.home-manager.enable = true;
 
   # === macOS specific options ===
-  # Use Homebrew's Nushell instead of Nix's
+  # Use Homebrew packages instead of Nix on macOS
   programs.nushell.installPackage = false;
+  programs.ghostty.installPackage = false;
 }
