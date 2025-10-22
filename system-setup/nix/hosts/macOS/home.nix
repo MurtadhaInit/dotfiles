@@ -14,6 +14,7 @@
     ../../modules/user/opencode.nix
     ../../modules/user/vscode.nix
     ../../modules/user/starship.nix
+    ../../modules/user/jetbrains.nix
 
     ../../modules/user/terraform.nix
   ];
@@ -79,4 +80,5 @@
   programs.lazygit.installPackage = false;
   programs.vscode.enable = false; # don't install through Nix
   programs.starship.enable = false; # don't install through Nix
+  programs.jetbrains.installPackage = false;
 }
