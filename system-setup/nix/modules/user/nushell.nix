@@ -38,8 +38,7 @@ in
     programs.nushell = {
       enable = true;
       package = lib.mkIf (!cfg.installPackage) null;
-      configFile.source = ../../../../Applications/nushell/Library
-      + "/Application Support/nushell/config.nu";
+      configFile.source = ../../../../Applications/nushell/config.nu;
     };
 
     # on macOS
@@ -47,7 +46,7 @@ in
       "Library/Application Support/nushell/themes".source = themes-dir;
       "Library/Application Support/nushell/scripts" = {
         recursive = true;
-        source = ../../../../Applications/nushell/Library + "/Application Support/nushell/scripts";
+        source = ../../../../Applications/nushell/scripts;
       };
     };
 
@@ -61,12 +60,11 @@ in
         is set and yet there is no config file there.
       */
       (lib.mkIf pkgs.stdenv.isDarwin {
-        "nushell/config.nu".source = ../../../../Applications/nushell/Library
-        + "/Application Support/nushell/config.nu";
+        "nushell/config.nu".source = ../../../../Applications/nushell/config.nu;
         "nushell/themes".source = themes-dir;
         "nushell/scripts" = {
           recursive = true;
-          source = ../../../../Applications/nushell/Library + "/Application Support/nushell/scripts";
+          source = ../../../../Applications/nushell/scripts;
         };
       })
 
@@ -75,7 +73,7 @@ in
         "nushell/themes".source = themes-dir;
         "nushell/scripts" = {
           recursive = true;
-          source = ../../../../Applications/nushell/Library + "/Application Support/nushell/scripts";
+          source = ../../../../Applications/nushell/scripts;
         };
       })
     ];

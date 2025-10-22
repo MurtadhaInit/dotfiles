@@ -57,11 +57,10 @@
     # EDITOR = "emacs";
   };
 
-  # programs.nushell = {
-  #   enable = true;
-  #   configFile.source = ~/.dotfiles/Applications/nushell/.config/nushell/config.nu;
-  # };
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # === macOS specific options ===
+  # Use Homebrew's Nushell instead of Nix's
+  programs.nushell.installPackage = false;
 }
