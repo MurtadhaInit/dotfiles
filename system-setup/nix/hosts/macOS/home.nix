@@ -15,6 +15,7 @@
     ../../modules/user/vscode.nix
     ../../modules/user/starship.nix
     ../../modules/user/jetbrains.nix
+    ../../modules/user/git-delta.nix
 
     ../../modules/user/terraform.nix
   ];
@@ -81,4 +82,5 @@
   programs.vscode.enable = false; # don't install through Nix
   programs.starship.enable = false; # don't install through Nix
   programs.jetbrains.installPackage = false;
+  programs.version-control.installPackages = false;
 }
