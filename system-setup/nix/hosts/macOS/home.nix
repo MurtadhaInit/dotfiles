@@ -10,6 +10,7 @@
     ../../modules/user/eza.nix
     ../../modules/user/bat.nix
     ../../modules/user/bottom.nix
+    ../../modules/user/lazygit.nix
 
     ../../modules/user/terraform.nix
   ];
@@ -72,4 +73,5 @@
   programs.eza.installPackage = false;
   programs.bat.installPackage = false;
   programs.bottom.installPackage = false;
+  programs.lazygit.installPackage = false;
 }
