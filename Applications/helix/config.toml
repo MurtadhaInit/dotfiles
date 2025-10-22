@@ -34,8 +34,8 @@ prefix-len = 3       # default is 1
 esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.normal.space]
-q = ":quit"
-w = ":write" # this overwrites Space + w for 'Window' menu
+q = ":buffer-close"
+w = ":write"        # this overwrites Space + w for 'Window' menu
 
 [editor.lsp]
 display-inlay-hints = true
