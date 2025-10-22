@@ -7,6 +7,7 @@
     ../../modules/user/nushell.nix
     ../../modules/user/ghostty.nix
     ../../modules/user/helix.nix
+    ../../modules/user/eza.nix
     ../../modules/user/terraform.nix
   ];
 
@@ -65,4 +66,5 @@
   # Use Homebrew packages instead of Nix on macOS
   programs.nushell.installPackage = false;
   programs.ghostty.installPackage = false;
+  programs.eza.installPackage = false;
 }
