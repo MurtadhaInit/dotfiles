@@ -8,3 +8,6 @@
 6. Research and understand further the use of agenix and the setup config created for fonts.
 7. Remove the shared Nushell task for setting up XDG_ en vars for macOS. This is not needed anymore as I've decided to let Nushell use the default (inconvenient) location for config.
 8. Fix the issue of apps being installed twice on macOS (through Homebrew, originally, and then now through Nix when using the same existing modules). Nushell is one such example: `which nu` will show both, but only the Homebrew one is made the default and added to the list of shells.
+9. Rename the folder modules/user to modules/home-manager for better clarity. Or, move and rename both directories: ./hm-modules and ./nixos-modules instead of modules/user...etc.
+10. Consider adding a default.nix to each user and system directories to define the submodules to be imported and/or enabled by default. We can then add an import at the directory level (which will import `default.nix`). We can then enable or disable individual submodules.
+11. Organise modules by purpose in a subdirectory. E.g. modules/system/services and modules/system/programs
