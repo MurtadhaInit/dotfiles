@@ -11,6 +11,7 @@
     ../../modules/user/bat.nix
     ../../modules/user/bottom.nix
     ../../modules/user/lazygit.nix
+    ../../modules/user/opencode.nix
 
     ../../modules/user/terraform.nix
   ];
