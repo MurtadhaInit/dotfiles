@@ -12,6 +12,7 @@
     ../../modules/user/bottom.nix
     ../../modules/user/lazygit.nix
     ../../modules/user/opencode.nix
+    ../../modules/user/vscode.nix
 
     ../../modules/user/terraform.nix
   ];
@@ -75,4 +76,5 @@
   programs.bat.installPackage = false;
   programs.bottom.installPackage = false;
   programs.lazygit.installPackage = false;
+  programs.vscode.enable = false; # don't install through Nix
 }
