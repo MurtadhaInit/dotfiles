@@ -9,6 +9,7 @@
     ../../modules/user/helix.nix
     ../../modules/user/eza.nix
     ../../modules/user/bat.nix
+    ../../modules/user/bottom.nix
 
     ../../modules/user/terraform.nix
   ];
@@ -70,4 +71,5 @@
   programs.ghostty.installPackage = false;
   programs.eza.installPackage = false;
   programs.bat.installPackage = false;
+  programs.bottom.installPackage = false;
 }
