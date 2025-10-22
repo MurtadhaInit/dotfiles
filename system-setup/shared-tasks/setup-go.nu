@@ -22,7 +22,12 @@ def setup_go [] {
   go install github.com/air-verse/air@latest
   go install github.com/pressly/goose/v3/cmd/goose@latest
   go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
-  ensure_homebrew_package golangci-lint
+  # go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.5.0
+  go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+
+  # Go LSPs to use in Helix
+  go install github.com/nametake/golangci-lint-langserver@latest
+  go install golang.org/x/tools/gopls@latest
 }
 
 setup_go
