@@ -1,6 +1,0 @@
-# ignore sll .DS_Store files
---ignore=\.DS_Store
-# source is the current directory
---dir=.
-# target is $HOME (absolute paths are problematic/buggy)
---target=../../
