@@ -3,7 +3,6 @@
 {
   imports = [
     # home-manager modules
-    ../../modules/user/nix-development.nix
     ../../modules/user/nushell.nix
     ../../modules/user/ghostty.nix
     ../../modules/user/helix.nix
@@ -16,8 +15,7 @@
     ../../modules/user/starship.nix
     ../../modules/user/jetbrains.nix
     ../../modules/user/git-delta.nix
-
-    ../../modules/user/terraform.nix
+    ../../modules/user/LSPs.nix
   ];
 
   # information about the user and their home path that's going ot be managed
