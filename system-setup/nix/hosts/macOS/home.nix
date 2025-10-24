@@ -16,6 +16,7 @@
     ../../modules/user/jetbrains.nix
     ../../modules/user/git-delta.nix
     ../../modules/user/LSPs.nix
+    ../../modules/user/atuin.nix
   ];
 
   # information about the user and their home path that's going ot be managed
@@ -79,6 +80,7 @@
   programs.lazygit.installPackage = false;
   programs.vscode.enable = false; # don't install through Nix
   programs.starship.enable = false; # don't install through Nix
+  programs.atuin.enable = false; # don't install through Nix
   programs.jetbrains.installPackage = false;
   programs.version-control.installPackages = false;
 }

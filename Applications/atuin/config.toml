@@ -1,0 +1,86 @@
+## date format used, either "us" or "uk"
+dialect = "uk"
+
+## the default filter mode to use when searching
+## possible values: "global", "host", "session", "session-preload", "directory", "workspace"
+## NOTE: Ctrl + r again to cycle between other modes
+filter_mode = "workspace"
+
+## filter for commands executed in any directory within a git repository tree
+workspaces = true
+
+## which filter mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "filter_mode"
+## leave unspecified to use same mode set in "filter_mode"
+filter_mode_shell_up_key_binding = "directory"
+
+## which style to use
+## possible values: auto, full, compact
+style = "compact"
+
+## enable or disable showing a preview of the selected command
+## useful when the command is longer than the terminal width and is cut off
+show_preview = false
+
+## possible values: emacs, subl
+# word_jump_mode = "emacs"
+
+## Show numeric shortcuts (1..9) beside list items in the TUI
+## set to false to hide the moving numbers if you find them distracting
+# show_numeric_shortcuts = true
+
+# TODO: this setting is not working
+## default history list format - can also be specified with the --format arg
+history_format = "{time}\t{command}\t{duration}"
+
+## Configure whether or not to show the help row, which includes the current Atuin
+## version (and whether an update is available), a keymap hint, and the total
+## amount of commands in your history.
+show_help = false
+
+# TODO: research
+## Configure whether or not to show tabs for search and inspect
+show_tabs = false
+
+## Configure whether or not the tabs row may be auto-hidden, which includes the current Atuin
+## tab, such as Search or Inspector, and other tabs you may wish to see. This will
+## only be hidden if there are fewer than this count of lines available, and does not affect the use
+## of keyboard shortcuts to switch tab. 0 to never auto-hide, default is 8 (lines).
+## This is ignored except in `compact` mode.
+# auto_hide_height = 8
+
+## If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
+enter_accept = true
+
+# TODO: research
+## Defaults to false. If enabled, when triggered after &&, || or |, Atuin will complete commands to chain rather than replace the current line.
+# command_chaining = false
+
+## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
+## search`.  If this is set to "auto", the startup keymap mode in the Atuin
+## search is automatically selected based on the shell's keymap where the
+## keybinding is defined.  If this is set to "emacs", "vim-insert", or
+## "vim-normal", the startup keymap mode in the Atuin search is forced to be
+## the specified one.
+keymap_mode = "emacs"
+
+## Cursor style in each keymap mode.  If specified, the cursor style is changed
+## in entering the cursor shape.  Available values are "default" and
+## "{blink,steady}-{block,underline,bar}".
+# keymap_cursor = { emacs = "blink-block", vim_insert = "blink-block", vim_normal = "steady-block" }
+
+[sync]
+# Enable sync v2 by default
+# This ensures that sync v2 is enabled for new installs only
+# In a later release it will become the default across the board
+records = true
+
+[theme]
+name = "catppuccin-mocha-mauve"
+
+[search]
+## The list of enabled filter modes, in order of priority.
+## The "workspace" mode is skipped when not in a workspace or workspaces = false.
+## Default filter mode can be overridden with the filter_mode setting.
+# filters = [ "global", "host", "session", "session-preload", "workspace", "directory" ]
+filters = ["workspace", "global", "directory"]
