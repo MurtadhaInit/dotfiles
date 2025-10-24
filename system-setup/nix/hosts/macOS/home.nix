@@ -3,20 +3,20 @@
 {
   imports = [
     # home-manager modules
-    ../../modules/user/nushell.nix
-    ../../modules/user/ghostty.nix
-    ../../modules/user/helix.nix
-    ../../modules/user/eza.nix
-    ../../modules/user/bat.nix
-    ../../modules/user/bottom.nix
-    ../../modules/user/lazygit.nix
-    ../../modules/user/opencode.nix
-    ../../modules/user/vscode.nix
-    ../../modules/user/starship.nix
-    ../../modules/user/jetbrains.nix
-    ../../modules/user/git-delta.nix
-    ../../modules/user/LSPs.nix
-    ../../modules/user/atuin.nix
+    ../../hm-modules/nushell.nix
+    ../../hm-modules/ghostty.nix
+    ../../hm-modules/helix.nix
+    ../../hm-modules/eza.nix
+    ../../hm-modules/bat.nix
+    ../../hm-modules/bottom.nix
+    ../../hm-modules/lazygit.nix
+    ../../hm-modules/opencode.nix
+    ../../hm-modules/vscode.nix
+    ../../hm-modules/starship.nix
+    ../../hm-modules/jetbrains.nix
+    ../../hm-modules/git-delta.nix
+    ../../hm-modules/LSPs.nix
+    ../../hm-modules/atuin.nix
   ];
 
   # information about the user and their home path that's going ot be managed

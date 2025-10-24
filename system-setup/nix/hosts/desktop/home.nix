@@ -3,25 +3,25 @@
 {
   imports = [
     # home-manager modules
-    ../../modules/user/ssh.nix
-    ../../modules/user/packages.nix
-    ../../modules/user/librewolf.nix
-    ../../modules/user/qbittorrent.nix
-    ../../modules/user/nushell.nix
-    ../../modules/user/ghostty.nix
-    ../../modules/user/agenix-fonts.nix
-    ../../modules/user/bun.nix
-    ../../modules/user/bat.nix
-    ../../modules/user/brave.nix
-    ../../modules/user/bottom.nix
-    ../../modules/user/eza.nix
-    ../../modules/user/git-delta.nix
-    ../../modules/user/lazygit.nix
-    ../../modules/user/vscode.nix
-    ../../modules/user/jetbrains.nix
-    ../../modules/user/starship.nix
-    ../../modules/user/helix.nix
-    ../../modules/user/LSPs.nix
+    ../../hm-modules/ssh.nix
+    ../../hm-modules/packages.nix
+    ../../hm-modules/librewolf.nix
+    ../../hm-modules/qbittorrent.nix
+    ../../hm-modules/nushell.nix
+    ../../hm-modules/ghostty.nix
+    ../../hm-modules/agenix-fonts.nix
+    ../../hm-modules/bun.nix
+    ../../hm-modules/bat.nix
+    ../../hm-modules/brave.nix
+    ../../hm-modules/bottom.nix
+    ../../hm-modules/eza.nix
+    ../../hm-modules/git-delta.nix
+    ../../hm-modules/lazygit.nix
+    ../../hm-modules/vscode.nix
+    ../../hm-modules/jetbrains.nix
+    ../../hm-modules/starship.nix
+    ../../hm-modules/helix.nix
+    ../../hm-modules/LSPs.nix
   ];
 
   # information about the user and their home path that's going ot be managed

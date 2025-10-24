@@ -7,15 +7,15 @@
     ./hardware/storage.nix
 
     # System-level modules
-    ../../modules/system/nvidia.nix
-    ../../modules/system/fonts.nix
-    ../../modules/system/nh.nix
-    ../../modules/system/zsa.nix
-    ../../modules/system/locale.nix
-    ../../modules/system/audio.nix
-    ../../modules/system/firewall.nix
-    ../../modules/system/networking.nix
-    ../../modules/system/default-shell.nix
+    ../../nixos-modules/nvidia.nix
+    ../../nixos-modules/fonts.nix
+    ../../nixos-modules/nh.nix
+    ../../nixos-modules/zsa.nix
+    ../../nixos-modules/locale.nix
+    ../../nixos-modules/audio.nix
+    ../../nixos-modules/firewall.nix
+    ../../nixos-modules/networking.nix
+    ../../nixos-modules/default-shell.nix
   ];
 
   networking.hostName = "nixos-workstation";
