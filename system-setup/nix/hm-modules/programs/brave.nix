@@ -1,8 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.chromium = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.brave;
     nativeMessagingHosts = [
       pkgs.kdePackages.plasma-browser-integration

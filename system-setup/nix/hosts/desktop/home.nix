@@ -2,26 +2,10 @@
 
 {
   imports = [
-    # home-manager modules
+    ../../hm-modules/programs
+
     ../../hm-modules/ssh.nix
-    ../../hm-modules/packages.nix
-    ../../hm-modules/librewolf.nix
-    ../../hm-modules/qbittorrent.nix
-    ../../hm-modules/nushell.nix
-    ../../hm-modules/ghostty.nix
     ../../hm-modules/agenix-fonts.nix
-    ../../hm-modules/bun.nix
-    ../../hm-modules/bat.nix
-    ../../hm-modules/brave.nix
-    ../../hm-modules/bottom.nix
-    ../../hm-modules/eza.nix
-    ../../hm-modules/git-delta.nix
-    ../../hm-modules/lazygit.nix
-    ../../hm-modules/vscode.nix
-    ../../hm-modules/jetbrains.nix
-    ../../hm-modules/starship.nix
-    ../../hm-modules/helix.nix
-    ../../hm-modules/LSPs.nix
   ];
 
   # information about the user and their home path that's going ot be managed

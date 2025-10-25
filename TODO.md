@@ -5,5 +5,5 @@
 3. See if the SSH config still requires any other improvements or changes.
 4. Research and understand further the use of agenix and the setup config created for fonts.
 5. Remove the shared Nushell task for setting up XDG_ en vars for macOS. This is not needed anymore as I've decided to let Nushell use the default (inconvenient) location for config.
-6. Consider adding a default.nix to each user and system directories to define the submodules to be imported and/or enabled by default. We can then add an import at the directory level (which will import `default.nix`). We can then enable or disable individual submodules.
-7. Organise modules by purpose in a subdirectory. E.g. modules/system/services and modules/system/programs
+6. Organise modules by purpose in a subdirectory. E.g. modules/system/services and modules/system/programs
+7. Might make every program module (or every module) toggle-able. And also add a snippet for quickly creating a Nix module with `options` and `config` and the module toggle option.

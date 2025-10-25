@@ -2,21 +2,7 @@
 
 {
   imports = [
-    # home-manager modules
-    ../../hm-modules/nushell.nix
-    ../../hm-modules/ghostty.nix
-    ../../hm-modules/helix.nix
-    ../../hm-modules/eza.nix
-    ../../hm-modules/bat.nix
-    ../../hm-modules/bottom.nix
-    ../../hm-modules/lazygit.nix
-    ../../hm-modules/opencode.nix
-    ../../hm-modules/vscode.nix
-    ../../hm-modules/starship.nix
-    ../../hm-modules/jetbrains.nix
-    ../../hm-modules/git-delta.nix
-    ../../hm-modules/LSPs.nix
-    ../../hm-modules/atuin.nix
+    ../../hm-modules/programs
   ];
 
   # information about the user and their home path that's going ot be managed
@@ -69,18 +55,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # === macOS specific options ===
-  # Use Homebrew packages instead of Nix on macOS
-  programs.nushell.installPackage = false;
-  programs.ghostty.installPackage = false;
-  programs.eza.installPackage = false;
-  programs.bat.installPackage = false;
-  programs.bottom.installPackage = false;
-  programs.lazygit.installPackage = false;
-  programs.vscode.enable = false; # don't install through Nix
-  programs.starship.enable = false; # don't install through Nix
-  programs.atuin.enable = false; # don't install through Nix
-  programs.jetbrains.installPackage = false;
-  programs.version-control.installPackages = false;
 }

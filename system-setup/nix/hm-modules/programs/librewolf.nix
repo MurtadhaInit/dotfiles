@@ -1,8 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.librewolf = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.downloads" = false;
