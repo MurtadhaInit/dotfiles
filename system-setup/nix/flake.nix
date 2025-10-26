@@ -38,21 +38,26 @@
     in
     {
       nixosConfigurations = {
+        # NixOS configurations + integrated home-manager module
         nixos-workstation = nixpkgs.lib.nixosSystem {
           pkgs = pkgsFor "x86_64-linux";
-          modules = [ ./hosts/desktop/configuration.nix ];
+          modules = [
+            ./hosts/desktop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit agenix; };
+                users.murtadha = ./hosts/desktop/home.nix;
+              };
+            }
+          ];
         };
       };
 
       homeConfigurations = {
-        "murtadha@nixos-workstation" = home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor "x86_64-linux";
-          modules = [
-            ./hosts/desktop/home.nix
-            agenix.homeManagerModules.default
-          ];
-        };
-
+        # Standalone home-manager configurations for macOS
         "murtadha@MacBookPro.localdomain" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor "aarch64-darwin";
           modules = [

@@ -60,6 +60,11 @@
     (lib.mkIf pkgs.stdenv.isLinux {
       # Install packages via Nix on Linux (default behavior)
       # Add any Linux-specific configuration here
+      programs.librewolf.enable = true;
+      programs.chromium.enable = true; # for Brave
+      qbittorrent.enable = true;
+      bun.enable = true;
+      packages.enable = true;
     })
   ];
 }

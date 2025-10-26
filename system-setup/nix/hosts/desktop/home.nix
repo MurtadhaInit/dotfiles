@@ -1,7 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  agenix,
+  ...
+}:
 
 {
   imports = [
+    agenix.homeManagerModules.default
     ../../hm-modules/programs
 
     ../../hm-modules/ssh.nix

@@ -7,7 +7,7 @@
 
 let
   fontsDir = "${config.xdg.dataHome}/fonts";
-  fontsBase = ../../secrets/fonts;
+  fontsBase = ../secrets/fonts;
   fontsSecrets = {
     "fonts/MonoLisa-Plus-2.016.zip" = builtins.path {
       path = builtins.toPath (builtins.toString fontsBase + "/MonoLisa-Plus-2.016.zip.age");
