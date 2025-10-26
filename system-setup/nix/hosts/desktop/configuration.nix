@@ -3,7 +3,8 @@
 {
   imports = [
     # Host-specific hardware modules
-    ./hardware/hardware-configuration.nix # the generated results of the hardware scan
+    # ./hardware/hardware-configuration.nix # the generated results of the hardware scan
+    /etc/nixos/hardware-configuration.nix
     ./hardware/storage.nix
 
     # System-level modules
