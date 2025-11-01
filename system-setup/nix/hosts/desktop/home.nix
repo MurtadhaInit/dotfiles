@@ -1,13 +1,13 @@
 {
   config,
   pkgs,
-  agenix,
+  inputs,
   ...
 }:
 
 {
   imports = [
-    agenix.homeManagerModules.default
+    inputs.agenix.homeManagerModules.default
     ../../hm-modules/programs
 
     ../../hm-modules/ssh.nix

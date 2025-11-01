@@ -1,7 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
+    inputs.agenix.homeManagerModules.default
     ../../hm-modules/programs
   ];
 
