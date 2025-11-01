@@ -44,7 +44,7 @@
       nur.repos.charmbracelet.crush
       papers # cause Okular is kinda trash
       claude-code
-      terraform
+      # terraform # Terraform is not available on the unstable channel
       tmux
       remmina
       tlrc

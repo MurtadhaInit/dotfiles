@@ -3,9 +3,8 @@
 {
   imports = [
     # Host-specific hardware modules
-    # ./hardware/hardware-configuration.nix # the generated results of the hardware scan
-    /etc/nixos/hardware-configuration.nix
-    ./hardware/storage.nix
+    ./hardware/hardware-configuration.nix # NOTE: copy the generated results of the hardware scan
+    ./hardware/storage.nix # NOTE: edit the UUIDs of HDDs according to the new system before switching
 
     # System-level modules
     ../../nixos-modules/nvidia.nix
@@ -20,6 +19,10 @@
   ];
 
   networking.hostName = "nixos-workstation";
+
+  # NOTE: change the values for the encrypted SSD on a new system before switching
+  boot.initrd.luks.devices."luks-437bdffa-1ff4-42cf-b1a4-0b93b7ad318d".device =
+    "/dev/disk/by-uuid/437bdffa-1ff4-42cf-b1a4-0b93b7ad318d";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {

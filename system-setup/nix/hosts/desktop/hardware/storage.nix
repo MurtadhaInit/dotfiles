@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Encrypted SSD
-  boot.initrd.luks.devices."luks-f8bb3e60-c4ed-4046-b493-da44bffd2882".device =
-    "/dev/disk/by-uuid/f8bb3e60-c4ed-4046-b493-da44bffd2882";
-
   # Because internal HDDs were formatted as ntfs
   boot.supportedFilesystems = [ "ntfs" ];
 
