@@ -30,6 +30,7 @@
     ./qbittorrent.nix
     ./bun.nix
     ./packages.nix
+    ./localsend.nix
   ];
 
   config = lib.mkMerge [
@@ -63,6 +64,7 @@
       programs.librewolf.enable = true;
       programs.chromium.enable = true; # for Brave
       qbittorrent.enable = true;
+      localsend.enable = true;
       bun.enable = true;
       packages.enable = true;
     })

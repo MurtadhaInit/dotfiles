@@ -15,7 +15,6 @@
       neovim
       zed-editor
       vlc
-      localsend
       stow
       uv
       ruff
