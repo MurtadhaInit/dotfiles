@@ -1,9 +1,5 @@
 # priority: 13
 
-# TODO: we need to link Nushell config files to ~/.config/nushell as well because
-# it will complain later (e.g. when running scripts) when it noticed XDG_CONFIG_HOME
-# is set, but not files exist at ~/.config/nushell (since they are in Application Support...)
-
 def setup_nushell [] {
   print "🔄 Setting up Nushell..."
 

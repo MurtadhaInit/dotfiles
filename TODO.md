@@ -5,6 +5,6 @@
 3. See if the SSH config still requires any other improvements or changes.
 4. Research and understand further the use of agenix and the setup config created for fonts.
 5. Remove the shared Nushell task for setting up XDG_ en vars for macOS. This is not needed anymore as I've decided to let Nushell use the default (inconvenient) location for config.
-6. Organise modules by purpose in a subdirectory. E.g. modules/system/services and modules/system/programs
-7. Might make every program module (or every module) toggle-able. And also add a snippet for quickly creating a Nix module with `options` and `config` and the module toggle option.
-8. Switch to NixOS-integrated home-manager for the NixOS configuration. This is to be able to roll back to previous generations if things go wrong.
+6. Might make every program module (or every module) toggle-able. And also add a snippet for quickly creating a Nix module with `options` and `config` and the module toggle option.
+7. Turn `nh` into a HM module instead.
+8. The remaining apps whose dotfiles are still not covered by Home Manager: zsh, tmux, nvim, and fsh (fast syntax highlighting - for zsh).

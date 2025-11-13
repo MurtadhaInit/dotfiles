@@ -125,8 +125,6 @@ brew "vim"
 brew "xdg-ninja"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-# Pluggable terminal workspace, with terminal multiplexer as the base feature
-brew "zellij"
 # General-purpose lossless data-compression library
 brew "zlib"
 # Shell extension to navigate your filesystem faster
@@ -172,6 +170,8 @@ cask "db-browser-for-sqlite"
 cask "devpod"
 # Online diagram software
 cask "drawio"
+# Matrix collaboration client
+cask "element"
 # Collaborative team software
 cask "figma"
 cask "font-atkinson-hyperlegible-mono"
@@ -186,6 +186,8 @@ cask "gitbutler"
 cask "google-chrome"
 # Open-source video transcoder
 cask "handbrake-app"
+# Chromium-based web browser
+cask "helium-browser"
 # Free and open-source media player
 cask "iina"
 # System monitoring app
@@ -244,10 +246,6 @@ cask "vagrant"
 cask "via"
 # Open-source code editor
 cask "visual-studio-code"
-# Multimedia player
-cask "vlc"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
 # Network protocol analyzer
 cask "wireshark-app"
 # REST, GraphQL and gRPC client
