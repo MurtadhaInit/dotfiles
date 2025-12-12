@@ -181,6 +181,7 @@ alias lzg = lazygit
 alias lzd = lazydocker
 alias man = batman
 alias tf = terraform
+alias k = kubectl
 # To open nvim with the separate nvim-vscode config to update/debug nvim as used inside VSCode
 alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
 # Update the Brewfile after adding a package

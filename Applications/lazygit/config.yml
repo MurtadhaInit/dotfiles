@@ -1,8 +1,8 @@
 git:
-  paging:
+  pagers:
     # see: delta --help
-    pager: delta --paging=never --side-by-side --file-style=omit --hunk-header-decoration-style=ul --hunk-header-style=file --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    colorArg: always
+    - pager: delta --paging=never --side-by-side --file-style=omit --hunk-header-decoration-style=ul --hunk-header-style=file --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      colorArg: always
 
 gui:
   nerdFontsVersion: "3"
