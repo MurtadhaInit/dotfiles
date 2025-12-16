@@ -31,6 +31,9 @@
     ./bun.nix
     ./packages.nix
     ./localsend.nix
+
+    # macOS
+    ./linearmouse.nix
   ];
 
   config = lib.mkMerge [
@@ -48,6 +51,7 @@
       programs.atuin.enable = false; # don't install through Nix
       programs.jetbrains.installPackage = false;
       programs.version-control.installPackages = false;
+      linearmouse.enable = true;
 
       # Linux-only programs
       programs.librewolf.enable = false;
