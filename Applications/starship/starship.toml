@@ -160,7 +160,7 @@ format = "[$symbol($version )]($style)"
 
 [bun]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = " "
 
 [conda]
 format = "[$symbol$environment]($style) "
@@ -187,6 +187,11 @@ format = "[$symbol($version )]($style)"
 [terraform]
 symbol = " "
 format = "[$symbol$workspace]($style) "
+
+[nix_shell]
+symbol = "󱄅 "
+format = '[$symbol$state( \($name\))]($style) '
+style = "bold sapphire"
 
 # === Colour palettes ===
 [palettes.catppuccin_latte]
