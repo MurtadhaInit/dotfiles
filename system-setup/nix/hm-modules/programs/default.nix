@@ -23,6 +23,7 @@
     ./atuin.nix
 
     ./LSPs.nix
+    ./devbox.nix
 
     # Linux
     ./librewolf.nix
@@ -52,6 +53,7 @@
       programs.jetbrains.installPackage = false;
       programs.version-control.installPackages = false;
       linearmouse.enable = true;
+      devbox.enable = true;
 
       # Linux-only programs
       programs.librewolf.enable = false;
@@ -71,6 +73,7 @@
       localsend.enable = true;
       bun.enable = true;
       packages.enable = true;
+      devbox.enable = true;
     })
   ];
 }
