@@ -17,18 +17,12 @@
         "speed" : "unset"
       },
       "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "distance" : {
-          "vertical" : "auto"
-        },
+        "acceleration" : 1,
+        "distance" : "auto",
         "reverse" : {
           "vertical" : false
         },
-        "speed" : {
-          "vertical" : 0
-        }
+        "speed" : 0
       }
     },
     {
@@ -107,7 +101,7 @@
         }
       },
       "pointer" : {
-        "acceleration" : 0.75,
+        "acceleration" : 0.65,
         "disableAcceleration" : true
       },
       "scrolling" : {
@@ -115,7 +109,7 @@
           "vertical" : 1
         },
         "distance" : {
-          "vertical" : 2
+          "vertical" : 1
         },
         "reverse" : {
           "vertical" : true
