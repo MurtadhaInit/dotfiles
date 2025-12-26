@@ -3,6 +3,7 @@ tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
 tap "oven-sh/bun"
 tap "pulumi/tap"
+tap "sst/tap"
 # Run your GitHub Actions locally
 brew "act"
 # Simple, modern, secure file encryption
@@ -99,6 +100,8 @@ brew "nushell"
 brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# AI coding agent, built for the terminal
+brew "opencode"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Fast and accurate code counter with complexity and COCOMO estimates
@@ -135,8 +138,6 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Feature-rich syntax highlighting for Zsh
 brew "zsh-fast-syntax-highlighting"
-# A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
-brew "charmbracelet/tap/crush"
 brew "cirruslabs/cli/cirrus"
 # Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
@@ -152,20 +153,18 @@ brew "oven-sh/bun/bun"
 brew "pulumi/tap/pulumi"
 # Memory training application
 cask "anki"
-# API development platform
-cask "apidog"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Cross platform SQL editor and database management app
 cask "beekeeper-studio"
 # Web browser focusing on privacy
 cask "brave-browser"
+# Terminal-based AI coding assistant
+cask "claude-code"
 # Screen capturing tool
 cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
-# Browser for SQLite databases
-cask "db-browser-for-sqlite"
 # UI to create reproducible developer environments based on a devcontainer.json
 cask "devpod"
 # Online diagram software
@@ -204,8 +203,6 @@ cask "libreoffice"
 cask "linearmouse"
 # Online collaborative whiteboard platform
 cask "miro"
-# Interactive tool for analyzing MongoDB data
-cask "mongodb-compass"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -220,8 +217,6 @@ cask "postman"
 cask "proton-drive"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
-# Control your tools with a few keystrokes
-cask "raycast"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Web browser
