@@ -161,6 +161,7 @@ format = "[$symbol($version )]($style)"
 [bun]
 format = "[$symbol($version )]($style)"
 symbol = " "
+style = "bold rosewater"
 
 [conda]
 format = "[$symbol$environment]($style) "

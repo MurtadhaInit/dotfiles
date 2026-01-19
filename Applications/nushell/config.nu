@@ -47,7 +47,7 @@ $env.config = {
     }
     footer_mode: "auto" # or always, never, number_of_rows. When to display table footers
     table: {
-        mode: default # "default", "basic", "compact", "compact_double", "heavy", "light", "none", "reinforced", "rounded", "thin", "with_love", "psql", "markdown", "dots", "restructured", "ascii_rounded", or "basic_compact" 
+        mode: default # "default", "basic", "compact", "compact_double", "heavy", "light", "none", "reinforced", "rounded", "thin", "with_love", "psql", "markdown", "dots", "restructured", "ascii_rounded", or "basic_compact"
         index_mode: always # show index column
         header_on_separator: false # false shows header text on separator/border line
     }
@@ -84,7 +84,6 @@ $env.config = {
         #         ]
         #     }
         # }
-        # change inside word
         # select all line with shift + v
         # g + _ to move to the last non-blank character of the line
     ]
@@ -131,20 +130,20 @@ load-env {
     HOMEBREW_REPOSITORY: (if $nu.os-info.name == 'macos' {$brew_prefix} else {$"($brew_prefix)/Homebrew"}),
     INFOPATH: $"($brew_prefix)/share/info:($env.INFOPATH? | default '')",
 
-    VISUAL: "code",
-    EDITOR: "hx",
+    VISUAL: "zed --wait",
+    EDITOR: "nvim",
 
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
-    HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues 
+    HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
     EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
 
     # By default, this is ~/.aws/config and by default it doesn't contain credentials
     # Credentials is typically in a separate file in ~/.aws/credentials
     # Credentials and config have been combined into a single config file here to be used.
-    AWS_CONFIG_FILE: $"($nu.home-path)/.ssh/keys/aws-config-credentials",
+    AWS_CONFIG_FILE: $"($nu.home-dir)/.ssh/keys/aws-config-credentials",
     # Location of the credentials file is also changed even though it's not used nor existent
-    AWS_SHARED_CREDENTIALS_FILE: $"($nu.home-path)/.ssh/keys/aws-credentials",
+    AWS_SHARED_CREDENTIALS_FILE: $"($nu.home-dir)/.ssh/keys/aws-credentials",
 
     # "NULLCMD": "bat" # Default to bat instead of cat
 
@@ -167,9 +166,9 @@ $env.PATH = [
     $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
     $"($env.GOBREW_ROOT)/.gobrew/bin" # gobrew binary
     $"($env.GOBREW_ROOT)/.gobrew/current/bin" # active version of Go set by gobrew
-    $"($nu.home-path)/Library/Application Support/JetBrains/Toolbox/scripts"
+    $"($nu.home-dir)/Library/Application Support/JetBrains/Toolbox/scripts"
 
-    # Homebrew setup as per `brew shellenv` 
+    # Homebrew setup as per `brew shellenv`
     $"($brew_prefix)/bin"
     $"($brew_prefix)/sbin"
     ...$env.PATH
@@ -183,7 +182,9 @@ alias man = batman
 alias tf = terraform
 alias k = kubectl
 # To open nvim with the separate nvim-vscode config to update/debug nvim as used inside VSCode
-alias nvim-vscode = NVIM_APPNAME="nvim-vscode" nvim
+def nvim-vscode [...args] {
+    with-env { NVIM_APPNAME: "nvim-vscode" } { nvim ...$args }
+}
 # Update the Brewfile after adding a package
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
 alias outdated = do { brew update | complete | ignore; brew outdated }

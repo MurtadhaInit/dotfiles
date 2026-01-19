@@ -10,7 +10,7 @@ def main [
   --all # execute all tasks (unattended)
   --skip-tasks: list<string> = [] # specify the exact names of tasks to skip
   ]: nothing -> nothing {
-  cd $"($nu.home-path)/.dotfiles/system-setup"
+  cd $"($nu.home-dir)/.dotfiles/system-setup"
   let os_tasks_dir = match $nu.os-info.name {
     "macos" => {
       print "🍎 MacOS detected"
