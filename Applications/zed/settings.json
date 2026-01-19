@@ -1,0 +1,61 @@
+{
+  // "lsp": {
+  //   "nixd": {
+  //     "binary": {
+  //       "path": "/Users/murtadha/.nix-profile/bin/nixd"
+  //     }
+  //   },
+  //   "nil": {
+  //     "binary": {
+  //       "path": "/Users/murtadha/.nix-profile/bin/nil"
+  //     }
+  //   }
+  // },
+  "toolbar": {
+    "breadcrumbs": false,
+  },
+  "colorize_brackets": true,
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "on_last_window_closed": "quit_app",
+  "git_panel": {
+    "tree_view": true,
+  },
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-thinking-latest",
+    },
+    "default_profile": "write",
+    "default_model": {
+      "provider": "openrouter",
+      "model": "openai/gpt-5",
+    },
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "JetBrains New UI Icons (Light)",
+    "dark": "JetBrains New UI Icons (Dark)",
+  },
+  "vim_mode": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "base_keymap": "VSCode",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "VSCode Dark Polished",
+  },
+  "buffer_font_family": "MonoLisa Cursive",
+  "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
+  "buffer_font_size": 14,
+  "terminal": {
+    "font_family": "Comic Code Ligatures",
+    "font_fallbacks": ["Symbols Nerd Font Mono"],
+    "line_height": "standard",
+    "font_size": 14,
+  },
+}

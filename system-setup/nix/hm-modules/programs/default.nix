@@ -21,6 +21,7 @@
     ./jetbrains.nix
     ./git-delta.nix
     ./atuin.nix
+    ./zed.nix
 
     ./LSPs.nix
     ./devbox.nix
