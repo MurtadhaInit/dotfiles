@@ -22,6 +22,7 @@
     ./git-delta.nix
     ./atuin.nix
     ./zed.nix
+    ./glow.nix
 
     ./LSPs.nix
     ./devbox.nix
@@ -55,6 +56,7 @@
       programs.version-control.installPackages = false;
       linearmouse.enable = true;
       devbox.enable = true;
+      programs.glow.installPackage = false;
 
       # Linux-only programs
       programs.librewolf.enable = false;

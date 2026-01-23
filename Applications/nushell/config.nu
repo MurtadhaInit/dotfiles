@@ -199,6 +199,33 @@ alias nls = do {|...rest|
 alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
 alias ls = eza
 alias macopen = ^open
+# Ask LLMs quick questions in the terminal
+def ? [
+    --pager (-p) # Use a pager for scrolling through long output
+    ...args
+] {
+    if ($args | is-empty) {
+        print "Usage: ? <your question here>"
+        return
+    }
+    if (which opencode | is-empty) {
+        print "⚠️ Opencode is not installed"
+        return
+    }
+    # TODO: add an option to use research mode in Claude
+
+    # Use glow for pretty markdown rendering
+    if (which glow | is-not-empty) {
+        if $pager {
+            ^opencode run --agent ask ...$args | glow --width 0 --pager
+        } else {
+            ^opencode run --agent ask ...$args | glow --width 0 -
+        }
+    } else {
+        print "⚠️ Glow is not installed"
+        ^opencode run --agent ask ...$args
+    }
+}
 
 # === Tools ===
 # Carapace command completions
