@@ -25,6 +25,8 @@ def setup_nushell [] {
   ^starship init nu | save -f ($tools_dir | path join "starship.nu")
   # Zoxide
   ^zoxide init nushell | save -f ($tools_dir | path join "zoxide.nu")
+  # Mise-en-place
+  ^mise activate nu | save -f ($tools_dir | path join "mise.nu")
 
   print "✅ Successfully added/updated CLI tools' setup scripts for Nushell"
 }
