@@ -147,7 +147,6 @@ load-env {
 
     # "NULLCMD": "bat" # Default to bat instead of cat
 
-    FNM_DIR: $"($env.XDG_DATA_HOME)/fnm", # fnm root directory
     ANSIBLE_HOME: $"($env.XDG_DATA_HOME)/ansible"
     JUPYTER_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/jupyter", # Jupyter config directory
     LESSHISTFILE: $"($env.XDG_CACHE_HOME)/less/history" # less history directory
@@ -238,21 +237,6 @@ $env.config.hooks.env_change.PWD = (
         $env.PATH = $env.PATH | split row (char env_sep)
     }
 )
-
-# FNM
-if not (which fnm | is-empty) {
-    ^fnm env --json | from json | load-env
-
-    $env.PATH = $env.PATH | prepend ($env.FNM_MULTISHELL_PATH | path join (if $nu.os-info.name == 'windows' {''} else {'bin'}))
-
-    $env.config.hooks.env_change.PWD = (
-        $env.config.hooks.env_change.PWD? | append {
-            condition: {|| ['.nvmrc' '.node-version' 'package.json'] | any {|el| $el | path exists}}
-            # NOTE: consider adding: --version-file-strategy recursive
-            code: {|| ^fnm use --install-if-missing}
-        }
-    )
-}
 
 # fzf theme (Catppuccin mocha)
 $env.FZF_DEFAULT_OPTS = "

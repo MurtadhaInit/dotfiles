@@ -1,7 +1,6 @@
 tap "cirruslabs/cli"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
-tap "oven-sh/bun"
 tap "pulumi/tap"
 tap "sst/tap"
 # Run your GitHub Actions locally
@@ -56,8 +55,8 @@ brew "wangle"
 brew "fb303"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# Fast and simple Node.js version manager
-brew "fnm"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Framework for layout and rendering of i18n text
@@ -76,8 +75,6 @@ brew "git-delta"
 brew "glow"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Fast linters runner for Go
-brew "golangci-lint"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Handy way to save and run project-specific commands
@@ -149,8 +146,6 @@ brew "hashicorp/tap/packer"
 brew "hashicorp/tap/terraform"
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
-# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
-brew "oven-sh/bun/bun"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
 brew "pulumi/tap/pulumi"
 # Memory training application

@@ -1,8 +1,17 @@
 [tools]
+bun = "latest"
 go = "latest"
 "go:github.com/air-verse/air" = "latest"
 "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint" = "latest" # or install a specific version
 "go:github.com/pressly/goose/v3/cmd/goose" = "latest"
 "go:github.com/sqlc-dev/sqlc/cmd/sqlc" = "latest"
 node = "lts"
+"npm:@google/gemini-cli" = "latest"
+"npm:@openai/codex" = "latest"
+pnpm = "latest"
 python = "latest"
+
+[settings]
+
+[settings.npm]
+package_manager = "bun"
