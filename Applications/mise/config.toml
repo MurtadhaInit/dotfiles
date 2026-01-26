@@ -10,8 +10,17 @@ node = "lts"
 "npm:@openai/codex" = "latest"
 pnpm = "latest"
 python = "latest"
+uv = "latest"
+"pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core,ansible-lint"}
+# NOTE: The --with-executables-from flag (in `uv tool install`) will install those packages as
+# dependencies (if they're not already so) AND include their executables
+"pipx:ruff" = "latest"
+"pipx:sqlfluff" = "latest"
 
 [settings]
 
 [settings.npm]
 package_manager = "bun"
+
+[settings.pipx]
+uvx = true

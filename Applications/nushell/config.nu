@@ -159,7 +159,7 @@ if not ($env.MANPATH? | is-empty) {
 
 # === $PATH ===
 $env.PATH = [
-    $"($env.XDG_BIN_HOME)" # Python binaries installed with `uv tool install` (among others)
+    $"($env.XDG_BIN_HOME)" # `uv tool install` CLIs go there + other things like Orbstack and Docker
     $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
     $"($nu.home-dir)/Library/Application Support/JetBrains/Toolbox/scripts"
 
