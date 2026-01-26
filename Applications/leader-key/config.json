@@ -49,6 +49,12 @@
       "label" : "Finder",
       "type" : "application",
       "value" : "/System/Library/CoreServices/Finder.app"
+    },
+    {
+      "key" : "m",
+      "label" : "Music",
+      "type" : "application",
+      "value" : "/Users/murtadha/Applications/YT Music.app"
     }
   ],
   "type" : "group"
