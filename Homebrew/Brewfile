@@ -1,3 +1,4 @@
+tap "anomalyco/tap"
 tap "cirruslabs/cli"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
@@ -91,7 +92,7 @@ brew "mas"
 brew "mise"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Modern shell for the GitHub era
 brew "nushell"
@@ -99,8 +100,6 @@ brew "nushell"
 brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# AI coding agent, built for the terminal
-brew "opencode"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Fast and accurate code counter with complexity and COCOMO estimates
@@ -137,6 +136,8 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Feature-rich syntax highlighting for Zsh
 brew "zsh-fast-syntax-highlighting"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
 brew "cirruslabs/cli/cirrus"
 # Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
