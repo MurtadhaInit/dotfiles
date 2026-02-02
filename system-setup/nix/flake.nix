@@ -62,7 +62,7 @@
 
       homeConfigurations = {
         # Standalone home-manager configuration for macOS
-        "murtadha@MacBookPro.localdomain" = home-manager.lib.homeManagerConfiguration {
+        "murtadha@macbookpro.local" = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs; };
           pkgs = import nixpkgs {
             system = "aarch64-darwin";

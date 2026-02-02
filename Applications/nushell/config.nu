@@ -134,7 +134,8 @@ load-env {
     EDITOR: "nvim",
 
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
-    HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues
+    # TODO: this option will be deprecated in Sept 2026. Use `xattr -d com.apple.quarantine /Applications/<app>.app` instead
+    # HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
     EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
 
@@ -182,7 +183,6 @@ def nvim-vscode [...args] {
 }
 # Update the Brewfile after adding a package
 alias bbd = brew bundle dump --force --describe --file=~/.dotfiles/Homebrew/Brewfile
-alias outdated = do { brew update | complete | ignore; brew outdated }
 alias dot = ~/.dotfiles/system-setup/setup.nu
 alias nls = do {|...rest|
     ls -al ...($rest | default -e ["."])
@@ -219,6 +219,19 @@ def ? [
     } else {
         print "⚠️ Glow is not installed"
         ^opencode run --agent ask ...$args
+    }
+}
+def outdated [] {
+    print $"(ansi cyan_bold)=== Mise ===(ansi reset)"
+    mise outdated
+
+    print $"\n(ansi yellow_bold)=== Homebrew ===(ansi reset)"
+    brew update | complete | ignore
+    let brew_output = (brew outdated)
+    if ($brew_output | is-empty) {
+        print "Nothing to update"
+    } else {
+        print $brew_output
     }
 }
 

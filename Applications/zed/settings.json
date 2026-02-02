@@ -35,8 +35,8 @@
   },
   "icon_theme": {
     "mode": "system",
-    "light": "JetBrains New UI Icons (Light)",
-    "dark": "JetBrains New UI Icons (Dark)",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
   },
   "vim_mode": true,
   "telemetry": {
@@ -47,7 +47,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "VSCode Dark Polished",
+    "dark": "Catppuccin Mocha",
   },
   "buffer_font_family": "MonoLisa Cursive",
   "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
