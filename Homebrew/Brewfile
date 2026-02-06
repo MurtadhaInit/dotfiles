@@ -151,6 +151,8 @@ brew "jesseduffield/lazydocker/lazydocker"
 brew "pulumi/tap/pulumi"
 # Memory training application
 cask "anki"
+# Markdown editor for Astro content collections
+cask "astro-editor"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Cross platform SQL editor and database management app
