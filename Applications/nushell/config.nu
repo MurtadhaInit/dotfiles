@@ -95,6 +95,21 @@ $env.PROMPT_INDICATOR_VI_NORMAL = ""
 $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 # Colour theme
 source "themes/catppuccin_mocha.nu"
+# Custom commands, including internal utility functions
+source "scripts/custom-commands.nu"
+
+# macOS system paths and manpaths — replaces path_helper which is invoked from /etc/zprofile
+# patch_helper reads /etc/paths, /etc/paths.d/*, /etc/manpaths, and /etc/manpaths.d/* (man patch_helper)
+let system_paths = (
+    if $nu.os-info.name == "macos" {
+        [/etc/paths ...(glob /etc/paths.d/*)] | each { open $in | lines | where { $in | is-not-empty } } | flatten
+    } else { [] }
+)
+let system_manpaths = (
+    if $nu.os-info.name == "macos" and ('/etc/manpaths' | path exists) {
+        [/etc/manpaths ...(glob /etc/manpaths.d/*)] | each { open $in | lines | where { $in | is-not-empty } } | flatten
+    } else { [] }
+)
 
 # Linux setup. In macOS these variables are set earlier by a service (.plist file)
 if $nu.os-info.name == "macos" {
@@ -153,6 +168,14 @@ load-env {
     LESSHISTFILE: $"($env.XDG_CACHE_HOME)/less/history" # less history directory
 }
 
+# System manpaths from /etc/manpaths and /etc/manpaths.d/*
+if ($system_manpaths | is-not-empty) {
+    $env.MANPATH = ($system_manpaths
+        | append ($env.MANPATH? | default "" | split row (char env_sep))
+        | where { $in | is-not-empty }
+        | uniq
+        | str join (char env_sep)
+)}
 # Homebrew setup as per `brew shellenv`
 if not ($env.MANPATH? | is-empty) {
     $env.MANPATH = $":($env.MANPATH | str trim --left --char ':')"
@@ -161,12 +184,12 @@ if not ($env.MANPATH? | is-empty) {
 # === $PATH ===
 $env.PATH = [
     $"($env.XDG_BIN_HOME)" # `uv tool install` CLIs go there + other things like Orbstack and Docker
-    $"($env.XDG_CACHE_HOME)/.bun/bin" # binaries of JS tools installed globally with `bun i -g`
     $"($nu.home-dir)/Library/Application Support/JetBrains/Toolbox/scripts"
 
     # Homebrew setup as per `brew shellenv`
     $"($brew_prefix)/bin"
     $"($brew_prefix)/sbin"
+    ...$system_paths
     ...$env.PATH
 ] | uniq # remove duplicates
 
@@ -194,46 +217,6 @@ alias nls = do {|...rest|
 alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
 alias ls = eza
 alias macopen = ^open
-# Ask LLMs quick questions in the terminal
-def ? [
-    --pager (-p) # Use a pager for scrolling through long output
-    ...args
-] {
-    if ($args | is-empty) {
-        print "Usage: ? <your question here>"
-        return
-    }
-    if (which opencode | is-empty) {
-        print "⚠️ Opencode is not installed"
-        return
-    }
-    # TODO: add an option to use research mode in Claude
-
-    # Use glow for pretty markdown rendering
-    if (which glow | is-not-empty) {
-        if $pager {
-            ^opencode run --agent ask ...$args | glow --width 0 --pager
-        } else {
-            ^opencode run --agent ask ...$args | glow --width 0 -
-        }
-    } else {
-        print "⚠️ Glow is not installed"
-        ^opencode run --agent ask ...$args
-    }
-}
-def outdated [] {
-    print $"(ansi cyan_bold)=== Mise ===(ansi reset)"
-    mise outdated
-
-    print $"\n(ansi yellow_bold)=== Homebrew ===(ansi reset)"
-    brew update | complete | ignore
-    let brew_output = (brew outdated)
-    if ($brew_output | is-empty) {
-        print "Nothing to update"
-    } else {
-        print $brew_output
-    }
-}
 
 # === Tools ===
 # Carapace command completions
@@ -260,4 +243,9 @@ $env.FZF_DEFAULT_OPTS = "
 --color=border:#6C7086,label:#CDD6F4"
 
 # Nix
-source "scripts/nix.nu"
+if ($nu.os-info.name == "macos") and ("/nix/var/nix/profiles/default/bin" | path exists) {
+  load-env (open /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh | capture-foreign-env err> /dev/null)
+  $env.PATH = $env.PATH | split row (char env_sep)
+}
+# Raw output, for testing:
+# open /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh | capture-foreign-env err> /dev/null
