@@ -46,6 +46,7 @@
   dotfiles.lsps.enable = true;
   dotfiles.opencode.enable = true;
   dotfiles.zed.enable = true;
+  dotfiles.zed.installPackage = false;
   dotfiles.vscode.enable = true;
   dotfiles.vscode.installPackage = false;
   dotfiles.starship.enable = true;

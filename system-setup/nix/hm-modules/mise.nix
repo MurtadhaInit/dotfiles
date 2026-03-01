@@ -27,11 +27,8 @@ in
     );
 
     xdg.configFile = {
-      # NOTE: mkOutOfStoreSymlink requires the source path to be fixed and absolute
-      # TODO: utilise the home manager built-in variable to point to the user's home directory
-      # then combine with the location of dotfiles (or find a better solution/function)
       "mise/config.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "/Users/murtadha/.dotfiles/Applications/mise/config.toml";
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/Applications/mise/config.toml";
     };
   };
 }

@@ -16,7 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       neovim
-      zed-editor
       stow
       uv
       ruff
