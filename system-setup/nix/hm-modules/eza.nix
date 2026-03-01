@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.eza;
+  cfg = config.dotfiles.eza;
 
   # the Catppuccin themes repo for Eza
   catppuccin-nushell = pkgs.fetchFromGitHub {
@@ -20,21 +20,16 @@ let
   theme-file = "${catppuccin-nushell}/themes/mocha/catppuccin-mocha-mauve.yml";
 in
 {
-  options = {
-    programs.eza = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install the eza package via Nix.
-          Set to false if you want to use eza installed through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.eza = {
+    enable = lib.mkEnableOption "Enable Eza with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [

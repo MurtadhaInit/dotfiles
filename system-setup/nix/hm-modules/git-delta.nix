@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.version-control;
+  cfg = config.dotfiles.version-control;
 
   # the Catppuccin themes repo for delta
   catppuccin-delta = pkgs.fetchFromGitHub {
@@ -20,23 +20,18 @@ let
   themes-file = "${catppuccin-delta}/catppuccin.gitconfig";
 in
 {
-  options = {
-    programs.version-control = {
-      installPackages = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install Git, Delta..etc packages via Nix.
-          Set to false if you want to install those packages through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.version-control = {
+    enable = lib.mkEnableOption "Enable the version control module with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package(s) via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     # TODO: Git is installed globally with system packages
-    home.packages = lib.mkIf cfg.installPackages (
+    home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [
         delta
@@ -45,8 +40,8 @@ in
 
     # TODO: Nix-style of configuring Git without external config files: https://nixos.wiki/wiki/Git
     xdg.configFile = {
-      "git/config".source = ../../../../Applications/git/config;
-      "git/ignore".source = ../../../../Applications/git/ignore;
+      "git/config".source = ../../../Applications/git/config;
+      "git/ignore".source = ../../../Applications/git/ignore;
 
       # Link the delta theme file
       # Note: the Bat Catppuccin theme is a prerequisite

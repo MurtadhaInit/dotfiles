@@ -6,24 +6,19 @@
 }:
 
 let
-  cfg = config.programs.mise;
+  cfg = config.dotfiles.mise;
 in
 {
-  options = {
-    programs.mise = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install the Mise package via Nix.
-          Set to false if you want to use Mise installed through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.mise = {
+    enable = lib.mkEnableOption "Enable Mise with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [

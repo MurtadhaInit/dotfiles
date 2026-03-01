@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.ghostty;
+  cfg = config.dotfiles.ghostty;
 
   # the Catppuccin themes repo for Ghostty
   catppuccin-ghostty = pkgs.fetchFromGitHub {
@@ -20,21 +20,16 @@ let
   themes-dir = "${catppuccin-ghostty}/themes/";
 in
 {
-  options = {
-    programs.ghostty = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install the Ghostty package via Nix.
-          Set to false if you want to use Ghostty installed through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.ghostty = {
+    enable = lib.mkEnableOption "Enable Ghostty with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [
@@ -44,7 +39,7 @@ in
 
     xdg.configFile = {
       "ghostty/themes".source = themes-dir;
-      "ghostty/config".source = ../../../../Applications/ghostty/config;
+      "ghostty/config".source = ../../../Applications/ghostty/config;
     };
   };
 }

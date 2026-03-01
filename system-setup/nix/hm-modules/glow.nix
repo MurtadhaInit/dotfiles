@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.glow;
+  cfg = config.dotfiles.glow;
 
   # the Catppuccin themes repo for Glamour (theme format used by Glow)
   catppuccin-nushell = pkgs.fetchFromGitHub {
@@ -20,21 +20,16 @@ let
   theme-file = "${catppuccin-nushell}/themes/catppuccin-mocha.json";
 in
 {
-  options = {
-    programs.glow = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install the Glow package via Nix.
-          Set to false if you want to use Glow installed through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.glow = {
+    enable = lib.mkEnableOption "Enable Glow with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [

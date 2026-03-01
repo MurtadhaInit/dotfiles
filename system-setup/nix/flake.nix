@@ -23,7 +23,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       nur,
@@ -36,7 +35,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/desktop/configuration.nix
+            ./hosts/desktop
 
             # Configure nixpkgs through the module system
             # NOTE: we aren't abstracting `pkgs` with something like `pkgsFor` function based on system
@@ -62,7 +61,7 @@
 
       homeConfigurations = {
         # Standalone home-manager configuration for macOS
-        "murtadha@macbookpro.local" = home-manager.lib.homeManagerConfiguration {
+        murtadha = home-manager.lib.homeManagerConfiguration {
           extraSpecialArgs = { inherit inputs; };
           pkgs = import nixpkgs {
             system = "aarch64-darwin";

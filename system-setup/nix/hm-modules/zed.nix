@@ -1,23 +1,19 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
 
+let
+  cfg = config.dotfiles.zed;
+in
 {
-  # TODO: Make use of the default Zed home-manager module: https://mynixos.com/home-manager/options/programs.zed-editor
-  options = {
-    zed.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = ''
-        Configure the Zed editor.
-      '';
-    };
+  options.dotfiles.zed = {
+    enable = lib.mkEnableOption "Enable Zed with dotfiles defaults";
   };
 
-  config = lib.mkIf config.zed.enable {
+  # TODO: Make use of the default Zed home-manager module: https://mynixos.com/home-manager/options/programs.zed-editor
+  config = lib.mkIf cfg.enable {
     # NOTE: mkOutOfStoreSymlink requires the source path to be fixed and absolute
     # TODO: utilise the home manager built-in variable to point to the user's home directory
     # then combine with the location of dotfiles (or find a better solution/function)

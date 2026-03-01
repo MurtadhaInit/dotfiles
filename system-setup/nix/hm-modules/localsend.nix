@@ -5,12 +5,15 @@
   ...
 }:
 
+let
+  cfg = config.dotfiles.localsend;
+in
 {
-  options = {
-    localsend.enable = lib.mkEnableOption "Install and configure Localsend";
+  options.dotfiles.localsend = {
+    enable = lib.mkEnableOption "Enable LocalSend with dotfiles defaults";
   };
 
-  config = lib.mkIf config.localsend.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       localsend
     ];

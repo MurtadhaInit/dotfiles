@@ -5,12 +5,15 @@
   ...
 }:
 
+let
+  cfg = config.dotfiles.qbittorrent;
+in
 {
-  options = {
-    qbittorrent.enable = lib.mkEnableOption "Install and configure qbittorrent";
+  options.dotfiles.qbittorrent = {
+    enable = lib.mkEnableOption "Enable qBittorrent with dotfiles defaults";
   };
 
-  config = lib.mkIf config.qbittorrent.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       qbittorrent
     ];

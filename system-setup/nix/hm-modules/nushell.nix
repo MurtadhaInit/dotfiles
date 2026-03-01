@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.nushell;
+  cfg = config.dotfiles.nushell;
 
   # the Catppuccin themes repo for Nushell
   catppuccin-nushell = pkgs.fetchFromGitHub {
@@ -20,25 +20,20 @@ let
   themes-dir = "${catppuccin-nushell}/themes/";
 in
 {
-  options = {
-    programs.nushell = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install the Nushell package via Nix.
-          Set to false if you want to use Nushell installed through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.nushell = {
+    enable = lib.mkEnableOption "Enable Nushell with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     programs.nushell = {
       enable = true;
       package = lib.mkIf (!cfg.installPackage) null;
-      configFile.source = ../../../../Applications/nushell/config.nu;
+      configFile.source = ../../../Applications/nushell/config.nu;
     };
 
     # on macOS
@@ -46,7 +41,7 @@ in
       "Library/Application Support/nushell/themes".source = themes-dir;
       "Library/Application Support/nushell/scripts" = {
         recursive = true;
-        source = ../../../../Applications/nushell/scripts;
+        source = ../../../Applications/nushell/scripts;
       };
     };
 
@@ -60,11 +55,11 @@ in
         is set and yet there is no config file there.
       */
       (lib.mkIf pkgs.stdenv.isDarwin {
-        "nushell/config.nu".source = ../../../../Applications/nushell/config.nu;
+        "nushell/config.nu".source = ../../../Applications/nushell/config.nu;
         "nushell/themes".source = themes-dir;
         "nushell/scripts" = {
           recursive = true;
-          source = ../../../../Applications/nushell/scripts;
+          source = ../../../Applications/nushell/scripts;
         };
       })
 
@@ -73,7 +68,7 @@ in
         "nushell/themes".source = themes-dir;
         "nushell/scripts" = {
           recursive = true;
-          source = ../../../../Applications/nushell/scripts;
+          source = ../../../Applications/nushell/scripts;
         };
       })
     ];

@@ -6,7 +6,7 @@
 }:
 
 let
-  cfg = config.programs.bat;
+  cfg = config.dotfiles.bat;
   # TODO: add an option for Homebrew to build the cache using the HB package
 
   # the Catppuccin themes repo for Bat
@@ -21,21 +21,16 @@ let
   themes-dir = "${catppuccin-bat}/themes/";
 in
 {
-  options = {
-    programs.bat = {
-      installPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = ''
-          Whether to install bat + bat-extras packages via Nix.
-          Set to false if you want to install them through other means (e.g., Homebrew)
-          while still managing the configuration through Home Manager.
-        '';
-      };
+  options.dotfiles.bat = {
+    enable = lib.mkEnableOption "Enable Bat with dotfiles defaults";
+    installPackage = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install the package via Nix (vs. just configure it)";
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [
@@ -45,7 +40,7 @@ in
     );
 
     xdg.configFile = {
-      "bat/config".source = ../../../../Applications/bat/config;
+      "bat/config".source = ../../../Applications/bat/config;
 
       # which is also $"(bat --config-dir)/themes"
       "bat/themes" = {

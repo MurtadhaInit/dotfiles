@@ -5,16 +5,18 @@
   ...
 }:
 
+let
+  cfg = config.dotfiles.packages;
+in
 {
-  options = {
-    packages.enable = lib.mkEnableOption "Install a list of packages not requiring further configuration";
+  options.dotfiles.packages = {
+    enable = lib.mkEnableOption "Install a list of packages not requiring further configuration";
   };
 
-  config = lib.mkIf config.packages.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       neovim
       zed-editor
-      vlc
       stow
       uv
       ruff
@@ -47,6 +49,8 @@
       tmux
       remmina
       tlrc
+      celluloid
+      mpv
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
       # # overrides. You can do that directly here, just don't forget the
