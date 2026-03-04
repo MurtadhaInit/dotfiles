@@ -112,4 +112,22 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
+  # Fix Realtek ALC887-VD on ASUS B350: the rear green jack (line-out) defaults to muted,
+  # and Auto-Mute incorrectly mutes outputs based on front panel jack detection.
+  # Runs after WirePlumber with a delay because WirePlumber asynchronously reconfigures
+  # ALSA controls after its service unit is considered started.
+  systemd.user.services.alsa-fix-realtek = {
+    description = "Fix ALSA defaults for Realtek ALC887-VD";
+    after = [ "wireplumber.service" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "alsa-fix-realtek" ''
+        sleep 5
+        ${pkgs.alsa-utils}/bin/amixer -c 1 set 'Auto-Mute Mode' Disabled
+        ${pkgs.alsa-utils}/bin/amixer -c 1 set Front unmute
+      '';
+    };
+  };
+
 }
