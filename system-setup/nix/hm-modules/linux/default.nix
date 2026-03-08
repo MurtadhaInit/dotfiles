@@ -24,15 +24,15 @@
     ../glow.nix
     ../mise.nix
 
-    ../LSPs.nix
+    ../lsps.nix
 
     # Linux-specific
-    ../librewolf.nix
-    ../brave.nix
-    ../qbittorrent.nix
-    ../bun.nix
-    ../packages.nix
-    ../localsend.nix
+    ./librewolf.nix
+    ./brave.nix
+    ./qbittorrent.nix
+    ./bun.nix
+    ./packages.nix
+    ./localsend.nix
   ];
 
   dotfiles.nushell.enable = true;

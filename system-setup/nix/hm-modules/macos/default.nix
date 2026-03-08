@@ -24,10 +24,10 @@
     ../glow.nix
     ../mise.nix
 
-    ../LSPs.nix
+    ../lsps.nix
 
     # macOS-specific
-    ../linearmouse.nix
+    ./linearmouse.nix
   ];
 
   # Use Homebrew packages instead of Nix on macOS
