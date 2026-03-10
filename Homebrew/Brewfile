@@ -197,8 +197,6 @@ cask "jetbrains-toolbox"
 cask "leader-key"
 # Custom Discord client
 cask "legcord"
-# Free cross-platform office suite, fresh version
-cask "libreoffice"
 # Customise mouse behavior
 cask "linearmouse"
 # Online collaborative whiteboard platform
@@ -215,6 +213,8 @@ cask "pearcleaner"
 cask "postman"
 # Client for Proton Drive
 cask "proton-drive"
+# VPN client focusing on security
+cask "protonvpn"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Open source virtual/remote desktop application
@@ -225,8 +225,6 @@ cask "sigmaos"
 cask "signal"
 # Video game digital distribution service
 cask "steam"
-# Real time file synchronisation software
-cask "syncthing-app"
 # Native GUI tool for relational databases
 cask "tableplus"
 # Customizable email client
@@ -235,8 +233,6 @@ cask "thunderbird"
 cask "tor-browser"
 # Virtual machines UI using QEMU
 cask "utm"
-# Development environment
-cask "vagrant"
 # Keyboard configurator
 cask "via"
 # Open-source code editor
