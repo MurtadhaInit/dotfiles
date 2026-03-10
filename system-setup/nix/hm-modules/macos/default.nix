@@ -25,6 +25,7 @@
     ../mise.nix
 
     ../lsps.nix
+    ../syncthing.nix
 
     # macOS-specific
     ./linearmouse.nix
@@ -62,4 +63,5 @@
   dotfiles.glow.installPackage = false;
   dotfiles.mise.enable = true;
   dotfiles.mise.installPackage = false;
+  dotfiles.syncthing.enable = true;
 }
