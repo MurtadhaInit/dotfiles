@@ -40,8 +40,6 @@ let
   '';
 in
 {
-  age.identityPaths = [ "${config.home.homeDirectory}/.ssh/keys/age.txt" ];
-
   age.secrets = lib.mapAttrs (_: filePath: { file = filePath; }) fontsSecrets;
 
   home.activation.extractFonts = lib.hm.dag.entryAfter [ "writeBoundary" ] (

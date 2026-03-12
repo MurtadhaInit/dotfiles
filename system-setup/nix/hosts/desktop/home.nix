@@ -1,5 +1,6 @@
 {
   inputs,
+  config,
   ...
 }:
 
@@ -15,6 +16,9 @@
   # the user and their home path to be managed
   home.username = "murtadha";
   home.homeDirectory = "/home/murtadha";
+
+  # Identity key used by agenix to decrypt all secrets on this host
+  age.identityPaths = [ "${config.home.homeDirectory}/.ssh/keys/age.txt" ];
 
   home.stateVersion = "25.11";
 
