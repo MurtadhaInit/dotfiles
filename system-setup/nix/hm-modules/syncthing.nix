@@ -31,21 +31,28 @@ let
 in
 {
   options.dotfiles.syncthing = {
-    enable = lib.mkEnableOption "Enable Syncthing with dotfiles defaults";
+    enable = lib.mkEnableOption "Syncthing with dotfiles defaults";
+    documentsPath = lib.mkOption {
+      type = lib.types.str;
+      default = "Desktop/Documents";
+      description = "Path to the synced documents folder, relative to $HOME";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     age.secrets."syncthing-gui-password" = {
       file = ../secrets/syncthing-gui-password.age;
-      # Explicit static path so the HM syncthing module can reference it at
-      # eval time — the default macOS path contains a shell expansion that
-      # fails the `types.path` check on `passwordFile`.
+      # Explicit static path — HM agenix (age-home.nix) defaults to a shell
+      # expansion on both platforms ($XDG_RUNTIME_DIR on Linux, $(getconf ...)
+      # on macOS) which fails the `types.path` check on `passwordFile` at Nix
+      # eval time. NixOS-level agenix doesn't have this issue as it uses the
+      # static /run/agenix/ path.
       path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-gui-password";
     };
 
     services.syncthing = {
       enable = true;
-      # Don't clobber devices/folders added through the GUI
+      # Don't clobber devices/folders (or devices for folders) added through the GUI
       overrideDevices = false;
       overrideFolders = false;
       passwordFile = config.age.secrets."syncthing-gui-password".path;
@@ -56,23 +63,29 @@ in
         folders = {
           documents = {
             id = "documents";
-            path = "${config.home.homeDirectory}/Desktop/Documents";
+            path = "${config.home.homeDirectory}/${cfg.documentsPath}";
             label = "Documents";
             ignorePerms = true;
+            # Simple trash can versioning for changes received from the homelab
+            # hub — the hub itself keeps staggered versioning for deeper history.
+            versioning = {
+              type = "trashcan";
+              params.cleanoutDays = "30";
+            };
           };
         };
       };
     };
 
     # Place .stignore in every managed folder root
-    home.file."Desktop/Documents/.stignore".source = stignore;
+    home.file."${cfg.documentsPath}/.stignore".source = stignore;
 
     # Restart Syncthing only when .stignore content changes between activations.
     # The nix store path is content-addressed, so a different path means different content.
     home.activation.restartSyncthing = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       _marker="$HOME/.local/state/syncthing-stignore-hash"
       _old=""
-      [ -f "$_marker" ] && _old=$(/bin/cat "$_marker")
+      [ -f "$_marker" ] && _old=$(${pkgs.coreutils}/bin/cat "$_marker")
       if [ "$_old" != "${stignore}" ]; then
         if [[ ! -v DRY_RUN ]]; then
           ${
@@ -81,7 +94,7 @@ in
             else
               "systemctl --user restart syncthing 2>/dev/null || true"
           }
-          /bin/mkdir -p "$(/usr/bin/dirname "$_marker")"
+          ${pkgs.coreutils}/bin/mkdir -p "$(${pkgs.coreutils}/bin/dirname "$_marker")"
           echo "${stignore}" > "$_marker"
         else
           echo "Would restart Syncthing (stignore changed)"

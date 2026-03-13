@@ -23,9 +23,9 @@
     ../zed.nix
     ../glow.nix
     ../mise.nix
+    ../syncthing.nix
 
     ../lsps.nix
-    ../syncthing.nix
 
     # macOS-specific
     ./linearmouse.nix

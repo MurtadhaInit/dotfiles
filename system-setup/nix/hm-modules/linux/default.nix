@@ -23,6 +23,7 @@
     ../zed.nix
     ../glow.nix
     ../mise.nix
+    ../syncthing.nix
 
     ../lsps.nix
 
@@ -57,4 +58,5 @@
   dotfiles.bun.enable = true;
   dotfiles.packages.enable = true;
   dotfiles.localsend.enable = true;
+  dotfiles.syncthing.enable = true;
 }
