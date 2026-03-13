@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.vscode = {
-    enable = lib.mkEnableOption "Enable Visual Studio Code with dotfiles defaults";
+    enable = lib.mkEnableOption "Visual Studio Code with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

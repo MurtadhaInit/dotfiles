@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.localsend = {
-    enable = lib.mkEnableOption "Enable LocalSend with dotfiles defaults";
+    enable = lib.mkEnableOption "LocalSend with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

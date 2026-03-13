@@ -21,7 +21,7 @@ let
 in
 {
   options.dotfiles.version-control = {
-    enable = lib.mkEnableOption "Enable the version control module with dotfiles defaults";
+    enable = lib.mkEnableOption "the version control module with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

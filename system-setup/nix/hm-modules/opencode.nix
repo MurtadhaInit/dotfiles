@@ -9,7 +9,7 @@ let
 in
 {
   options.dotfiles.opencode = {
-    enable = lib.mkEnableOption "Enable OpenCode with dotfiles defaults";
+    enable = lib.mkEnableOption "OpenCode with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

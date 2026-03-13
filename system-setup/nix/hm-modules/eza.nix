@@ -21,7 +21,7 @@ let
 in
 {
   options.dotfiles.eza = {
-    enable = lib.mkEnableOption "Enable Eza with dotfiles defaults";
+    enable = lib.mkEnableOption "Eza with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

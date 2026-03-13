@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.bottom = {
-    enable = lib.mkEnableOption "Enable Bottom with dotfiles defaults";
+    enable = lib.mkEnableOption "Bottom with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

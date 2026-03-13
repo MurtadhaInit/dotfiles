@@ -22,7 +22,7 @@ let
 in
 {
   options.dotfiles.atuin = {
-    enable = lib.mkEnableOption "Enable Atuin with dotfiles defaults";
+    enable = lib.mkEnableOption "Atuin with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

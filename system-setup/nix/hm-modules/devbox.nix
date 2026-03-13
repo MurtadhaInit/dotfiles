@@ -11,7 +11,7 @@ let
 in
 {
   options.dotfiles.devbox = {
-    enable = lib.mkEnableOption "Enable Devbox with dotfiles defaults";
+    enable = lib.mkEnableOption "Devbox with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

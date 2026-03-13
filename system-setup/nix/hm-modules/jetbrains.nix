@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.jetbrains = {
-    enable = lib.mkEnableOption "Enable Jetbrains Toolbox with dotfiles defaults";
+    enable = lib.mkEnableOption "Jetbrains Toolbox with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

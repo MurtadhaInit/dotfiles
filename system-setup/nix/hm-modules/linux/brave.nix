@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.brave = {
-    enable = lib.mkEnableOption "Enable Brave with dotfiles defaults";
+    enable = lib.mkEnableOption "Brave with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

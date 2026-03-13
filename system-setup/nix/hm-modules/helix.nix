@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.helix = {
-    enable = lib.mkEnableOption "Enable Helix with dotfiles defaults";
+    enable = lib.mkEnableOption "Helix with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

@@ -22,7 +22,7 @@ let
 in
 {
   options.dotfiles.bat = {
-    enable = lib.mkEnableOption "Enable Bat with dotfiles defaults";
+    enable = lib.mkEnableOption "Bat with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

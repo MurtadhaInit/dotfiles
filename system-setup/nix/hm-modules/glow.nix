@@ -21,7 +21,7 @@ let
 in
 {
   options.dotfiles.glow = {
-    enable = lib.mkEnableOption "Enable Glow with dotfiles defaults";
+    enable = lib.mkEnableOption "Glow with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

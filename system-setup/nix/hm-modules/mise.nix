@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.mise = {
-    enable = lib.mkEnableOption "Enable Mise with dotfiles defaults";
+    enable = lib.mkEnableOption "Mise with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

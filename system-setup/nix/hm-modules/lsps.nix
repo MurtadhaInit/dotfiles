@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.lsps = {
-    enable = lib.mkEnableOption "Enable several LSPs with dotfiles defaults";
+    enable = lib.mkEnableOption "several LSPs with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

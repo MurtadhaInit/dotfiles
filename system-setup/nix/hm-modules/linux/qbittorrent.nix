@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.qbittorrent = {
-    enable = lib.mkEnableOption "Enable qBittorrent with dotfiles defaults";
+    enable = lib.mkEnableOption "qBittorrent with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

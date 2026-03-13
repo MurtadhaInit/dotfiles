@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.zed = {
-    enable = lib.mkEnableOption "Enable Zed with dotfiles defaults";
+    enable = lib.mkEnableOption "Zed with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

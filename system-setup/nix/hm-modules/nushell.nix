@@ -21,7 +21,7 @@ let
 in
 {
   options.dotfiles.nushell = {
-    enable = lib.mkEnableOption "Enable Nushell with dotfiles defaults";
+    enable = lib.mkEnableOption "Nushell with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

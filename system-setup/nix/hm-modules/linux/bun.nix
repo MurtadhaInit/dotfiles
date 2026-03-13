@@ -9,7 +9,7 @@ let
 in
 {
   options.dotfiles.bun = {
-    enable = lib.mkEnableOption "Enable Bun with dotfiles defaults";
+    enable = lib.mkEnableOption "Bun with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

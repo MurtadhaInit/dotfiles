@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.lazygit = {
-    enable = lib.mkEnableOption "Enable Lazygit with dotfiles defaults";
+    enable = lib.mkEnableOption "Lazygit with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

@@ -9,7 +9,7 @@ let
 in
 {
   options.dotfiles.librewolf = {
-    enable = lib.mkEnableOption "Enable Librewolf with dotfiles defaults";
+    enable = lib.mkEnableOption "Librewolf with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {

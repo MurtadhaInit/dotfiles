@@ -9,7 +9,7 @@ let
 in
 {
   options.dotfiles.starship = {
-    enable = lib.mkEnableOption "Enable Starship with dotfiles defaults";
+    enable = lib.mkEnableOption "Starship with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;

@@ -21,7 +21,7 @@ let
 in
 {
   options.dotfiles.ghostty = {
-    enable = lib.mkEnableOption "Enable Ghostty with dotfiles defaults";
+    enable = lib.mkEnableOption "Ghostty with dotfiles defaults";
     installPackage = lib.mkOption {
       type = lib.types.bool;
       default = true;
