@@ -40,25 +40,40 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets."syncthing-gui-password" = {
-      file = ../secrets/syncthing-gui-password.age;
-      # Explicit static path — HM agenix (age-home.nix) defaults to a shell
-      # expansion on both platforms ($XDG_RUNTIME_DIR on Linux, $(getconf ...)
-      # on macOS) which fails the `types.path` check on `passwordFile` at Nix
-      # eval time. NixOS-level agenix doesn't have this issue as it uses the
-      # static /run/agenix/ path.
-      path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-gui-password";
+    age.secrets = {
+      syncthing-gui-password = {
+        file = ../secrets/syncthing-gui-password.age;
+        # Explicit static path — HM agenix (age-home.nix) defaults to a shell
+        # expansion on both platforms ($XDG_RUNTIME_DIR on Linux, $(getconf ...)
+        # on macOS) which fails the `types.path` check on `passwordFile` at Nix
+        # eval time. NixOS-level agenix doesn't have this issue as it uses the
+        # static /run/agenix/ path.
+        path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-gui-password";
+      };
+      syncthing-key = {
+        file = ../secrets/syncthing-key.age;
+        path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-key";
+      };
+      syncthing-cert = {
+        file = ../secrets/syncthing-cert.age;
+        path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-cert";
+        mode = "0444";
+      };
     };
 
     services.syncthing = {
       enable = true;
-      # Don't clobber devices/folders (or devices for folders) added through the GUI
-      overrideDevices = false;
-      overrideFolders = false;
+      key = config.age.secrets."syncthing-key".path;
+      cert = config.age.secrets."syncthing-cert".path;
       passwordFile = config.age.secrets."syncthing-gui-password".path;
       settings = {
         gui = {
           user = "murtadha";
+        };
+        devices = {
+          nixos-ct = {
+            id = "HQ37GBK-Y7FFD6J-OUQBW7O-VMJOMNY-C3BWNGF-BOYZHX4-7WRGUDB-APF2GA5";
+          };
         };
         folders = {
           documents = {
@@ -72,6 +87,7 @@ in
               type = "trashcan";
               params.cleanoutDays = "30";
             };
+            devices = [ "nixos-ct" ];
           };
         };
       };
