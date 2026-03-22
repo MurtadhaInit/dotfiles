@@ -2,6 +2,7 @@ tap "anomalyco/tap"
 tap "cirruslabs/cli"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
+tap "mikker/tap"
 tap "pulumi/tap"
 tap "sst/tap"
 # Run your GitHub Actions locally
@@ -193,8 +194,6 @@ cask "iina"
 cask "istat-menus"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
-# Application launcher
-cask "leader-key"
 # Custom Discord client
 cask "legcord"
 # Customise mouse behavior
@@ -231,6 +230,8 @@ cask "tableplus"
 cask "thunderbird"
 # Web browser focusing on security
 cask "tor-browser"
+# Modern launcher
+cask "mikker/tap/tuna"
 # Virtual machines UI using QEMU
 cask "utm"
 # Keyboard configurator

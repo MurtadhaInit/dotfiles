@@ -29,6 +29,7 @@
 
     # macOS-specific
     ./linearmouse.nix
+    ./tuna.nix
   ];
 
   # Use Homebrew packages instead of Nix on macOS
@@ -64,4 +65,5 @@
   dotfiles.mise.enable = true;
   dotfiles.mise.installPackage = false;
   dotfiles.syncthing.enable = true;
+  dotfiles.tuna.enable = true;
 }

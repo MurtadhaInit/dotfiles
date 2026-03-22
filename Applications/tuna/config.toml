@@ -1,0 +1,62 @@
+schemaVersion = 1
+
+[hotkeys]
+custom = []
+
+    [hotkeys.app.activate]
+    carbonKeyCode = 49
+    carbonModifiers = 256
+
+    [hotkeys.app.leaderMode]
+    carbonKeyCode = 49
+    carbonModifiers = 2048
+
+[[leaderMode.bindings]]
+iconPath = '/Applications/Ghostty.app'
+key = 'g'
+label = 'Terminal'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.Ghostty/Open'
+
+[[leaderMode.bindings]]
+iconPath = 'window.horizontal'
+key = 'w'
+label = 'Window'
+
+    [[leaderMode.bindings.children]]
+    key = 'f'
+    url = 'tuna://run/text.shortcuts%2520run%2520%2522Window%2520Fill%2522/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = '/Applications/Visual Studio Code.app'
+key = 'v'
+label = 'Editor'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.Visual%20Studio%20Code/Open'
+
+[[leaderMode.bindings]]
+iconPath = '/Applications/Brave Browser.app'
+key = 'b'
+label = 'Browser'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.Brave%20Browser/Open'
+
+[[leaderMode.bindings]]
+iconPath = '/Applications/Obsidian.app'
+key = 'o'
+label = 'Obsidian'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.Obsidian/Open'
+
+[[leaderMode.bindings]]
+iconPath = '/System/Library/CoreServices/Finder.app'
+key = 'f'
+label = 'Finder'
+url = 'tuna://run/TunaCore.SystemApplicationsCatalog.Finder/Open'
+
+[[leaderMode.bindings]]
+iconPath = '/Users/murtadha/Applications/YT Music.app'
+key = 'm'
+label = 'Music'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.YT%20Music/Open'
+
+[settings]
+leaderModeCheatsheetBehavior = 'always'
+leaderModeThemeStyle = 'cheatsheet'
+themeIdentifier = 'com.brnbw.tuna.themes.default'
