@@ -97,6 +97,7 @@ $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
 source "themes/catppuccin_mocha.nu"
 # Custom commands, including internal utility functions
 source "scripts/custom-commands.nu"
+source "scripts/github-backup.nu"
 
 # macOS system paths and manpaths — replaces path_helper which is invoked from /etc/zprofile
 # patch_helper reads /etc/paths, /etc/paths.d/*, /etc/manpaths, and /etc/manpaths.d/* (man patch_helper)
