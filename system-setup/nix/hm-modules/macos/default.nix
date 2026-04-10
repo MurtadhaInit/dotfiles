@@ -23,6 +23,7 @@
     ../zed.nix
     ../glow.nix
     ../mise.nix
+    ../k9s.nix
     ../syncthing.nix
 
     ../lsps.nix
@@ -64,6 +65,8 @@
   dotfiles.glow.installPackage = false;
   dotfiles.mise.enable = true;
   dotfiles.mise.installPackage = false;
+  dotfiles.k9s.enable = true;
+  dotfiles.k9s.installPackage = false;
   dotfiles.syncthing.enable = true;
   dotfiles.tuna.enable = true;
 }

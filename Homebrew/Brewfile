@@ -1,5 +1,6 @@
 tap "anomalyco/tap"
 tap "cirruslabs/cli"
+tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
 tap "mikker/tap"
@@ -142,6 +143,8 @@ brew "anomalyco/tap/opencode"
 brew "cirruslabs/cli/cirrus"
 # Run macOS and Linux VMs on Apple Hardware
 brew "cirruslabs/cli/tart"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s"
 # Packer
 brew "hashicorp/tap/packer"
 # Terraform
