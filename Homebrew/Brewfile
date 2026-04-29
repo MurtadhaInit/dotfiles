@@ -147,8 +147,6 @@ brew "cirruslabs/cli/tart"
 brew "derailed/k9s/k9s"
 # Packer
 brew "hashicorp/tap/packer"
-# Terraform
-brew "hashicorp/tap/terraform"
 # A simple terminal UI for docker, written in Go
 brew "jesseduffield/lazydocker/lazydocker"
 # Pulumi - Modern Infrastructure as Code. Any cloud, any language 
@@ -201,8 +199,6 @@ cask "jetbrains-toolbox"
 cask "legcord"
 # Customise mouse behavior
 cask "linearmouse"
-# Online collaborative whiteboard platform
-cask "miro"
 # App to write, plan, collaborate, and get organised
 cask "notion"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -215,8 +211,6 @@ cask "pearcleaner"
 cask "postman"
 # Client for Proton Drive
 cask "proton-drive"
-# VPN client focusing on security
-cask "protonvpn"
 # Peer to peer Bitorrent client
 cask "qbittorrent"
 # Open source virtual/remote desktop application
@@ -227,8 +221,8 @@ cask "sigmaos"
 cask "signal"
 # Video game digital distribution service
 cask "steam"
-# Native GUI tool for relational databases
-cask "tableplus"
+# Minimal GUI for AI code agents
+cask "t3-code"
 # Customizable email client
 cask "thunderbird"
 # Web browser focusing on security

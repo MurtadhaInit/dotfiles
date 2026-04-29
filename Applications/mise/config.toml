@@ -15,6 +15,7 @@ uv = "latest"
 # NOTE: The --with-executables-from flag (in `uv tool install`) will install those packages as
 # dependencies (if they're not already so) AND include their executables
 "pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core,ansible-lint"}
+opentofu = "latest"
 claude-code = "latest"
 codex = "latest"
 

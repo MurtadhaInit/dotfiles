@@ -199,8 +199,8 @@ alias tree = tree -aC
 alias lzg = lazygit
 alias lzd = lazydocker
 alias man = batman
-alias tf = terraform
 alias k = kubectl
+alias t = talosctl
 # To open nvim with the separate nvim-vscode config to update/debug nvim as used inside VSCode
 def nvim-vscode [...args] {
     with-env { NVIM_APPNAME: "nvim-vscode" } { nvim ...$args }
