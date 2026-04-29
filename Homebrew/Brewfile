@@ -163,8 +163,8 @@ cask "balenaetcher"
 cask "beekeeper-studio"
 # Web browser focusing on privacy
 cask "brave-browser"
-# Terminal-based AI coding assistant
-cask "claude-code"
+# Anthropic's official Claude AI desktop app
+cask "claude"
 # Screen capturing tool
 cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
