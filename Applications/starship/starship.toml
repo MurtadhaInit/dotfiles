@@ -1,13 +1,13 @@
-"$schema" = 'https://starship.rs/config-schema.json' # editor autocomplete
+"$schema" = "https://starship.rs/config-schema.json"  # editor autocomplete
 # NOTE: Unlike the Warp config, the right_format module was not used to
 # produce the right prompt. This is because that module places elements
 # on the same line as the input location. So fill is used instead.
 # This has been avoided by Warp's default behaviour of creating a new line.
 
 # === Prompt-wide configurations ===
-palette = 'catppuccin_mocha'
-command_timeout = 1500       # Default timeout for commands is 500ms
-add_newline = true           # A blank line before prompt start
+palette = "catppuccin_mocha"
+command_timeout = 1500  # Default timeout for commands is 500ms
+add_newline = true  # A blank line before prompt start
 
 format = """
 $username\
@@ -73,11 +73,11 @@ style = "bold blue"
 
 [git_branch]
 symbol = " "
-format = '[on](text dimmed) [$symbol$branch(:$remote_branch)]($style) '
+format = "[on](text dimmed) [$symbol$branch(:$remote_branch)]($style) "
 style = "bold purple"
 
 [git_commit]
-format = '[on](text dimmed) [ $hash$tag]($style) '
+format = "[on](text dimmed) [ $hash$tag]($style) "
 style = "bold purple"
 tag_disabled = false
 tag_symbol = "  "
@@ -87,7 +87,7 @@ style = "bold yellow"
 
 [git_status]
 style = "bold maroon"
-format = '[$all_status$ahead_behind]($style)'
+format = "[$all_status$ahead_behind]($style)"
 renamed = "󰆾 "
 conflicted = "󰞇 "
 up_to_date = " "
@@ -97,7 +97,7 @@ untracked = "󱄁 "
 modified = " "
 deleted = " "
 stashed = "󰏗 "
-staged = '[++$count](green) '
+staged = "[++$count](green) "
 diverged = "⇕⇡($ahead_count)⇣($behind_count) "
 ahead = "⇡$count "
 behind = "⇣$count "
@@ -112,7 +112,7 @@ disabled = false
 
 [nodejs]
 symbol = "󰎙 "
-format = '[$symbol($version )]($style)'
+format = "[$symbol($version )]($style)"
 
 [python]
 symbol = "󰌠 "
@@ -121,24 +121,24 @@ format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 
 [rust]
 symbol = " "
-format = '[$symbol($version )]($style)'
+format = "[$symbol($version )]($style)"
 
 [docker_context]
 symbol = " "
-format = '[$symbol$context]($style) '
+format = "[$symbol$context]($style) "
 
 [vagrant]
 symbol = "⍱ "
-format = '[$symbol($version )]($style)'
+format = "[$symbol($version )]($style)"
 
 [java]
 symbol = " "
 style = "bold red"
-format = '[${symbol}(${version} )]($style)'
+format = "[${symbol}(${version} )]($style)"
 
 [golang]
 symbol = "󰟓 "
-format = '[$symbol($version )]($style)'
+format = "[$symbol($version )]($style)"
 
 [package]
 symbol = " "
@@ -193,6 +193,16 @@ format = "[$symbol$workspace]($style) "
 symbol = "󱄅 "
 format = '[$symbol$state( \($name\))]($style) '
 style = "bold sapphire"
+
+[kubernetes]
+disabled = false
+symbol = " "
+format = '[$symbol$context( \($namespace\))]($style) '
+style = "bold blue"
+
+[helm]
+symbol = " "
+format = "[$symbol($version )]($style)"
 
 # === Colour palettes ===
 [palettes.catppuccin_latte]
