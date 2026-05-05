@@ -1,21 +1,61 @@
 {
+  "file_types": {
+    "Ansible": [
+      "**.ansible.yml",
+      "**.ansible.yaml",
+      "**/defaults/*.yml",
+      "**/defaults/*.yaml",
+      "**/meta/*.yml",
+      "**/meta/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/handlers/*.yml",
+      "**/handlers/*.yaml",
+      "**/group_vars/*.yml",
+      "**/group_vars/*.yaml",
+      "**/playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**playbook*.yaml",
+      "**playbook*.yml",
+    ],
+  },
+  "semantic_tokens": "combined",
+  "cli_default_open_behavior": "new_window",
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
   "colorize_brackets": true,
   "sticky_scroll": {
     "enabled": true,
   },
   "on_last_window_closed": "quit_app",
   "git_panel": {
+    "dock": "right",
     "tree_view": true,
   },
   "agent": {
+    "dock": "left",
     "inline_assistant_model": {
       "provider": "anthropic",
       "model": "claude-sonnet-4-5-thinking-latest",
     },
     "default_profile": "minimal",
     "default_model": {
+      "effort": "high",
+      "enable_thinking": true,
       "provider": "anthropic",
-      "model": "claude-sonnet-4-6-latest",
+      "model": "claude-opus-4-7-latest",
     },
   },
   "icon_theme": {
@@ -32,7 +72,7 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "VSCode Dark Modern",
+    "dark": "Catppuccin Mocha",
   },
   "buffer_font_family": "MonoLisa Cursive",
   "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
