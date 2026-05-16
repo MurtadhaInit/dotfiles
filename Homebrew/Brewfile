@@ -163,8 +163,6 @@ cask "beekeeper-studio"
 cask "brave-browser"
 # Anthropic's official Claude AI desktop app
 cask "claude"
-# Screen capturing tool
-cask "cleanshot"
 # Multi-platform client-side cloud file encryption tool
 cask "cryptomator"
 # UI to create reproducible developer environments based on a devcontainer.json
@@ -215,6 +213,8 @@ cask "proton-drive"
 cask "qbittorrent"
 # Open source virtual/remote desktop application
 cask "rustdesk"
+# Screenshot measurement and annotation tool
+cask "shottr"
 # Web browser
 cask "sigmaos"
 # Instant messaging application focusing on security
