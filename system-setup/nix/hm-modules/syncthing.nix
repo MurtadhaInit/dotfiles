@@ -65,11 +65,11 @@ in
       enable = true;
       key = config.age.secrets."syncthing-key".path;
       cert = config.age.secrets."syncthing-cert".path;
-      passwordFile = config.age.secrets."syncthing-gui-password".path;
+      guiCredentials = {
+        username = "murtadha";
+        passwordFile = config.age.secrets."syncthing-gui-password".path;
+      };
       settings = {
-        gui = {
-          user = "murtadha";
-        };
         devices = {
           nixos-ct = {
             id = "HQ37GBK-Y7FFD6J-OUQBW7O-VMJOMNY-C3BWNGF-BOYZHX4-7WRGUDB-APF2GA5";
