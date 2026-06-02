@@ -200,6 +200,12 @@ symbol = " "
 format = '[$symbol$context( \($namespace\))]($style) '
 style = "bold blue"
 
+# De-emphasise OrbStack's built-in cluster (the default kube-context at ~/.kube/config)
+[[kubernetes.contexts]]
+context_pattern = "orbstack"
+style = "dimmed blue"
+context_alias = "orb"
+
 [helm]
 symbol = " "
 format = "[$symbol($version )]($style)"
