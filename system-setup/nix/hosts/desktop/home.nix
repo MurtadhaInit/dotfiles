@@ -10,7 +10,6 @@
     ../../hm-modules/linux
 
     ../../hm-modules/ssh.nix
-    ../../hm-modules/agenix-fonts.nix
   ];
 
   # the user and their home path to be managed

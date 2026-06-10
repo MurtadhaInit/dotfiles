@@ -35,6 +35,7 @@
     ./bun.nix
     ./packages.nix
     ./localsend.nix
+    ./fonts.nix
   ];
 
   dotfiles.nushell.enable = true;
@@ -61,4 +62,5 @@
   dotfiles.localsend.enable = true;
   dotfiles.k9s.enable = true;
   dotfiles.syncthing.enable = true;
+  dotfiles.fonts.enable = true;
 }

@@ -25,4 +25,11 @@ in
   "syncthing-key-macbook.age".publicKeys = allHosts;
   "syncthing-cert-nixos-desktop.age".publicKeys = allHosts;
   "syncthing-key-nixos-desktop.age".publicKeys = allHosts;
+
+  # Purchased fonts (as encrypted ZIPs).
+  # These are binary, so rekey them with `agenix -r` (which re-encrypts in place without an editor).
+  # Don't use `-e`, which would open the blob in $EDITOR and corrupt it.
+  "fonts/MonoLisa-Plus-2.016.zip.age".publicKeys = allHosts;
+  "fonts/MonoLisa-Cursive-2.016.zip.age".publicKeys = allHosts;
+  "fonts/Comic-Code-Coding-Essentials-Ligatures.zip.age".publicKeys = allHosts;
 }
