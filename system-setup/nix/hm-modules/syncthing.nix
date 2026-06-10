@@ -37,6 +37,17 @@ in
       default = "Desktop/Documents";
       description = "Path to the synced documents folder, relative to $HOME";
     };
+    # No defaults on purpose: the certificate hashes into the Syncthing Device
+    # ID, so every host MUST supply its own unique identity. Set both in the host's home.nix.
+    # A default here would silently let two hosts share one Device ID (a broken state on the hub).
+    certFile = lib.mkOption {
+      type = lib.types.path;
+      description = "agenix-encrypted Syncthing TLS certificate for THIS host (derives its Device ID). Must be unique per host.";
+    };
+    keyFile = lib.mkOption {
+      type = lib.types.path;
+      description = "agenix-encrypted Syncthing TLS private key for THIS host. Generated alongside the TLS certificate.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -51,11 +62,11 @@ in
         path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-gui-password";
       };
       syncthing-key = {
-        file = ../secrets/syncthing-key.age;
+        file = cfg.keyFile;
         path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-key";
       };
       syncthing-cert = {
-        file = ../secrets/syncthing-cert.age;
+        file = cfg.certFile;
         path = "${config.home.homeDirectory}/.local/run/agenix/syncthing-cert";
         mode = "0444";
       };
