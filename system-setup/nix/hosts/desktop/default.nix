@@ -16,6 +16,7 @@
     ../../nixos-modules/firewall.nix
     ../../nixos-modules/networking.nix
     ../../nixos-modules/default-shell.nix
+    ../../nixos-modules/nix-ld.nix
   ];
 
   networking.hostName = "nixos-workstation";

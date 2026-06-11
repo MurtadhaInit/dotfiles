@@ -19,6 +19,14 @@ claude-code = "latest"
 codex = "latest"
 
 [settings]
+color_theme = "catppuccin"
+# On NixOS, mise auto-enables all_compile (it assumes precompiled binaries can't
+# run) and would build runtimes from source, ignoring nix-ld (if present).
+# We use nix-ld instead on NixOS so precompiled binaries run — faster, and the
+# only option for binary-only tools (bun, aws, ...).
+# Harmless on macOS, where precompiled is already the default.
+# Docs: https://mise.jdx.dev/configuration/settings.html#all_compile
+all_compile = false
 
 [settings.npm]
 package_manager = "bun"

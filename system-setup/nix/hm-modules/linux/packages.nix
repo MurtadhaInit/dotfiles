@@ -10,16 +10,14 @@ let
 in
 {
   options.dotfiles.packages = {
-    enable = lib.mkEnableOption "Install a list of packages not requiring further configuration";
+    enable = lib.mkEnableOption "a list of packages not requiring further configuration";
   };
 
   config = lib.mkIf cfg.enable {
+    # NOTE: this excludes certain tools installed cross-platform through mise instead
     home.packages = with pkgs; [
       neovim
       stow
-      uv
-      ruff
-      sqlfluff
       zoxide
       fzf
       ripgrep
@@ -43,7 +41,6 @@ in
       age
       nur.repos.charmbracelet.crush
       papers # cause Okular is kinda trash
-      claude-code
       # terraform # Terraform is not available on the unstable channel
       tmux
       remmina
