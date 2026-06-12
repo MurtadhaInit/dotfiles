@@ -25,6 +25,7 @@
     ../mise.nix
     ../k9s.nix
     ../syncthing.nix
+    ../tmux.nix
 
     ../lsps.nix
 
@@ -63,4 +64,5 @@
   dotfiles.k9s.enable = true;
   dotfiles.syncthing.enable = true;
   dotfiles.fonts.enable = true;
+  dotfiles.tmux.enable = true;
 }
