@@ -25,6 +25,7 @@
     ../mise.nix
     ../k9s.nix
     ../syncthing.nix
+    ../devbox.nix
     ../tmux.nix
 
     ../lsps.nix
@@ -63,6 +64,7 @@
   dotfiles.localsend.enable = true;
   dotfiles.k9s.enable = true;
   dotfiles.syncthing.enable = true;
+  dotfiles.devbox.enable = true;
   dotfiles.fonts.enable = true;
   dotfiles.tmux.enable = true;
 }

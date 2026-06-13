@@ -25,6 +25,7 @@
     ../mise.nix
     ../k9s.nix
     ../syncthing.nix
+    ../devbox.nix
     ../tmux.nix
 
     ../lsps.nix
@@ -70,5 +71,6 @@
   dotfiles.k9s.installPackage = false;
   dotfiles.syncthing.enable = true;
   dotfiles.tuna.enable = true;
+  dotfiles.devbox.enable = true;
   dotfiles.tmux.enable = true;
 }
