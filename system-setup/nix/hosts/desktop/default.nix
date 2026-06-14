@@ -17,6 +17,7 @@
     ../../nixos-modules/networking.nix
     ../../nixos-modules/default-shell.nix
     ../../nixos-modules/nix-ld.nix
+    ../../nixos-modules/helium.nix
   ];
 
   networking.hostName = "nixos-workstation";
