@@ -22,4 +22,18 @@
       RestoreOnStartup = 1; # reopen last session
     };
   };
+
+  # Make Helium the system-wide default browser.
+  # This writes the associations into /etc/xdg/mimeapps.list so URLs and HTML files
+  # open in Helium across desktop environments that honour these.
+  xdg.mime.defaultApplications = {
+    "text/html" = "helium.desktop";
+    "x-scheme-handler/http" = "helium.desktop";
+    "x-scheme-handler/https" = "helium.desktop";
+    "x-scheme-handler/about" = "helium.desktop";
+    "x-scheme-handler/unknown" = "helium.desktop";
+  };
+
+  # Apps that read $BROWSER (terminal tools, etc.) launch Helium.
+  environment.sessionVariables.BROWSER = "helium";
 }
