@@ -1,5 +1,16 @@
 { pkgs, ... }:
 
+let
+  # Realtek ALC887-VD on this ASUS B350 board (ALSA card 1) powers up with the rear green
+  # jack (line-out) muted and "Auto-Mute Mode" enabled, which mutes outputs based on
+  # front-panel jack detection. The codec resets these same controls back to those defaults
+  # when resuming from S3 sleep, killing audio output. Re-apply sane defaults at login and
+  # again on resume.
+  fixRealtekAudio = pkgs.writeShellScript "alsa-fix-realtek" ''
+    ${pkgs.alsa-utils}/bin/amixer -c 1 set 'Auto-Mute Mode' Disabled
+    ${pkgs.alsa-utils}/bin/amixer -c 1 set Front unmute
+  '';
+in
 {
   imports = [
     # Host-specific hardware modules
@@ -114,21 +125,41 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
-  # Fix Realtek ALC887-VD on ASUS B350: the rear green jack (line-out) defaults to muted,
-  # and Auto-Mute incorrectly mutes outputs based on front panel jack detection.
-  # Runs after WirePlumber with a delay because WirePlumber asynchronously reconfigures
-  # ALSA controls after its service unit is considered started.
+  # See fixRealtekAudio above. At login this runs after WirePlumber, with a delay, because
+  # WirePlumber asynchronously reconfigures the ALSA controls after its unit is considered
+  # started — without the delay our values get clobbered.
   systemd.user.services.alsa-fix-realtek = {
-    description = "Fix ALSA defaults for Realtek ALC887-VD";
+    description = "Fix ALSA defaults for Realtek ALC887-VD at login";
     after = [ "wireplumber.service" ];
     wantedBy = [ "default.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = pkgs.writeShellScript "alsa-fix-realtek" ''
-        sleep 5
-        ${pkgs.alsa-utils}/bin/amixer -c 1 set 'Auto-Mute Mode' Disabled
-        ${pkgs.alsa-utils}/bin/amixer -c 1 set Front unmute
-      '';
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
+      ExecStart = "${fixRealtekAudio}";
+    };
+  };
+
+  # The codec resets the same controls on resume from sleep, so re-apply them. A unit that is
+  # WantedBy a sleep target and ordered After it is started when the machine wakes; the short
+  # delay lets the codec finish re-initialising before we write the controls.
+  systemd.services.alsa-fix-realtek-resume = {
+    description = "Re-apply ALSA defaults for Realtek ALC887-VD after resume";
+    after = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
+    wantedBy = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
+      ExecStart = "${fixRealtekAudio}";
     };
   };
 
