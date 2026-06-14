@@ -1,14 +1,24 @@
 { pkgs, ... }:
 
 let
-  # Realtek ALC887-VD on this ASUS B350 board (ALSA card 1) powers up with the rear green
-  # jack (line-out) muted and "Auto-Mute Mode" enabled, which mutes outputs based on
-  # front-panel jack detection. The codec resets these same controls back to those defaults
-  # when resuming from S3 sleep, killing audio output. Re-apply sane defaults at login and
-  # again on resume.
+  # Realtek ALC887-VD on this ASUS B350 board powers up with the rear green jack (line-out)
+  # muted and "Auto-Mute Mode" enabled, which mutes outputs based on front-panel jack
+  # detection. The codec also resets these same controls back to those defaults when resuming
+  # from S3 sleep, killing audio output. Re-apply sane defaults at login and again on resume.
+  #
+  # The numeric ALSA card index is assigned by probe order and is NOT stable across reboots
+  # (USB/PCI enumeration varies), so resolve it from the stable Realtek codec rather than
+  # hard-coding it — otherwise the fix silently targets the wrong card (e.g. NVIDIA HDMI).
   fixRealtekAudio = pkgs.writeShellScript "alsa-fix-realtek" ''
-    ${pkgs.alsa-utils}/bin/amixer -c 1 set 'Auto-Mute Mode' Disabled
-    ${pkgs.alsa-utils}/bin/amixer -c 1 set Front unmute
+    card=$(${pkgs.gnugrep}/bin/grep -l ALC887 /proc/asound/card*/codec#* 2>/dev/null \
+      | ${pkgs.gnused}/bin/sed -n 's:.*/card\([0-9]\+\)/.*:\1:p' \
+      | ${pkgs.coreutils}/bin/head -n1)
+    if [ -z "$card" ]; then
+      echo "alsa-fix-realtek: Realtek ALC887 codec not found" >&2
+      exit 1
+    fi
+    ${pkgs.alsa-utils}/bin/amixer -c "$card" set 'Auto-Mute Mode' Disabled
+    ${pkgs.alsa-utils}/bin/amixer -c "$card" set Front unmute
   '';
 in
 {
