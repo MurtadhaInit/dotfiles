@@ -27,6 +27,7 @@
     ../syncthing.nix
     ../devbox.nix
     ../tmux.nix
+    ../sesh.nix
 
     ../lsps.nix
 
@@ -73,4 +74,5 @@
   dotfiles.tuna.enable = true;
   dotfiles.devbox.enable = true;
   dotfiles.tmux.enable = true;
+  dotfiles.sesh.enable = true;
 }

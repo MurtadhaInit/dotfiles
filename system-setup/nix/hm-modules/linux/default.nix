@@ -27,6 +27,7 @@
     ../syncthing.nix
     ../devbox.nix
     ../tmux.nix
+    ../sesh.nix
 
     ../lsps.nix
 
@@ -67,4 +68,5 @@
   dotfiles.devbox.enable = true;
   dotfiles.fonts.enable = true;
   dotfiles.tmux.enable = true;
+  dotfiles.sesh.enable = true;
 }
