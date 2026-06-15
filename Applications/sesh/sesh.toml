@@ -1,22 +1,20 @@
 #:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
 #
-# `sesh list` merges three sources into one picker: the configured sessions (e.g. below),
+# `sesh list` merges three sources into one picker: the configured sessions (here),
 # currently-live tmux sessions, and zoxide directories (by visiting frequency).
 # Selecting one creates-or-attaches a tmux session named after the project and roots it
 # at that directory.
 #
 # Most projects need NO entry here — zoxide supplies them automatically once you've `cd`'d
-# into them (or from `fd` in ~/Projects). Add a [[session]] block only to pin a custom
+# into them (or e.g., use `fd` in ~/Projects). Add a [[session]] block only to pin a custom
 # name/icon or to run a startup command on first create.
 
-[default_session]
+# [default_session]
 # Right-pane preview shown while hovering a session in the fzf picker (with `sesh preview {}`).
 # preview_command = "eza --all --git --icons=always --color=always {}"
-# TODO: add another command to show git status
 
 # Example: pin a project and auto-launch Claude when the session is first created.
-# `startup_command` runs once on create only — NOT on re-attach — so re-attaching drops
-# you back into the existing pane (where `claude --resume` recalls the conversation).
+# `startup_command` runs once on create only — NOT on re-attach.
 # [[session]]
 # name = "dotfiles 🛠️"
 # path = "~/.dotfiles"
