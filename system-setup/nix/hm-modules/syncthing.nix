@@ -34,7 +34,6 @@ in
     enable = lib.mkEnableOption "Syncthing with dotfiles defaults";
     documentsPath = lib.mkOption {
       type = lib.types.str;
-      default = "Desktop/Documents";
       description = "Path to the synced documents folder, relative to $HOME";
     };
     # No defaults on purpose: the certificate hashes into the Syncthing Device
@@ -101,6 +100,20 @@ in
             devices = [ "nixos-ct" ];
           };
         };
+      };
+    };
+
+    # Cold-boot ordering (Linux). agenix decrypts our cert/key/password via its
+    # own `agenix.service` user unit, but nothing orders syncthing after it. If
+    # syncthing wins the race, its ExecStartPre can't install the not-yet-decrypted
+    # cert/key, its first start fails, and the syncthing-init oneshot
+    # (Requires=syncthing.service) cascade-aborts and is never retried — so the GUI
+    # password, folders and devices never get pushed and Syncthing looks like a
+    # fresh, unconfigured install. Ordering after agenix guarantees the secrets exist.
+    systemd.user.services.syncthing = lib.mkIf pkgs.stdenv.isLinux {
+      Unit = {
+        After = [ "agenix.service" ];
+        Wants = [ "agenix.service" ];
       };
     };
 

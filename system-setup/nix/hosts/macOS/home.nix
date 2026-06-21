@@ -17,9 +17,13 @@
   # Identity key used by agenix to decrypt all secrets on this host
   age.identityPaths = [ "${config.home.homeDirectory}/.ssh/keys/age.txt" ];
 
-  # This host's unique Syncthing identity (the cert derives its Device ID)
-  dotfiles.syncthing.certFile = ../../secrets/syncthing-cert-macbook.age;
-  dotfiles.syncthing.keyFile = ../../secrets/syncthing-key-macbook.age;
+  dotfiles.syncthing = {
+    # This host's unique Syncthing identity (the cert derives its Device ID)
+    certFile = ../../secrets/syncthing-cert-macbook.age;
+    keyFile = ../../secrets/syncthing-key-macbook.age;
+    # Land the synced folder at ~/Desktop/Documents on this machine
+    documentsPath = "Desktop/Documents";
+  };
 
   home.stateVersion = "25.11";
 
