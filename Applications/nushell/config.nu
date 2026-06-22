@@ -155,13 +155,6 @@ load-env {
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
     EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
 
-    # By default, this is ~/.aws/config and by default it doesn't contain credentials
-    # Credentials is typically in a separate file in ~/.aws/credentials
-    # Credentials and config have been combined into a single config file here to be used.
-    AWS_CONFIG_FILE: $"($nu.home-dir)/.ssh/keys/aws-config-credentials",
-    # Location of the credentials file is also changed even though it's not used nor existent
-    AWS_SHARED_CREDENTIALS_FILE: $"($nu.home-dir)/.ssh/keys/aws-credentials",
-
     # "NULLCMD": "bat" # Default to bat instead of cat
 
     ANSIBLE_HOME: $"($env.XDG_DATA_HOME)/ansible"
