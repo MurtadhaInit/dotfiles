@@ -221,6 +221,8 @@ cask "signal"
 cask "steam"
 # Minimal GUI for AI code agents
 cask "t3-code"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Customizable email client
 cask "thunderbird"
 # Web browser focusing on security

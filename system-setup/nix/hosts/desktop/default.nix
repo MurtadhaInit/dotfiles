@@ -36,6 +36,7 @@ in
     ../../nixos-modules/audio.nix
     ../../nixos-modules/firewall.nix
     ../../nixos-modules/networking.nix
+    ../../nixos-modules/tailscale.nix
     ../../nixos-modules/default-shell.nix
     ../../nixos-modules/nix-ld.nix
     ../../nixos-modules/helium.nix
