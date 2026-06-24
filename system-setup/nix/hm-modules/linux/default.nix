@@ -38,6 +38,7 @@
     ./packages.nix
     ./localsend.nix
     ./fonts.nix
+    ./plasma.nix
   ];
 
   dotfiles.nushell.enable = true;
@@ -67,4 +68,5 @@
   dotfiles.fonts.enable = true;
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
+  dotfiles.plasma.enable = true;
 }
