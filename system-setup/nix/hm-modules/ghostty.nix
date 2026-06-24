@@ -40,6 +40,10 @@ in
     xdg.configFile = {
       "ghostty/themes".source = themes-dir;
       "ghostty/config".source = ../../../Applications/ghostty/config;
+    }
+    # Linux-specific options, pulled in inside the shared config via `config-file = ?linux.conf`
+    // lib.optionalAttrs pkgs.stdenv.isLinux {
+      "ghostty/linux.conf".source = ../../../Applications/ghostty/linux.conf;
     };
   };
 }

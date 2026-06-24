@@ -26,3 +26,5 @@ window-inherit-working-directory = false
 tab-inherit-working-directory = true
 split-inherit-working-directory = true
 keybind = shift+enter=text:\n
+# Linux/GTK-only overrides. Silently skipped on macOS but loaded on Linux
+config-file = ?linux.conf
