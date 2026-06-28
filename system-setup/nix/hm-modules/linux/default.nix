@@ -39,6 +39,7 @@
     ./localsend.nix
     ./fonts.nix
     ./plasma.nix
+    ./tailscale-systray.nix
   ];
 
   dotfiles.nushell.enable = true;
@@ -69,4 +70,5 @@
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
   dotfiles.plasma.enable = true;
+  dotfiles.tailscale-systray.enable = true;
 }
