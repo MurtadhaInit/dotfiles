@@ -22,10 +22,9 @@ in
       [Desktop Entry]
       Type=Application
       Name=qBittorrent
-      Comment=qBittorrent startup script
       Exec=${pkgs.qbittorrent}/bin/qbittorrent
-      StartupNotify=false
       Terminal=false
+      StartupNotify=false
     '';
   };
 }
