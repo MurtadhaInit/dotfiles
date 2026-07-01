@@ -204,8 +204,8 @@ cask "pearcleaner"
 cask "postman"
 # Client for Proton Drive
 cask "proton-drive"
-# Peer to peer Bitorrent client
-cask "qbittorrent"
+# Client for Proton Mail and Proton Calendar
+cask "proton-mail"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Screenshot measurement and annotation tool
