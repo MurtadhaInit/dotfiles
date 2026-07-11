@@ -1,5 +1,4 @@
 {
-  "buffer_line_height": "standard",
   "lsp": {
     "golangci-lint": {
       "initialization_options": {

@@ -183,6 +183,7 @@ $env.PATH = [
     # Homebrew setup as per `brew shellenv`
     $"($brew_prefix)/bin"
     $"($brew_prefix)/sbin"
+
     ...$system_paths
     ...$env.PATH
 ] | uniq # remove duplicates

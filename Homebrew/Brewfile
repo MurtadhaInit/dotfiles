@@ -224,6 +224,8 @@ cask "tailscale-app"
 cask "thunderbird"
 # Web browser focusing on security
 cask "tor-browser"
+# Open-source BitTorrent client
+cask "transmission"
 # Modern launcher
 cask "mikker/tap/tuna", trusted: true
 # Virtual machines UI using QEMU

@@ -59,6 +59,11 @@ key = 'm'
 label = 'Music'
 url = 'tuna://run/TunaCore.ApplicationsCatalog.YT%20Music/Open'
 
+[[comboMode.bindings]]
+iconPath = '/Applications/Google Chrome.app'
+key = 'c'
+url = 'tuna://run/TunaCore.ApplicationsCatalog.Google%20Chrome/TunaCore.CommonActionsCatalog.Open'
+
 [hotkeys]
 custom = []
 

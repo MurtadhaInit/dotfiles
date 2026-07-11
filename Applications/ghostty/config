@@ -10,8 +10,8 @@ window-padding-y = 8
 # macos-titlebar-style = hidden
 macos-titlebar-style = tabs
 macos-non-native-fullscreen = false
-# macos-icon =
-# Options include: blueprint, chalkboard, microchip, glass, holographic, paper, retro, xray
+# Options: `official` (default), `blueprint`, `chalkboard`, `microchip`, `glass`, `holographic`, `paper`, `retro`, `xray`, `custom-style`
+macos-icon = xray
 macos-option-as-alt = true
 window-colorspace = display-p3
 window-save-state = always
@@ -28,3 +28,6 @@ split-inherit-working-directory = true
 keybind = shift+enter=text:\n
 # Linux/GTK-only overrides. Silently skipped on macOS but loaded on Linux
 config-file = ?linux.conf
+
+# NOTE: use the CLI to search for configs (and their defaults and docs):
+# E.g. `ghostty +show-config --default --docs | rg ^macos-icon -B35`
