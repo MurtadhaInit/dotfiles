@@ -3,8 +3,13 @@
 let
   # Realtek ALC887-VD on this ASUS B350 board powers up with the rear green jack (line-out)
   # muted and "Auto-Mute Mode" enabled, which mutes outputs based on front-panel jack
-  # detection. The codec also resets these same controls back to those defaults when resuming
-  # from S3 sleep, killing audio output. Re-apply sane defaults at login and again on resume.
+  # detection. Worse, the codec resets these controls back to those muted defaults on *every*
+  # re-initialisation — S3 resume, and (every 10s of silence) runtime power-down to D3 — while
+  # PipeWire only manages Master/PCM and never touches Front, so audio dies mid-session.
+  #
+  # The runtime-power-down case is handled separately by disabling snd_hda_intel power_save
+  # below (so the codec stays in D0 during normal use); this script re-applies sane defaults at
+  # login and on resume, for the boot and S3 cases that power_save can't cover.
   #
   # The numeric ALSA card index is assigned by probe order and is NOT stable across reboots
   # (USB/PCI enumeration varies), so resolve it from the stable Realtek codec rather than
@@ -135,6 +140,13 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+  # See fixRealtekAudio above. Keep the HD-audio codec powered (D0) instead of dropping to D3
+  # after ~10s of silence: every D3->D0 cycle re-inits the codec and re-mutes Front, which is
+  # the main cause of audio dying part-way through a session. Costs a little idle power.
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=0
+  '';
 
   # See fixRealtekAudio above. At login this runs after WirePlumber, with a delay, because
   # WirePlumber asynchronously reconfigures the ALSA controls after its unit is considered
