@@ -32,6 +32,7 @@
     ../lsps.nix
 
     # Linux-specific
+    ./ssh.nix
     ./brave.nix
     ./qbittorrent.nix
     ./bun.nix
@@ -58,6 +59,7 @@
   dotfiles.glow.enable = true;
   dotfiles.mise.enable = true;
   dotfiles.lsps.enable = true;
+  dotfiles.ssh.enable = true;
   dotfiles.brave.enable = true;
   dotfiles.qbittorrent.enable = true;
   dotfiles.bun.enable = true;

@@ -8,8 +8,6 @@
   imports = [
     inputs.agenix.homeManagerModules.default
     ../../hm-modules/linux
-
-    ../../hm-modules/ssh.nix
   ];
 
   # the user and their home path to be managed
