@@ -78,7 +78,7 @@
             overlays = [ nur.overlays.default ];
           };
           modules = [
-            ./hosts/macOS/home.nix
+            ./hosts/macos/home.nix
           ];
         };
       };
