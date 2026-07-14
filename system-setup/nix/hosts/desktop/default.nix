@@ -31,9 +31,9 @@ in
     # Host-specific hardware modules
     ./hardware/hardware-configuration.nix # NOTE: copy the generated results of the hardware scan
     ./hardware/storage.nix # NOTE: edit the UUIDs of HDDs according to the new system before switching
+    ./hardware/nvidia.nix # GTX 1070 Ti (Pascal): legacy_580 driver + the LTS kernel pin it forces
 
     # System-level modules
-    ../../nixos-modules/nvidia.nix
     ../../nixos-modules/fonts.nix
     ../../nixos-modules/nh.nix
     ../../nixos-modules/zsa.nix
@@ -77,9 +77,6 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.

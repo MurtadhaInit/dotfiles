@@ -33,4 +33,11 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
+
+  # The 580 branch is the last one supporting Pascal (GTX 1070 Ti) and is in legacy
+  # maintenance until ~Oct 2028: NVIDIA only ships occasional compatibility fixes for
+  # new kernels, so linuxPackages_latest can outrun the driver and break the rebuild
+  # whenever a fresh mainline kernel lands in nixpkgs before NVIDIA catches up.
+  # Pin the LTS kernel instead (while this GPU & driver pin is in place).
+  boot.kernelPackages = pkgs.linuxPackages;
 }
