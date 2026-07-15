@@ -17,7 +17,6 @@
     ../../nixos-modules/firewall.nix
     ../../nixos-modules/networking.nix
     ../../nixos-modules/tailscale.nix
-    ../../nixos-modules/default-shell.nix
     ../../nixos-modules/nix-ld.nix
     ../../nixos-modules/helium.nix
     ../../nixos-modules/plasma.nix # desktop environment - swap to try another DE
@@ -34,12 +33,15 @@
     murtadha = {
       isNormalUser = true;
       description = "Murtadha";
+      shell = pkgs.nushell; # login shell for this user (other accounts keep system default - bash)
       extraGroups = [
         "networkmanager"
         "wheel"
       ];
     };
   };
+  # Register Nushell as a valid login shell (required for it to be usable above)
+  environment.shells = [ pkgs.nushell ];
 
   # No autoLogin on purpose: SDDM's password login goes through the `login` PAM
   # stack, where kwallet-pam unlocks the wallet with the typed password. With
