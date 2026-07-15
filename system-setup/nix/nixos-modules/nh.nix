@@ -12,4 +12,7 @@
       extraArgs = "--keep 10 --keep-since 7d";
     };
   };
+
+  # Complements the GC above: weekly store deduplication (hardlinks identical files)
+  nix.optimise.automatic = true;
 }
