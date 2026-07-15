@@ -41,11 +41,10 @@
     };
   };
 
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "murtadha";
-  };
+  # No autoLogin on purpose: SDDM's password login goes through the `login` PAM
+  # stack, where kwallet-pam unlocks the wallet with the typed password. With
+  # autoLogin no password ever reaches PAM, so the wallet stays locked and the
+  # first app needing it (browser, ssh askpass) throws a password prompt instead.
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

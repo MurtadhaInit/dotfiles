@@ -31,6 +31,12 @@ in
 
     systemd.user.sessionVariables = {
       SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/ssh-agent";
+
+      # macOS-keychain-like flow for key passphrases: route the prompt through
+      # SSH_ASKPASS (Plasma sets it to ksshaskpass) even when ssh runs in a
+      # terminal. ksshaskpass offers "remember in KWallet"; once saved - and with
+      # the wallet PAM-unlocked at login - keys load without any typing.
+      SSH_ASKPASS_REQUIRE = "prefer";
     };
   };
 }
