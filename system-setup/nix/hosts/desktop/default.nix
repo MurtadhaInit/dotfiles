@@ -17,6 +17,7 @@
     ../../nixos-modules/firewall.nix
     ../../nixos-modules/networking.nix
     ../../nixos-modules/tailscale.nix
+    ../../nixos-modules/nix-settings.nix
     ../../nixos-modules/nix-ld.nix
     ../../nixos-modules/helium.nix
     ../../nixos-modules/plasma.nix # desktop environment - swap to try another DE
@@ -73,19 +74,6 @@
     git
     curl
     vim
-  ];
-
-  # TODO: System upgrades
-  # system.autoUpgrade = {
-  #   enable = true;
-  #   allowReboot = false;
-  #   flake = ~/.dotfiles/system-setup/nix/flake.nix;
-  # };
-
-  # Enable Flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
