@@ -3,7 +3,6 @@ tap "cirruslabs/cli"
 tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
-tap "mikker/tap"
 tap "pulumi/tap"
 tap "sst/tap"
 # Run your GitHub Actions locally
@@ -206,6 +205,8 @@ cask "postman"
 cask "proton-drive"
 # Client for Proton Mail and Proton Calendar
 cask "proton-mail"
+# Control your tools with a few keystrokes
+cask "raycast"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Screenshot measurement and annotation tool
@@ -226,8 +227,6 @@ cask "thunderbird"
 cask "tor-browser"
 # Open-source BitTorrent client
 cask "transmission"
-# Modern launcher
-cask "mikker/tap/tuna", trusted: true
 # Virtual machines UI using QEMU
 cask "utm"
 # Keyboard configurator

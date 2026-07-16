@@ -1,0 +1,60 @@
+{
+  "type": "group",
+  "actions": [
+    {
+      "key": "g",
+      "type": "application",
+      "value": "/Applications/Ghostty.app",
+      "label": "Terminal"
+    },
+    {
+      "key": "v",
+      "type": "application",
+      "value": "/Applications/Visual Studio Code.app",
+      "label": "Editor"
+    },
+    {
+      "key": "b",
+      "type": "application",
+      "value": "/Applications/Brave Browser.app",
+      "label": "Browser"
+    },
+    {
+      "key": "o",
+      "type": "application",
+      "value": "/Applications/Obsidian.app",
+      "label": "Obsidian"
+    },
+    {
+      "key": "f",
+      "type": "application",
+      "value": "/System/Library/CoreServices/Finder.app",
+      "label": "Finder"
+    },
+    {
+      "key": "m",
+      "type": "application",
+      "value": "/Users/murtadha/Applications/YT Music.app",
+      "label": "Music"
+    },
+    {
+      "key": "c",
+      "type": "application",
+      "value": "/Applications/Google Chrome.app",
+      "label": "Chrome"
+    },
+    {
+      "key": "w",
+      "type": "group",
+      "actions": [
+        {
+          "key": "f",
+          "type": "url",
+          "value": "raycast://extensions/raycast/window-management/maximize",
+          "label": "Fill"
+        }
+      ],
+      "label": "Window"
+    }
+  ]
+}

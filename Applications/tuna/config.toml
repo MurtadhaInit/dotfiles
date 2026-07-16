@@ -67,10 +67,6 @@ url = 'tuna://run/TunaCore.ApplicationsCatalog.Google%20Chrome/TunaCore.CommonAc
 [hotkeys]
 custom = []
 
-    [hotkeys.app.activate]
-    carbonKeyCode = 49
-    carbonModifiers = 256
-
     [hotkeys.app.comboMode]
     carbonKeyCode = 49
     carbonModifiers = 2048
@@ -79,6 +75,8 @@ custom = []
 appPresentationMode = 'never'
 comboModeCheatsheetBehavior = 'always'
 comboModeThemeStyle = 'cheatsheet'
+comboModeTriggerType = 'disabled'
+fuzzyModeTriggerType = 'disabled'
 resultListNavigationBindings = 'macOSStandard'
 themeIdentifier = 'com.brnbw.tuna.themes.default'
 typingTimeoutDuration = 2.0
