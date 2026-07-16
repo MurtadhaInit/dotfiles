@@ -1,6 +1,14 @@
 { ... }:
 
+# Disk config beyond what the generated hardware-configuration.nix covers
+# (that file has the root fs, its LUKS container, /boot and swap).
 {
+  # LUKS container of the encrypted swap partition (nvme1n1p3), unlocked in the
+  # initrd alongside root. The installer wrote this line into configuration.nix
+  # rather than the generated hardware config, so it's maintained by hand here.
+  boot.initrd.luks.devices."luks-437bdffa-1ff4-42cf-b1a4-0b93b7ad318d".device =
+    "/dev/disk/by-uuid/437bdffa-1ff4-42cf-b1a4-0b93b7ad318d";
+
   # Two internal NTFS data HDDs, shared with Windows (boot-menu dual-boot, so the
   # two OSes never touch the disks at the same time). Mounted with the in-kernel
   # ntfs3 driver — faster and lower-overhead than ntfs-3g (FUSE), and solid on a
