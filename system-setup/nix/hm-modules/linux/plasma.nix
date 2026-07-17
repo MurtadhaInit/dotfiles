@@ -27,6 +27,22 @@ in
       # Reopen whatever apps were running at logout/shutdown on the next login
       configFile.ksmserverrc.General.loginMode = "restorePreviousLogout";
 
+      # US + Arabic keyboard layouts for the desktop session (toggle with Super+Space)
+      input.keyboard = {
+        layouts = [
+          {
+            layout = "us";
+            displayName = "en";
+          }
+          {
+            layout = "ara";
+            displayName = "ar";
+          }
+        ];
+        options = [ "grp:win_space_toggle" ];
+        switchingPolicy = "global"; # same layout across all windows; "window" for per-app memory
+      };
+
       # Let KWin own the geometry for Ghostty: every Ghostty window opens maximized
       # window-rules = [
       #   {

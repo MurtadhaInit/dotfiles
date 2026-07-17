@@ -1,6 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  # Keyboard layout for the SDDM login screen and virtual consoles.
+  # Despite the `xserver` name this is the standard NixOS layout option — it also feeds the
+  # Wayland session via XKB_DEFAULT_* and doesn't require an X session.
+  # NOTE: the desktop session's US+Arabic switching lives in the home-manager plasma module.
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
   time.timeZone = "Asia/Amman";
 
   i18n = {
