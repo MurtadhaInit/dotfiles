@@ -14,12 +14,13 @@
     ../../nixos-modules/zsa.nix
     ../../nixos-modules/locale.nix
     ../../nixos-modules/audio.nix
-    ../../nixos-modules/firewall.nix
     ../../nixos-modules/networking.nix
     ../../nixos-modules/tailscale.nix
     ../../nixos-modules/nix-settings.nix
     ../../nixos-modules/nix-ld.nix
     ../../nixos-modules/helium.nix
+    ../../nixos-modules/localsend.nix
+    ../../nixos-modules/qbittorrent.nix
     ../../nixos-modules/plasma.nix # desktop environment - swap to try another DE
   ];
 

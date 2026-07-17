@@ -34,10 +34,8 @@
     # Linux-specific
     ./ssh.nix
     ./brave.nix
-    ./qbittorrent.nix
     ./bun.nix
     ./packages.nix
-    ./localsend.nix
     ./fonts.nix
     ./plasma.nix
     ./tailscale-systray.nix
@@ -61,10 +59,8 @@
   dotfiles.lsps.enable = true;
   dotfiles.ssh.enable = true;
   dotfiles.brave.enable = true;
-  dotfiles.qbittorrent.enable = true;
   dotfiles.bun.enable = true;
   dotfiles.packages.enable = true;
-  dotfiles.localsend.enable = true;
   dotfiles.k9s.enable = true;
   dotfiles.syncthing.enable = true;
   dotfiles.devbox.enable = true;
