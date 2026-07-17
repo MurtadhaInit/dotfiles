@@ -37,6 +37,13 @@
       nur,
       ...
     }@inputs:
+    let
+      # shared nixpkgs configuration across hosts to avoid drift
+      nixpkgsConfig = {
+        allowUnfree = true;
+      };
+      nixpkgsOverlays = [ nur.overlays.default ];
+    in
     {
       nixosConfigurations = {
         # NixOS configurations + integrated home-manager module
@@ -46,12 +53,10 @@
           modules = [
             ./hosts/desktop
 
-            # Configure nixpkgs through the module system
-            # NOTE: we aren't abstracting `pkgs` with something like `pkgsFor` function based on system
-            # architecture because NixOS-integrated HM with useGlobalPkgs expects module-based nixpkgs config
+            # NOTE: NixOS-integrated HM with useGlobalPkgs expects module-based nixpkgs config
             {
-              nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ nur.overlays.default ];
+              nixpkgs.config = nixpkgsConfig;
+              nixpkgs.overlays = nixpkgsOverlays;
             }
 
             home-manager.nixosModules.home-manager
@@ -74,8 +79,8 @@
           extraSpecialArgs = { inherit inputs; };
           pkgs = import nixpkgs {
             system = "aarch64-darwin";
-            config.allowUnfree = true;
-            overlays = [ nur.overlays.default ];
+            config = nixpkgsConfig;
+            overlays = nixpkgsOverlays;
           };
           modules = [
             ./hosts/macos/home.nix
