@@ -13,6 +13,11 @@ in
 
   options.dotfiles.plasma = {
     enable = lib.mkEnableOption "KDE Plasma settings managed declaratively via plasma-manager";
+    wallpaper = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = "Wallpaper image applied to all desktops and the lock screen on login";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,6 +31,12 @@ in
 
       # Reopen whatever apps were running at logout/shutdown on the next login
       configFile.ksmserverrc.General.loginMode = "restorePreviousLogout";
+
+      # Wallpaper is applied by a plasma-manager startup script, so it takes
+      # effect on the next login rather than at activation time
+      workspace.wallpaper = lib.mkIf (cfg.wallpaper != null) cfg.wallpaper;
+      # Same image on the lock screen
+      kscreenlocker.appearance.wallpaper = lib.mkIf (cfg.wallpaper != null) cfg.wallpaper;
 
       # US + Arabic keyboard layouts for the desktop session (toggle with Super+Space)
       input.keyboard = {

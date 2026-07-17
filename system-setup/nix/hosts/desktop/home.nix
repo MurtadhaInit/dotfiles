@@ -86,6 +86,9 @@
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
   dotfiles.claude-code.enable = true;
-  dotfiles.plasma.enable = true;
+  dotfiles.plasma = {
+    enable = true;
+    wallpaper = ../../wallpapers/wallhaven-qrlwz7.jpg;
+  };
   dotfiles.tailscale-systray.enable = true;
 }
