@@ -29,6 +29,7 @@
     ../../hm-modules/devbox.nix
     ../../hm-modules/tmux.nix
     ../../hm-modules/sesh.nix
+    ../../hm-modules/claude-code.nix
 
     ../../hm-modules/lsps.nix
 
@@ -92,4 +93,5 @@
   dotfiles.devbox.enable = true;
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
+  dotfiles.claude-code.enable = true;
 }

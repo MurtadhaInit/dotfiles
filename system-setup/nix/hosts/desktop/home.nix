@@ -29,6 +29,7 @@
     ../../hm-modules/devbox.nix
     ../../hm-modules/tmux.nix
     ../../hm-modules/sesh.nix
+    ../../hm-modules/claude-code.nix
 
     ../../hm-modules/lsps.nix
 
@@ -84,6 +85,7 @@
   dotfiles.fonts.enable = true;
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
+  dotfiles.claude-code.enable = true;
   dotfiles.plasma.enable = true;
   dotfiles.tailscale-systray.enable = true;
 }
