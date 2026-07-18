@@ -3,16 +3,16 @@
 {
   # Tailscale as a regular client.
   # Enabling the service also installs the `tailscale` CLI into the system profile.
-  # Unlike macOS/Windows (which accept advertised subnet routes automatically),
-  # Linux ignores them unless told otherwise — so `--accept-routes` pulls in the
-  # homelab subnet router's advertised LAN (10.20.30.0/24) and routes it through
-  # tailscale, matching how the Mac already behaves.
+  #
+  # Intentionally NOT accepting advertised subnet routes (the homelab's 10.20.30.0/24) on this host,
+  # which is already the default on linux (unlike mac/windows) because `--accept-routes` installs
+  # 10.20.30.0/24 into a higher-priority policy-routing table (52) pointing at tailscale0, so unicast
+  # replies to LAN hosts leave via the tailnet with the wrong source IP. That silently broke LAN-local
+  # discovery (e.g. the Mac's LocalSend app couldn't see this host).
+  # The Mac needs --accept-routes because it roams off-LAN while this workstation is stationary (wired).
   services.tailscale = {
     enable = true;
     openFirewall = true; # opens UDP port 41641 so peers can negotiate direct connections
-    # Instead of extraUpFlags: applied via `tailscale set` on every activation and not gated
-    # on an authkey, so it stays in sync with interactive `tailscale up`.
-    extraSetFlags = [ "--accept-routes" ];
   };
 
   # Trust the tailnet interface so other tailnet devices can reach this
@@ -28,7 +28,7 @@
   ];
 }
 
-# After applying run with: sudo tailscale up --accept-routes --operator=murtadha
+# After applying run with: sudo tailscale up --operator=murtadha
 # --operator lets the regular user drive tailscaled (CLI + KDE tray apps) without sudo.
-# TODO: once https://github.com/tailscale/tailscale/issues/18294 is fixed we can
-# reliably add --operator to extraSetFlags instead.
+# TODO: once https://github.com/tailscale/tailscale/issues/18294 is fixed, set --operator
+# declaratively via services.tailscale.extraSetFlags instead of the manual `up` above.
