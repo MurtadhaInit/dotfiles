@@ -10,8 +10,8 @@ let
 
   # .stignore is a per-folder file that Syncthing reads from the folder root.
   # The HM module doesn't support ignorePatterns (unlike the NixOS module which
-  # POSTs them via the REST API), so we place the file ourselves via home.file
-  # and restart the service on change so Syncthing re-reads it.
+  # POSTs them via the REST API), so we place the file ourselves via an
+  # activation script and restart the service on change so Syncthing re-reads it.
   stignore = pkgs.writeText ".stignore" ''
     // macOS metadata
     (?d).DS_Store
@@ -117,27 +117,35 @@ in
       };
     };
 
-    # Place .stignore in every managed folder root
-    home.file."${cfg.documentsPath}/.stignore".source = stignore;
-
-    # Restart Syncthing only when .stignore content changes between activations.
-    # The nix store path is content-addressed, so a different path means different content.
-    home.activation.restartSyncthing = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      _marker="$HOME/.local/state/syncthing-stignore-hash"
-      _old=""
-      [ -f "$_marker" ] && _old=$(${pkgs.coreutils}/bin/cat "$_marker")
-      if [ "$_old" != "${stignore}" ]; then
+    # Copy the .stignore file directly into synced directories, then restart Syncthing
+    # only when the content differs from what is already on disk.
+    # Self-healing: a manual edit is restored on the next switch.
+    #
+    # NOTE: materialise .stignore as a REAL file in the synced folder root, NOT a symlink
+    # into the Nix store (e.g. with home.file) because Syncthing's per-folder filesystem
+    # is rooted at the folder path and refuses to traverse a symlink whose target escapes
+    # that root: it surfaces as ELOOP ("too many levels of symbolic links") even though
+    # The OS resolves the link fine.
+    #
+    # NOTE: the Linux restart must set XDG_RUNTIME_DIR explicitly: this activation runs
+    # inside the `home-manager-<user>.service` system unit, whose environment has
+    # no XDG_RUNTIME_DIR, so a bare `systemctl --user` can't reach the user bus and
+    # silently no-ops (the `|| true` hides it). We mirror the exact fallback
+    # home-manager itself uses for its `reloadSystemd` step. On macOS, launchd is
+    # reachable from the activation context, so `launchctl kickstart` is enough.
+    home.activation.syncthingStignore = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      _dest="$HOME/${cfg.documentsPath}/.stignore"
+      if [ ! -e "$_dest" ] || ! ${pkgs.coreutils}/bin/cmp -s "${stignore}" "$_dest"; then
         if [[ ! -v DRY_RUN ]]; then
+          ${pkgs.coreutils}/bin/install -m 0644 -D "${stignore}" "$_dest"
           ${
             if pkgs.stdenv.isDarwin then
               "/bin/launchctl kickstart -k gui/$(/usr/bin/id -u)/org.nix-community.home.syncthing 2>/dev/null || true"
             else
-              "systemctl --user restart syncthing 2>/dev/null || true"
+              ''env XDG_RUNTIME_DIR="''${XDG_RUNTIME_DIR:-/run/user/$(${pkgs.coreutils}/bin/id -u)}" systemctl --user restart syncthing 2>/dev/null || true''
           }
-          ${pkgs.coreutils}/bin/mkdir -p "$(${pkgs.coreutils}/bin/dirname "$_marker")"
-          echo "${stignore}" > "$_marker"
         else
-          echo "Would restart Syncthing (stignore changed)"
+          echo "Would write $_dest and restart Syncthing (stignore changed)"
         fi
       fi
     '';

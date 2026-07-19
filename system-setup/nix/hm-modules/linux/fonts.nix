@@ -42,7 +42,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets = lib.mapAttrs (_: filePath: { file = filePath; }) fontsSecrets;
+    # NOTE: explicit static decryption paths. The HM-agenix default embeds
+    # $XDG_RUNTIME_DIR, which is UNSET when home-manager-<user>.service activates
+    # at boot (before any user session exists). Under the activation script's
+    # `set -u`, the `[ -f "${archivePath}" ]` test below then expands an unbound
+    # variable and aborts the ENTIRE activation — and because extractFonts runs
+    # before linkGeneration, no home.file symlinks get created on a fresh boot
+    # (they only appear after a `switch`, when you're logged in and the var is
+    # set). A static path removes the dependency. Same workaround as syncthing.nix.
+    age.secrets = lib.mapAttrs (name: filePath: {
+      file = filePath;
+      path = "${config.home.homeDirectory}/.local/run/agenix/${name}";
+    }) fontsSecrets;
 
     home.activation.extractFonts = lib.hm.dag.entryAfter [ "writeBoundary" ] (
       ''
