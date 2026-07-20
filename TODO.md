@@ -7,4 +7,4 @@
 5. Remove the shared Nushell task for setting up XDG_ en vars for macOS. This is not needed anymore as I've decided to let Nushell use the default (inconvenient) location for config.
 6. Might make every program module (or every module) toggle-able. And also add a snippet for quickly creating a Nix module with `options` and `config` and the module toggle option.
 7. Turn `nh` into a HM module instead.
-8. The remaining apps whose dotfiles are still not covered by Home Manager: zsh, tmux, nvim, and fsh (fast syntax highlighting - for zsh).
+8. The remaining apps whose dotfiles are still not covered by Home Manager: zsh, nvim, and fsh (fast syntax highlighting - for zsh).
