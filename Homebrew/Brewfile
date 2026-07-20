@@ -1,5 +1,4 @@
 tap "anomalyco/tap"
-tap "cirruslabs/cli"
 tap "derailed/k9s"
 tap "hashicorp/tap"
 tap "jesseduffield/lazydocker"
@@ -77,8 +76,6 @@ brew "git-delta"
 brew "glow"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
-# Lightweight and flexible command-line JSON processor
-brew "jq"
 # Handy way to save and run project-specific commands
 brew "just"
 # Tool to move from `docker-compose` to Kubernetes
