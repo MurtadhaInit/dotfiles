@@ -7,7 +7,6 @@
 
 let
   cfg = config.dotfiles.bat;
-  # TODO: add an option for Homebrew to build the cache using the HB package
 
   # the Catppuccin themes repo for Bat
   catppuccin-bat = pkgs.fetchFromGitHub {
@@ -18,7 +17,7 @@ let
   };
 
   # the actual Bat theme files
-  themes-dir = "${catppuccin-bat}/themes/";
+  themes-dir = "${catppuccin-bat}/themes";
 in
 {
   options.dotfiles.bat = {
@@ -45,7 +44,7 @@ in
       # which is also $"(bat --config-dir)/themes"
       "bat/themes" = {
         source = themes-dir;
-        onChange = lib.mkIf cfg.installPackage "${pkgs.bat}/bin/bat cache --build";
+        onChange = "${pkgs.bat}/bin/bat cache --build";
       };
     };
   };
