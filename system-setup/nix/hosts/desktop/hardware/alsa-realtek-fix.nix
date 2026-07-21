@@ -1,19 +1,25 @@
 { pkgs, ... }:
 
+# Onboard Realtek ALC887-VD (ASUS B350 board) audio fixes.
+#
+# The card reports BOTH analog output jacks as plugged in, whatever is actually connected:
+#
+#   analog-output-lineout     (rear green jack, the speakers)  prio 9000
+#   analog-output-headphones  (front-panel header, unused)     prio 9900
+#
+# WirePlumber selects the highest-priority available output, so the phantom Headphones port
+# wins — and selecting it mutes the rear line-out at the codec ("Front Playback Switch" off),
+# playing audio out a jack with nothing in it. The choice is redone whenever the ALSA device is
+# re-probed, most visibly on S3 resume, which is why sound died after every wake.
+#
+# Fix: hide the phantom Headphones port so it can never be selected (below). The amixer /
+# power_save workarounds further down predate this diagnosis — they unmuted Front from outside
+# PipeWire and lost the race against WirePlumber re-muting it — and are kept only as harmless
+# belt-and-braces; likely removable once a few suspend cycles confirm the port fix holds alone.
+
 let
-  # Realtek ALC887-VD on this ASUS B350 board powers up with the rear green jack (line-out)
-  # muted and "Auto-Mute Mode" enabled, which mutes outputs based on front-panel jack
-  # detection. Worse, the codec resets these controls back to those muted defaults on *every*
-  # re-initialisation — S3 resume, and (every 10s of silence) runtime power-down to D3 — while
-  # PipeWire only manages Master/PCM and never touches Front, so audio dies mid-session.
-  #
-  # The runtime-power-down case is handled separately by disabling snd_hda_intel power_save
-  # below (so the codec stays in D0 during normal use); this script re-applies sane defaults at
-  # login and on resume, for the boot and S3 cases that power_save can't cover.
-  #
-  # The numeric ALSA card index is assigned by probe order and is NOT stable across reboots
-  # (USB/PCI enumeration varies), so resolve it from the stable Realtek codec rather than
-  # hard-coding it — otherwise the fix silently targets the wrong card (e.g. NVIDIA HDMI).
+  # Card index is assigned by probe order and moves across reboots, so resolve it from the stable
+  # ALC887 codec rather than hard-coding it (else this could target e.g. the NVIDIA HDMI card).
   fixRealtekAudio = pkgs.writeShellScript "alsa-fix-realtek" ''
     card=$(${pkgs.gnugrep}/bin/grep -l ALC887 /proc/asound/card*/codec#* 2>/dev/null \
       | ${pkgs.gnused}/bin/sed -n 's:.*/card\([0-9]\+\)/.*:\1:p' \
@@ -27,16 +33,27 @@ let
   '';
 in
 {
-  # See fixRealtekAudio above. Keep the HD-audio codec powered (D0) instead of dropping to D3
-  # after ~10s of silence: every D3->D0 cycle re-inits the codec and re-mutes Front, which is
-  # the main cause of audio dying part-way through a session. Costs a little idle power.
+  # The fix (see header). Matched on the stable PCI address, which also sidesteps the NVIDIA HDMI
+  # codec's identically-named port. Drop this if the front-panel header is ever actually used.
+  services.pipewire.wireplumber.extraConfig."51-alsa-hide-phantom-headphones" = {
+    "monitor.alsa.rules" = [
+      {
+        matches = [ { "device.name" = "alsa_card.pci-0000_0a_00.3"; } ];
+        actions.update-props."api.acp.hidden-ports" = [ "analog-output-headphones" ];
+      }
+    ];
+  };
+
+  # ---- Legacy belt-and-braces (see header); probably redundant now ----
+
+  # Keep the codec in D0 instead of powering down to D3 after ~10s of silence: each D3->D0 cycle
+  # re-inits the codec and can re-mute Front. Costs a little idle power.
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0
   '';
 
-  # See fixRealtekAudio above. At login this runs after WirePlumber, with a delay, because
-  # WirePlumber asynchronously reconfigures the ALSA controls after its unit is considered
-  # started — without the delay our values get clobbered.
+  # Re-assert sane mixer defaults at login. Ordered after WirePlumber, with a delay, because
+  # WirePlumber reconfigures the ALSA controls asynchronously after its unit reports started.
   systemd.user.services.alsa-fix-realtek = {
     description = "Fix ALSA defaults for Realtek ALC887-VD at login";
     after = [ "wireplumber.service" ];
@@ -48,9 +65,8 @@ in
     };
   };
 
-  # The codec resets the same controls on resume from sleep, so re-apply them. A unit that is
-  # WantedBy a sleep target and ordered After it is started when the machine wakes; the short
-  # delay lets the codec finish re-initialising before we write the controls.
+  # And again on resume: WantedBy/After the sleep targets so it runs on wake, after a short delay
+  # to let the codec finish re-initialising.
   systemd.services.alsa-fix-realtek-resume = {
     description = "Re-apply ALSA defaults for Realtek ALC887-VD after resume";
     after = [
