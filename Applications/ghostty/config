@@ -25,6 +25,11 @@ notify-on-command-finish-action = bell, notify
 window-inherit-working-directory = false
 tab-inherit-working-directory = true
 split-inherit-working-directory = true
+# fixes `Error opening terminal: xterm-ghostty` on remote hosts.
+# `ssh-terminfo` auto-installs Ghostty's terminfo on connect (cached per host).
+# `ssh-env` falls back to xterm-256color + COLORTERM/TERM_PROGRAM if that fails.
+# Omitted features keep their defaults (e.g. keep cursor, title, and path enabled).
+shell-integration-features = ssh-env, ssh-terminfo
 keybind = shift+enter=text:\n
 # Linux/GTK-only overrides. Silently skipped on macOS but loaded on Linux
 config-file = ?linux.conf
