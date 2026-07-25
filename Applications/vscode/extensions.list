@@ -15,7 +15,6 @@ charliermarsh.ruff
 christian-kohler.path-intellisense
 davidanson.vscode-markdownlint
 dbaeumer.vscode-eslint
-dorzey.vscode-sqlfluff
 emmanuelbeziat.vscode-great-icons
 esbenp.prettier-vscode
 expo.vscode-expo-tools
