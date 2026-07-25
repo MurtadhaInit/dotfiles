@@ -1,0 +1,235 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "editor.formatOnSave": true,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 0,
+  "terminal.integrated.fontSize": 14,
+  "editor.fontWeight": 400,
+  "editor.fontLigatures": true,
+  // "editor.fontVariations": "true",
+  // "editor.fontLigatures": "'ss02' on, 'ss03' on, 'ss04' off, 'ss05' on, 'ss06' on, 'ss07' on, 'calt' on",
+  "editor.fontFamily": "MonoLisa, Symbols Nerd Font Mono, Comic Code Ligatures, JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
+  "editor.guides.bracketPairs": "active",
+  "editor.stickyScroll.enabled": true,
+  "editor.cursorBlinking": "expand",
+  "editor.hover.delay": 1000,
+  "editor.linkedEditing": true,
+  "workbench.startupEditor": "none",
+  "editor.minimap.enabled": false,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.scale": 3,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+  "python.analysis.typeCheckingMode": "standard",
+  "gopls": {
+    "ui.semanticTokens": true
+  },
+  "git.autofetch": true,
+  "terminal.external.osxExec": "Ghostty.app",
+  "git.confirmSync": false,
+  "editor.codeActionsOnSave": {
+    "source.sortImports": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "cSpell.diagnosticLevel": "Hint",
+  "cSpell.userWords": [
+    "Abdulhussein",
+    "deque",
+    "deques",
+    "fastapi",
+    "Hamedani",
+    "Murtadha",
+    "ndim",
+    "Postcondition",
+    "Postconditions",
+    "pyenv"
+  ],
+  "cSpell.language": "en,en-GB,en-US,lorem",
+  "cSpell.enabledFileTypes": {
+    "shellscript": true
+  },
+  "outline.collapseItems": "alwaysCollapse",
+  "notebook.lineNumbers": "on",
+  "redhat.telemetry.enabled": false,
+  "editor.accessibilitySupport": "off",
+  "terminal.integrated.inheritEnv": false,
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorWidth": 2,
+  "terminal.integrated.enablePersistentSessions": false,
+  "git.mergeEditor": true,
+  "notebook.output.scrolling": true,
+  "python.terminal.activateEnvironment": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "go.toolsManagement.autoUpdate": true,
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--path-mode=abs", "--fast-only"],
+  "go.formatTool": "custom",
+  "go.alternateTools": {
+    "customFormatter": "golangci-lint"
+  },
+  "go.formatFlags": ["fmt", "--stdin"],
+  "explorer.compactFolders": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "svelte.enable-ts-plugin": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "prettier.requireConfig": true,
+  "window.density.editorTabHeight": "compact",
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "notebook.formatOnSave.enabled": false,
+  "notebook.stickyScroll.enabled": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "right"
+  },
+  "workbench.editor.wrapTabs": true,
+  "css.lint.unknownAtRules": "ignore",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "workbench.editorAssociations": {
+    "*.html": "default"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "editor.renderWhitespace": "trailing",
+  "workbench.tree.indent": 20,
+  "editor.smoothScrolling": true,
+  "workbench.tree.enableStickyScroll": true,
+  "breadcrumbs.enabled": false,
+  "scm.defaultViewMode": "tree",
+  "terminal.integrated.macOptionIsMeta": true,
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "docker-desktop"
+  ],
+  "git.openRepositoryInParentFolders": "never",
+  "diffEditor.maxComputationTime": 0,
+  "terminal.integrated.showExitAlert": false,
+  "vscode-neovim.NVIM_APPNAME": "nvim-vscode",
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[gotmpl]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "terminal.integrated.fontLigatures.enabled": true,
+  "tailwind-fold.unfoldIfLineSelected": true,
+  "[sql]": {
+    "editor.defaultFormatter": "dorzey.vscode-sqlfluff"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tombi-toml.tombi"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "ansible.lightspeed.enabled": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nixd",
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "nix.serverSettings": {
+    // Nixd config: https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
+    "nixd": {
+      "formatting": {
+        "command": ["nixfmt"],
+      },
+      "nixpkgs": {
+        "expr": "import (builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").inputs.nixpkgs {}"
+      },
+      "options": {
+        "home-manager": {
+          "expr": "(builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").homeConfigurations.\"murtadha\".options",
+        }
+      }
+    }
+  },
+  "[opentofu]": {
+    "editor.defaultFormatter": "opentofu.vscode-opentofu"
+  },
+  "githubLocalActions.dockerDesktopPath": "/Applications/OrbStack.app",
+  "[just]": {
+    "editor.defaultFormatter": "nefrob.vscode-just-syntax"
+  },
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "enabled"
+  },
+  "chat.disableAIFeatures": true,
+  "markdownlint.config": {
+    "MD013": true // enable the only disabled rule - line length
+  },
+  "json.schemaDownload.trustedDomains": {
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://json-schema.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://raw.githubusercontent.com/catppuccin/vscode/catppuccin-vsc-v3.19.0/packages/catppuccin-vsc/schemas/colorOverrides.schema.json": true,
+    "https://raw.githubusercontent.com/catppuccin/vscode/catppuccin-vsc-v3.19.0/packages/catppuccin-vsc/schemas/customUIColors.schema.json": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://www.schemastore.org/": true,
+    "https://docs.renovatebot.com/renovate-schema.json": true
+  },
+  "vscode-neovim.logOutputToConsole": true,
+  "workbench.sideBar.location": "right",
+  "[ghostty-config]": {
+    "editor.defaultFormatter": "kazuito.ghostty"
+  },
+  "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "aws.telemetry": false,
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ],
+}

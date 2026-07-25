@@ -7,6 +7,9 @@
 
 let
   cfg = config.dotfiles.vscode;
+  userDir =
+    if pkgs.stdenv.isDarwin then "Library/Application Support/Code/User" else ".config/Code/User";
+  vscodeDotfiles = "${config.home.homeDirectory}/.dotfiles/Applications/vscode";
 in
 {
   options.dotfiles.vscode = {
@@ -19,9 +22,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: explore other configurations and consider maintaining the settings.json file here, version-controlled
     programs.vscode = {
       enable = lib.mkIf cfg.installPackage true;
+    };
+
+    # Extensions are handled separately by setup-vscode.nu, which syncs from
+    # Applications/vscode/extensions.list
+    home.file = {
+      "${userDir}/settings.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${vscodeDotfiles}/settings.json";
+      "${userDir}/keybindings.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${vscodeDotfiles}/keybindings.json";
     };
 
     xdg.configFile = {
