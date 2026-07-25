@@ -13,7 +13,8 @@ uv = "latest"
 "pipx:sqlfluff" = "latest"
 # NOTE: The --with-executables-from flag (in `uv tool install`) will install those packages as
 # dependencies (if they're not already so) AND include their executables
-"pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core,ansible-lint"}
+"pipx:ansible" = { version = "latest", uvx_args = "--with-executables-from ansible-core,ansible-lint" }
+aws = { version = "latest", symlink_bins = "true" }
 opentofu = "latest"
 claude-code = "latest"
 codex = "latest"

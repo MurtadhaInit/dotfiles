@@ -16,10 +16,6 @@ brew "libssh2"
 brew "aria2"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
-# General-purpose data compression with high compression ratio
-brew "xz"
-# Official Amazon AWS command-line interface
-brew "awscli"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # C library of Git core methods that is re-entrant and linkable
@@ -28,6 +24,8 @@ brew "libgit2"
 brew "bat"
 # Bash scripts that integrate bat with various command-line tools
 brew "bat-extras"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Yet another cross-platform graphical process/system monitor
 brew "bottom"
 # Core application library for C
