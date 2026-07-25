@@ -35,6 +35,10 @@ in
         config.lib.file.mkOutOfStoreSymlink "${vscodeDotfiles}/keybindings.json";
     };
 
+    # `recursive` makes ~/.config/nvim-vscode a real, writable directory with one
+    # store symlink per tracked file instead of a single read-only dir symlink.
+    # lazy.nvim can therefore write its lazy-lock.json into that dir at runtime.
+    # Not tracking the lockfile as we want the latest plugin versions for this setup.
     xdg.configFile = {
       "nvim-vscode" = {
         source = ../../../Applications/nvim-vscode;
