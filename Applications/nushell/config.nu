@@ -209,7 +209,7 @@ alias nls = do {|...rest|
     | sort-by type
     | select name size modified mode user group
 }
-alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --time-style="+%d %b %y %l:%M%P"
+alias eza = eza --long --all --header --group --group-directories-first --color-scale=all --color-scale-mode=gradient --hyperlink --sort=modified --reverse --git --icons=auto --loc=lines --time-style="+%d %b %y %l:%M%P"
 alias ls = eza
 alias macopen = ^open
 
