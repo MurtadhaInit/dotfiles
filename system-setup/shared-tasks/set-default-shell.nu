@@ -1,10 +1,9 @@
 # priority: 10
 
-def set_default_shell [
-  shell: string # the shell binary name (from `which...`)
-  shell_name?: string # Optional: the name of this shell
-] {
-  let shell_name = (if ($shell_name | is-empty) { $shell | str capitalize } else { $shell_name })
+# Set Nushell as the default interactive shell: add it to /etc/shells and chsh the user.
+export def main [] {
+  let shell = "nu" # the shell binary name (from `which...`)
+  let shell_name = "Nushell" # the name of the shell
   print $"🔄 Setting ($shell_name) as the default interactive shell..."
   use ../utils/utils.nu [command_exists sudo_nu]
 
@@ -44,5 +43,3 @@ def set_default_shell [
     }
   }
 }
-
-set_default_shell "nu" "Nushell"

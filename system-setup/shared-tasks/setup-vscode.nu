@@ -1,4 +1,4 @@
-# priority: 12
+# priority: 0
 
 # Install/sync VS Code extensions from a tracked, version-controlled list.
 #
@@ -9,7 +9,7 @@
 #   --cleanup  also uninstall any installed extension NOT in the list
 #   --dump     overwrite the list with the currently-installed extensions, then exit
 #              (use this to snapshot state after adding/removing extensions in the UI)
-export def setup_vscode [
+export def main [
   --cleanup # uninstall extensions that are not present in the list
   --dump # snapshot currently-installed extensions back into the list then exit
   list_file?: string # the extension list (defaults to Applications/vscode/extensions.list)
@@ -66,5 +66,3 @@ export def setup_vscode [
 
   print "✅ VS Code extensions in sync"
 }
-
-setup_vscode

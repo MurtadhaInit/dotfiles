@@ -9,14 +9,17 @@
 # The key file is the age identity file (akin to the private key)
 # The key file also contains the recipient (akin to public key) as a comment
 # which is parsed automatically when encrypting with the --identity flag
-export def setup_fonts [
+export def main [
   --encrypt # encrypt the content of the `decrypted_dir` into the `encrypted_dir`
   --overwrite # overwrite existing user fonts with the provided ones (useful for font updates)
-  decrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/decrypted" # the directory whose content is in plaintext
-  encrypted_dir: string = $"($nu.home-path)/.dotfiles/Fonts/encrypted" # the directory whose content is in cyphertext
-  key_file: string = $"($nu.home-path)/.ssh/keys/age.txt" # the 'age' identity file used for encryption/decryption
+  decrypted_dir?: string # plaintext content dir (default: ~/.dotfiles/Fonts/decrypted)
+  encrypted_dir?: string # cyphertext content dir (default: ~/.dotfiles/Fonts/encrypted)
+  key_file?: string # the 'age' identity file (default: ~/.ssh/keys/age.txt)
 ] {
   use ../utils/utils.nu ensure_homebrew_package
+  let decrypted_dir = ($decrypted_dir | default $"($nu.home-dir)/.dotfiles/Fonts/decrypted")
+  let encrypted_dir = ($encrypted_dir | default $"($nu.home-dir)/.dotfiles/Fonts/encrypted")
+  let key_file = ($key_file | default $"($nu.home-dir)/.ssh/keys/age.txt")
   print "🔄 Setting up fonts..."
   ensure_homebrew_package "age"
 
@@ -39,11 +42,11 @@ export def setup_fonts [
 
   let arg = (if $overwrite {[]} else {['--no-clobber']})
   if ($nu.os-info.name == "macos") {
-    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/Library/Fonts/"
+    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-dir)/Library/Fonts/"
   } else {
     # or $XDG_DATA_HOME/fonts
-    mkdir $"($nu.home-path)/.local/share/fonts/"
-    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-path)/.local/share/fonts/"
+    mkdir $"($nu.home-dir)/.local/share/fonts/"
+    cp ...$arg --verbose ...(dir_content $decrypted_dir) $"($nu.home-dir)/.local/share/fonts/"
     ^fc-cache -fv
   }
 }
@@ -134,5 +137,3 @@ def dir_content [dir: string] {
       ($path | path basename) != ".DS_Store"
     }
 }
-
-setup_fonts

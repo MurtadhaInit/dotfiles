@@ -1,6 +1,8 @@
 # priority: 13
 
-def setup_nushell [] {
+# Generate/refresh the vendor-autoload init scripts for CLI tools
+# so they load on interactive Nushell startup.
+export def main [] {
   print "🔄 Setting up Nushell..."
 
   # On macOS, $nu.data-dir depends on launch context: a freshly launched nu (e.g. a new
@@ -39,5 +41,3 @@ def setup_nushell [] {
 
   print "✅ Successfully added/updated CLI tools' setup scripts for Nushell"
 }
-
-setup_nushell
