@@ -1,15 +1,18 @@
 # priority: 1
 
-# Install every CLI tool, GUI app, and App Store app from the Brewfile
-# (also removes anything installed that isn't listed).
-# Sign in to the App Store first.
+# Install every CLI tool, GUI app, and App Store app from the Brewfile.
 export def main [] {
-  use ../utils/utils.nu [ensure_homebrew_package install_from_brewfile]
-  print "🔄 Installing everything from Brewfile (including App Store apps)..."
+  const brew = "/opt/homebrew/bin/brew"
+  if not ($brew | path exists) {
+    print "⚠️ could not find 'brew' binary — install Homebrew first"
+    return
+  }
 
-  ensure_homebrew_package "mas"
-  # TODO: pause here to make sure the user is logged-in to the app store
-  let brewfile = $"($nu.home-dir)/.dotfiles/Homebrew/Brewfile"
+  # App Store apps are installed via `mas` (itself already in the Brewfile), which
+  # requires you to be signed in to the App Store first (otherwise those entries fail).
+  input "⚠️  Sign in to the App Store first, then press Enter to continue... "
 
-  install_from_brewfile $brewfile --just-those
+  print "🔄 Installing everything from the Brewfile (including App Store apps)..."
+  ^$brew bundle install --no-upgrade --file=$"($nu.home-dir)/.dotfiles/Homebrew/Brewfile"
+  print "✅ done!"
 }
