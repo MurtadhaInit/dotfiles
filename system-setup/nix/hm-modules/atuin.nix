@@ -12,8 +12,8 @@ let
   catppuccin-atuin = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "atuin";
-    rev = "main";
-    hash = "sha256-t/Pq+hlCcdSigtk5uzw3n7p5ey0oH/D5S8GO/0wlpKA=";
+    rev = "68aa64b77573c235044b614e752a781701af4eec";
+    hash = "sha256-4V9Rz37PlBLB1E3JVVYzrJwe9XXlKAFAO5gxWW/cTCw=";
   };
 
   # the actual Atuin theme files based on flavour

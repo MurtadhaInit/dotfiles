@@ -12,8 +12,8 @@ let
   catppuccin-ghostty = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "ghostty";
-    rev = "main";
-    hash = "sha256-j0HCakM9R/xxEjWd5A0j8VVlg0vQivjlAYHRW/4OpGU=";
+    rev = "5a58926563ddacbde4a12b4a347464c2c6945393";
+    hash = "sha256-Y6RFften1/6+1xdhIzEh/E7FBJTwY5a8NH4301HbgOM=";
   };
 
   # the actual Ghostty theme files

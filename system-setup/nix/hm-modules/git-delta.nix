@@ -12,8 +12,8 @@ let
   catppuccin-delta = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "delta";
-    rev = "main";
-    hash = "sha256-NjqqB/BHqduiNWKeksiRZUMfjRUodJlsVu1yaEIZRsM=";
+    rev = "011516f5d14f66b771b3e716f29c77231e008c74";
+    hash = "sha256-lztkxX9O41YossvRzpR7tqxMhDNT1Efy2JvkCwtsiXQ=";
   };
 
   # the actual Delta theme file

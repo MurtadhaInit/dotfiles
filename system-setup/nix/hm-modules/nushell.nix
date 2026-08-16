@@ -12,8 +12,8 @@ let
   catppuccin-nushell = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "nushell";
-    rev = "main";
-    hash = "sha256-vaGiZHoGkHr1QcshO8abIQL/zIuw3hFcBhDYcKhOpNw=";
+    rev = "815dfc6ea61f2746ff27b54ef425cfeb7b51dda8";
+    hash = "sha256-124T2pCmwirl8eLAy3h1fDOQZJf//3KJ7GwIP+u6YQ4=";
   };
 
   # the actual Nushell theme files

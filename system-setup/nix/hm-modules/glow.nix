@@ -12,7 +12,7 @@ let
   catppuccin-nushell = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "glamour";
-    rev = "main";
+    rev = "00c97fa3823d272d9d041d5d872ae6335555a776";
     hash = "sha256-SI/COnVFdKltMRqeqLTbR/Rh0xUJcWSqiX/YlR221eo=";
   };
 

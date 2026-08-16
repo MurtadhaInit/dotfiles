@@ -12,7 +12,7 @@ let
   catppuccin-bat = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "bat";
-    rev = "main";
+    rev = "6810349b28055dce54076712fc05fc68da4b8ec0";
     hash = "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg=";
   };
 
