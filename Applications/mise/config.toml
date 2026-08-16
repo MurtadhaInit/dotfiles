@@ -18,6 +18,7 @@ aws = { version = "latest", symlink_bins = "true" }
 opentofu = "latest"
 claude-code = "latest"
 codex = "latest"
+herdr = "latest"
 
 [settings]
 color_theme = "catppuccin"
