@@ -135,7 +135,7 @@ in
     # reachable from the activation context, so `launchctl kickstart` is enough.
     home.activation.syncthingStignore = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       _dest="$HOME/${cfg.documentsPath}/.stignore"
-      if [ ! -e "$_dest" ] || ! ${pkgs.coreutils}/bin/cmp -s "${stignore}" "$_dest"; then
+      if [ ! -e "$_dest" ] || ! ${pkgs.diffutils}/bin/cmp -s "${stignore}" "$_dest"; then
         if [[ ! -v DRY_RUN ]]; then
           ${pkgs.coreutils}/bin/install -m 0644 -D "${stignore}" "$_dest"
           ${
