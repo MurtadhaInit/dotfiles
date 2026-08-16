@@ -214,7 +214,8 @@
     "https://raw.githubusercontent.com/microsoft/vscode/": true,
     "https://schemastore.azurewebsites.net/": true,
     "https://www.schemastore.org/": true,
-    "https://docs.renovatebot.com/renovate-schema.json": true
+    "https://docs.renovatebot.com/renovate-schema.json": true,
+    "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json": true
   },
   "vscode-neovim.logOutputToConsole": true,
   "workbench.sideBar.location": "right",

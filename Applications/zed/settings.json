@@ -45,6 +45,10 @@
       "**playbook*.yml",
     ],
     "GitHub Actions": [".github/workflows/*.yml", ".github/workflows/*.yaml"],
+    "Ghostty": [
+      "**/ghostty/config",
+      "**/com.mitchellh.ghostty/config"
+    ]
   },
   "semantic_tokens": "combined",
   "cli_default_open_behavior": "new_window",
@@ -118,6 +122,7 @@
     "color-highlight": true,
     "docker-compose": true,
     "dockerfile": true,
+    "ghostty": true,
     "git-firefly": true,
     "github-actions": true,
     "github-theme": true,
