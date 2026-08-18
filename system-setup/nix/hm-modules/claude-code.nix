@@ -11,7 +11,7 @@ let
 in
 {
   options.dotfiles.claude-code = {
-    enable = lib.mkEnableOption "Claude Code config (settings + status line)";
+    enable = lib.mkEnableOption "Claude Code config (settings + memory + status line)";
   };
 
   # NOTE: Claude Code itself is installed through Mise
@@ -23,7 +23,7 @@ in
     home.file.".claude/statusline-command.sh".source =
       config.lib.file.mkOutOfStoreSymlink "${claudeDir}/statusline-command.sh";
 
-    # Claude saves it atomically: it resolves the symlink ONE level, writes a temp
+    # Claude saves these atomically: it resolves the symlink ONE level, writes a temp
     # file next to the resolved target, then renames onto it. `home.file` always makes
     # hop #1 the read-only home-manager /nix/store path, so that temp write hits
     # EROFS (even via mkOutOfStoreSymlink, since the store hop is still first).
@@ -32,6 +32,7 @@ in
     home.activation.claudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude"
       run ln -sf ${claudeDir}/settings.json "$HOME/.claude/settings.json"
+      run ln -sf ${claudeDir}/CLAUDE.md "$HOME/.claude/CLAUDE.md"
     '';
   };
 }
