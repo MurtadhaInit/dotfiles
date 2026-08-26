@@ -21,6 +21,7 @@
     ../../nixos-modules/helium.nix
     ../../nixos-modules/localsend.nix
     ../../nixos-modules/qbittorrent-gui.nix
+    ../../nixos-modules/openlogi.nix
     ../../nixos-modules/plasma.nix # desktop environment - swap to try another DE
   ];
 
