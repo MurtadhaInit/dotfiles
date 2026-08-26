@@ -93,9 +93,8 @@ $env.PROMPT_INDICATOR = "" # Emacs mode
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 $env.PROMPT_INDICATOR_VI_NORMAL = ""
 $env.TRANSIENT_PROMPT_COMMAND = "\n" # Transient prompt
-# Colour theme
-source "themes/catppuccin_mocha.nu"
-# Custom commands, including internal utility functions
+
+source "themes/catppuccin_mocha.nu" # Colour theme
 source "scripts/custom-commands.nu"
 source "scripts/github-backup.nu"
 
@@ -239,9 +238,25 @@ $env.FZF_DEFAULT_OPTS = "
 --color=border:#6C7086,label:#CDD6F4"
 
 # Nix
+# Determinate's installer only hooks /etc/{zshrc,bashrc,profile} and adds no /etc/paths.d entry,
+# so nushell has to set up the profiles itself. Done natively rather than by sourcing
+# nix-daemon.sh through capture-foreign-env: that helper can't diff multiline values, so it
+# leaked its own 3KB SCRIPT_TO_SOURCE into the environment of every child process.
 if ($nu.os-info.name == "macos") and ("/nix/var/nix/profiles/default/bin" | path exists) {
-  load-env (open /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh | capture-foreign-env err> /dev/null)
-  $env.PATH = $env.PATH | split row (char env_sep)
+  let user_profile = $"($nu.home-dir)/.nix-profile"
+  let default_profile = "/nix/var/nix/profiles/default"
+
+  $env.NIX_PROFILES = $"($default_profile) ($user_profile)"
+  $env.NIX_SSL_CERT_FILE = $"($default_profile)/etc/ssl/certs/ca-bundle.crt"
+  $env.PATH = ($env.PATH | prepend [$"($user_profile)/bin" $"($default_profile)/bin"] | uniq)
+  $env.XDG_DATA_DIRS = (
+    $env.XDG_DATA_DIRS? | default "/usr/local/share:/usr/share"
+    | split row (char env_sep)
+    | append [$"($user_profile)/share" $"($default_profile)/share"]
+    | uniq
+    | str join (char env_sep)
+  )
+
+  # Stops a zsh/bash child from prepending the same entries again.
+  $env.__ETC_PROFILE_NIX_SOURCED = "1"
 }
-# Raw output, for testing:
-# open /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh | capture-foreign-env err> /dev/null
