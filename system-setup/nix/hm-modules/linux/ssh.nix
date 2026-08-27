@@ -21,9 +21,50 @@ in
       enableDefaultConfig = false;
 
       # Attribute names become `Host <name>` patterns; values are literal
+      # ssh_config directives. `Host *` is rendered last, so the per-host
+      # blocks below win wherever they overlap with it.
       settings = {
         "*".AddKeysToAgent = "yes";
+
         "github.com".IdentityFile = "~/.ssh/keys/github";
+
+        # Proxmox nodes. Two logins per node: `root` & `murtadha`
+        "prox-root" = {
+          HostName = "10.20.30.40";
+          User = "root";
+          IdentityFile = "~/.ssh/keys/proxmox-hosts";
+        };
+
+        "prox-murtadha" = {
+          HostName = "10.20.30.40";
+          User = "murtadha";
+          IdentityFile = "~/.ssh/keys/proxmox-hosts";
+        };
+
+        "prox2-root" = {
+          HostName = "10.20.30.100";
+          User = "root";
+          IdentityFile = "~/.ssh/keys/proxmox-hosts";
+        };
+
+        "prox2-murtadha" = {
+          HostName = "10.20.30.100";
+          User = "murtadha";
+          IdentityFile = "~/.ssh/keys/proxmox-hosts";
+        };
+
+        # Proxmox guests (VMs & LXCs)
+        "ubuntu-vm" = {
+          HostName = "10.20.30.41";
+          User = "murtadha";
+          IdentityFile = "~/.ssh/keys/proxmox-vms";
+        };
+
+        "nixos-ct" = {
+          HostName = "10.20.30.50";
+          User = "root";
+          IdentityFile = "~/.ssh/keys/proxmox-vms";
+        };
       };
     };
 
