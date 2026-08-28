@@ -4,7 +4,8 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [],
-    "deny": []
+    "deny": [],
+    "defaultMode": "auto"
   },
   "model": "opus",
   "hooks": {
@@ -34,9 +35,16 @@
     "aws-core@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "xhigh"
+    }
+  },
   "tui": "fullscreen",
   "editorMode": "vim",
+  "autoCompactEnabled": true,
+  "autoScrollEnabled": false,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true
 }
