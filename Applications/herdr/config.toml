@@ -1,0 +1,31 @@
+onboarding = false
+
+[keys]
+# tmux prefix-l equivalent: toggle to the last focused pane, across tabs/workspaces.
+last_pane = "prefix+space"
+# same tmux defaults for pane splitting
+split_vertical = "prefix+%"
+split_horizontal = "prefix+\""
+
+[ui]
+agent_panel_sort = "priority"
+status_indicators = "dots"
+pane_gaps = false
+mouse_scroll_lines = 1
+tab_bar_right = [
+  { type = "hostname" },
+]
+
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = true
+
+[theme]
+auto_switch = true
+dark_name = "catppuccin"
+light_name = "catppuccin-latte"
+
+[experimental]
+pane_history = true

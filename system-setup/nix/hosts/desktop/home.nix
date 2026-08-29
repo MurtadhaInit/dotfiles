@@ -30,6 +30,7 @@
     ../../hm-modules/tmux.nix
     ../../hm-modules/sesh.nix
     ../../hm-modules/claude-code.nix
+    ../../hm-modules/herdr.nix
 
     ../../hm-modules/lsps.nix
 
@@ -86,6 +87,7 @@
   dotfiles.tmux.enable = true;
   dotfiles.sesh.enable = true;
   dotfiles.claude-code.enable = true;
+  dotfiles.herdr.enable = true;
   dotfiles.plasma = {
     enable = true;
     wallpaper = ../../wallpapers/wallhaven-qrlwz7.jpg;
