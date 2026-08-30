@@ -1,6 +1,6 @@
 # Desktop applications: anything needing a display server or a login session.
 # A headless host simply omits this profile.
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   inherit (pkgs.stdenv.hostPlatform) isDarwin isLinux;
@@ -22,16 +22,18 @@ in
     ../hm-modules/linux/tailscale-systray.nix
   ];
 
+  # mkDefault so a host can opt out of any single app with a plain `false`, and so
+  # the platform switches below stay overridable too.
   dotfiles = {
-    ghostty.enable = true;
-    jetbrains.enable = true;
-    vscode.enable = true;
-    zed.enable = true;
+    ghostty.enable = lib.mkDefault true;
+    jetbrains.enable = lib.mkDefault true;
+    vscode.enable = lib.mkDefault true;
+    zed.enable = lib.mkDefault true;
 
-    linearmouse.enable = isDarwin;
-    tuna.enable = isDarwin;
+    linearmouse.enable = lib.mkDefault isDarwin;
+    tuna.enable = lib.mkDefault isDarwin;
 
-    brave.enable = isLinux;
-    tailscale-systray.enable = isLinux;
+    brave.enable = lib.mkDefault isLinux;
+    tailscale-systray.enable = lib.mkDefault isLinux;
   };
 }
