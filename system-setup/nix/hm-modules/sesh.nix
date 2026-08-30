@@ -21,7 +21,13 @@ in
   config = lib.mkIf cfg.enable {
     # NOTE: picker (fzf) and zoxide source come from fzf/zoxide, which should be present on each host.
     # To fuzzy find projects from a predefined directory (e.g. ~/Projects), install fd too.
-    home.packages = lib.mkIf cfg.installPackage [ pkgs.sesh ];
+    home.packages = lib.mkIf cfg.installPackage [
+      pkgs.sesh
+      # dependencies:
+      pkgs.fzf
+      pkgs.fd
+      pkgs.zoxide
+    ];
 
     xdg.configFile = {
       "sesh/sesh.toml".source = ../../../Applications/sesh/sesh.toml;
