@@ -16,18 +16,25 @@ in
       default = true;
       description = "Install the sesh package via Nix (vs. just configuring it)";
     };
+    installDeps = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install sesh dependencies (CLIs) via Nix";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     # NOTE: picker (fzf) and zoxide source come from fzf/zoxide, which should be present on each host.
     # To fuzzy find projects from a predefined directory (e.g. ~/Projects), install fd too.
-    home.packages = lib.mkIf cfg.installPackage [
-      pkgs.sesh
-      # dependencies:
-      pkgs.fzf
-      pkgs.fd
-      pkgs.zoxide
-    ];
+    home.packages =
+      lib.optionals cfg.installPackage [
+        pkgs.sesh
+      ]
+      ++ lib.optionals cfg.installDeps [
+        pkgs.fzf
+        pkgs.fd
+        pkgs.zoxide
+      ];
 
     xdg.configFile = {
       "sesh/sesh.toml".source = ../../../Applications/sesh/sesh.toml;

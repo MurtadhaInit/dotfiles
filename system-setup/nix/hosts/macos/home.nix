@@ -34,7 +34,10 @@
   };
 
   # Use Homebrew packages instead of Nix on macOS
-  dotfiles.nushell.installPackage = false;
+  dotfiles.nushell = {
+    installPackage = false;
+    installDeps = false;
+  };
   dotfiles.ghostty.installPackage = false;
   dotfiles.eza.installPackage = false;
   dotfiles.bat.installPackage = false;
@@ -49,4 +52,5 @@
   dotfiles.glow.installPackage = false;
   dotfiles.mise.installPackage = false;
   dotfiles.k9s.installPackage = false;
+  dotfiles.sesh.installDeps = false;
 }

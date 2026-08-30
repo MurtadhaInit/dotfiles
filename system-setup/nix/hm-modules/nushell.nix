@@ -27,6 +27,11 @@ in
       default = true;
       description = "Install the package via Nix (vs. just configure it)";
     };
+    installDeps = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Install Nushell dependencies (CLIs) via Nix";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -35,6 +40,15 @@ in
       package = lib.mkIf (!cfg.installPackage) null;
       configFile.source = ../../../Applications/nushell/config.nu;
     };
+
+    # CLI tools referenced in the Nushell config / setup
+    home.packages = lib.mkIf cfg.installDeps [
+      pkgs.fzf
+      pkgs.fd
+      pkgs.zoxide
+      pkgs.carapace
+      pkgs.direnv
+    ];
 
     # on macOS
     home.file = lib.mkIf pkgs.stdenv.isDarwin {
