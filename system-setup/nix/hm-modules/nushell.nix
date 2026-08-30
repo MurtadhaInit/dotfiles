@@ -41,11 +41,8 @@ in
       configFile.source = ../../../Applications/nushell/config.nu;
     };
 
-    # CLI tools referenced in the Nushell config / setup
+    # CLI tools referenced directly in the Nushell config / setup
     home.packages = lib.mkIf cfg.installDeps [
-      pkgs.fzf
-      pkgs.fd
-      pkgs.zoxide
       pkgs.carapace
       pkgs.direnv
     ];
