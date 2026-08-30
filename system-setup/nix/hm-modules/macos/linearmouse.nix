@@ -10,7 +10,7 @@ let
 in
 {
   options.dotfiles.linearmouse = {
-    enable = lib.mkEnableOption "Librewolf with dotfiles defaults";
+    enable = lib.mkEnableOption "Linearmouse with dotfiles defaults";
   };
 
   config = lib.mkIf cfg.enable {
