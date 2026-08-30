@@ -16,21 +16,10 @@ in
   config = lib.mkIf cfg.enable {
     # NOTE: this excludes certain tools installed cross-platform through mise instead
     home.packages = with pkgs; [
-      neovim
-      stow
-      zoxide
-      fzf
-      ripgrep
-      # TODO: bundle carapace installation with Nushell
-      carapace
-      fd
       obsidian
-      gh
       drawio
       legcord
       zotero
-      tree
-      lazydocker
       libreoffice-qt-fresh
       hunspell # for libreoffice (spellcheck)
       hunspellDicts.en-us # for libreoffice (spellcheck)
@@ -38,13 +27,9 @@ in
       dig
       signal-desktop
       rustdesk-flutter
-      age
       nur.repos.charmbracelet.crush
       papers # cause Okular is kinda trash
-      # terraform # Terraform is not available on the unstable channel
-      tmux
       remmina
-      tlrc
       mpv
       meld
       ffmpeg

@@ -34,6 +34,7 @@
   };
 
   # Use Homebrew packages instead of Nix on macOS
+  dotfiles.cli-packages.enable = false;
   dotfiles.nushell = {
     installPackage = false;
     installDeps = false;

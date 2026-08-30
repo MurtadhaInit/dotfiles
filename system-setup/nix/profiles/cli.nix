@@ -2,7 +2,7 @@
 # host, headless ones included. Every host is expected to take this profile.
 #
 # Nothing here assumes a display server, a login session, or decrypted secrets.
-{ ... }:
+{ lib, ... }:
 
 {
   imports = [
@@ -10,6 +10,7 @@
     ../hm-modules/bat.nix
     ../hm-modules/bottom.nix
     ../hm-modules/claude-code.nix
+    ../hm-modules/cli-packages.nix
     ../hm-modules/devbox.nix
     ../hm-modules/eza.nix
     ../hm-modules/git-delta.nix
@@ -28,24 +29,27 @@
 
   # Only `enable` belongs in a profile. E.g. whether Nix supplies the binary is host
   # policy (macOS defers to Homebrew), so hosts set `installPackage` themselves.
+  #
+  # Using mkDefault so a host can opt out with a plain `false` for any module.
   dotfiles = {
-    atuin.enable = true;
-    bat.enable = true;
-    bottom.enable = true;
-    claude-code.enable = true;
-    devbox.enable = true;
-    eza.enable = true;
-    glow.enable = true;
-    herdr.enable = true;
-    k9s.enable = true;
-    lazygit.enable = true;
-    lsps.enable = true;
-    mise.enable = true;
-    nushell.enable = true;
-    opencode.enable = true;
-    sesh.enable = true;
-    starship.enable = true;
-    tmux.enable = true;
-    version-control.enable = true; # git-delta.nix
+    atuin.enable = lib.mkDefault true;
+    bat.enable = lib.mkDefault true;
+    bottom.enable = lib.mkDefault true;
+    claude-code.enable = lib.mkDefault true;
+    cli-packages.enable = lib.mkDefault true;
+    devbox.enable = lib.mkDefault true;
+    eza.enable = lib.mkDefault true;
+    glow.enable = lib.mkDefault true;
+    herdr.enable = lib.mkDefault true;
+    k9s.enable = lib.mkDefault true;
+    lazygit.enable = lib.mkDefault true;
+    lsps.enable = lib.mkDefault true;
+    mise.enable = lib.mkDefault true;
+    nushell.enable = lib.mkDefault true;
+    opencode.enable = lib.mkDefault true;
+    sesh.enable = lib.mkDefault true;
+    starship.enable = lib.mkDefault true;
+    tmux.enable = lib.mkDefault true;
+    version-control.enable = lib.mkDefault true; # git-delta.nix
   };
 }
