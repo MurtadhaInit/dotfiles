@@ -30,11 +30,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # TODO: Git is installed globally with system packages
     home.packages = lib.mkIf cfg.installPackage (
       with pkgs;
       [
         delta
+        git
       ]
     );
 
