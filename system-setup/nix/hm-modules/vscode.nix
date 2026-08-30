@@ -9,9 +9,11 @@ let
   cfg = config.dotfiles.vscode;
   userDir =
     if pkgs.stdenv.isDarwin then "Library/Application Support/Code/User" else ".config/Code/User";
-  vscodeDotfiles = "${config.home.homeDirectory}/.dotfiles/Applications/vscode";
+  vscodeDotfiles = "${config.dotfiles.repoPath}/Applications/vscode";
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.vscode = {
     enable = lib.mkEnableOption "Visual Studio Code with dotfiles defaults";
     installPackage = lib.mkOption {

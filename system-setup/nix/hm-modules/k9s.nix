@@ -20,6 +20,8 @@ let
   themes-dir = "${catppuccin-k9s}/dist/";
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.k9s = {
     enable = lib.mkEnableOption "k9s with dotfiles defaults";
     installPackage = lib.mkOption {
@@ -41,8 +43,7 @@ in
       "k9s/skins".source = themes-dir;
       "k9s/config.yaml".source =
         # TODO: might turn into a regular symlink - no need for outside mutation
-        config.lib.file.mkOutOfStoreSymlink
-          "${config.home.homeDirectory}/.dotfiles/Applications/k9s/config.yaml";
+        config.lib.file.mkOutOfStoreSymlink "${config.dotfiles.repoPath}/Applications/k9s/config.yaml";
     };
   };
 }

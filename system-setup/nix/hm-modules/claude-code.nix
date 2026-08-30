@@ -7,9 +7,11 @@
 
 let
   cfg = config.dotfiles.claude-code;
-  claudeDir = "${config.home.homeDirectory}/.dotfiles/Applications/claude-code";
+  claudeDir = "${config.dotfiles.repoPath}/Applications/claude-code";
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.claude-code = {
     enable = lib.mkEnableOption "Claude Code config (settings + memory + status line)";
   };

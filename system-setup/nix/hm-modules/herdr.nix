@@ -8,6 +8,8 @@ let
   cfg = config.dotfiles.herdr;
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.herdr = {
     enable = lib.mkEnableOption "Herdr terminal multiplexer config";
   };
@@ -17,6 +19,6 @@ in
     # Out-of-store so the file stays writable and edits apply with
     # `herdr server reload-config` instead of a rebuild.
     xdg.configFile."herdr/config.toml".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/Applications/herdr/config.toml";
+      config.lib.file.mkOutOfStoreSymlink "${config.dotfiles.repoPath}/Applications/herdr/config.toml";
   };
 }

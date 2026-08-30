@@ -9,6 +9,8 @@ let
   cfg = config.dotfiles.zed;
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.zed = {
     enable = lib.mkEnableOption "Zed with dotfiles defaults";
     installPackage = lib.mkOption {
@@ -28,6 +30,6 @@ in
     );
 
     xdg.configFile."zed/settings.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/Applications/zed/settings.json";
+      config.lib.file.mkOutOfStoreSymlink "${config.dotfiles.repoPath}/Applications/zed/settings.json";
   };
 }

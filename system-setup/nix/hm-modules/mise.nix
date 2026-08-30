@@ -9,6 +9,8 @@ let
   cfg = config.dotfiles.mise;
 in
 {
+  imports = [ ./common.nix ];
+
   options.dotfiles.mise = {
     enable = lib.mkEnableOption "Mise with dotfiles defaults";
     installPackage = lib.mkOption {
@@ -28,7 +30,7 @@ in
 
     xdg.configFile = {
       "mise/config.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/Applications/mise/config.toml";
+        config.lib.file.mkOutOfStoreSymlink "${config.dotfiles.repoPath}/Applications/mise/config.toml";
     };
   };
 }

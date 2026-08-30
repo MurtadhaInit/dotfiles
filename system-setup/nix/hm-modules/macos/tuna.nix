@@ -9,6 +9,8 @@ let
   cfg = config.dotfiles.tuna;
 in
 {
+  imports = [ ../common.nix ];
+
   options.dotfiles.tuna = {
     enable = lib.mkEnableOption "Tuna with dotfiles defaults";
   };
@@ -16,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     home.file = {
       "Library/Application Support/Tuna/config.toml".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/Applications/tuna/config.toml";
+        config.lib.file.mkOutOfStoreSymlink "${config.dotfiles.repoPath}/Applications/tuna/config.toml";
     };
   };
 }
