@@ -90,6 +90,19 @@
             ./hosts/macos/home.nix
           ];
         };
+
+        # Standalone home-manager configuration for a general-purpose Ubuntu server VM
+        "murtadha@ubuntu-vm" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config = nixpkgsConfig;
+            overlays = nixpkgsOverlays;
+          };
+          modules = [
+            ./hosts/ubuntu-vm/home.nix
+          ];
+        };
       };
     };
 }
