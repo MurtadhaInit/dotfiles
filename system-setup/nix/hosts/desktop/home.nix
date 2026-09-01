@@ -16,7 +16,7 @@
     ../../hm-modules/linux/fonts.nix
 
     # Linux + host specific
-    ../../hm-modules/linux/ssh.nix
+    ../../hm-modules/ssh.nix
     ../../hm-modules/linux/bun.nix
     ../../hm-modules/linux/packages.nix
     ../../hm-modules/linux/plasma.nix

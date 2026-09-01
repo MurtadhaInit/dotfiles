@@ -13,6 +13,9 @@
     # age identity, and a missing key fails the whole activation.
     inputs.agenix.homeManagerModules.default
     ../../hm-modules/syncthing.nix
+
+    # macOS + host specific
+    ../../hm-modules/ssh.nix
   ];
 
   # the user and their home path to be managed
@@ -32,6 +35,9 @@
     # Land the synced folder at ~/Desktop/Documents on this machine
     documentsPath = "Desktop/Documents";
   };
+
+  # SSH config
+  dotfiles.ssh.enable = true;
 
   # Use Homebrew packages instead of Nix on macOS
   dotfiles.cli-packages.enable = false;
