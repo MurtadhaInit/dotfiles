@@ -3,8 +3,10 @@
   "autoupdate": true,
   "permission": {
     "bash": {
-      "home-manager*": "deny",
-      "nix run home-manager*": "deny"
+      "home-manager*": "ask",
+      "nix run home-manager*": "ask",
+      "tofu apply*": "ask",
+      "ansible-playbook*": "ask"
     }
   },
   "mcp": {
