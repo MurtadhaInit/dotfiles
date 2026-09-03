@@ -1,8 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  // 'system' is another option
-  "theme": "catppuccin",
   "autoupdate": true,
+  "permission": {
+    "bash": {
+      "home-manager*": "deny",
+      "nix run home-manager*": "deny"
+    }
+  },
   "mcp": {
     "nushell-mcp": {
       "type": "local",
