@@ -17,6 +17,8 @@ uv = "latest"
 aws = { version = "latest", symlink_bins = "true" }
 opentofu = "latest"
 claude-code = "latest"
+pi = "latest"
+opencode = "latest"
 codex = "latest"
 herdr = "latest"
 
