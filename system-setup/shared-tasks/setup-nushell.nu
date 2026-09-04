@@ -36,8 +36,14 @@ export def main [] {
   ^zoxide init nushell | save -f ($tools_dir | path join "zoxide.nu")
   # Mise-en-place
   # NOTE: the generated activation script snapshots the current $PATH which becomes stale when config.nu changes.
-  # Stripping the PATH line lets mise's hook-env dynamically build PATH on the first prompt instead.
-  ^mise activate nu | lines | where { $in !~ '^set,PATH,' } | str join "\n" | save -f ($tools_dir | path join "mise.nu")
+  # Stripping the PATH lines lets mise's hook-env dynamically build PATH on the first prompt instead.
+  # Two forms have to go: the `set,PATH,` CSV entry and the `$env.PATH = r#'...'#` assignment mise
+  # added later. The assignment inside `update-env` is what the hook writes through, so keep that one.
+  ^mise activate nu
+    | lines
+    | where { $in !~ '^set,PATH,' and $in !~ '^\s*\$env\.PATH = r#' }
+    | str join "\n"
+    | save -f ($tools_dir | path join "mise.nu")
 
   print "✅ Successfully added/updated CLI tools' setup scripts for Nushell"
 }
