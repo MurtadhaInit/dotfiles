@@ -16,12 +16,6 @@
 
 - A backup solution for larger directories that shouldn't be committed to `.dotfiles` (e.g. the Projects directory). A cloud solution?
 
-- To use touch ID for sudo instead of supplying the password:
-  - Edit the file: `sudo nano /etc/pam.d/sudo`
-  - Add beneath the first commented line: `auth sufficient pam_tid.so`
-  - Careful not to misspell anything cause that will break `sudo`!
-  - Also, this seems to go back to default after a system update!
-
 - Explore and configure glow: <https://github.com/charmbracelet/glow>
 
 - Explore rsync, rclone, btop, ncdu

@@ -7,6 +7,7 @@
     ../../darwin-modules/determinate.nix
     ../../darwin-modules/shells.nix
     ../../darwin-modules/keyboard.nix
+    ../../darwin-modules/sudo.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
