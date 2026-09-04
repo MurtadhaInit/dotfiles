@@ -260,3 +260,11 @@ if ($nu.os-info.name == "macos") and ("/nix/var/nix/profiles/default/bin" | path
   # Stops a zsh/bash child from prepending the same entries again.
   $env.__ETC_PROFILE_NIX_SOURCED = "1"
 }
+
+# nix-darwin's system profile, holding darwin-rebuild and anything in
+# environment.systemPackages. /etc/zshrc is what normally puts this on PATH, but we
+# keep nix-darwin out of the system shell files (darwin-modules/shells.nix), so
+# nushell adds it. The guard makes it a no-op until a generation has been activated.
+if ($nu.os-info.name == "macos") and ("/run/current-system/sw/bin" | path exists) {
+  $env.PATH = ($env.PATH | append "/run/current-system/sw/bin" | uniq)
+}

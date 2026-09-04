@@ -7,6 +7,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # TODO: switch to a (better, consistent) `follows` once that issue is addressed upstream
+    # Deliberately not following nixpkgs: nix-darwin master currently builds its HTML
+    # manual with a `--sidebar-depth` flag that nixos-unstable's nixos-render-docs has
+    # dropped, which fails the whole system build. Its own pin is the one it is tested
+    # against, and this config installs no packages, so the split costs nothing.
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
+    # Determinate owns the Nix installation on macOS; its module is what stops
+    # nix-darwin from fighting it over /etc/nix. Pinned through the documented FlakeHub
+    # URL to the same major line as the installed Determinate Nix.
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +51,7 @@
     {
       nixpkgs,
       home-manager,
+      nix-darwin,
       nur,
       ...
     }@inputs:
@@ -73,6 +87,22 @@
                 users.murtadha = ./hosts/desktop/home.nix;
               };
             }
+          ];
+        };
+      };
+
+      darwinConfigurations = {
+        # macOS system-level configuration.
+        # The user environment is configured via standalone home-manager (below).
+        macbookpro = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.config = nixpkgsConfig;
+              nixpkgs.overlays = nixpkgsOverlays;
+            }
+
+            ./hosts/macos/darwin.nix
           ];
         };
       };
