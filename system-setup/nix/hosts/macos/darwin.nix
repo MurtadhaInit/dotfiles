@@ -6,8 +6,18 @@
 
     ../../darwin-modules/determinate.nix
     ../../darwin-modules/shells.nix
-    ../../darwin-modules/keyboard.nix
     ../../darwin-modules/sudo.nix
+    ../../darwin-modules/firewall.nix
+    ../../darwin-modules/software-update.nix
+
+    # macOS preferences, one module per topic
+    ../../darwin-modules/appearance.nix
+    ../../darwin-modules/dock-desktop.nix
+    ../../darwin-modules/finder.nix
+    ../../darwin-modules/keyboard.nix
+    ../../darwin-modules/menu-bar.nix
+    ../../darwin-modules/privacy.nix
+    ../../darwin-modules/trackpad.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
