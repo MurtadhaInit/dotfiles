@@ -11,11 +11,11 @@
     TrackpadThreeFingerTapGesture = 0;
   };
 
-  # Trackpad > Point & Click and Trackpad > More Gestures.
-  # Enable vertical-swipe gestures for Mission Control and App Exposé.
-  # The finger count to trigger them comes from the Trackpad{Three,Four}FingerVertSwipeGesture
-  # keys, both left at their defaults (i.e. 3 fingers).
   system.defaults.dock = {
+    # Trackpad > More Gestures.
+    # Enable vertical-swipe gestures for Mission Control and App Exposé.
+    # The finger count to trigger them comes from the Trackpad{Three,Four}FingerVertSwipeGesture
+    # keys, both left at their defaults (enabled, i.e. 3 & 4 fingers).
     showMissionControlGestureEnabled = true;
     showAppExposeGestureEnabled = true;
   };

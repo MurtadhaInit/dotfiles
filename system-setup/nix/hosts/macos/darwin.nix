@@ -7,6 +7,7 @@
     ../../darwin-modules/determinate.nix
     ../../darwin-modules/shells.nix
     ../../darwin-modules/sudo.nix
+    ../../darwin-modules/host.nix
     ../../darwin-modules/firewall.nix
     ../../darwin-modules/software-update.nix
 
