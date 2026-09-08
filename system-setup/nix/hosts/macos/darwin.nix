@@ -16,9 +16,11 @@
     ../../darwin-modules/dock-desktop.nix
     ../../darwin-modules/finder.nix
     ../../darwin-modules/keyboard.nix
+    ../../darwin-modules/locale.nix
     ../../darwin-modules/menu-bar.nix
     ../../darwin-modules/privacy.nix
     ../../darwin-modules/trackpad.nix
+    ../../darwin-modules/window-tiling.nix
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
