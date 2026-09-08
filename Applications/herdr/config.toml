@@ -17,10 +17,10 @@ tab_bar_right = [
 ]
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 
 [ui.sound]
-enabled = true
+enabled = false
 
 [theme]
 auto_switch = true
