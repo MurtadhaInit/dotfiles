@@ -34,7 +34,7 @@ in
     home.activation.claudeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run mkdir -p "$HOME/.claude"
       run ln -sf ${claudeDir}/settings.json "$HOME/.claude/settings.json"
-      run ln -sf ${claudeDir}/CLAUDE.md "$HOME/.claude/CLAUDE.md"
+      run ln -sf ${config.dotfiles.repoPath}/skills/global-agents.md "$HOME/.claude/CLAUDE.md"
     '';
   };
 }
