@@ -10,6 +10,7 @@
     ../../darwin-modules/host.nix
     ../../darwin-modules/firewall.nix
     ../../darwin-modules/software-update.nix
+    ../../darwin-modules/xdg.nix
 
     # macOS preferences, one module per topic
     ../../darwin-modules/appearance.nix
