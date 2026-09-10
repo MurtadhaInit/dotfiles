@@ -33,7 +33,8 @@ Here are some of my preferences so we can be more aligned as we work together.
 
 ## General coding preferences
 
-- Keep things simple, channelling the "YAGNI" energy unless told otherwise.
+- Keep things simple, channelling the "YAGNI" energy unless told otherwise. Avoid premature
+  abstractions.
 - Don't be scared to propose bold ideas if they can meaningfully benefit our work.
 - Prefer optimal solutions and industry standard enterprise approaches over quicker yet short-term workarounds, janky shortcuts, or expensive vendored abstractions.
 
@@ -42,6 +43,11 @@ Here are some of my preferences so we can be more aligned as we work together.
 - A question is a request for an answer, not for changes. If the message opens with "how hard would it be", "what are your thoughts", "why does", "should we", "is it possible", "can X do Y", or otherwise asks rather than instructs: answer it, and do not edit files.
 - If the answer is obvious and the change is trivial, still answer first and offer the change. Ask before making it.
 
-## Blast Radius
+## Blast radius
 
 - Be careful with destructive actions that are not explicitly requested. Don't deploy resources, run playbooks, modify state, or commit and push changes without being told to.
+
+## System setup, preferences, and configurations
+
+- My current login shell is Nushell. So Use Nushell syntax instead of bash/POSIX shell when writing shell commands in comments, instructions, and examples, or when giving me manual commands to run. This extends to *actual tooling*: when building a reusable command/script for me, write it as a Nushell `.nu` script, not a bash script.
+- Everything related to system setup and preferences, globally installed tools and applications, and all relevant configurations live in a separate repository (github `MurtadhaInit/dotfiles`) checked out at `~/.dotfiles` which makes use of Nix to keep these things declarative and tracked.
