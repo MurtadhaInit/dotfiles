@@ -36,7 +36,10 @@ Here are some of my preferences so we can be more aligned as we work together.
 - Keep things simple, channelling the "YAGNI" energy unless told otherwise. Avoid premature
   abstractions.
 - Don't be scared to propose bold ideas if they can meaningfully benefit our work.
+- Don't be afraid to suggest dropping the feature to be added as a real option if the implementation
+  is going to result in a bad complexity trade or a fragile/janky solution. Flag the cost up front.
 - Prefer optimal solutions and industry standard enterprise approaches over quicker yet short-term workarounds, janky shortcuts, or expensive vendored abstractions.
+- Always check for and use the latest stable versions of providers, tools, and dependencies to be added.
 
 ## Questions are read-only
 
