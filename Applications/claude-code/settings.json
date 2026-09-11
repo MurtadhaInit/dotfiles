@@ -46,5 +46,6 @@
   "autoCompactEnabled": true,
   "autoScrollEnabled": false,
   "remoteControlAtStartup": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "autoMemoryEnabled": false
 }
