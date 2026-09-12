@@ -48,6 +48,13 @@ in
 
             "github.com".IdentityFile = "~/.ssh/keys/github";
 
+            # SSH root access to the UDR6
+            "ubiquiti-root" = {
+              HostName = "10.20.30.1";
+              User = "root";
+              IdentityFile = "~/.ssh/keys/ubiquiti";
+            };
+
             # Proxmox nodes. Two logins per node: `root` & `murtadha`
             "prox-root" = {
               HostName = "10.20.30.40";
