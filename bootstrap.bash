@@ -8,10 +8,12 @@
 #   1. Install Nix (Determinate) if missing; on macOS also Homebrew, which supplies the
 #      CLI tools home-manager defers to there
 #   2. Clone this repo to ~/.dotfiles, or update its submodules if already cloned
-#   3. Activate the flake: nix-darwin + home-manager on macOS, home-manager on Linux
+#   3. Activate the flake: nix-darwin + home-manager on macOS, home-manager on Linux,
+#      nixos-rebuild on NixOS (home-manager is a NixOS module there)
 #   4. macOS: install the Brewfile
 #
-# NixOS hosts are out of scope (nixos-install, then `nixos-rebuild switch --flake .#<host>`).
+# A fresh NixOS install starts from the live ISO with `nixos-install --flake` and this
+# script takes over once the system boots.
 # The Nushell tasks under system-setup/ are optional extras: run `dot` afterwards.
 
 set -euo pipefail
@@ -24,7 +26,7 @@ export NIX_CONFIG="extra-experimental-features = nix-command flakes"
 
 case "$(uname -s)" in
   Darwin) OS=macos ;;
-  Linux) OS=linux ;;
+  Linux) if [ -e /etc/NIXOS ]; then OS=nixos; else OS=linux; fi ;;
   *)
     echo "⚠️ Unsupported OS: $(uname -s)" >&2
     exit 1
@@ -72,22 +74,30 @@ else
   git_ clone --recursive "$REPO" "$DIR"
 fi
 
-# Both activations are built from this repo's flake so nix-darwin and home-manager
+# System activations are built from this repo's flake so nix-darwin and home-manager
 # come from its flake.lock rather than whatever `nix run <tool>/master` resolves to.
-if [ "$OS" = macos ]; then
-  step "Activating nix-darwin (macbookpro)"
-  system=$(nix build --no-link --print-out-paths "$FLAKE#darwinConfigurations.macbookpro.system")
-  sudo "$system/sw/bin/darwin-rebuild" switch --flake "$FLAKE#macbookpro"
-  hm=murtadha
-else
-  hm=murtadha@ubuntu-vm
-fi
+hm=""
+case "$OS" in
+  macos)
+    step "Activating nix-darwin (macbookpro)"
+    system=$(nix build --no-link --print-out-paths "$FLAKE#darwinConfigurations.macbookpro.system")
+    sudo "$system/sw/bin/darwin-rebuild" switch --flake "$FLAKE#macbookpro"
+    hm=murtadha
+    ;;
+  linux) hm=murtadha@ubuntu-vm ;;
+  nixos)
+    step "Activating NixOS (nixos-workstation)"
+    sudo nixos-rebuild switch --flake "$FLAKE#nixos-workstation"
+    ;;
+esac
 
-step "Activating home-manager ($hm)"
-generation=$(nix build --no-link --print-out-paths "$FLAKE#homeConfigurations.\"$hm\".activationPackage")
-# Files already in place get moved aside instead of aborting the switch, which matters
-# on a distro that has already written its own ~/.config entries.
-HOME_MANAGER_BACKUP_EXT=hm-bkp "$generation/activate"
+if [ -n "$hm" ]; then
+  step "Activating home-manager ($hm)"
+  generation=$(nix build --no-link --print-out-paths "$FLAKE#homeConfigurations.\"$hm\".activationPackage")
+  # Files already in place get moved aside instead of aborting the switch, which matters
+  # on a distro that has already written its own ~/.config entries.
+  HOME_MANAGER_BACKUP_EXT=hm-bkp "$generation/activate"
+fi
 
 if [ "$OS" = macos ]; then
   step "Installing the Brewfile"
