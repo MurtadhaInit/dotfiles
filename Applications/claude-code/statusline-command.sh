@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Claude Code status line script
-# Displays: dir | git branch | model | context usage | token counts
+# Displays: dir | git branch | model (effort) | context usage | token counts
 
 input=$(cat)
 
 # --- Extract fields ---
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 model=$(echo "$input" | jq -r '.model.display_name // ""')
+effort=$(echo "$input" | jq -r '.effort.level // empty')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 remaining_pct=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
 total_input=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
@@ -86,6 +87,8 @@ fi
 model_part=""
 if [ -n "$model" ]; then
   model_part=$(printf "${CYAN}%s${RESET}" "$model")
+  # effort is absent for models that don't support the effort parameter
+  [ -n "$effort" ] && model_part+=$(printf " ${DIM}(%s)${RESET}" "$effort")
 fi
 
 # --- Directory ---
