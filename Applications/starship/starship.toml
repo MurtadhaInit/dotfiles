@@ -68,6 +68,10 @@ style = "bold maroon"
 [directory]
 truncation_symbol = "…/"
 home_symbol = " ~"
+read_only = " 󰌾"
+# read_only = " "
+# read_only = " "
+# read_only = " 󱪨"
 truncate_to_repo = false
 truncation_length = 5
 style = "bold blue"
