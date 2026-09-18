@@ -3,6 +3,7 @@
 {
   imports = [
     ../../profiles/cli.nix
+    ../../hm-modules/ghostty.nix # only for its terminfo; the app stays disabled
   ];
 
   # the user and their home path to be managed
@@ -18,4 +19,8 @@
   # ...but that flag also switches on non-NixOS GPU driver integration by default,
   # which pulls a driver package and an activation-time probe. Nothing here renders.
   targets.genericLinux.gpu.enable = false;
+
+  # SSH sessions from Ghostty send TERM=xterm-ghostty, which the distro's terminfo
+  # lacks (it ships only the bare `ghostty` name).
+  dotfiles.ghostty.terminfo = true;
 }
