@@ -57,7 +57,7 @@ ssh_symbol = "󱘖 "
 # ssh_symbol = " "
 # ssh_symbol = "󱎔 "
 # ssh_symbol = " "
-format = "[$ssh_symbol$hostname ]($style)"
+format = "[at](text dimmed) [$ssh_symbol$hostname ]($style)"
 # only shown with SSH
 
 [localip]
