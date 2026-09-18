@@ -39,23 +39,30 @@ vimcmd_visual_symbol = "[❮](bold yellow)"
 
 # === 1st Line: left hand side ===
 [username]
+style_user = "bold rosewater"
+style_root = "bold red"
 format = "[ $user]($style) "
 
 [sudo]
 disabled = false
 style = "bold rosewater"
-# symbol = '\[sudo\] '
 symbol = " "
+# symbol = " "
+# symbol = "󱑷 "
 format = "[$symbol]($style)"
 
 [hostname]
-ssh_only = true
-ssh_symbol = " "
-# ssh_symbol = "󰣀 "
+style = "bold green"
+ssh_symbol = "󱘖 "
+# ssh_symbol = " "
+# ssh_symbol = "󱎔 "
+# ssh_symbol = " "
 format = "[$ssh_symbol$hostname ]($style)"
+# only shown with SSH
 
 [localip]
 disabled = false
+style = "bold sapphire"
 # only shown with SSH
 
 [directory]
