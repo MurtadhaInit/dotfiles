@@ -62,7 +62,7 @@ format = "[$ssh_symbol$hostname ]($style)"
 
 [localip]
 disabled = false
-style = "bold dimmed sapphire"
+style = "bold maroon"
 # only shown with SSH
 
 [directory]
