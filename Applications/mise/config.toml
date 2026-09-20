@@ -20,7 +20,12 @@ claude-code = "latest"
 pi = "latest"
 opencode = "latest"
 codex = "latest"
-herdr = "latest"
+# Herdr skill generated from the binary to match its version.
+herdr = { version = "latest", postinstall = """
+mkdir -p ~/.agents/skills/herdr ~/.claude/skills
+herdr --skill > ~/.agents/skills/herdr/SKILL.md
+ln -sfn ~/.agents/skills/herdr ~/.claude/skills/herdr
+""" }
 
 [settings]
 color_theme = "catppuccin"
