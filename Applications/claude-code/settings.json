@@ -9,18 +9,7 @@
   },
   "model": "opus",
   "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '/Users/murtadha/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
+    "SessionStart": [{"matcher":"^(startup|resume|clear|compact|fork)$","hooks":[{"type":"command","command":"bash '/Users/murtadha/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]
   },
   "statusLine": {
     "type": "command",
@@ -31,8 +20,7 @@
     "context7@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true,
-    "aws-core@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
@@ -42,6 +30,7 @@
     }
   },
   "tui": "fullscreen",
+  "theme": "auto",
   "editorMode": "vim",
   "autoCompactEnabled": true,
   "autoScrollEnabled": false,
