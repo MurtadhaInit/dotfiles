@@ -149,8 +149,6 @@ load-env {
     EDITOR: "nvim",
 
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
-    # TODO: this option will be deprecated in Sept 2026. Use `xattr -d com.apple.quarantine /Applications/<app>.app` instead
-    # HOMEBREW_CASK_OPTS: "--no-quarantine", # Disable Apple "trusted app" post-installation dialogues
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
     EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
 
