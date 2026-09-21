@@ -21,7 +21,9 @@ in
     environment.shells = [ cfg.shellPath ]; # added to /etc/shells
 
     # users.users.<name>.shell only updates accounts in users.knownUsers, which
-    # also grants account creation/deletion ownership. Only change UserShell here.
+    # explicitly puts the account under broader nix-darwin management (e.g. granting
+    # it account creation/deletion ownership too); ill-advised for existing admin
+    # accounts, and we're only changing UserShell here.
     # postActivation runs after /etc/shells (and any nix-darwin Homebrew setup).
     system.activationScripts.postActivation.text = lib.mkAfter ''
       defaultShellPath=${lib.escapeShellArg cfg.shellPath}
