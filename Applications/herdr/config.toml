@@ -1,5 +1,10 @@
 onboarding = false
 
+[terminal]
+# Use the Nushell on this server's host PATH, independently of the account's $SHELL.
+default_shell = "nu"
+shell_mode = "login"
+
 [keys]
 # tmux prefix-l equivalent: toggle to the last focused pane, across tabs/workspaces.
 last_pane = "prefix+space"

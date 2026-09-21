@@ -109,6 +109,18 @@
   "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_size": 14,
   "terminal": {
+    "shell": {
+      "with_arguments": {
+        "program": "nu",
+        "args": ["--login"],
+      },
+    },
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"],
+        "activate_script": "nushell",
+      },
+    },
     "font_family": "Comic Code Ligatures",
     "font_fallbacks": ["Symbols Nerd Font Mono"],
     "line_height": "standard",

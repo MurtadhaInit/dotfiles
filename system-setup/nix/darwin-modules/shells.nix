@@ -13,9 +13,8 @@
 #     `environment.systemPath`. Entries under /etc/paths.d (Wireshark, rvictl, cryptex,
 #     /pkg/env/global/bin) would stop reaching zsh unless re-added there.
 #
-# Nushell is unaffected either way, and gains nothing from turning them on: it is chsh'd
-# as the login shell, so no zsh or bash startup file ever runs for a login session. It
-# reads /etc/paths itself and sets up its own Nix profile entries in
+# Interactive tools launch Nushell explicitly, independently of the account's login
+# shell. Nushell reads /etc/paths itself and sets up its own Nix profile entries in
 # Applications/nushell/config.nu — including /run/current-system/sw/bin, which is where
 # darwin-rebuild lives.
 { ... }:

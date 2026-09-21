@@ -1,3 +1,7 @@
+# Interactive shell only; leave the account's login shell unchanged.
+# linux.conf overrides the Homebrew path on Linux.
+command = direct:/opt/homebrew/bin/nu --login
+
 font-family = MonoLisa Cursive
 # font-family = Comic Code Ligatures Medium
 font-size = 14
