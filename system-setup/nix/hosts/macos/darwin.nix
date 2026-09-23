@@ -19,6 +19,7 @@
     ../../darwin-modules/keyboard.nix
     ../../darwin-modules/locale.nix
     ../../darwin-modules/menu-bar.nix
+    ../../darwin-modules/mouse.nix
     ../../darwin-modules/privacy.nix
     ../../darwin-modules/trackpad.nix
     ../../darwin-modules/window-tiling.nix

@@ -23,6 +23,13 @@
     AppleAccentColor = 3;
     AppleHighlightColor = "0.847059 0.847059 0.862745 Graphite";
 
+    # Liquid Glass slider: 0.0 is the clearest (leftmost), higher values add tint.
+    NSGlassTintAmount = 0.0;
+
+    # Icon & widget style: "Dark" icons set to "Auto", i.e. dark icons only while the
+    # system is in dark mode.
+    AppleIconAppearanceTheme = "RegularAutomatic";
+
     # Double-clicking a title bar fills the window to the screen edge instead of
     # zooming or minimising.
     AppleActionOnDoubleClick = "Fill";

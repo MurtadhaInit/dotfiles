@@ -17,5 +17,6 @@
   system.defaults.CustomUserPreferences."com.apple.finder" = {
     WarnOnEmptyTrash = false;
     ShowRecentTags = false;
+    ShowPreviewPane = true;
   };
 }
