@@ -16,6 +16,7 @@
 
     # macOS + host specific
     ../../hm-modules/ssh.nix
+    ../../hm-modules/zsh.nix
   ];
 
   # the user and their home path to be managed
@@ -38,6 +39,12 @@
 
   # SSH config
   dotfiles.ssh.enable = true;
+
+  # Startup files for the account's login shell, which GUI apps read their env from.
+  dotfiles.zsh = {
+    enable = true;
+    installPackage = false;
+  };
 
   # Use Homebrew packages instead of Nix on macOS
   dotfiles.cli-packages.enable = false;

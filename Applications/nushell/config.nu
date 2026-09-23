@@ -151,13 +151,14 @@ load-env {
     HOMEBREW_NO_ANALYTICS: "1", # Disable Homebrew Google analytics.
     STARSHIP_CONFIG: $"($env.XDG_CONFIG_HOME)/starship/starship.toml", # Starship prompt config file
     EZA_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/eza", # eza config directory
-
-    # "NULLCMD": "bat" # Default to bat instead of cat
-
-    ANSIBLE_HOME: $"($env.XDG_DATA_HOME)/ansible"
-    JUPYTER_CONFIG_DIR: $"($env.XDG_CONFIG_HOME)/jupyter", # Jupyter config directory
-    LESSHISTFILE: $"($env.XDG_CACHE_HOME)/less/history" # less history directory
 }
+
+# herdr and tmux export their own pane shell as $SHELL (nu, /bin/sh). Restore the account's
+# login shell so tools that spawn "the user's shell" (nvim, fzf) get the same one everywhere.
+$env.SHELL = (
+    (if $nu.os-info.name == "macos" { ^id -P } else { ^getent passwd $env.USER })
+    | split row ":" | last | str trim
+)
 
 # System manpaths from /etc/manpaths and /etc/manpaths.d/*
 if ($system_manpaths | is-not-empty) {

@@ -3,8 +3,7 @@
 # ~/.config/nushell (from $XDG_CONFIG_HOME) -- assuming we didn't already seed the
 # config both there and in `~/Library/Application Support/nushell` (we do, with home-manager).
 #
-# NOTE: we already export the same set of env vars in config.nu (Nushell) and .zprofile (ZSH).
-# Except the bin and runtime dirs are not in .zprofile.
+# NOTE: we already export the same set of env vars in config.nu (Nushell) and .zshenv (zsh).
 { config, lib, ... }:
 
 let

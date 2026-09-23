@@ -124,12 +124,6 @@ brew "yt-dlp"
 brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# UNIX shell (command interpreter)
-brew "zsh"
-# Fish-like fast/unobtrusive autosuggestions for zsh
-brew "zsh-autosuggestions"
-# Feature-rich syntax highlighting for Zsh
-brew "zsh-fast-syntax-highlighting"
 # The AI coding agent built for the terminal.
 brew "anomalyco/tap/opencode", trusted: true
 # Kubernetes CLI To Manage Your Clusters In Style!

@@ -1,11 +1,9 @@
 # nix-darwin ships zsh and bash modules that are enabled by default, and each one takes
 # over the system-wide startup files: /etc/{zshenv,zprofile,zshrc} and /etc/bashrc.
 # Keeping them off leaves all four exactly as macOS and the Determinate installer left
-# them — notably the `export ZDOTDIR="$HOME/.config/zsh"` appended to /etc/zshenv, which
-# is the only thing pointing zsh at this repo's config.
+# them. We instead manage the user level zsh config in home-manager (zsh.nix).
 #
-# Two things to weigh before turning them on, beyond re-declaring ZDOTDIR through
-# `programs.zsh.shellInit`:
+# Two things to weigh before turning them on:
 #
 #   - /etc/zshenv and /etc/bashrc no longer match any hash nix-darwin recognises, so
 #     activation aborts until both are renamed to *.before-nix-darwin.
@@ -14,9 +12,9 @@
 #     /pkg/env/global/bin) would stop reaching zsh unless re-added there.
 #
 # Interactive tools launch Nushell explicitly, independently of the account's login
-# shell. Nushell reads /etc/paths itself and sets up its own Nix profile entries in
-# Applications/nushell/config.nu — including /run/current-system/sw/bin, which is where
-# darwin-rebuild lives.
+# shell (i.e. zsh). Both shells set up their own Nix profile entries — including
+# /run/current-system/sw/bin, which is where darwin-rebuild lives: Nushell in
+# `config.nu` (which also reads /etc/paths itself), and zsh in `.zprofile`.
 { ... }:
 
 {

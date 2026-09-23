@@ -90,6 +90,18 @@ and portable. A module places it one of two ways:
   (editors, mise, k9s) or which can be updated from the GUI. Edits land in the
   checkout immediately, no rebuild.
 
+### Shells
+
+Nushell is the interactive shell everywhere, but only NixOS makes it the account's
+login shell; macOS keeps the system's zsh and Ubuntu keeps bash. Terminals launch nu
+themselves instead (Ghostty, herdr, tmux, VS Code, Zed), and `config.nu` points `$SHELL`
+back at the login shell so tools that spawn "the user's shell" behave the same in all of
+them.
+
+GUI apps on macOS (VS Code, Zed, etc) read their environment from the login shell, so zsh's
+startup files (setup with the home-manager [`zsh.nix`](system-setup/nix/hm-modules/zsh.nix) module)
+mirror the Nushell setup, and is largely derived from it: same PATH, variables and tools.
+
 ### Secrets
 
 [agenix](https://github.com/ryantm/agenix) encrypts secrets to a per-host age public key
