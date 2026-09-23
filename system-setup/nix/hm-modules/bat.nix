@@ -18,6 +18,14 @@ let
 
   # the actual Bat theme files
   themes-dir = "${catppuccin-bat}/themes";
+
+  # bat has no built-in Nushell syntax (sharkdp/bat#2129)
+  nushell-syntax = pkgs.fetchFromGitHub {
+    owner = "kurokirasama";
+    repo = "nushell_sublime_syntax";
+    rev = "8a1bb9205859d0c2f362c6c5a2b7ef1a7a87c387";
+    hash = "sha256-2A7c6/FOsOyzyGAshZJZvZ/m5w1cKj7uckB+pzdlr3M=";
+  };
 in
 {
   options.dotfiles.bat = {
@@ -44,6 +52,11 @@ in
       # which is also $"(bat --config-dir)/themes"
       "bat/themes" = {
         source = themes-dir;
+        onChange = "${pkgs.bat}/bin/bat cache --build";
+      };
+
+      "bat/syntaxes/nushell.sublime-syntax" = {
+        source = "${nushell-syntax}/nushell.sublime-syntax";
         onChange = "${pkgs.bat}/bin/bat cache --build";
       };
     };
