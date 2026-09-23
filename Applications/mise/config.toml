@@ -36,6 +36,8 @@ color_theme = "catppuccin"
 # Harmless on macOS, where precompiled is already the default.
 # Docs: https://mise.jdx.dev/configuration/settings.html#all_compile
 all_compile = false
+# Get the true "latest" for these right away
+minimum_release_age_excludes = ["claude-code"]
 
 [settings.npm]
 package_manager = "bun"
