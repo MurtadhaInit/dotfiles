@@ -1,5 +1,3 @@
-# priority: 2
-
 # Decrypt the content of the `encrypted_dir` into `decrypted_dir` using `age`
 #
 # By default, if the `decrypted_dir` is empty the files in `encrypted_dir` are decrypted

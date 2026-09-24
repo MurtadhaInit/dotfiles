@@ -1,5 +1,3 @@
-# priority: 13
-
 # Generate/refresh the vendor-autoload init scripts for CLI tools
 # so they load on interactive Nushell startup.
 export def main [] {

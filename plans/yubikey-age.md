@@ -93,5 +93,5 @@ README's "restore the age identity" step becomes "generate one and re-key".
 - Move SSH into the same keys via `ssh-keygen -t ed25519-sk` (FIDO2, resident) so the
   `ssh.nix` module can reference one key across hosts. Independent of age; not needed
   for this plan.
-- Wrap the enrol steps into a Nushell task under `shared-tasks/` once done by hand at
+- Wrap the enrol steps into a Nushell task under `system-setup/tasks/` once done by hand at
   least once.

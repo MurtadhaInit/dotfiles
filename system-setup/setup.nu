@@ -1,111 +1,35 @@
 #!/usr/bin/env nu
 
-# Setup a workstation through a number of Nushell scripts.
+# Pick and run ad-hoc setup tasks (one `tasks/*.nu` file each).
 #
-# After detecting the OS type, relevant tasks will be shown.
-# Each task represents a step to configure the current system.
-# Navigate with keyboard and pick the tasks to be performed.
-def main [
-  --skip # select the tasks to skip and execute the rest (opposite of normal operation)
-  --all # execute all tasks (unattended)
-  --skip-tasks: list<string> = [] # specify the exact names of tasks to skip
-  ]: nothing -> nothing {
-  cd $"($nu.home-dir)/.dotfiles/system-setup"
-  let os_tasks_dir = match $nu.os-info.name {
-    "macos" => {
-      print "🍎 MacOS detected"
-      "macos-tasks"
-    },
-    "linux" => {
-      print "🐧 Linux detected"
-      "linux-tasks"
-    },
-    "windows" => {
-      print "🪟 Windows detected, unfortunately..."
-      exit 1
-    },
-    _ => {
-      print "❗ Unknown OS"
-      exit 1
-    }
-  }
+# Tasks run with their defaults here. To pass flags, run a task directly.
+# Tasks are cross-platform and handle OS differences themselves.
+def main []: nothing -> nothing {
+  const tasks_dir = path self tasks
+  # fzf shows the task name but returns its path; Esc/no match yields nothing.
+  # The picker colours are Catppuccin Mocha, and bat's preview is forced to its dark theme
+  # to match (under fzf it can't detect light/dark and falls back to a non-Catppuccin default).
+  let picked = try {
+    (glob ($tasks_dir | path join *.nu)
+    | sort
+    | each {|p| $"($p)\t($p | path parse | get stem)" }
+    | str join "\n"
+    | ^fzf --multi --delimiter "\t" --with-nth 2 --accept-nth 1
+        --bind ctrl-a:select-all
+        --height "80%"
+        --border bottom
+        --border-label " Tab: select · C-a: all · Enter: run · Esc: cancel "
+        --prompt "❯ "
+        --pointer "▶"
+        --marker "✓ "
+        --color "label:italic:#cba6f7,marker:bold:#a6e3a1,pointer:#cba6f7,current-bg:#313244"
+        --preview "bat --color=always --style=plain --theme=dark {1}"
+        --preview-window "right:80%:wrap"
+    | lines)
+  } catch { [] }
 
-  let os_tasks = get_tasks $os_tasks_dir
-  let shared_tasks = get_tasks "shared-tasks"
-  let tasks = $shared_tasks ++ $os_tasks
-  mut to_skip = []
-
-  # skip tasks interactively
-  if ($skip) {
-    let selection = $tasks | get name | input list --multi "Select tasks to skip"
-    if ($selection != null) {
-      $to_skip = $selection
-    }
-  }
-
-  # skip tasks programmatically
-  if ($skip_tasks != []) {
-    $to_skip = [...$skip_tasks]
-  }
-
-  # select tasks interactively
-  if (not $all and not $skip and $skip_tasks == []) {
-    let selection = $tasks | get name | input list --multi "Select tasks to run"
-    if ($selection != null) {
-      $to_skip = $tasks | get name | where { |task| not ($task in $selection) }
-    } else {
-      print "Nothing selected..."
-      exit 0
-    }
-  }
-
-  if ($to_skip != []) {
-    print $"Skipping tasks: ($to_skip | str join ', ')\n"
-  }
-  for task in $tasks {
-    if not ($task.name in $to_skip) {
-      nu $task.path
-    }
-  }
-  print "🚀 Done!"
-}
-
-def get_priority [file: string] {
-  try {
-    open -r $file
-    | lines
-    | parse '# priority: {prio}'
-    | get prio.0
-    | into int
-  } catch {
-    0
+  for task in $picked {
+    print $"▶ ($task | path parse | get stem)"
+    nu $task
   }
 }
-
-def get_tasks [tasks_dir: string] {
-  glob $"($tasks_dir)/*.nu"
-  | each { |item|
-      {
-        path: $item,
-        name: ($item | path parse).stem,
-        priority: (get_priority $item)
-      }
-    }
-  | sort-by -r priority
-}
-
-# TODO: test everything on a fresh machine (vm)
-
-# TODO: change system settings
-# Check out these files:
-# 1. https://github.com/mathiasbynens/dotfiles/blob/main/.macos
-# 2. https://github.com/geerlingguy/dotfiles/blob/master/.osx
-# 3. https://github.com/eieioxyz/dotfiles_macos/blob/master/setup_macos.zsh
-
-# TODO: copy all apps' settings (.plist files)
-# Those mostly located in ~/Library/Preferences
-
-# TODO: sign in to app store is required to install all apps with Brewfile.
-# Inform/prompt the user with nushell input before proceeding
-
-# TODO: explore tips found here: https://gist.github.com/ChristopherA/a579274536aab36ea9966f301ff14f3f

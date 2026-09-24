@@ -1,5 +1,3 @@
-# priority: 0
-
 # Install/sync VS Code extensions from a tracked, version-controlled list.
 #
 # The list has one `publisher.name` id per line (blank lines and lines

@@ -1,5 +1,3 @@
-# priority: 5
-
 # Clone personal git repos.
 export def main [] {
   use ../utils/utils.nu ensure_repo
