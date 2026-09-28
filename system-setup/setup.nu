@@ -4,6 +4,7 @@
 #
 # Tasks run with their defaults here. To pass flags, run a task directly.
 # Tasks are cross-platform and handle OS differences themselves.
+# Requires `fzf` and `bat` (along with Nushell syntax and Catppuccin theme).
 def main []: nothing -> nothing {
   const tasks_dir = path self tasks
   # fzf shows the task name but returns its path; Esc/no match yields nothing.
