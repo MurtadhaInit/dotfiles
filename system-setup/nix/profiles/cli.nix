@@ -19,6 +19,7 @@
     ../hm-modules/k9s.nix
     ../hm-modules/lazygit.nix
     ../hm-modules/lsps.nix
+    ../hm-modules/mcp.nix
     ../hm-modules/mise.nix
     ../hm-modules/nushell.nix
     ../hm-modules/opencode.nix
@@ -44,6 +45,7 @@
     k9s.enable = lib.mkDefault true;
     lazygit.enable = lib.mkDefault true;
     lsps.enable = lib.mkDefault true;
+    mcp.enable = lib.mkDefault true;
     mise.enable = lib.mkDefault true;
     nushell.enable = lib.mkDefault true;
     opencode.enable = lib.mkDefault true;

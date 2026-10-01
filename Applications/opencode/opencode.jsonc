@@ -10,11 +10,6 @@
     }
   },
   "mcp": {
-    "nushell-mcp": {
-      "type": "local",
-      "command": ["nu", "--mcp"],
-      "enabled": true
-    },
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",

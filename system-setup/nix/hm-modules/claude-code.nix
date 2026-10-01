@@ -22,6 +22,14 @@ in
     # Claude Code's JSON input.
     home.packages = [ pkgs.jq ];
 
+    # Only for the MCP servers from mcp.nix, delivered as a generated plugin. Leaving
+    # `settings` unset keeps HM off settings.json, which is symlinked below instead.
+    programs.claude-code = {
+      enable = true;
+      package = null;
+      enableMcpIntegration = true;
+    };
+
     home.file.".claude/statusline-command.sh".source =
       config.lib.file.mkOutOfStoreSymlink "${claudeDir}/statusline-command.sh";
 

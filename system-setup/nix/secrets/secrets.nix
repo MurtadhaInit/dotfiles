@@ -26,6 +26,9 @@ in
   "syncthing-cert-nixos-desktop.age".publicKeys = allHosts;
   "syncthing-key-nixos-desktop.age".publicKeys = allHosts;
 
+  # Generate from Karakeep UI -> User Settings -> API Keys
+  "karakeep-api-key.age".publicKeys = allHosts;
+
   # Purchased fonts (as encrypted ZIPs).
   # These are binary, so rekey them with `agenix -r` (which re-encrypts in place without an editor).
   # Don't use `-e`, which would open the blob in $EDITOR and corrupt it.

@@ -13,6 +13,7 @@
     # age identity, and a missing key fails the whole activation.
     inputs.agenix.homeManagerModules.default
     ../../hm-modules/syncthing.nix
+    ../../hm-modules/karakeep-mcp.nix
     ../../hm-modules/linux/fonts.nix
 
     # Linux + host specific
@@ -40,6 +41,7 @@
     documentsPath = "Documents/synced-documents";
   };
   dotfiles.fonts.enable = true; # agenix-encrypted licensed fonts
+  dotfiles.karakeep-mcp.enable = true;
 
   dotfiles.ssh.enable = true;
   dotfiles.bun.enable = true;

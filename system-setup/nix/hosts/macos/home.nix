@@ -13,6 +13,7 @@
     # age identity, and a missing key fails the whole activation.
     inputs.agenix.homeManagerModules.default
     ../../hm-modules/syncthing.nix
+    ../../hm-modules/karakeep-mcp.nix
 
     # macOS + host specific
     ../../hm-modules/ssh.nix
@@ -36,6 +37,7 @@
     # Land the synced folder at ~/Desktop/Documents on this machine
     documentsPath = "Desktop/Documents";
   };
+  dotfiles.karakeep-mcp.enable = true;
 
   # SSH config
   dotfiles.ssh.enable = true;

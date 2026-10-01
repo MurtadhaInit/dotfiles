@@ -107,8 +107,8 @@ mirror the Nushell setup, and is largely derived from it: same PATH, variables a
 [agenix](https://github.com/ryantm/agenix) encrypts secrets to a per-host age public key
 listed in [`secrets.nix`](system-setup/nix/secrets/secrets.nix); the private key lives at
 `~/.ssh/keys/age.txt` on that host only. Secrets are opt-in per host, since importing
-agenix commits the machine to holding a key. Currently: Syncthing identities and
-purchased fonts.
+agenix commits the machine to holding a key. Currently: Syncthing identities,
+purchased fonts, and the Karakeep MCP server's API key.
 
 ### Optional tasks
 
