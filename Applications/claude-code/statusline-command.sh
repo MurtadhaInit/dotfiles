@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code status line script
-# Displays: dir | git branch | model (effort) | context usage | token counts
+# Displays: dir | git branch | model (effort) | context usage | rate limits
 
 input=$(cat)
 
@@ -9,13 +9,10 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 model=$(echo "$input" | jq -r '.model.display_name // ""')
 effort=$(echo "$input" | jq -r '.effort.level // empty')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
-remaining_pct=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
-total_input=$(echo "$input" | jq -r '.context_window.total_input_tokens // empty')
-total_output=$(echo "$input" | jq -r '.context_window.total_output_tokens // empty')
-ctx_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
-
-# Current input tokens in context (from last API call)
-cur_input=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // empty')
+# Subscription-only, and absent until the session's first API response
+five_h_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_h_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+week_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
 # --- Directory: shorten home to ~ ---
 home_dir="$HOME"
@@ -37,27 +34,26 @@ GREEN='\033[38;2;166;227;161m'    # green
 CYAN='\033[38;2;116;199;236m'     # sapphire (model)
 BLUE='\033[38;2;137;180;250m'     # blue (directory, matches starship [directory] style)
 MAUVE='\033[38;2;203;166;247m'    # mauve (git branch, matches starship [git_branch] style)
+PINK='\033[38;2;245;194;231m'     # pink (rate limits)
 OVERLAY='\033[38;2;108;112;134m'  # overlay0 (dim bar track / separators)
 BOLD='\033[1m'
 DIM='\033[2m'
 RESET='\033[0m'
 
+# $2 is the color for the calm state, below the warning thresholds
+urgency_color() {
+  if [ "$1" -ge 85 ]; then printf '%s' "$RED"
+  elif [ "$1" -ge 60 ]; then printf '%s' "$YELLOW"
+  else printf '%s' "$2"
+  fi
+}
+
 context_part=""
 if [ -n "$used_pct" ]; then
   used_int=$(printf '%.0f' "$used_pct")
-  remaining_int=$(printf '%.0f' "$remaining_pct")
-
-  # Pick color based on how full the context is
-  if [ "$used_int" -ge 85 ]; then
-    ctx_color="$RED"
-    urgency=" (!)"
-  elif [ "$used_int" -ge 60 ]; then
-    ctx_color="$YELLOW"
-    urgency=""
-  else
-    ctx_color="$GREEN"
-    urgency=""
-  fi
+  ctx_color=$(urgency_color "$used_int" "$GREEN")
+  urgency=""
+  [ "$used_int" -ge 85 ] && urgency=" (!)"
 
   # Build a small 10-block progress bar (filled in the urgency color,
   # empty segment dimmed) instead of plain #/- characters
@@ -72,15 +68,29 @@ if [ -n "$used_pct" ]; then
   context_part=$(printf "${ctx_color}ctx: %d%%${RESET} ${bar}${ctx_color}%s${RESET}" "$used_int" "$urgency")
 fi
 
-# --- Token summary ---
-token_part=""
-if [ -n "$cur_input" ] && [ -n "$ctx_size" ]; then
-  # Show current context tokens vs window size (most useful at a glance)
-  cur_k=$(echo "$cur_input $ctx_size" | awk '{printf "%dk/%dk", $1/1000, $2/1000}')
-  token_part=$(printf "${DIM}tokens: %s${RESET}" "$cur_k")
-elif [ -n "$total_input" ]; then
-  tot_k=$(printf '%.0fk' "$(echo "$total_input" | awk '{printf "%.1f", $1/1000}')")
-  token_part=$(printf "${DIM}total in: %s${RESET}" "$tot_k")
+# --- Rate limits ---
+# Rendered as e.g. "5h 67% ↻ 1h40m · 7d 12%"
+limit_window() {
+  local pct color
+  pct=$(printf '%.0f' "$2")
+  color=$(urgency_color "$pct" "$PINK")
+  printf "${color}%s ${BOLD}%d%%${RESET}" "$1" "$pct"
+}
+
+limits_part=""
+if [ -n "$five_h_pct" ]; then
+  limits_part=$(limit_window 5h "$five_h_pct")
+  if [ -n "$five_h_reset" ]; then
+    mins=$(( (five_h_reset - $(date +%s)) / 60 ))
+    if [ "$mins" -ge 60 ]; then
+      limits_part+=$(printf " ${DIM}↻ %dh%02dm${RESET}" $(( mins / 60 )) $(( mins % 60 )))
+    elif [ "$mins" -gt 0 ]; then
+      limits_part+=$(printf " ${DIM}↻ %dm${RESET}" "$mins")
+    fi
+  fi
+fi
+if [ -n "$week_pct" ]; then
+  limits_part+="${limits_part:+ ${OVERLAY}·${RESET} }$(limit_window 7d "$week_pct")"
 fi
 
 # --- Model ---
@@ -105,7 +115,7 @@ parts=()
 parts+=("$dir_part$branch_part")
 [ -n "$model_part" ]   && parts+=("$model_part")
 [ -n "$context_part" ] && parts+=("$context_part")
-[ -n "$token_part" ]   && parts+=("$token_part")
+[ -n "$limits_part" ]  && parts+=("$limits_part")
 
 sep=$(printf " ${DIM}|${RESET} ")
 
