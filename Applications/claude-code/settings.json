@@ -7,7 +7,7 @@
     "deny": [],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash $HOME/.claude/statusline-command.sh"
@@ -24,14 +24,50 @@
   "modelSettings": {
     "claude-opus-5": {
       "effortLevel": "xhigh"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
   },
   "tui": "fullscreen",
+  "autoMemoryEnabled": false,
   "theme": "auto",
   "editorMode": "vim",
   "autoCompactEnabled": true,
   "autoScrollEnabled": false,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "autoMemoryEnabled": false
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(tofu apply:*) scoped to Terraform-OpenTofu/ in this repo — Protected-Scope IaC Apply on VM/Talos/LXC/network resources",
+      "Bash(git push --force*) to github.com/MurtadhaInit/homelab main — public repo with no branch protection listed"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: Proxmox (self-hosted homelab), plus Terraform/OpenTofu-managed infra in this repo",
+      "**Repository visibility**: PUBLIC — github.com/MurtadhaInit/homelab (confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: SOPS with age (SOPS_AGE_KEY_FILE); encrypted secrets under Nix/secrets/*.age; Terraform-OpenTofu/secrets.tf and terraform.tfstate* files present and sensitive",
+      "**Default / protected branches**: main (default). No rulesets or classic branch protection listed via gh — treat main as unprotected; pushes/force-pushes are not blocked server-side",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (github.com/MurtadhaInit/homelab) and its remote only — repo is PUBLIC, so only this repo's own work belongs here; secrets/sensitive data are never cleared into it regardless of visibility",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: Flux (GitOps), flux-operator-mcp tools, flux-system namespace on the homelab Kubernetes cluster",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: Nix/secrets/*.age (sabnzbd-secrets.age, stash-jwt-secret.age, secrets.nix), Terraform-OpenTofu/secrets.tf, Terraform-OpenTofu/terraform.tfstate and .backup files, .env — credentials/state for a public repo, never to be committed or exposed",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace/host/container carrying prod or production as a whole word or segment — none observed by name in this repo, fall back to this default",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic; flux-system is the only k8s namespace observed in usage and is infrastructure-critical (Flux GitOps controller) even though not literally prod-named",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything named/tagged prod or production; Terraform-OpenTofu/*.tf and terraform.tfstate* files in this repo manage VM/LXC/Talos infra and should be treated as protected apply targets",
+      "### User-specific",
+      "**Primary use of Claude Code**: homelab infrastructure-as-code (Nix, Talos, Kubernetes/Flux, Terraform/OpenTofu) — GitOps development on a personal/hobby project",
+      "**Trusted repo**: github.com/MurtadhaInit/homelab (public) — this repo's own work only; content ported from outside this session's repo is not cleared for commit/push here",
+      "**Org-specific CLIs**: nix, tofu (OpenTofu), kubectl, flux, uv — routine under this repo's working tree",
+      "**Routine under this repo's prefix**: Nix/, Terraform-OpenTofu/, k8s/ — routine read/build/plan operations; applies and secrets writes remain sensitive"
+    ]
+  },
 }
