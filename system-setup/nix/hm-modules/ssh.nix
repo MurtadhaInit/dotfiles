@@ -92,6 +92,12 @@ in
               User = "root";
               IdentityFile = "~/.ssh/keys/proxmox-vms";
             };
+
+            "nixos-ct-2" = {
+              HostName = "10.20.30.51";
+              User = "root";
+              IdentityFile = "~/.ssh/keys/proxmox-vms";
+            };
           };
         };
 
