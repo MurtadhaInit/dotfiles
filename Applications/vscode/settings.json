@@ -219,6 +219,9 @@
   },
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-auto",
   "workbench.colorTheme": "Catppuccin Mocha",
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
   "aws.telemetry": false,
   "yaml.disableSchemaDetection": [
     "**/.github/workflows/*.yml",
