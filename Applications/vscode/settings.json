@@ -137,7 +137,7 @@
   "terminal.integrated.fontLigatures.enabled": true,
   "tailwind-fold.unfoldIfLineSelected": true,
   "[sql]": {
-    "editor.defaultFormatter": "dorzey.vscode-sqlfluff"
+    "editor.defaultFormatter": "sqlfluff.vscode-sqlfluff"
   },
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
@@ -173,14 +173,14 @@
     // Nixd config: https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
     "nixd": {
       "formatting": {
-        "command": ["nixfmt"],
+        "command": ["nixfmt"]
       },
       "nixpkgs": {
         "expr": "import (builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").inputs.nixpkgs {}"
       },
       "options": {
         "home-manager": {
-          "expr": "(builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").homeConfigurations.\"murtadha\".options",
+          "expr": "(builtins.getFlake \"/Users/murtadha/.dotfiles/system-setup/nix/\").homeConfigurations.\"murtadha\".options"
         }
       }
     }
