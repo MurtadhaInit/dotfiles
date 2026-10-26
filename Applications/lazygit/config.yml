@@ -2,7 +2,7 @@ git:
   diffRenderers:
     # see: delta --help
     - name: Delta
-      command: delta --paging=never --side-by-side --file-style=omit --hunk-header-decoration-style=ul --hunk-header-style=file --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+      command: delta --paging=never --side-by-side --wrap-max-lines=unlimited --file-style=omit --hunk-header-decoration-style=ul --hunk-header-style=file --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
       colorArg: always
 
 gui:
