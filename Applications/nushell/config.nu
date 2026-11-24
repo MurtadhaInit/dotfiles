@@ -50,8 +50,18 @@ $env.config = ($env.config | merge deep --strategy append {
                     { edit: MoveWordRightEnd select: false }
                 ]
             }
+        },
+        {
+            # Emulates vim's V: a plain visual selection that starts as the whole line, not a linewise mode
+            name: select_line
+            modifier: Shift
+            keycode: Char_v
+            mode: "vi_Normal"
+            event: [
+                { send: SwitchMode mode: vi_visual }
+                { edit: SelectLine }
+            ]
         }
-        # select all line with shift + v
         # g + _ to move to the last non-blank character of the line
     ]
 })
