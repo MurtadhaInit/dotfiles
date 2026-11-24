@@ -420,6 +420,23 @@
         "type": "github"
       }
     },
+    "rex": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795467078,
+        "narHash": "sha256-Q+GqRAQCGrpaERDvjAR7B0T5AMqnQWullUVDCskIQOU=",
+        "type": "tarball",
+        "url": "https://pkgs.superlogical.com/rex/nix/preview/0.1.0-preview.23.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://pkgs.superlogical.com/rex/nix/preview.tar.gz"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -431,7 +448,8 @@
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
         "openlogi": "openlogi",
-        "plasma-manager": "plasma-manager"
+        "plasma-manager": "plasma-manager",
+        "rex": "rex"
       }
     },
     "rust-overlay": {

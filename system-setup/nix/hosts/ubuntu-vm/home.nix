@@ -4,6 +4,7 @@
   imports = [
     ../../profiles/cli.nix
     ../../hm-modules/ghostty.nix # only for its terminfo; the app stays disabled
+    ../../hm-modules/rex.nix
   ];
 
   # the user and their home path to be managed
@@ -23,4 +24,10 @@
   # SSH sessions from Ghostty send TERM=xterm-ghostty, which the distro's terminfo
   # lacks (it ships only the bare `ghostty` name).
   dotfiles.ghostty.terminfo = true;
+
+  # Clients reach this server over SSH (ssh://ubuntu-vm).
+  dotfiles.rex = {
+    enable = true;
+    linuxServer = true;
+  };
 }
