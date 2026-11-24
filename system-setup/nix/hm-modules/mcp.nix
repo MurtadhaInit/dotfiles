@@ -23,6 +23,10 @@ in
           args = [ "--mcp" ];
         };
         executor.url = "https://executor.k8s.murtadha.dev/mcp?elicitation_mode=native&search_tools=true";
+        # for learning about Rex, for seeing what’s new or coming, and for finding the thinking behind decisions
+        # that is buried in archived threads. Uses Discord OAuth + requires Rex Beta Discord server membership.
+        # Named superlogical rather than rex, so it doesn’t conflict with Rex skills, instructions, and the CLI.
+        superlogical.url = "https://www.superlogical.com/rex/community-mcp";
       };
     };
   };
