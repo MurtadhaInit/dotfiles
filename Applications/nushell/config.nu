@@ -38,18 +38,19 @@ $env.config = ($env.config | merge deep --strategy append {
             mode: "vi_Normal"
             event: {edit: MoveToLineStart}
         },
-        # {
-        #     name: complete_one_hint_word
-        #     modifier: None
-        #     keycode: Char_e
-        #     mode: "vi_Normal"
-        #     event: {
-        #         until: [
-        #             { send: HistoryHintWordComplete }
-        #             { edit: MoveWordRightEnd select: true } # problem
-        #         ]
-        #     }
-        # }
+        {
+            # At the end of the input, accept the next word of the history hint, otherwise a plain e motion
+            name: complete_one_hint_word
+            modifier: None
+            keycode: Char_e
+            mode: "vi_Normal"
+            event: {
+                until: [
+                    { send: HistoryHintWordComplete }
+                    { edit: MoveWordRightEnd select: false }
+                ]
+            }
+        }
         # select all line with shift + v
         # g + _ to move to the last non-blank character of the line
     ]
