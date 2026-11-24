@@ -1,4 +1,5 @@
-$env.config = {
+# Merged into the defaults rather than replacing them
+$env.config = ($env.config | merge deep --strategy append {
     show_banner: false
     edit_mode: vi # or emacs
     history: {
