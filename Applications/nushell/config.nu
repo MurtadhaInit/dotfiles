@@ -32,11 +32,11 @@ $env.config = ($env.config | merge deep --strategy append {
             event: {edit: backspaceword}
         },
         {
-            name: move_to_start_of_line
+            name: move_to_first_non_blank
             modifier: None
             keycode: Char__
             mode: "vi_Normal"
-            event: {edit: MoveToLineStart}
+            event: {edit: MoveToLineNonBlankStart}
         },
         {
             # At the end of the input, accept the next word of the history hint, otherwise a plain e motion
@@ -52,7 +52,7 @@ $env.config = ($env.config | merge deep --strategy append {
             }
         },
         {
-            # Emulates vim's V: a plain visual selection that starts as the whole line, not a linewise mode
+            # Emulates vim's V: a plain visual selection that initially covers the whole line, not a linewise mode
             name: select_line
             modifier: Shift
             keycode: Char_v
