@@ -12,7 +12,7 @@ $env.config = ($env.config | merge deep --strategy append {
         # block, underscore, line, blink_block, blink_underscore, blink_line, inherit (from the terminal)
         emacs: blink_line
         vi_insert: blink_line
-        vi_normal: blink_underscore
+        vi_normal: blink_block
     }
     use_kitty_protocol: true # a keyboard enhancement protocol supported by the Kitty Terminal
     shell_integration: {
